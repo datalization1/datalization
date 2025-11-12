@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-import os, dj_database_url
+import os
 from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,15 +21,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-mbi-s+iv21r(iungp0+$i3cyjx))_w9$ivksbx=iv2($e^*)e7"
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "0") == "1"
 SECRET_KEY = os.environ.get("SECRET_KEY", "dev-only-not-used-on-heroku")
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", ".herokuapp.com,localhost,127.0.0.1").split(",")
 
+CSRF_TRUSTED_ORIGINS = [
+    *[o for o in os.getenv("CSRF_TRUSTED_ORIGINS", "https://*.herokuapp.com").split(",") if o]
+]
 
 # Application definition
 
@@ -77,11 +77,17 @@ WSGI_APPLICATION = "datalization_site.wsgi.application"
 
 
 # Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
+# Default: SQLite (local dev). On Heroku, if DATABASE_URL is set, use Postgres via dj_database_url.
 DATABASES = {
-    "default": dj_database_url.config(conn_max_age=600, ssl_require=True, default="sqlite:///db.sqlite3")
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
 }
+
+if os.getenv("DATABASE_URL"):
+    import dj_database_url
+    DATABASES["default"] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 
 # Password validation
@@ -102,7 +108,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalisierung
 USE_I18N = True
-USE_L10N = True
 
 LANGUAGE_CODE = "de"  # Standard
 LANGUAGES = (
@@ -110,13 +115,9 @@ LANGUAGES = (
     ("en", "English"),
 )
 
-# Optional: Übersetzungsdateien
-from pathlib import Path
-BASE_DIR = Path(__file__).resolve().parent.parent
 LOCALE_PATHS = [BASE_DIR / "locale"]
 
 TIME_ZONE = "Europe/Zurich"
-USE_I18N = True
 USE_TZ = True
 
 
@@ -143,4 +144,5 @@ CONTACT_EMAIL_TO = "info@datalization.com"
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https") 
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+SECURE_SSL_REDIRECT = not DEBUG
