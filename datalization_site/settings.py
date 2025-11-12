@@ -144,5 +144,48 @@ CONTACT_EMAIL_TO = "info@datalization.com"
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {"class": "logging.StreamHandler"},
+    },
+    "root": {"handlers": ["console"], "level": "INFO"},
+    "loggers": {
+        # Unbehandelte Request-Exceptions inkl. Traceback
+        "django.request": {
+            "handlers": ["console"],
+            "level": "ERROR",
+            "propagate": False,
+        },
+        # Allgemeines Django-Logging
+        "django": {
+            "handlers": ["console"],
+            "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
+        },
+    },
+}
+
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 SECURE_SSL_REDIRECT = not DEBUG
+
+# --- Production security hardening ---
+if not DEBUG:
+    # Force HTTPS (Heroku terminates TLS at the router, proxy header is already set above)
+    SECURE_SSL_REDIRECT = True
+
+    # Secure cookies
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SAMESITE = "Lax"  # safe default
+    CSRF_COOKIE_SAMESITE = "Lax"
+
+    # HSTS (enable gradually!)
+    SECURE_HSTS_SECONDS = int(os.getenv("SECURE_HSTS_SECONDS", "0"))  # start at 0, ramp up later
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = False  # set True only when you're ready + submitted to preload list
+
+    # Additional headers
+    SECURE_REFERRER_POLICY = "strict-origin"
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    X_FRAME_OPTIONS = "DENY"
