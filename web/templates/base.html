@@ -1,0 +1,58 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}datalization – {% trans "Einfachheit trifft Innovation" %}{% endblock %}</title>
+
+  {# SEO/OpenGraph Hooks #}
+  {% block head_meta %}
+  <meta name="description" content="Datalization — Daten vereinfachen. Zukunft gestalten. Data & Software Lösungen mit Weitblick und Loyalität.">
+  {% endblock %}
+
+  {# Fonts #}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  {# Favicon (falls vorhanden) #}
+  <link rel="icon" type="image/svg+xml" href="{% static 'img/favicon.svg' %}">
+  <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+
+  {# Styles #}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  {% block extra_css %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+  <a class="skip-link" href="#content">{% trans "Skip to content" %}</a>
+
+  {# Header / Navigation #}
+  {% include 'partials_nav.html' %}
+
+  {# Messages direkt unter der Navi; Screenreader-freundlich #}
+  {% if messages %}
+    <div class="container px-4" style="margin:12px auto;" role="status" aria-live="polite">
+      {% for message in messages %}
+        <div class="toast {{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <main id="content">
+    {% block content %}{% endblock %}
+  </main>
+
+  {# Footer #}
+  {% include 'partials_footer.html' %}
+
+  {# Toast-Container für JS-generierte Hinweise (optional) #}
+  <div id="toast-container" class="toast-container"></div>
+
+  {# Scripts #}
+  <script defer src="{% static 'js/main.js' %}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

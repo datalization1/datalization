@@ -1,0 +1,40 @@
+{% extends "base.html" %}{% load i18n static %}
+{% block title %}{% trans "Über uns" %} – Datalization{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container max-w-3xl">
+    <h1 class="mb-3">{% trans "Über uns" %} / {% trans "Who we are" %}</h1>
+    <p class="text-muted mb-6">
+      {% if LANGUAGE_CODE == 'de' %}
+        Loyal leben und einfache Lösungen schaffen. Daran messen wir uns. Wir entwickeln digitale Produkte,
+        die Komplexität reduzieren und Menschen befähigen, bessere Entscheidungen zu treffen.
+      {% else %}
+        Live loyally, build simple solutions. That’s our benchmark. We craft digital products that reduce complexity
+        and enable better decisions.
+      {% endif %}
+    </p>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>{% trans "Was uns leitet" %}</h3>
+        <ul class="list">
+          <li>{% trans "Einfachheit vor Features" %}</li>
+          <li>{% trans "Klarheit vor Buzzwords" %}</li>
+          <li>{% trans "Tempo mit Qualität" %}</li>
+          <li>{% trans "Transparenz & Verlässlichkeit" %}</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>{% trans "Wie wir arbeiten" %}</h3>
+        <ul class="list">
+          <li>{% trans "Fokus auf Nutzen & Wirkung" %}</li>
+          <li>{% trans "Iterativ, messbar, testbar" %}</li>
+          <li>{% trans "Enge Zusammenarbeit" %}</li>
+          <li>{% trans "Sauber dokumentiert & übergebbar" %}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

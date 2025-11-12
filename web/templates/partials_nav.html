@@ -1,0 +1,29 @@
+{% load i18n static %}
+<header class="site-header site-header--glass">
+  <div class="container nav">
+    <a class="nav__brand" href="{% url 'web:home' %}" aria-label="Datalization">
+      {# Zwei Logo-Varianten – CSS blendet passend ein/aus #}
+      <img class="nav__logo" src="{% static 'img/datalization_logo_light.svg' %}" alt="datalization logo">
+      <span class="nav__word lowercase">datalization</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      <a href="{% url 'web:services' %}">{% trans "Lösungen" %}</a>
+      <a href="{% url 'web:cases' %}">Case Studies</a>
+      <a href="{% url 'web:about' %}">{% trans "Über uns" %}</a>
+      <a href="{% url 'web:contact' %}">{% trans "Kontakt" %}</a>
+    </nav>
+
+    <div class="nav__tools">
+      <form class="lang-switch" action="{% url 'set_language' %}" method="post">
+        {% csrf_token %}
+        {% get_current_language as LANGUAGE_CODE %}
+        <label class="sr-only" for="lang-select">Language</label>
+        <select id="lang-select" name="language" onchange="this.form.submit()">
+          <option value="de" {% if LANGUAGE_CODE == 'de' %}selected{% endif %}>DE</option>
+          <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>EN</option>
+        </select>
+      </form>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}Datalization — {% trans "Kontakt" %}{% endblock %}
+{% block body_class %}theme-dark{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container px-4" style="max-width:720px;">
+    <h1 class="section-title mb-3">{% trans "Kontakt" %}</h1>
+    <p class="text-muted mb-6">{% trans "Wir antworten schnell und konkret." %}</p>
+
+    <form method="post" class="contact-form-container">
+      {% csrf_token %}
+      {{ form.website }} {# Honeypot #}
+        <div class="grid-2 gap-4">
+          <div class="relative">
+            <input type="text" name="first_name" placeholder="{% trans 'First name' %}" class="form-input" required>
+          </div>
+          <div class="relative">
+            <input type="text" name="last_name" placeholder="{% trans 'Last name' %}" class="form-input" required>
+          </div>
+        </div>
+
+        <div class="relative">
+          <input type="text" name="company" placeholder="{% trans 'Company (optional)' %}" class="form-input">
+        </div>
+
+        <div class="relative">
+          <input type="email" name="email" placeholder="{% trans 'Your Email' %}" class="form-input" required>
+        </div>
+
+        <div class="relative">
+          <textarea name="message" rows="6" placeholder="{% trans 'Your message...' %}" class="form-textarea" required></textarea>
+        </div>
+    </form>
+  </div>
+</section>
+{% endblock %}

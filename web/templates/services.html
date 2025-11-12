@@ -1,0 +1,40 @@
+{% extends "base.html" %}{% load i18n static %}
+{% block title %}{% trans "Lösungen" %} – Datalization{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+  <div class="container">
+    <h1 class="mb-3">{% trans "Lösungen" %} / {% trans "Services" %}</h1>
+    <p class="text-muted max-w-2xl">
+      {% if LANGUAGE_CODE == 'de' %}
+        Wir bauen schlanke, robuste Datenprodukte – von Pipelines bis Dashboards – fokussiert auf Klarheit, Tempo und Wirkung.
+      {% else %}
+        We build lean, robust data products – from pipelines to dashboards – focused on clarity, speed and impact.
+      {% endif %}
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container grid-3">
+    <article class="card">
+      <h3>Data Pipelines</h3>
+      <p class="text-muted">
+        ETL/ELT auf Snowflake/DBT/Airflow. Saubere Modelle, Tests & Observability.
+      </p>
+    </article>
+    <article class="card">
+      <h3>Analytics & Dashboards</h3>
+      <p class="text-muted">
+        Entscheidungsreife KPIs in Looker/Power BI – mit Drilldowns und Alerts.
+      </p>
+    </article>
+    <article class="card">
+      <h3>Apps & Automation</h3>
+      <p class="text-muted">
+        Django/Next.js-Apps & Microservices, die man gern benutzt – sicher & schnell.
+      </p>
+    </article>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{{ case.title }} – Datalization{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-16">
+
+  <nav class="mb-6">
+    <a class="btn-link" href="{% url 'web:cases' %}">← {% trans "Zur Übersicht" %}</a>
+  </nav>
+
+  <header class="case-hero mb-8">
+    <h1 class="mb-3">{{ case.title }}</h1>
+    {% if case.category %}
+      <span class="badge-primary">{{ case.category }}</span>
+    {% endif %}
+  </header>
+
+  {% if case.image %}
+    <div class="mb-10">
+      <img class="case-hero-img" src="{{ case.image.url }}" alt="{{ case.title }}">
+    </div>
+  {% endif %}
+
+  <section class="cpr-grid cpr-grid--detail mb-10">
+    <div class="cpr-col">
+      <div class="cpr-title">{% trans "Client" %}</div>
+      <p>{{ case.client_brief|default:"–"|linebreaksbr }}</p>
+    </div>
+
+    <div class="cpr-col">
+      <div class="cpr-title">{% trans "Problem" %}</div>
+      <p>{{ case.problem_brief|default:"–"|linebreaksbr }}</p>
+    </div>
+
+    <div class="cpr-col">
+      <div class="cpr-title">{% trans "Result" %}</div>
+      {% if case.result_list %}
+        <ul class="cpr-list">
+          {% for item in case.result_list %}
+            <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>–</p>
+      {% endif %}
+    </div>
+  </section>
+
+  {% if case.tech_stack %}
+    <section class="mb-10">
+      <h3 class="mb-2">{% trans "Technology Stack" %}</h3>
+      <p class="text-muted">{{ case.tech_stack }}</p>
+    </section>
+  {% endif %}
+
+  {% if case.kpis %}
+    <section class="mb-12">
+      <h3 class="mb-3">KPIs</h3>
+      <div class="kpi-grid">
+        {% for k,v in case.kpis.items %}
+          <div class="kpi-badge">
+            <strong>{{ k }}</strong>
+            {% if v %}<span class="text-muted"> – {{ v }}</span>{% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  <footer class="mt-10">
+    <a class="btn-link" href="{% url 'web:cases' %}">← {% trans "Zur Übersicht" %}</a>
+  </footer>
+
+</div>
+{% endblock %}

@@ -1,0 +1,586 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<div class="min-h-screen bg-background text-foreground">
+    
+
+    <!-- Hero Section -->
+    <section class="hero-section animate-fade-in">
+        <div class="container mx-auto px-4 z-10 text-center">
+            <div class="max-w-4xl mx-auto">
+                <div class="hero-badge animate-scale-in">
+                    <span class="text-primary">datalization</span>
+                </div>
+
+                <h1 class="hero-title animate-slide-up">
+                    {% if LANGUAGE_CODE == 'de' %}
+                        Einfachheit trifft Innovation
+                    {% else %}
+                        Simplicity meets Innovation
+                    {% endif %}
+                </h1>
+
+                <p class="hero-subtitle animate-fade-in-delay">
+                    {% if LANGUAGE_CODE == 'de' %}
+                        Daten vereinfachen. Zukunft gestalten.
+                    {% else %}
+                        Simplify Data. Shape the Future.
+                    {% endif %}
+                </p>
+
+                <p class="hero-description animate-fade-in-delay-2">
+                    {% if LANGUAGE_CODE == 'de' %}
+                        Wir transformieren komplexe Daten in klare Lösungen und digitalisieren Ihre Prozesse mit Weitblick und Loyalität.
+                    {% else %}
+                        We transform complex data into clear solutions and digitalize your processes with vision and loyalty.
+                    {% endif %}
+                </p>
+
+                <button onclick="scrollToSection('services')" class="hero-cta animate-slide-up-delay">
+                    {% if LANGUAGE_CODE == 'de' %}Entdecken Sie mehr{% else %}Discover More{% endif %}
+                    <svg class="icon-sm arrow-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <polyline points="19 12 12 19 5 12"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator" aria-hidden="true">
+            <div class="scroll-indicator-border">
+                <span class="scroll-indicator-dot"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section class="section-alt">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 fade-in-on-scroll">
+                <h2 class="section-title">
+                    {% if LANGUAGE_CODE == 'de' %}Unsere Vision{% else %}Our Vision{% endif %}
+                </h2>
+                <p class="vision-text">
+                    {% if LANGUAGE_CODE == 'de' %}
+                        Loyal leben und einfache Lösungen schaffen
+                    {% else %}
+                        Live loyally and create simple solutions
+                    {% endif %}
+                </p>
+            </div>
+
+            <div class="grid-3 max-w-6xl mx-auto">
+                <div class="value-card fade-in-on-scroll">
+                    <div class="value-head">
+                      <div class="value-icon">
+                        <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                      </div>
+                      <h3>{% if LANGUAGE_CODE == 'de' %}Loyalität{% else %}Loyalty{% endif %}</h3>
+                    </div>
+                    <p class="text-muted">
+                        {% if LANGUAGE_CODE == 'de' %}
+                            Wir stehen zu unseren Werten und bauen langfristige Partnerschaften auf Vertrauen.
+                        {% else %}
+                            We stand by our values and build long-term partnerships based on trust.
+                        {% endif %}
+                    </p>
+                </div>
+
+                <div class="value-card fade-in-on-scroll" style="animation-delay: 0.2s;">
+                    <div class="value-head">
+                      <div class="value-icon">
+                        <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                      </div>
+                      <h3>{% if LANGUAGE_CODE == 'de' %}Einfachheit{% else %}Simplicity{% endif %}</h3>
+                    </div>
+                    <p class="text-muted">
+                        {% if LANGUAGE_CODE == 'de' %}
+                            Komplexität reduzieren, Klarheit schaffen - das ist unsere Mission.
+                        {% else %}
+                            Reducing complexity, creating clarity - that's our mission.
+                        {% endif %}
+                    </p>
+                </div>
+
+                <div class="value-card fade-in-on-scroll" style="animation-delay: 0.4s;">
+                    <div class="value-head">
+                      <div class="value-icon">
+                        <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <circle cx="12" cy="12" r="6"></circle>
+                            <circle cx="12" cy="12" r="2"></circle>
+                        </svg>
+                      </div>
+                      <h3>{% if LANGUAGE_CODE == 'de' %}Innovation{% else %}Innovation{% endif %}</h3>
+                    </div>
+                    <p class="text-muted">
+                        {% if LANGUAGE_CODE == 'de' %}
+                            Mit zukunftsorientierten Lösungen Ihre digitale Transformation gestalten.
+                        {% else %}
+                            Shaping your digital transformation with forward-thinking solutions.
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section scroll-mt-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 fade-in-on-scroll">
+                <h2 class="section-title">
+                    {% if LANGUAGE_CODE == 'de' %}Unsere Lösungen{% else %}Our Solutions{% endif %}
+                </h2>
+                <p class="text-muted max-w-2xl mx-auto">
+                    {% if LANGUAGE_CODE == 'de' %}
+                        Massgeschneiderte Dienstleistungen für Ihre digitale Zukunft
+                    {% else %}
+                        Tailored services for your digital future
+                    {% endif %}
+                </p>
+            </div>
+
+            <div class="grid-2 max-w-7xl mx-auto">
+                <!-- Service 1 -->
+                <div class="service-card fade-in-on-scroll">
+                    <div class="service-head">
+                      <div class="service-icon">
+                        <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                          <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                          <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                        </svg>
+                      </div>
+                      <h3 class="service-title">
+                        {% if LANGUAGE_CODE == 'de' %}Datenanalyse{% else %}Data Analysis{% endif %}
+                      </h3>
+                    </div>
+                    <p class="service-text mb-6">
+                        {% if LANGUAGE_CODE == 'de' %}
+                            Verwandeln Sie Rohdaten in wertvolle Erkenntnisse. Wir analysieren, interpretieren und visualisieren Ihre Daten für fundierte Entscheidungen.
+                        {% else %}
+                            Transform raw data into valuable insights. We analyze, interpret and visualize your data for informed decisions.
+                        {% endif %}
+                    </p>
+                    <div class="feature-tags">
+                        <span class="feature-tag">Business Intelligence</span>
+                        <span class="feature-tag">Predictive Analytics</span>
+                        <span class="feature-tag">Data Visualization</span>
+                        <span class="feature-tag">Reporting</span>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card fade-in-on-scroll" style="animation-delay: 0.1s;">
+                    <div class="service-head">
+                      <div class="service-icon">
+                        <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <polyline points="16 18 22 12 16 6"></polyline>
+                          <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                      </div>
+                      <h3 class="service-title">
+                        {% if LANGUAGE_CODE == 'de' %}Softwareentwicklung{% else %}Software Development{% endif %}
+                      </h3>
+                    </div>
+                    <p class="service-text mb-6">
+                        {% if LANGUAGE_CODE == 'de' %}
+                            Individuelle Softwarelösungen, die perfekt auf Ihre Bedürfnisse zugeschnitten sind. Von der Konzeption bis zur Implementierung.
+                        {% else %}
+                            Custom software solutions perfectly tailored to your needs. From concept to implementation.
+                        {% endif %}
+                    </p>
+                    <div class="feature-tags">
+                        {% if LANGUAGE_CODE == 'de' %}
+                            <span class="feature-tag">Web-Applikationen</span>
+                            <span class="feature-tag">Automatisierung</span>
+                            <span class="feature-tag">API-Integration</span>
+                            <span class="feature-tag">Cloud-Lösungen</span>
+                        {% else %}
+                            <span class="feature-tag">Web Applications</span>
+                            <span class="feature-tag">Automation</span>
+                            <span class="feature-tag">API Integration</span>
+                            <span class="feature-tag">Cloud Solutions</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card fade-in-on-scroll" style="animation-delay: 0.2s;">
+                    <div class="service-head">
+                      <div class="service-icon">
+                        <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                      </div>
+                      <h3 class="service-title">
+                        {% if LANGUAGE_CODE == 'de' %}Digitalisierung{% else %}Digitalization{% endif %}
+                      </h3>
+                    </div>
+                    <p class="service-text mb-6">
+                        {% if LANGUAGE_CODE == 'de' %}
+                            Optimieren Sie Ihre Geschäftsprozesse durch intelligente Digitalisierung. Effizienter, schneller, zukunftsorientiert.
+                        {% else %}
+                            Optimize your business processes through intelligent digitalization. More efficient, faster, future-oriented.
+                        {% endif %}
+                    </p>
+                    <div class="feature-tags">
+                        {% if LANGUAGE_CODE == 'de' %}
+                            <span class="feature-tag">Prozessoptimierung</span>
+                            <span class="feature-tag">Workflow-Automatisierung</span>
+                            <span class="feature-tag">Digitale Transformation</span>
+                            <span class="feature-tag">Change Management</span>
+                        {% else %}
+                            <span class="feature-tag">Process Optimization</span>
+                            <span class="feature-tag">Workflow Automation</span>
+                            <span class="feature-tag">Digital Transformation</span>
+                            <span class="feature-tag">Change Management</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="service-card fade-in-on-scroll" style="animation-delay: 0.3s;">
+                    <div class="service-head">
+                      <div class="service-icon">
+                        <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <line x1="18" y1="20" x2="18" y2="10"></line>
+                          <line x1="12" y1="20" x2="12" y2="4"></line>
+                          <line x1="6" y1="20" x2="6" y2="14"></line>
+                        </svg>
+                      </div>
+                      <h3 class="service-title">
+                        {% if LANGUAGE_CODE == 'de' %}Beratung & Strategie{% else %}Consulting & Strategy{% endif %}
+                      </h3>
+                    </div>
+                    <p class="service-text mb-6">
+                        {% if LANGUAGE_CODE == 'de' %}
+                            Strategische Beratung für Ihre datengetriebene Zukunft. Wir entwickeln mit Ihnen den optimalen Weg zur Digitalisierung.
+                        {% else %}
+                            Strategic consulting for your data-driven future. We develop the optimal path to digitalization with you.
+                        {% endif %}
+                    </p>
+                    <div class="feature-tags">
+                        {% if LANGUAGE_CODE == 'de' %}
+                            <span class="feature-tag">Daten-Strategie</span>
+                            <span class="feature-tag">IT-Consulting</span>
+                            <span class="feature-tag">ROI-Optimierung</span>
+                            <span class="feature-tag">Technologie-Evaluation</span>
+                        {% else %}
+                            <span class="feature-tag">Data Strategy</span>
+                            <span class="feature-tag">IT Consulting</span>
+                            <span class="feature-tag">ROI Optimization</span>
+                            <span class="feature-tag">Technology Evaluation</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section id="cases" class="section-alt scroll-mt-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 fade-in-on-scroll">
+                <h2 class="section-title">{% trans "Case Studies" %}</h2>
+                <p class="text-muted max-w-2xl mx-auto">
+                    {% if LANGUAGE_CODE == 'de' %}
+                        Erfolgsgeschichten unserer Kunden
+                    {% else %}
+                        Success stories of our clients
+                    {% endif %}
+                </p>
+            </div>
+
+            <div class="grid-3 max-w-7xl mx-auto">
+                {% for case in case_studies %}
+                <div class="case-card fade-in-on-scroll" style="--i: {{ forloop.counter0 }};">
+                    
+                    <div class="case-image">
+                    {% if case.image %}
+                      <img src="{{ case.image.url }}" alt="{{ case.title }}" class="case-img" loading="lazy" decoding="async">
+                    {% endif %}
+                    <div class="case-badge">
+                        <span class="badge-primary">{{ case.category }}</span>
+                    </div>
+                    </div>
+
+                    <div class="p-6">
+                    <h3 class="mb-3">{{ case.title }}</h3>
+                    <p class="text-muted mb-6">{{ case.summary|truncatechars:150 }}</p>
+
+                    <a class="view-more-btn" href="{% url 'web:case_detail' slug=case.slug %}">
+                        {% if LANGUAGE_CODE == 'de' %}Mehr erfahren{% else %}Learn more{% endif %}
+                        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                    </a>
+                    </div>
+                </div>
+                {% empty %}
+                <p class="text-center text-muted py-10">
+                    {% if LANGUAGE_CODE == 'de' %}Noch keine Case Studies verfügbar.{% else %}No case studies available yet.{% endif %}
+                </p>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section scroll-mt-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 fade-in-on-scroll">
+                <h2 class="section-title">
+                    {% if LANGUAGE_CODE == 'de' %}Über uns{% else %}About Us{% endif %}
+                </h2>
+                <p class="text-muted">
+                    {% if LANGUAGE_CODE == 'de' %}Wer wir sind{% else %}Who we are{% endif %}
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto mb-16">
+                <div class="about-intro fade-in-on-scroll">
+                    <p class="about-intro-text">
+                        {% if LANGUAGE_CODE == 'de' %}
+                            Datalization ist mehr als nur ein Unternehmen - es ist eine Vision für eine digitale Zukunft, in der Komplexität durch Einfachheit ersetzt wird.
+                        {% else %}
+                            Datalization is more than just a company - it's a vision for a digital future where complexity is replaced by simplicity.
+                        {% endif %}
+                    </p>
+                    <p class="text-muted">
+                        {% if LANGUAGE_CODE == 'de' %}
+                            Geboren aus der Überzeugung, dass Technologie für Menschen geschaffen ist, entwickeln wir Lösungen, die bewegen. 
+                            Mit Freiheit im Denken, Flexibilität in der Gestaltung, Kraft in der Umsetzung und Präzision im Ergebnis gestalten wir die digitale Zukunft.
+                        {% else %}
+                            Born from the conviction that technology is made for people, we create solutions that inspire.  
+                            With freedom in thought, flexibility in design, strength in execution, and precision in outcome, we shape the digital future.
+                        {% endif %}
+                    </p>
+                </div>
+
+                <div class="grid-3 gap-6 mb-12">
+                    <div class="about-principle fade-in-on-scroll">
+                        <div class="principle-icon">
+                            <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+                            </svg>
+                        </div>
+                        <h3 class="mb-2">
+                            {% if LANGUAGE_CODE == 'de' %}Freiheit{% else %}Freedom{% endif %}
+                        </h3>
+                        <p class="text-muted text-sm">
+                            {% if LANGUAGE_CODE == 'de' %}
+                                Unabhängige Lösungen, die Sie nicht einschränken, sondern befähigen.
+                            {% else %}
+                                Independent solutions that don't restrict you, but empower you.
+                            {% endif %}
+                        </p>
+                    </div>
+
+                    <div class="about-principle fade-in-on-scroll" style="animation-delay: 0.1s;">
+                        <div class="principle-icon">
+                            <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="mb-2">
+                            {% if LANGUAGE_CODE == 'de' %}Flexibilität{% else %}Flexibility{% endif %}
+                        </h3>
+                        <p class="text-muted text-sm">
+                            {% if LANGUAGE_CODE == 'de' %}
+                                Anpassungsfähige Systeme, die mit Ihrem Unternehmen wachsen.
+                            {% else %}
+                                Adaptive systems that grow with your business.
+                            {% endif %}
+                        </p>
+                    </div>
+
+                    <div class="about-principle fade-in-on-scroll" style="animation-delay: 0.2s;">
+                        <div class="principle-icon">
+                            <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="1" x2="12" y2="3"></line>
+                                <line x1="12" y1="21" x2="12" y2="23"></line>
+                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                                <line x1="1" y1="12" x2="3" y2="12"></line>
+                                <line x1="21" y1="12" x2="23" y2="12"></line>
+                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                            </svg>
+                        </div>
+                        <h3 class="mb-2">
+                            {% if LANGUAGE_CODE == 'de' %}Klarheit{% else %}Clarity{% endif %}
+                        </h3>
+                        <p class="text-muted text-sm">
+                            {% if LANGUAGE_CODE == 'de' %}
+                                Transparente Prozesse und verständliche Ergebnisse.
+                            {% else %}
+                                Transparent processes and understandable results.
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="about-commitment fade-in-on-scroll">
+                    <h3 class="text-primary mb-4">
+                        {% if LANGUAGE_CODE == 'de' %}Unser Versprechen{% else %}Our Promise{% endif %}
+                    </h3>
+                    <p class="text-muted">
+                        {% if LANGUAGE_CODE == 'de' %}
+                            Wir setzen nicht auf schnelle Erfolge, sondern auf nachhaltige Partnerschaften. Loyal zu unseren Werten, loyal zu unseren Kunden - das ist der Datalization-Weg.
+                        {% else %}
+                            We don't focus on quick wins, but on sustainable partnerships. Loyal to our values, loyal to our customers - that's the Datalization way.
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-alt scroll-mt-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 fade-in-on-scroll">
+                <h2 class="section-title">
+                    {% if LANGUAGE_CODE == 'de' %}Kontakt{% else %}Contact{% endif %}
+                </h2>
+                <p class="text-muted max-w-2xl mx-auto">
+                    {% if LANGUAGE_CODE == 'de' %}
+                        Lassen Sie uns Ihre Vision gemeinsam verwirklichen
+                    {% else %}
+                        Let's realize your vision together
+                    {% endif %}
+                </p>
+            </div>
+
+        <div class="max-w-2xl mx-auto">
+        <div class="contact-form-container fade-in-on-scroll">
+
+            <form id="contact-form" method="post" action="{% url 'web:contact' %}" class="space-y-6">
+            {% csrf_token %}
+
+            {# hidden: Honeypot #}
+            <input type="hidden" name="website" value="">  {# Honeypot – muss leer bleiben #}
+
+            {# Vorname / Nachname #}
+            <div class="grid-2 gap-4">
+                <div class="relative">
+                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <label for="first_name" class="sr-only">{% trans "First name" %}</label>
+                <input
+                    type="text"
+                    id="first_name"
+                    name="first_name"
+                    class="form-input"
+                    placeholder="{% if LANGUAGE_CODE == 'de' %}Vorname{% else %}First name{% endif %}"
+                    required autocomplete="given-name">
+                </div>
+
+                <div class="relative">
+                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <label for="last_name" class="sr-only">{% trans "Last name" %}</label>
+                <input
+                    type="text"
+                    id="last_name"
+                    name="last_name"
+                    class="form-input"
+                    placeholder="{% if LANGUAGE_CODE == 'de' %}Nachname{% else %}Last name{% endif %}"
+                    required autocomplete="family-name">
+                </div>
+            </div>
+
+            {# Firma (optional) #}
+            <div class="relative">
+                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M3 21V7a2 2 0 0 1 2-2h4v16"></path>
+                <path d="M9 21h12V9a2 2 0 0 0-2-2h-6"></path>
+                <path d="M9 7h6"></path>
+                </svg>
+                <label for="company" class="sr-only">{% trans "Company" %}</label>
+                <input
+                type="text"
+                id="company"
+                name="company"
+                class="form-input"
+                placeholder="{% if LANGUAGE_CODE == 'de' %}Firma (optional){% else %}Company (optional){% endif %}"
+                autocomplete="organization">
+            </div>
+
+            {# E-Mail #}
+            <div class="relative">
+                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                <polyline points="3,7 12,13 21,7"></polyline>
+                </svg>
+                <label for="email" class="sr-only">{% trans "Email" %}</label>
+                <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-input"
+                placeholder="{% if LANGUAGE_CODE == 'de' %}Ihre E-Mail{% else %}Your email{% endif %}"
+                required autocomplete="email">
+            </div>
+
+            {# Nachricht #}
+            <div class="relative">
+                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <label for="message" class="sr-only">{% trans "Message" %}</label>
+                <textarea
+                id="message"
+                name="message"
+                rows="6"
+                class="form-textarea"
+                placeholder="{% if LANGUAGE_CODE == 'de' %}Ihre Nachricht…{% else %}Your message…{% endif %}"
+                required></textarea>
+            </div>
+
+            {# Submit #}
+            <button type="submit" class="btn-primary w-full gap-2">
+                {% if LANGUAGE_CODE == 'de' %}Nachricht senden{% else %}Send message{% endif %}
+                <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+            </button>
+                        </form>
+
+            <div class="contact-info">
+              <p class="text-muted mb-4">
+                {% if LANGUAGE_CODE == 'de' %}Oder kontaktieren Sie uns direkt{% else %}Or contact us directly{% endif %}
+              </p>
+              <a href="mailto:info@datalization.ch" class="contact-email">
+                <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                info@datalization.ch
+              </a>
+            </div>
+
+          </div>   {# .contact-form-container #}
+        </div>     {# .max-w-2xl #}
+      </div>       {# .container #}
+    </section>     {# #contact #}
+
+</div>             {# .min-h-screen wrapper #}
+{% endblock %}

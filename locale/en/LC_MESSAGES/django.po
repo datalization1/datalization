@@ -1,0 +1,105 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-06 13:22+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: web/forms.py:7
+msgid "Name"
+msgstr ""
+
+#: web/forms.py:8
+msgid "Your name"
+msgstr ""
+
+#: web/forms.py:11
+msgid "Email"
+msgstr ""
+
+#: web/forms.py:16
+msgid "Message"
+msgstr ""
+
+#: web/forms.py:17
+msgid "How can we help?"
+msgstr ""
+
+#: web/templates/base.html:7
+msgid "Einfachheit trifft Innovation"
+msgstr ""
+
+#: web/templates/contact.html:3 web/templates/contact.html:9
+#: web/templates/partials_nav.html:14
+msgid "Kontakt"
+msgstr ""
+
+#: web/templates/contact.html:10
+msgid "Wir antworten schnell und konkret."
+msgstr ""
+
+#: web/templates/contact.html:20
+msgid "Senden"
+msgstr ""
+
+#: web/templates/partials_footer.html:6
+msgid "Simple. Loyal. Digital."
+msgstr ""
+
+#: web/templates/partials_footer.html:9
+msgid "Company"
+msgstr ""
+
+#: web/templates/partials_footer.html:11
+msgid "Who we are"
+msgstr ""
+
+#: web/templates/partials_footer.html:12
+msgid "Services"
+msgstr ""
+
+#: web/templates/partials_footer.html:13
+msgid "Case Studies"
+msgstr ""
+
+#: web/templates/partials_footer.html:17
+msgid "Contact"
+msgstr ""
+
+#: web/templates/partials_nav.html:11
+msgid "Lösungen"
+msgstr ""
+
+#: web/templates/partials_nav.html:13
+msgid "Über uns"
+msgstr ""
+
+#: web/templates/partials_nav.html:22
+msgid "Language"
+msgstr ""
+
+#: web/views.py:39
+#, python-format
+msgid "[Datalization] Neue Kontaktanfrage von %(name)s"
+msgstr ""
+
+#: web/views.py:53 web/views.py:56
+msgid "Danke – wir haben Ihre Nachricht erhalten."
+msgstr ""
+
+#: web/views.py:60
+msgid "Bitte überprüfen Sie Ihre Eingaben."
+msgstr ""

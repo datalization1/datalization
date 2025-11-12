@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}Datalization – {% trans "Case Studies" %}{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-16">
+
+  <header class="mb-10 text-center">
+    <h1 class="mb-2">{% trans "Case Studies" %}</h1>
+    <p class="text-muted">{% trans "Ausgewählte Projekte mit klarer Struktur: Client, Problem, Result." %}</p>
+  </header>
+
+  <div class="space-y-8">
+    {% for c in cases %}
+      <article class="case-card fade-in-on-scroll">
+        <div class="case-card__media">
+          {% if c.image %}
+            <img src="{{ c.image.url }}" alt="{{ c.title }}">
+          {% else %}
+            <div class="case-img case-img--placeholder">D</div>
+          {% endif %}
+        </div>
+
+        <div class="case-card__body">
+          <h3 class="mb-2">
+            <a href="{{ c.get_absolute_url|default:'/'|add:LANGUAGE_CODE|add:'/cases/'|add:c.slug|add:'/' }}">
+              {{ c.title }}
+            </a>
+          </h3>
+
+          {% if c.category %}
+            <div class="mb-4">
+              <span class="badge-primary">{{ c.category }}</span>
+            </div>
+          {% endif %}
+
+          <div class="cpr-grid">
+            <div class="cpr-col">
+              <div class="cpr-title">{% trans "Client" %}</div>
+              <p class="text-muted">{{ c.client_brief|default:"–" }}</p>
+            </div>
+
+            <div class="cpr-col">
+              <div class="cpr-title">{% trans "Problem" %}</div>
+              <p class="text-muted">{{ c.problem_brief|default:"–" }}</p>
+            </div>
+
+            <div class="cpr-col">
+              <div class="cpr-title">{% trans "Result" %}</div>
+              {% if c.result_list %}
+                <ul class="cpr-list">
+                  {% for item in c.result_list %}
+                    <li>{{ item }}</li>
+                  {% endfor %}
+                </ul>
+              {% else %}
+                <p class="text-muted">–</p>
+              {% endif %}
+            </div>
+          </div>
+
+          <a class="btn-link mt-4" href="{{ c.get_absolute_url|default:'/'|add:LANGUAGE_CODE|add:'/cases/'|add:c.slug|add:'/' }}">
+            {% trans "Read more" %}
+          </a>
+        </div>
+      </article>
+    {% empty %}
+      <p class="text-muted text-center">{% trans "Noch keine Case Studies veröffentlicht." %}</p>
+    {% endfor %}
+  </div>
+
+</div>
+{% endblock %}
