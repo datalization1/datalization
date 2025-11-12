@@ -21,8 +21,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", "0") == "1"
+# Detect Heroku dyno environment
+ON_HEROKU = "DYNO" in os.environ
+
+# In production (on Heroku), default DEBUG to 0. Locally default to 1.
+DEBUG = os.getenv("DEBUG", "0" if ON_HEROKU else "1") == "1"
 SECRET_KEY = os.environ.get("SECRET_KEY", "dev-only-not-used-on-heroku")
 
 ALLOWED_HOSTS = os.getenv(
@@ -30,9 +33,13 @@ ALLOWED_HOSTS = os.getenv(
     ".herokuapp.com,localhost,127.0.0.1,testserver"
 ).split(",")
 
-CSRF_TRUSTED_ORIGINS = [
-    *[o for o in os.getenv("CSRF_TRUSTED_ORIGINS", "https://*.herokuapp.com").split(",") if o]
-]
+_csrf_defaults = ["https://*.herokuapp.com"]
+if DEBUG:
+    _csrf_defaults += ["http://localhost:8000", "http://127.0.0.1:8000"]
+CSRF_TRUSTED_ORIGINS = [o for o in os.getenv("CSRF_TRUSTED_ORIGINS", ",".join(_csrf_defaults)).split(",") if o]
+# In local development also trust localhost (helps against 403 on POST)
+if DEBUG:
+    CSRF_TRUSTED_ORIGINS += ["http://localhost:8000", "http://127.0.0.1:8000"]
 
 # Application definition
 
@@ -128,9 +135,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "web" / "static"]
+STATICFILES_DIRS = []
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+]
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
@@ -140,10 +151,11 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"  # dev
-DEFAULT_FROM_EMAIL = "no-reply@datalization.com"
-CONTACT_EMAIL_TO = "info@datalization.com"
+EMAIL_HOST = "smtp.sendgrid.net"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "apikey"
+EMAIL_HOST_PASSWORD = os.getenv("SENDGRID_API_KEY", "")
+EMAIL_USE_TLS = True
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
@@ -170,25 +182,18 @@ LOGGING = {
 }
 
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-SECURE_SSL_REDIRECT = not DEBUG
+# Redirect to HTTPS only on Heroku when not in DEBUG. Locally keep HTTP.
+SECURE_SSL_REDIRECT = ON_HEROKU and not DEBUG
 
 # --- Production security hardening ---
-if not DEBUG:
-    # Force HTTPS (Heroku terminates TLS at the router, proxy header is already set above)
-    SECURE_SSL_REDIRECT = True
-
-    # Secure cookies
+if ON_HEROKU and not DEBUG:
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
-    SESSION_COOKIE_SAMESITE = "Lax"  # safe default
+    SESSION_COOKIE_SAMESITE = "Lax"
     CSRF_COOKIE_SAMESITE = "Lax"
-
-    # HSTS (enable gradually!)
-    SECURE_HSTS_SECONDS = int(os.getenv("SECURE_HSTS_SECONDS", "0"))  # start at 0, ramp up later
+    SECURE_HSTS_SECONDS = int(os.getenv("SECURE_HSTS_SECONDS", "0"))
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-    SECURE_HSTS_PRELOAD = False  # set True only when you're ready + submitted to preload list
-
-    # Additional headers
+    SECURE_HSTS_PRELOAD = False
     SECURE_REFERRER_POLICY = "strict-origin"
     SECURE_CONTENT_TYPE_NOSNIFF = True
     X_FRAME_OPTIONS = "DENY"
