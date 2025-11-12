@@ -25,7 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = os.getenv("DEBUG", "0") == "1"
 SECRET_KEY = os.environ.get("SECRET_KEY", "dev-only-not-used-on-heroku")
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", ".herokuapp.com,localhost,127.0.0.1").split(",")
+ALLOWED_HOSTS = os.getenv(
+    "ALLOWED_HOSTS",
+    ".herokuapp.com,localhost,127.0.0.1,testserver"
+).split(",")
 
 CSRF_TRUSTED_ORIGINS = [
     *[o for o in os.getenv("CSRF_TRUSTED_ORIGINS", "https://*.herokuapp.com").split(",") if o]
