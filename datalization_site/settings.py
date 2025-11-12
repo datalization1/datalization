@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os, dj_database_url
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -140,5 +141,6 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"  # dev
 DEFAULT_FROM_EMAIL = "no-reply@datalization.com"
 CONTACT_EMAIL_TO = "info@datalization.com"
 
-from django.contrib.messages import constants as messages
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
+
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https") 
