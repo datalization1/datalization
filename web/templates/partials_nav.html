@@ -3,7 +3,7 @@
   <div class="container nav">
     <a class="nav__brand" href="{% url 'web:home' %}" aria-label="Datalization">
       {# Zwei Logo-Varianten – CSS blendet passend ein/aus #}
-      <img class="nav__logo" src="{% static 'img/datalization_logo_light.svg' %}" alt="datalization logo">
+      <img class="nav__logo" src="{% static 'img/favicon.svg' %}" alt="datalization logo">
       <span class="nav__word lowercase">datalization</span>
     </a>
 
@@ -15,6 +15,12 @@
     </nav>
 
     <div class="nav__tools">
+      <button class="nav__toggle" aria-label="Open menu" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M3 6h18M3 12h18M3 18h18"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+        </svg>
+      </button>
       <form class="lang-switch" action="{% url 'set_language' %}" method="post">
         {% csrf_token %}
         {% get_current_language as LANGUAGE_CODE %}
