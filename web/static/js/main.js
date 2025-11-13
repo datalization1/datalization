@@ -270,6 +270,15 @@ if (!('scrollBehavior' in document.documentElement.style)) {
     }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.querySelector('.nav__toggle');
+  const menu = document.querySelector('#mobileMenu');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', () => {
+    menu.classList.toggle('hidden'); // .hidden ist in deinem CSS definiert
+  });
+});
+
 // Expose functions globally for onclick handlers
 window.scrollToSection = scrollToSection;
 window.toggleMobileMenu = toggleMobileMenu;
