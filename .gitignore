@@ -1,9 +1,12 @@
-
 # Django collectstatic output
 staticfiles/
+
+# Bytecode & Caches
 __pycache__/
+*.py[cod]
+
+# Virtualenv
 .venv/
-latest.dump
-__pycache__/
-.venv/
+
+# Dumps / DB-Exports
 latest.dump
