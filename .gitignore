@@ -1,3 +1,9 @@
 
 # Django collectstatic output
 staticfiles/
+__pycache__/
+.venv/
+latest.dump
+__pycache__/
+.venv/
+latest.dump
