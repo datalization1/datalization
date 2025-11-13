@@ -29,13 +29,15 @@
 
 /* ========== Reset & Base ========== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { font-size: var(--font-size); scroll-behavior: smooth; }
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   background-color: var(--background);
   color: var(--foreground);
   line-height: 1.5;
-  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  max-width: 100%;
+  overflow-x: hidden;   /* verhindert seitliches Scrollen */
 }
 
 /* Global link reset (avoid default blue/underline) */
@@ -77,14 +79,22 @@ p  { font-size: 1rem;  font-weight: 400; }
 
 /* ========== Header / Navbar (Figma) ========== */
 .site-header{
-  position: sticky; top:0; z-index:100;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   border-bottom:1px solid var(--border);
-  background: rgba(0,0,0,.6);
+  background: rgba(0,0,0,.8);
   backdrop-filter: blur(12px);
 }
+
 .container.nav{
-  display:flex; align-items:center; justify-content:space-between;
-  gap:24px; min-height:72px; flex-wrap:nowrap;
+  position: relative; /* wichtig für das absolute Menü darunter */
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  min-height:72px;
+  flex-wrap:nowrap;
 }
 .nav__brand{ display:flex; align-items:center; gap:10px; color:var(--foreground); text-decoration:none; }
 .nav__logo{ height:60px; width:auto; display:block; object-fit:contain; }
@@ -122,9 +132,12 @@ p  { font-size: 1rem;  font-weight: 400; }
   position: relative;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  overflow: visible;
+  z-index: 10;
 }
 
-/* Sprach-Auswahlbox */
+/* Sprach-Auswahlbox im Pill-Style */
 .lang-switch select {
   appearance: none;
   -webkit-appearance: none;
@@ -132,24 +145,22 @@ p  { font-size: 1rem;  font-weight: 400; }
 
   background: transparent;
   color: var(--foreground);
-  border: 1px solid var(--border);
-  border-radius: .625rem;
+  border: 1px solid rgba(247, 147, 26, 0.6);
+  border-radius: 999px;
 
-  height: 32px;
-  line-height: 32px;
+  height: 36px;
+  line-height: 36px;
   min-width: 88px;
-  padding: 0 .9rem;
+  padding: 0 2.4rem 0 1.1rem;
 
-  /* Text mittig in allen Browsern */
   text-align: center;
-  text-align-last: center;       /* Chrome/Edge */
-  -moz-text-align-last: center;  /* Firefox */
+  text-align-last: center;
+  -moz-text-align-last: center;
   direction: ltr;
 
   font-weight: 500;
+  font-size: 0.9rem;
   cursor: pointer;
-
-  /* Dropdown nach unten öffnen */
   position: relative;
   overflow: visible;
 }
@@ -163,20 +174,19 @@ p  { font-size: 1rem;  font-weight: 400; }
 .lang-switch::after {
   content: "▾";
   position: absolute;
-  right: 10px;
+  right: 12px;
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
-  opacity: .75;
+  opacity: .8;
   color: var(--foreground);
   font-size: .8rem;
 }
 
-/* Fokus-Style */
 .lang-switch select:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 2px rgba(212,175,55,0.25);
+  box-shadow: 0 0 0 2px rgba(247,147,26,0.3);
 }
 
 /* Dropdown-Box unterhalb öffnen (Browserübergreifend) */
@@ -431,41 +441,80 @@ body.theme-light .nav__logo--dark  { display: none; }
 
 /* Optional: gleiches Konzept für Value-Cards */
 .value-card .value-head{
-  display: flex; align-items:center; gap:14px; margin-bottom:.25rem;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:.25rem;
 }
+
 .value-card .value-icon{
-  flex:0 0 56px; width:56px; height:56px;
-  display:flex; align-items:center; justify-content:center;
+  flex:0 0 56px;
+  width:56px;
+  height:56px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   background-color: rgba(212,175,55,.10);
   border-radius:.75rem;
 }
-.value-card .value-icon svg{ display:block; width:24px; height:24px; }
-.value-card h3{ margin:0; line-height:1.15; transform:translateY(.5px); }
+
+.value-card .value-icon svg{
+  display:block;
+  width:24px;
+  height:24px;
+}
+
+.value-card h3{
+  margin:0;
+  line-height:1.15;
+  transform:translateY(.5px);
+}
 
 .kpi-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem; margin-top: 1rem;}
 .kpi-badge {border: 1px solid var(--border); border-radius: var(--radius); padding: 0.75rem; text-align: center; font-weight: 600; background: var(--card); color: var(--foreground);}
 
 /* === Mobile Tweaks (übersteuert bestehende Styles) === */
-:root { --sp: 16px; }
+/* === Mobile Layout Tweaks === */
+:root {
+  --sp: 16px;
+}
 
+/* Very small screens: iPhone SE etc. */
 @media (max-width: 420px) {
 
-  /* Header / Nav */
-  header, .nav, .site-header { padding: var(--sp); }
-  .nav__logo { height: 28px; }              /* Logo kleiner */
-  .nav__links { display: none; }            /* Vollmenü ausblenden */
-  .nav__toggle { display: inline-flex; }    /* Burger sichtbar, falls vorhanden */
+  /* Header kompakt, aber ohne doppeltes Padding */
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0 var(--sp);
+  }
 
-  /* Hero (match current class names) */
-  .hero-section { padding: 56px var(--sp) 56px; min-height: auto; }
+  .container.nav {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .nav__logo {
+    height: 28px;
+  }
+
+  /* Hero Bereich */
+  .hero-section {
+    padding: 112px var(--sp) 80px;
+    min-height: auto;
+  }
+
   .hero-title {
     font-size: 28px;
     line-height: 1.2;
     letter-spacing: 0;
     margin: 16px 0 8px;
     max-width: 26ch;
-    white-space: normal;      /* allow wrapping on mobile */
+    white-space: normal;
   }
+
   .hero-subtitle,
   .hero-description {
     font-size: 15px;
@@ -474,18 +523,104 @@ body.theme-light .nav__logo--dark  { display: none; }
     margin-bottom: 20px;
   }
 
-  /* Buttons / CTAs */
-  .btn, .button, .cta {
+  .hero-cta,
+  .btn-primary {
+    margin-bottom: 40px;
+  }
+
+  .scroll-indicator {
+    bottom: 24px;
+  }
+
+  .btn,
+  .button,
+  .cta {
     padding: 12px 18px;
     font-size: 15px;
     border-radius: 24px;
   }
 
-  /* Sonstiges: große Abstände entschärfen */
-  .section, .container { padding-left: var(--sp); padding-right: var(--sp); }
+  /* Sections & Karten */
+  .section {
+    padding: 4rem 0;
+  }
+
+  .section .container {
+    padding-left: var(--sp);
+    padding-right: var(--sp);
+  }
+
+  .value-card,
+  .service-card {
+    padding: 1.5rem;
+  }
 }
 
+/* Normal kleine Tablets/Phones */
 @media (min-width: 421px) and (max-width: 768px) {
-  .hero-title { font-size: 36px; white-space: normal; }
-  .hero-subtitle, .hero-description { font-size: 16px; }
+  .hero-title {
+    font-size: 36px;
+    white-space: normal;
+  }
+  .hero-subtitle,
+  .hero-description {
+    font-size: 16px;
+  }
+}
+
+/* === Mobile Navigation Overlay (Burger) === */
+
+/* Verhindert horizontales Scrollen überall */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Basis-Transition für das Nav-Overlay */
+.nav__links {
+  transition: transform 0.25s ease-out, opacity 0.25s ease-out;
+}
+
+@media (max-width: 768px) {
+
+  /* Desktop-Links ausblenden und als Overlay konfigurieren */
+  .nav__links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 1rem 1.25rem 1.5rem;
+    background: rgba(0, 0, 0, 0.98);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    border-bottom: 1px solid var(--border);
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  /* Wenn geöffnet */
+  .nav__links.nav__links--open {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .nav__links a {
+    width: 100%;
+    padding: 0.35rem 0;
+    font-size: 1rem;
+  }
+
+  /* Burger auf Mobile anzeigen */
+  .nav__toggle {
+    display: inline-flex;
+  }
+
+  /* Body nicht scrollen wenn Menü offen (optional, siehe JS) */
+  body.no-scroll {
+    overflow: hidden;
+  }
 }
