@@ -97,7 +97,22 @@ p  { font-size: 1rem;  font-weight: 400; }
 .nav__links a{ color:var(--foreground); padding:.25rem .5rem; border-radius:.5rem; }
 .nav__links a:hover{ color:var(--primary); }
 
+
 .nav__tools{ display:flex; align-items:center; gap:12px; white-space:nowrap; overflow:visible; }
+
+/* Burger-Toggle – standardmäßig aus, auf Mobile sichtbar */
+.nav__toggle{
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px; height: 40px;
+  border: 1px solid var(--border);
+  border-radius: .5rem;
+  background: transparent;
+  color: var(--foreground);
+  cursor: pointer;
+}
+.nav__toggle svg, .nav__toggle i{ display:block; width:22px; height:22px; }
 
 .lowercase {
   text-transform: lowercase;
@@ -178,9 +193,6 @@ p  { font-size: 1rem;  font-weight: 400; }
   z-index: 10;       /* oberhalb anderer Elemente */
 }
 
-/* Entferne evtl. alte Icon-Regeln */
-.nav__globe { display: none !important; }
-
 /* === Language globe icon === */
 .nav__globe {
   font-size: 1.1rem;
@@ -200,7 +212,7 @@ p  { font-size: 1rem;  font-weight: 400; }
 /* ========== Hero ========== */
 .hero-section{
   position:relative; min-height:calc(100vh - 72px);
-  padding-top:100px; padding-bottom:96px;
+  padding-top:100px; padding-bottom:120px;
   display:flex; align-items:center;
 }
 .hero-badge{ display:inline-block; margin-bottom:1.5rem; padding:.5rem 1.5rem; border:1px solid rgba(212,175,55,.3); border-radius:9999px; }
@@ -215,7 +227,14 @@ p  { font-size: 1rem;  font-weight: 400; }
 .hero-description{ color:var(--muted-foreground); max-width:42rem; margin:0 auto 3rem; }
 .hero-cta{ display:inline-flex; align-items:center; gap:.5rem; padding:1rem 2rem; background:var(--primary); color:var(--primary-foreground); border-radius:9999px; border:none; cursor:pointer; font-weight:500; transition:all .2s; }
 .hero-cta:hover{ background-color:rgba(212,175,55,.9); }
-.scroll-indicator{ position:absolute; left:50%; bottom:24px; transform:translateX(-50%); }
+.scroll-indicator{
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  z-index: 3;
+  pointer-events: none;
+}
 .scroll-indicator-border{ width:1.5rem; height:2.5rem; border:2px solid rgba(212,175,55,.5); border-radius:9999px; display:flex; align-items:flex-start; justify-content:center; padding:.5rem; }
 .scroll-indicator-dot{ width:.25rem; height:.5rem; border-radius:9999px; background:var(--primary); display:block; animation:scroll-bounce 2s infinite; will-change:transform; }
 @keyframes scroll-bounce{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(6px);} }
@@ -315,17 +334,21 @@ p  { font-size: 1rem;  font-weight: 400; }
 /* ========== Responsive Type tweaks ========== */
 @media (max-width:767px){ .hero-title{ font-size:2.5rem; } .section-title{ font-size:2rem; } h3{ font-size:1.25rem; } }
 
-/* Logo-Autowechsel (System Dark/Light) */
-.nav__logo--dark { display: none; }
-@media (prefers-color-scheme: dark){
-  .nav__logo--light { display: none; }
-  .nav__logo--dark  { display: block; }
+/* Logo handling – safe defaults (always show any provided variant).
+   We only swap if you add theme classes on <body>. */
+.nav__logo,
+.nav__logo--light,
+.nav__logo--dark {
+  display: inline-block;
+  height: 44px;            /* default height across variants */
+  width: auto;
 }
-/* Optional: manuelle Theme-Klassen */
-body.theme-dark  .nav__logo--light { display:none; }
-body.theme-dark  .nav__logo--dark  { display:block; }
-body.theme-light .nav__logo--light { display:block; }
-body.theme-light .nav__logo--dark  { display:none; }
+
+/* Optional manual theme swap (use only if both assets exist) */
+body.theme-dark  .nav__logo--light { display: none; }
+body.theme-dark  .nav__logo--dark  { display: inline-block; }
+body.theme-light .nav__logo--light { display: inline-block; }
+body.theme-light .nav__logo--dark  { display: none; }
 
 /* Weißes Globe-Icon wie in Figma */
 .nav__globe{
@@ -421,3 +444,48 @@ body.theme-light .nav__logo--dark  { display:none; }
 
 .kpi-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem; margin-top: 1rem;}
 .kpi-badge {border: 1px solid var(--border); border-radius: var(--radius); padding: 0.75rem; text-align: center; font-weight: 600; background: var(--card); color: var(--foreground);}
+
+/* === Mobile Tweaks (übersteuert bestehende Styles) === */
+:root { --sp: 16px; }
+
+@media (max-width: 420px) {
+
+  /* Header / Nav */
+  header, .nav, .site-header { padding: var(--sp); }
+  .nav__logo { height: 28px; }              /* Logo kleiner */
+  .nav__links { display: none; }            /* Vollmenü ausblenden */
+  .nav__toggle { display: inline-flex; }    /* Burger sichtbar, falls vorhanden */
+
+  /* Hero (match current class names) */
+  .hero-section { padding: 56px var(--sp) 56px; min-height: auto; }
+  .hero-title {
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: 0;
+    margin: 16px 0 8px;
+    max-width: 26ch;
+    white-space: normal;      /* allow wrapping on mobile */
+  }
+  .hero-subtitle,
+  .hero-description {
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 34ch;
+    margin-bottom: 20px;
+  }
+
+  /* Buttons / CTAs */
+  .btn, .button, .cta {
+    padding: 12px 18px;
+    font-size: 15px;
+    border-radius: 24px;
+  }
+
+  /* Sonstiges: große Abstände entschärfen */
+  .section, .container { padding-left: var(--sp); padding-right: var(--sp); }
+}
+
+@media (min-width: 421px) and (max-width: 768px) {
+  .hero-title { font-size: 36px; white-space: normal; }
+  .hero-subtitle, .hero-description { font-size: 16px; }
+}
