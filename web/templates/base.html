@@ -6,25 +6,70 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% block title %}datalization – {% trans "Einfachheit trifft Innovation" %}{% endblock %}</title>
+  <title>
+    {% block title %}
+      datalization – {% trans "Einfachheit trifft Innovation" %}
+    {% endblock %}
+  </title>
 
-  {# SEO/OpenGraph Hooks #}
+  {# SEO / OpenGraph #}
   {% block head_meta %}
-  <meta name="description" content="Datalization — Daten vereinfachen. Zukunft gestalten. Data & Software Lösungen mit Weitblick und Loyalität.">
+    {% comment %}
+      page_title / page_description können in den Child-Templates
+      (home.html, services.html etc.) gesetzt werden.
+      Falls nicht gesetzt, greifen die Defaults unten.
+    {% endcomment %}
+
+    {% firstof page_title "datalization – Einfachheit trifft Innovation" as seo_title %}
+    {% firstof page_description "Datalization — Daten vereinfachen. Zukunft gestalten. Data & Software Lösungen mit Weitblick und Loyalität." as seo_desc %}
+
+    <meta name="description" content="{{ seo_desc|truncatechars:160 }}">
+
+    {# Canonical URL #}
+    {% if request %}
+      <link rel="canonical" href="{{ request.build_absolute_uri }}">
+    {% endif %}
+
+    {# Open Graph #}
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ seo_title }}">
+    <meta property="og:description" content="{{ seo_desc|truncatechars:200 }}">
+    <meta property="og:url" content="{{ request.build_absolute_uri|default:'' }}">
+    <meta property="og:site_name" content="datalization">
+    <meta property="og:image" content="https://www.datalization.ch/static/img/favicon.svg">
+
+    {# Twitter Cards #}
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ seo_title }}">
+    <meta name="twitter:description" content="{{ seo_desc|truncatechars:200 }}">
+    <meta name="twitter:image" content="https://www.datalization.ch/static/img/favicon.svg">
+
+    {# Optional: Organisation Structured Data (JSON-LD) #}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "datalization",
+      "url": "https://www.datalization.ch",
+      "logo": "https://www.datalization.ch/static/img/favicon.svg",
+      "sameAs": []
+    }
+    </script>
   {% endblock %}
 
-  {# Fonts #}
+  {# Favicon #}
+  <link rel="icon" type="image/svg+xml" href="{% static 'img/favicon.svg' %}">
+
+  {# Fonts (falls du sie brauchst, optional) #}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  {# Favicon (falls vorhanden) #}
-  <link rel="icon" type="image/svg+xml" href="{% static 'img/favicon.svg' %}">
 
   {# Styles #}
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   {% block extra_css %}{% endblock %}
 </head>
+
 <body class="{% block body_class %}{% endblock %}">
   <a class="skip-link" href="#content">{% trans "Skip to content" %}</a>
 

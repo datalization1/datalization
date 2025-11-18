@@ -2,10 +2,13 @@
 {% load static %}
 {% load i18n %}
 
+{% block head_meta %}
+  {{ block.super }}
+  <meta name="description" content="Datalization unterstützt Unternehmen dabei, Datenprodukte, Data Warehouses und Analytics-Lösungen einfach, skalierbar und zukunftssicher aufzubauen.">
+{% endblock %}
+
 {% block content %}
 <div class="min-h-screen bg-background text-foreground">
-    
-
     <!-- Hero Section -->
     <section class="hero-section animate-fade-in">
         <div class="container mx-auto px-4 z-10 text-center">

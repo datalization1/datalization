@@ -1,40 +1,450 @@
-{% extends "base.html" %}{% load i18n static %}
+{% extends "base.html" %}
+{% load i18n static %}
+{% get_current_language as LANGUAGE_CODE %}
+
 {% block title %}{% trans "Lösungen" %} – Datalization{% endblock %}
 
 {% block content %}
-<section class="hero-section">
-  <div class="container">
-    <h1 class="mb-3">{% trans "Lösungen" %} / {% trans "Services" %}</h1>
-    <p class="text-muted max-w-2xl">
-      {% if LANGUAGE_CODE == 'de' %}
-        Wir bauen schlanke, robuste Datenprodukte – von Pipelines bis Dashboards – fokussiert auf Klarheit, Tempo und Wirkung.
-      {% else %}
-        We build lean, robust data products – from pipelines to dashboards – focused on clarity, speed and impact.
-      {% endif %}
-    </p>
-  </div>
-</section>
+<div class="min-h-screen bg-background text-foreground">
 
-<section class="section">
-  <div class="container grid-3">
-    <article class="card">
-      <h3>Data Pipelines</h3>
-      <p class="text-muted">
-        ETL/ELT auf Snowflake/DBT/Airflow. Saubere Modelle, Tests & Observability.
+  {# HERO / INTRO "Unsere Lösungen" #}
+  <section class="section scroll-mt-20">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 fade-in-on-scroll">
+        <h1 class="section-title">
+          {% if LANGUAGE_CODE == 'de' %}
+            Unsere Lösungen
+          {% else %}
+            Our Solutions
+          {% endif %}
+        </h1>
+        <p class="text-muted max-w-2xl mx-auto">
+          {% if LANGUAGE_CODE == 'de' %}
+            Massgeschneiderte Dienstleistungen für Ihre digitale Zukunft
+          {% else %}
+            Tailored services for your digital future
+          {% endif %}
+        </p>
+      </div>
+
+      {# SERVICE CARDS (4) #}
+      <div class="grid-2 max-w-7xl mx-auto">
+        {# Service 1 – Datenanalyse & BI #}
+        <div class="service-card fade-in-on-scroll">
+          <div class="service-head">
+            <div class="service-icon">
+              <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                <path d="M3 5v6c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                <path d="M3 11v6c0 1.66 4 3 9 3s9-1.34 9-3v-6"></path>
+              </svg>
+            </div>
+            <h3 class="service-title">
+              {% if LANGUAGE_CODE == 'de' %}
+                Datenanalyse &amp; BI
+              {% else %}
+                Data Analytics &amp; BI
+              {% endif %}
+            </h3>
+          </div>
+          <p class="service-text mb-6">
+            {% if LANGUAGE_CODE == 'de' %}
+              Verwandeln Sie Ihre Rohdaten in wertvolle Erkenntnisse. Wir entwickeln massgeschneiderte Analyselösungen
+              und Business-Intelligence-Dashboards, die Ihnen helfen, datengetriebene Entscheidungen zu treffen.
+            {% else %}
+              Turn your raw data into valuable insights. We design tailored analytics solutions and business
+              intelligence dashboards that help you make data-driven decisions.
+            {% endif %}
+          </p>
+          <div class="feature-tags">
+            {% if LANGUAGE_CODE == 'de' %}
+              <span class="feature-tag">Datenaufbereitung &amp; ETL</span>
+              <span class="feature-tag">Custom Dashboards</span>
+              <span class="feature-tag">Predictive Analytics</span>
+              <span class="feature-tag">KPI-Monitoring</span>
+              <span class="feature-tag">Reporting-Automation</span>
+            {% else %}
+              <span class="feature-tag">Data Preparation &amp; ETL</span>
+              <span class="feature-tag">Custom Dashboards</span>
+              <span class="feature-tag">Predictive Analytics</span>
+              <span class="feature-tag">KPI Monitoring</span>
+              <span class="feature-tag">Reporting Automation</span>
+            {% endif %}
+          </div>
+        </div>
+
+        {# Service 2 – Prozessautomatisierung #}
+        <div class="service-card fade-in-on-scroll" style="animation-delay: 0.1s;">
+          <div class="service-head">
+            <div class="service-icon">
+              <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+            </div>
+            <h3 class="service-title">
+              {% if LANGUAGE_CODE == 'de' %}
+                Prozessautomatisierung
+              {% else %}
+                Process Automation
+              {% endif %}
+            </h3>
+          </div>
+          <p class="service-text mb-6">
+            {% if LANGUAGE_CODE == 'de' %}
+              Automatisieren Sie wiederkehrende Aufgaben und optimieren Sie Ihre Workflows.
+              Wir entwickeln intelligente Automatisierungslösungen, die Zeit sparen und Fehler reduzieren.
+            {% else %}
+              Automate recurring tasks and streamline your workflows.
+              We build intelligent automation solutions that save time and reduce errors.
+            {% endif %}
+          </p>
+          <div class="feature-tags">
+            {% if LANGUAGE_CODE == 'de' %}
+              <span class="feature-tag">Workflow-Automatisierung</span>
+              <span class="feature-tag">RPA-Lösungen</span>
+              <span class="feature-tag">API-Integrationen</span>
+              <span class="feature-tag">Batch-Processing</span>
+              <span class="feature-tag">Scheduling &amp; Monitoring</span>
+            {% else %}
+              <span class="feature-tag">Workflow Automation</span>
+              <span class="feature-tag">RPA Solutions</span>
+              <span class="feature-tag">API Integrations</span>
+              <span class="feature-tag">Batch Processing</span>
+              <span class="feature-tag">Scheduling &amp; Monitoring</span>
+            {% endif %}
+          </div>
+        </div>
+
+        {# Service 3 – Data Visualization #}
+        <div class="service-card fade-in-on-scroll" style="animation-delay: 0.2s;">
+          <div class="service-head">
+            <div class="service-icon">
+              <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="6" y1="20" x2="6" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="18" y1="20" x2="18" y2="14"></line>
+              </svg>
+            </div>
+            <h3 class="service-title">
+              Data Visualization
+            </h3>
+          </div>
+          <p class="service-text mb-6">
+            {% if LANGUAGE_CODE == 'de' %}
+              Machen Sie komplexe Daten verständlich. Wir gestalten interaktive Visualisierungen und Dashboards,
+              die Ihre Daten zum Leben erwecken und Insights sofort erkennbar machen.
+            {% else %}
+              Make complex data understandable. We design interactive visualizations and dashboards that
+              bring your data to life and reveal insights at a glance.
+            {% endif %}
+          </p>
+          <div class="feature-tags">
+            {% if LANGUAGE_CODE == 'de' %}
+              <span class="feature-tag">Interaktive Dashboards</span>
+              <span class="feature-tag">Custom Charts</span>
+              <span class="feature-tag">Real-time Visualisierung</span>
+              <span class="feature-tag">Geo-Mapping</span>
+              <span class="feature-tag">Mobile-responsive</span>
+            {% else %}
+              <span class="feature-tag">Interactive Dashboards</span>
+              <span class="feature-tag">Custom Charts</span>
+              <span class="feature-tag">Real-time Visualization</span>
+              <span class="feature-tag">Geo Mapping</span>
+              <span class="feature-tag">Mobile Responsive</span>
+            {% endif %}
+          </div>
+        </div>
+
+        {# Service 4 – Digitalisierung & Software #}
+        <div class="service-card fade-in-on-scroll" style="animation-delay: 0.3s;">
+          <div class="service-head">
+            <div class="service-icon">
+              <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </div>
+            <h3 class="service-title">
+              {% if LANGUAGE_CODE == 'de' %}
+                Digitalisierung &amp; Software
+              {% else %}
+                Digitalization &amp; Software
+              {% endif %}
+            </h3>
+          </div>
+          <p class="service-text mb-6">
+            {% if LANGUAGE_CODE == 'de' %}
+              Digitalisieren Sie Ihre Prozesse mit modernen Webanwendungen. Von der Konzeption bis zum Deployment
+              entwickeln wir Lösungen, die perfekt zu Ihren Bedürfnissen passen.
+            {% else %}
+              Digitalize your processes with modern web applications. From concept to deployment we build
+              solutions perfectly aligned with your needs.
+            {% endif %}
+          </p>
+          <div class="feature-tags">
+            {% if LANGUAGE_CODE == 'de' %}
+              <span class="feature-tag">Web-Applikationen</span>
+              <span class="feature-tag">Datenbank-Design</span>
+              <span class="feature-tag">Cloud-Deployment</span>
+              <span class="feature-tag">API-Entwicklung</span>
+              <span class="feature-tag">Legacy-Migration</span>
+            {% else %}
+              <span class="feature-tag">Web Applications</span>
+              <span class="feature-tag">Database Design</span>
+              <span class="feature-tag">Cloud Deployment</span>
+              <span class="feature-tag">API Development</span>
+              <span class="feature-tag">Legacy Migration</span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {# SECTION: Unser Prozess #}
+  <section class="section-alt">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 fade-in-on-scroll">
+        <h2 class="section-title">
+          {% if LANGUAGE_CODE == 'de' %}
+            Unser Prozess
+          {% else %}
+            Our Process
+          {% endif %}
+        </h2>
+        <p class="text-muted max-w-2xl mx-auto">
+          {% if LANGUAGE_CODE == 'de' %}
+            So arbeiten wir zusammen
+          {% else %}
+            How we work together
+          {% endif %}
+        </p>
+      </div>
+
+      <div class="grid-4 max-w-7xl mx-auto">
+        <div class="value-card fade-in-on-scroll">
+          <div class="value-head">
+            <div class="value-icon">
+              <span class="badge-primary">01</span>
+            </div>
+            <h3>
+              Analyse &amp; Discovery
+            </h3>
+          </div>
+          <p class="text-muted">
+            {% if LANGUAGE_CODE == 'de' %}
+              Wir verstehen Ihre Herausforderungen, analysieren Ihre bestehenden Prozesse und identifizieren
+              Optimierungspotenziale. In Workshops arbeiten wir gemeinsam an einer klaren Vision.
+            {% else %}
+              We understand your challenges, analyze your existing processes and identify optimization potential.
+              In joint workshops we work towards a clear vision.
+            {% endif %}
+          </p>
+        </div>
+
+        <div class="value-card fade-in-on-scroll" style="animation-delay: 0.1s;">
+          <div class="value-head">
+            <div class="value-icon">
+              <span class="badge-primary">02</span>
+            </div>
+            <h3>
+              {% if LANGUAGE_CODE == 'de' %}Konzeption &amp; Design{% else %}Concept &amp; Design{% endif %}
+            </h3>
+          </div>
+          <p class="text-muted">
+            {% if LANGUAGE_CODE == 'de' %}
+              Entwicklung einer massgeschneiderten Lösung mit detaillierten Spezifikationen.
+              Wir erstellen Prototypen und Mockups, damit Sie die Lösung vor der Entwicklung erleben können.
+            {% else %}
+              We design a tailored solution with detailed specifications and create prototypes and mockups
+              so you can experience the solution before development starts.
+            {% endif %}
+          </p>
+        </div>
+
+        <div class="value-card fade-in-on-scroll" style="animation-delay: 0.2s;">
+          <div class="value-head">
+            <div class="value-icon">
+              <span class="badge-primary">03</span>
+            </div>
+            <h3>
+              {% if LANGUAGE_CODE == 'de' %}Agile Entwicklung{% else %}Agile Development{% endif %}
+            </h3>
+          </div>
+          <p class="text-muted">
+            {% if LANGUAGE_CODE == 'de' %}
+              Iterative Entwicklung mit regelmässigen Sprint-Reviews. Sie sind kontinuierlich eingebunden
+              und können Feedback geben. Qualität und Best Practices stehen im Fokus.
+            {% else %}
+              Iterative development with regular sprint reviews. You are continuously involved and can provide feedback.
+              Quality and best practices are always in focus.
+            {% endif %}
+          </p>
+        </div>
+
+        <div class="value-card fade-in-on-scroll" style="animation-delay: 0.3s;">
+          <div class="value-head">
+            <div class="value-icon">
+              <span class="badge-primary">04</span>
+            </div>
+            <h3>
+              {% if LANGUAGE_CODE == 'de' %}Deployment &amp; Support{% else %}Deployment &amp; Support{% endif %}
+            </h3>
+          </div>
+          <p class="text-muted">
+            {% if LANGUAGE_CODE == 'de' %}
+              Professionelles Deployment mit umfassender Dokumentation und Schulung.
+              Langfristige Betreuung, kontinuierliche Optimierung und Support bei Fragen oder Erweiterungen.
+            {% else %}
+              Professional deployment with comprehensive documentation and training.
+              Long-term support, continuous optimization and assistance for questions or extensions.
+            {% endif %}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {# SECTION: Unser Ansatz #}
+  <section class="section">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 fade-in-on-scroll">
+        <h2 class="section-title">
+          {% if LANGUAGE_CODE == 'de' %}
+            Unser Ansatz
+          {% else %}
+            Our Approach
+          {% endif %}
+        </h2>
+        <p class="text-muted max-w-2xl mx-auto">
+          {% if LANGUAGE_CODE == 'de' %}
+            Was uns auszeichnet
+          {% else %}
+            What sets us apart
+          {% endif %}
+        </p>
+      </div>
+
+      <div class="grid-4 max-w-7xl mx-auto">
+        <div class="value-card fade-in-on-scroll">
+          <div class="value-head">
+            <div class="value-icon">
+              <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="8" r="4"></circle>
+                <path d="M6 22v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"></path>
+              </svg>
+            </div>
+            <h3>
+              {% if LANGUAGE_CODE == 'de' %}Kundenorientiert{% else %}Customer-centric{% endif %}
+            </h3>
+          </div>
+          <p class="text-muted">
+            {% if LANGUAGE_CODE == 'de' %}
+              Ihre Bedürfnisse stehen im Mittelpunkt. Wir hören zu, verstehen Ihre Geschäftsprozesse und
+              entwickeln Lösungen, die wirklich passen.
+            {% else %}
+              Your needs are at the center. We listen, understand your business processes and build solutions that truly fit.
+            {% endif %}
+          </p>
+        </div>
+
+        <div class="value-card fade-in-on-scroll" style="animation-delay: 0.1s;">
+          <div class="value-head">
+            <div class="value-icon">
+              <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 1l3 5.2 5.8.8-4.2 4.1 1 5.9L12 14.8 6.4 17l1-5.9-4.2-4.1 5.8-.8z"></path>
+              </svg>
+            </div>
+            <h3>
+              {% if LANGUAGE_CODE == 'de' %}Qualität &amp; Sicherheit{% else %}Quality &amp; Security{% endif %}
+            </h3>
+          </div>
+          <p class="text-muted">
+            {% if LANGUAGE_CODE == 'de' %}
+              Höchste Standards in Code-Qualität, Datensicherheit und Performance.
+              Wir folgen Best Practices und modernen Entwicklungsmethoden.
+            {% else %}
+              Highest standards in code quality, data security and performance.
+              We follow best practices and modern development methods.
+            {% endif %}
+          </p>
+        </div>
+
+        <div class="value-card fade-in-on-scroll" style="animation-delay: 0.2s;">
+          <div class="value-head">
+            <div class="value-icon">
+              <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 12h6l3-9 3 18 3-9h3"></path>
+              </svg>
+            </div>
+            <h3>
+              {% if LANGUAGE_CODE == 'de' %}Agil &amp; Flexibel{% else %}Agile &amp; Flexible{% endif %}
+            </h3>
+          </div>
+          <p class="text-muted">
+            {% if LANGUAGE_CODE == 'de' %}
+              Schnelle Prototypen, kontinuierliches Feedback und flexible Anpassungen.
+              So bleiben wir effizient und können auf Änderungen reagieren.
+            {% else %}
+              Fast prototypes, continuous feedback and flexible adjustments –
+              keeping us efficient and responsive to change.
+            {% endif %}
+          </p>
+        </div>
+
+        <div class="value-card fade-in-on-scroll" style="animation-delay: 0.3s;">
+          <div class="value-head">
+            <div class="value-icon">
+              <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <line x1="12" y1="2" x2="12" y2="22"></line>
+              </svg>
+            </div>
+            <h3>
+              {% if LANGUAGE_CODE == 'de' %}Transparenz{% else %}Transparency{% endif %}
+            </h3>
+          </div>
+          <p class="text-muted">
+            {% if LANGUAGE_CODE == 'de' %}
+              Offene Kommunikation, ehrliche Einschätzungen und klare Dokumentation.
+              Sie wissen immer, woran wir arbeiten und wo das Projekt steht.
+            {% else %}
+              Open communication, honest assessments and clear documentation.
+              You always know what we are working on and where the project stands.
+            {% endif %}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {# CTA: Projekt besprechen #}
+  <section class="section-alt">
+    <div class="container mx-auto px-4 text-center fade-in-on-scroll">
+      <h2 class="section-title">
+        {% if LANGUAGE_CODE == 'de' %}
+          Lassen Sie uns Ihr Projekt besprechen
+        {% else %}
+          Let's discuss your project
+        {% endif %}
+      </h2>
+      <p class="text-muted max-w-2xl mx-auto mb-8">
+        {% if LANGUAGE_CODE == 'de' %}
+          Wir freuen uns darauf, mehr über Ihre Herausforderungen zu erfahren.
+        {% else %}
+          We look forward to learning more about your challenges.
+        {% endif %}
       </p>
-    </article>
-    <article class="card">
-      <h3>Analytics & Dashboards</h3>
-      <p class="text-muted">
-        Entscheidungsreife KPIs in Looker/Power BI – mit Drilldowns und Alerts.
-      </p>
-    </article>
-    <article class="card">
-      <h3>Apps & Automation</h3>
-      <p class="text-muted">
-        Django/Next.js-Apps & Microservices, die man gern benutzt – sicher & schnell.
-      </p>
-    </article>
-  </div>
-</section>
+      <a href="{% url 'web:contact' %}" class="hero-cta">
+        {% if LANGUAGE_CODE == 'de' %}Jetzt Kontakt aufnehmen{% else %}Get in touch{% endif %}
+        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="7" y1="17" x2="17" y2="7"></line>
+          <polyline points="7 7 17 7 17 17"></polyline>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+</div>
 {% endblock %}

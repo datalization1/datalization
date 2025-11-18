@@ -2,12 +2,12 @@
 <header class="site-header site-header--glass">
   <div class="container nav">
     <a class="nav__brand" href="{% url 'web:home' %}" aria-label="Datalization">
-      {# Zwei Logo-Varianten – CSS blendet passend ein/aus #}
       <img class="nav__logo" src="{% static 'img/favicon.svg' %}" alt="datalization logo">
       <span class="nav__word lowercase">datalization</span>
     </a>
 
-   <nav class="nav__links" id="mobileMenu">
+    {# Hauptnavigation – wird auf Mobile ein-/ausgeblendet #}
+    <nav class="nav__links" id="mainNav">
       <a href="{% url 'web:services' %}">{% trans "Lösungen" %}</a>
       <a href="{% url 'web:cases' %}">Case Studies</a>
       <a href="{% url 'web:about' %}">{% trans "Über uns" %}</a>
@@ -15,25 +15,32 @@
     </nav>
 
     <div class="nav__tools">
-      <button class="nav__toggle"
-              aria-label="Hauptmenü öffnen"
-              aria-expanded="false"
-              aria-controls="mobileMenu"
-              type="button">
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path d="M3 6h18M3 12h18M3 18h18"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
-        </svg>
-      </button>
+      {# Language Switch – als „DE / EN“-Pill #}
       <form class="lang-switch" action="{% url 'set_language' %}" method="post">
         {% csrf_token %}
         {% get_current_language as LANGUAGE_CODE %}
-        <label class="sr-only" for="lang-select">Language</label>
+        <label class="sr-only" for="lang-select">{% trans "Sprache" %}</label>
         <select id="lang-select" name="language" onchange="this.form.submit()">
           <option value="de" {% if LANGUAGE_CODE == 'de' %}selected{% endif %}>DE</option>
           <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>EN</option>
         </select>
       </form>
+
+      {# Burger Button #}
+      <button
+        class="nav__toggle"
+        type="button"
+        aria-label="{% trans 'Menü öffnen' %}"
+        aria-expanded="false"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M3 6h18M3 12h18M3 18h18"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                fill="none" />
+        </svg>
+      </button>
     </div>
   </div>
 </header>

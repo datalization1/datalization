@@ -3,15 +3,15 @@ from django.http import JsonResponse
 from django.utils import timezone
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.translation import gettext as _
-from django.core.mail import send_mail, EmailMessage
 from django.contrib import messages
 from django.conf import settings
 from django.views.decorators.csrf import ensure_csrf_cookie
-
+from django.views.decorators.cache import cache_page
+from django.views.decorators.http import require_http_methods
 from .models import CaseStudy, ContactMessage
 from .forms import ContactForm
 
-
+@cache_page(60 * 60)
 @ensure_csrf_cookie
 def home(request):
     case_studies = CaseStudy.objects.filter(published=True).order_by("-date")[:6]
@@ -21,7 +21,7 @@ def home(request):
 def about(request):
     return render(request, "about.html")
 
-
+@cache_page(60 * 60)
 def services(request):
     return render(request, "services.html")
 
@@ -39,6 +39,7 @@ def case_detail(request, slug):
 def _is_ajax(request):
     return request.headers.get("x-requested-with") == "XMLHttpRequest"
 
+@require_http_methods(["GET", "POST"])
 @ensure_csrf_cookie
 def contact(request):
     if request.method == "POST":
@@ -95,8 +96,4 @@ def contact(request):
 
     # GET: normales Rendern
     form = ContactForm(initial={"language": request.LANGUAGE_CODE})
-    return render(request, "contact.html", {"form": form})
-
-
-    # Falls du eine separate Kontaktseite hast:
     return render(request, "contact.html", {"form": form})
