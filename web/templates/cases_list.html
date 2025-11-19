@@ -1,74 +1,162 @@
 {% extends "base.html" %}
 {% load i18n static %}
+{% get_current_language as LANGUAGE_CODE %}
 
 {% block title %}Datalization – {% trans "Case Studies" %}{% endblock %}
 
 {% block content %}
-<div class="container mx-auto px-4 py-16">
+<div class="min-h-screen bg-background text-foreground">
 
-  <header class="mb-10 text-center">
-    <h1 class="mb-2">{% trans "Case Studies" %}</h1>
-    <p class="text-muted">{% trans "Ausgewählte Projekte mit klarer Struktur: Client, Problem, Result." %}</p>
-  </header>
-
-  <div class="space-y-8">
-    {% for c in cases %}
-      <article class="case-card fade-in-on-scroll">
-        <div class="case-card__media">
-          {% if c.image %}
-            <img src="{{ c.image.url }}" alt="{{ c.title }}">
+  <!-- Hero: Titel + Unterzeile -->
+  <section class="section scroll-mt-20">
+    <div class="container mx-auto px-4">
+      <header class="text-center mb-16 fade-in-on-scroll">
+        <h1 class="section-title">Case Studies</h1>
+        <p class="text-muted max-w-2xl mx-auto">
+          {% if LANGUAGE_CODE == 'de' %}
+            Erfolgsgeschichten unserer Kunden – von der Herausforderung zur Lösung
           {% else %}
-            <div class="case-img case-img--placeholder">D</div>
+            Success stories of our clients – from challenge to solution
           {% endif %}
-        </div>
+        </p>
+      </header>
 
-        <div class="case-card__body">
-          <h3 class="mb-2">
-            <a href="{{ c.get_absolute_url|default:'/'|add:LANGUAGE_CODE|add:'/cases/'|add:c.slug|add:'/' }}">
-              {{ c.title }}
-            </a>
-          </h3>
+      <!-- Grid mit Case Cards -->
+      <div class="grid-2 max-w-7xl mx-auto" style="gap: 2.5rem;">
+        {% for c in cases %}
+          <article class="case-card fade-in-on-scroll" style="--i: {{ forloop.counter0 }};">
 
-          {% if c.category %}
-            <div class="mb-4">
-              <span class="badge-primary">{{ c.category }}</span>
-            </div>
-          {% endif %}
-
-          <div class="cpr-grid">
-            <div class="cpr-col">
-              <div class="cpr-title">{% trans "Client" %}</div>
-              <p class="text-muted">{{ c.client_brief|default:"–" }}</p>
-            </div>
-
-            <div class="cpr-col">
-              <div class="cpr-title">{% trans "Problem" %}</div>
-              <p class="text-muted">{{ c.problem_brief|default:"–" }}</p>
-            </div>
-
-            <div class="cpr-col">
-              <div class="cpr-title">{% trans "Result" %}</div>
-              {% if c.result_list %}
-                <ul class="cpr-list">
-                  {% for item in c.result_list %}
-                    <li>{{ item }}</li>
-                  {% endfor %}
-                </ul>
+            <!-- Bild + Kategorie-Badge -->
+            <div class="case-image">
+              {% if c.image %}
+                <img
+                  src="{{ c.image.url }}"
+                  alt="{{ c.title }}"
+                  class="case-img"
+                  loading="lazy"
+                  decoding="async"
+                >
               {% else %}
-                <p class="text-muted">–</p>
+                <div class="case-img case-img--placeholder">D</div>
+              {% endif %}
+
+              {% if c.category %}
+                <div class="case-badge">
+                  <span class="badge-primary">{{ c.category }}</span>
+                </div>
               {% endif %}
             </div>
-          </div>
 
-          <a class="btn-link mt-4" href="{{ c.get_absolute_url|default:'/'|add:LANGUAGE_CODE|add:'/cases/'|add:c.slug|add:'/' }}">
-            {% trans "Read more" %}
-          </a>
-        </div>
-      </article>
-    {% empty %}
-      <p class="text-muted text-center">{% trans "Noch keine Case Studies veröffentlicht." %}</p>
-    {% endfor %}
-  </div>
+            <!-- Inhalt -->
+            <div class="p-6">
+              <h2 class="mb-3">
+                <a href="{% url 'web:case_detail' slug=c.slug %}">
+                  {{ c.title }}
+                </a>
+              </h2>
+
+              <p class="text-muted mb-6">
+                {% if c.summary %}
+                  {{ c.summary|truncatechars:200 }}
+                {% elif c.problem_brief %}
+                  {{ c.problem_brief|truncatechars:200 }}
+                {% else %}
+                  {% if LANGUAGE_CODE == 'de' %}
+                    Ausgewähltes Kundenprojekt mit messbaren Ergebnissen.
+                  {% else %}
+                    Selected client project with measurable results.
+                  {% endif %}
+                {% endif %}
+              </p>
+
+              <!-- Client / Problem / Result – Figma-Style Rows -->
+              <div style="display:flex; flex-direction:column; gap:0.75rem; margin-bottom:1.5rem;">
+
+                <!-- Client -->
+                <div style="display:flex; align-items:flex-start; gap:0.75rem; padding:0.75rem 1rem; border-radius:0.75rem; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04);">
+                  <div style="width:28px; height:28px; border-radius:999px; background:#f97316; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="8" r="4"></circle>
+                      <path d="M6 22v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.06em; opacity:.7; margin-bottom:0.15rem;">
+                      {% trans "Client" %}
+                    </div>
+                    <p class="text-muted" style="margin:0;">
+                      {{ c.client_brief|default:"–" }}
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Problem -->
+                <div style="display:flex; align-items:flex-start; gap:0.75rem; padding:0.75rem 1rem; border-radius:0.75rem; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04);">
+                  <div style="width:28px; height:28px; border-radius:999px; background:#f97316; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="9"></circle>
+                      <path d="M12 8v5"></path>
+                      <circle cx="12" cy="17" r="1"></circle>
+                    </svg>
+                  </div>
+                  <div>
+                    <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.06em; opacity:.7; margin-bottom:0.15rem;">
+                      {% trans "Problem" %}
+                    </div>
+                    <p class="text-muted" style="margin:0;">
+                      {{ c.problem_brief|default:"–" }}
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Result -->
+                <div style="display:flex; align-items:flex-start; gap:0.75rem; padding:0.75rem 1rem; border-radius:0.75rem; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04);">
+                  <div style="width:28px; height:28px; border-radius:999px; background:#f97316; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="4 12 9 17 20 6"></polyline>
+                    </svg>
+                  </div>
+                  <div>
+                    <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.06em; opacity:.7; margin-bottom:0.15rem;">
+                      {% trans "Result" %}
+                    </div>
+
+                    {% if c.result_list %}
+                      <ul class="cpr-list" style="margin:0; padding-left:1rem;">
+                        {% for item in c.result_list %}
+                          <li>{{ item }}</li>
+                        {% endfor %}
+                      </ul>
+                    {% else %}
+                      <p class="text-muted" style="margin:0;">–</p>
+                    {% endif %}
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- CTA -->
+              <a class="view-more-btn" href="{% url 'web:case_detail' slug=c.slug %}">
+                {% if LANGUAGE_CODE == 'de' %}Details ansehen{% else %}View details{% endif %}
+                <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </a>
+            </div>
+          </article>
+        {% empty %}
+          <p class="text-muted text-center py-10">
+            {% if LANGUAGE_CODE == 'de' %}
+              Noch keine Case Studies veröffentlicht.
+            {% else %}
+              No case studies published yet.
+            {% endif %}
+          </p>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
 
 </div>
 {% endblock %}

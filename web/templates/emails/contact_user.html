@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="{{ msg.language|default:'de' }}">
+  <body style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color:#111;">
+    <p>Hallo {{ msg.first_name }},</p>
+
+    <p>vielen Dank für Ihre Anfrage bei <strong>datalization</strong>.
+       Wir melden uns in Kürze mit weiteren Informationen.</p>
+
+    <p><strong>Ihre Nachricht:</strong></p>
+    <p style="white-space: pre-line;">{{ msg.message }}</p>
+
+    <p style="margin-top:24px;">
+      Beste Grüsse<br>
+      <strong>datalization</strong>
+    </p>
+  </body>
+</html>

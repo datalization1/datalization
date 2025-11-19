@@ -1,0 +1,10 @@
+Hallo {{ msg.first_name }},
+
+vielen Dank für Ihre Anfrage bei datalization.
+Wir melden uns in Kürze mit weiteren Informationen.
+
+Ihre Nachricht:
+{{ msg.message }}
+
+Beste Grüsse
+datalization

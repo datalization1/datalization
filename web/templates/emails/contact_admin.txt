@@ -1,0 +1,11 @@
+Neue Kontaktanfrage von datalization.ch
+
+Sprache: {{ msg.language }}
+Name: {{ msg.first_name }} {{ msg.last_name }}
+Firma: {{ msg.company|default:"-" }}
+E-Mail: {{ msg.email }}
+
+Nachricht:
+{{ msg.message }}
+
+Gesendet am: {{ msg.created }}

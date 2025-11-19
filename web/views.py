@@ -10,6 +10,8 @@ from django.views.decorators.cache import cache_page
 from django.views.decorators.http import require_http_methods
 from .models import CaseStudy, ContactMessage
 from .forms import ContactForm
+from django.core.mail import send_mail, EmailMessage, EmailMultiAlternatives
+from django.template.loader import render_to_string
 
 @cache_page(60 * 60)
 @ensure_csrf_cookie
@@ -39,6 +41,7 @@ def case_detail(request, slug):
 def _is_ajax(request):
     return request.headers.get("x-requested-with") == "XMLHttpRequest"
 
+
 @require_http_methods(["GET", "POST"])
 @ensure_csrf_cookie
 def contact(request):
@@ -55,45 +58,78 @@ def contact(request):
                 created__gte=window_start,
             ).exists()
 
+            msg = None
             if not exists:
                 msg = form.save()
-                # (Optional) E-Mail versenden – fehlerresistent
+
+                # ---------- Admin-Mail ----------
                 try:
-                    send_mail(
-                        subject=f"[Datalization] New contact from {msg.first_name} {msg.last_name}",
-                        message=f"Language: {msg.language}\n"
-                                f"Name: {msg.first_name} {msg.last_name}\n"
-                                f"Company: {msg.company or '-'}\n"
-                                f"Email: {msg.email}\n\n{msg.message}",
-                        from_email=getattr(settings, "DEFAULT_FROM_EMAIL", "no-reply@yourdomain"),
-                        recipient_list=[getattr(settings, "CONTACT_RECEIVER_EMAIL", "info@datalization.ch")],
-                        fail_silently=True,
+                    context = {"msg": msg}
+                    subject_admin = f"[Datalization] Neue Kontaktanfrage von {msg.first_name} {msg.last_name}"
+
+                    text_admin = render_to_string("emails/contact_admin.txt", context)
+                    html_admin = render_to_string("emails/contact_admin.html", context)
+
+                    email_admin = EmailMultiAlternatives(
+                        subject=subject_admin,
+                        body=text_admin,
+                        from_email=getattr(settings, "DEFAULT_FROM_EMAIL", "info@datalization.ch"),
+                        to=[getattr(settings, "CONTACT_RECEIVER_EMAIL", "info@datalization.ch")],
                     )
+                    email_admin.attach_alternative(html_admin, "text/html")
+                    email_admin.send(fail_silently=True)
+                except Exception:
+                    # Wir loggen nur – die Anfrage soll trotzdem durchgehen
+                    pass
+
+                # ---------- Bestätigungs-Mail an User ----------
+                try:
+                    context_u = {"msg": msg}
+                    subject_user = (
+                        "Vielen Dank für Ihre Anfrage bei datalization"
+                        if msg.language == "de"
+                        else "Thank you for contacting datalization"
+                    )
+
+                    text_user = render_to_string("emails/contact_user.txt", context_u)
+                    html_user = render_to_string("emails/contact_user.html", context_u)
+
+                    email_user = EmailMultiAlternatives(
+                        subject=subject_user,
+                        body=text_user,
+                        from_email=getattr(settings, "DEFAULT_FROM_EMAIL", "info@datalization.ch"),
+                        to=[msg.email],
+                    )
+                    email_user.attach_alternative(html_user, "text/html")
+                    email_user.send(fail_silently=True)
                 except Exception:
                     pass
 
+            # Erfolgsmeldung Richtung Browser
             success_text = (
                 "Danke! Wir melden uns in Kürze."
                 if request.LANGUAGE_CODE == "de"
                 else "Thank you! We'll get back to you soon."
             )
 
-            if _is_ajax(request):
+            if request.headers.get("x-requested-with") == "XMLHttpRequest":
                 return JsonResponse({"ok": True, "message": success_text})
 
             messages.success(request, success_text)
             return redirect("web:home")
 
         # Form invalid
-        if _is_ajax(request):
+        if request.headers.get("x-requested-with") == "XMLHttpRequest":
             return JsonResponse({"ok": False, "errors": form.errors}, status=400)
 
         messages.error(
             request,
-            "Bitte prüfen Sie Ihre Eingaben." if request.LANGUAGE_CODE == "de" else "Please check your input."
+            "Bitte prüfen Sie Ihre Eingaben."
+            if request.LANGUAGE_CODE == "de"
+            else "Please check your input."
         )
         return redirect("web:home")
 
-    # GET: normales Rendern
+    # GET
     form = ContactForm(initial={"language": request.LANGUAGE_CODE})
     return render(request, "contact.html", {"form": form})

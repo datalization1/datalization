@@ -39,7 +39,12 @@ if DEBUG:
 CSRF_TRUSTED_ORIGINS = [o for o in os.getenv("CSRF_TRUSTED_ORIGINS", ",".join(_csrf_defaults)).split(",") if o]
 # In local development also trust localhost (helps against 403 on POST)
 if DEBUG:
-    CSRF_TRUSTED_ORIGINS += ["http://localhost:8000", "http://127.0.0.1:8000"]
+    _csrf_defaults += [
+        "http://localhost:8000",
+        "http://127.0.0.1:8000",
+        "http://localhost:8001",
+        "http://127.0.0.1:8001",
+    ]
 
 # Application definition
 
@@ -54,6 +59,7 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django.contrib.sitemaps",
 ]
+SITE_ID = 1
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -142,6 +148,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
 
@@ -159,7 +166,29 @@ EMAIL_HOST_USER = "apikey"
 EMAIL_HOST_PASSWORD = os.getenv("SENDGRID_API_KEY", "")
 EMAIL_USE_TLS = True
 
+if DEBUG:
+    # lokal: nur in der Konsole anzeigen
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+else:
+    # Produktion (Heroku): wirklich senden
+    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
+
+# Explizit den SMTP-Backend setzen
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+# Absenderadresse für ausgehende Mails
+DEFAULT_FROM_EMAIL = os.getenv(
+    "DEFAULT_FROM_EMAIL",
+    "Datalization <info@datalization.ch>"
+)
+
+# Empfänger für Kontaktformular (in deinen Views benutzt)
+CONTACT_RECEIVER_EMAIL = os.getenv(
+    "CONTACT_RECEIVER_EMAIL",
+    "info@datalization.ch"
+)
 
 LOGGING = {
     "version": 1,
