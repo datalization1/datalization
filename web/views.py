@@ -29,7 +29,7 @@ def services(request):
 
 
 def case_list(request):
-    qs = CaseStudy.objects.filter(published=True).order_by("-date")
+    qs = CaseStudy.objects.filter(published=True).order_by("-date")[:4]
     return render(request, "cases_list.html", {"cases": qs})
 
 

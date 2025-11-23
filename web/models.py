@@ -24,7 +24,11 @@ class CaseStudy(models.Model):
 
     image       = models.ImageField(upload_to="cases/", blank=True, null=True)
     date        = models.DateField()
-    published   = models.BooleanField(default=True)
+    published   = models.BooleanField(
+        _("Aktiv"),
+        default=True,
+        help_text=_("Steuert, ob diese Case Study auf der Website angezeigt wird."),
+    )
 
     # Optional: vorhandene Felder beibehalten
     kpis        = models.JSONField(blank=True, null=True)

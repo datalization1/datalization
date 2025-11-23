@@ -13,6 +13,7 @@ class CaseStudyAdmin(admin.ModelAdmin):
     list_filter   = ("published", "category", "date")
     search_fields = ("title", "summary", "client_brief", "problem_brief", "tech_stack")
     prepopulated_fields = {"slug": ("title",)}
+    list_editable = ("published",)
 
     fieldsets = (
         (None, {"fields": ("title", "category", "slug", "summary", "image", "date", "published")}),
