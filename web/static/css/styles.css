@@ -396,34 +396,45 @@ body {
 
 @media (max-width: 768px) { .nav__links { display: none; position: absolute; top: 100%; left: 0; right: 0; padding: 1rem 1.25rem 1.5rem; background: rgba(0, 0, 0, 0.98); flex-direction: column; align-items: flex-start; gap: 1rem; border-bottom: 1px solid var(--border); opacity: 0; transform: translateY(-8px); } .nav__links.nav__links--open { display: flex; opacity: 1; transform: translateY(0); } .nav__links a { width: 100%; padding: 0.35rem 0; font-size: 1rem; } .nav__toggle { display: inline-flex; } body.no-scroll { overflow: hidden; } }
 
-/* ========== About / Page Hero ========== */
+/* ========== About (Page Hero, Intro, Values, Founder, Steps, Promise) ========== */
+.about-intro{background:radial-gradient(circle at top,rgba(247,147,26,.18),transparent 60%),rgba(10,10,10,.96);border-radius:1.25rem;padding:3rem 2.5rem;margin:0 auto 3rem;max-width:60rem;text-align:center;box-shadow:0 18px 45px rgba(0,0,0,.65);}
+.about-intro-text{font-size:1.25rem;line-height:1.6;color:var(--muted-foreground);margin-bottom:0;}
+.about-principle{text-align:center;}
+.principle-icon{width:4rem;height:4rem;background:rgba(212,175,55,.1);border-radius:1rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;}
+.about-commitment{background:var(--card);border:1px solid var(--border);border-radius:1rem;padding:2rem;text-align:center;}
+
 .page-hero{padding:4rem 0 2rem;}
 .page-hero .container{text-align:center;}
 .page-hero-title{font-size:2.25rem;font-weight:500;margin-bottom:1rem;}
 .page-hero-subtitle{font-size:1.05rem;color:var(--muted-foreground);max-width:40rem;margin:0 auto;}
 
-/* ========== About Values ========== */
-.about-values-grid{text-align:center;}
-.about-values-grid .value-card h3{margin-bottom:.5rem;}
-.about-values-grid .value-card p{color:var(--muted-foreground);}
+/* Values + Steps */
+.about-values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;align-items:start;}
 .values-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2rem;}
 .steps-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2rem;}
 @media (max-width:1024px){.values-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.steps-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
 @media (max-width:768px){.values-grid,.steps-grid{grid-template-columns:1fr;}}
 
-/* ========== About Founder ========== */
-.about-founder-card{background:var(--card);border:1px solid var(--border);border-radius:1rem;padding:2.5rem 2rem;text-align:left;box-shadow:0 18px 45px rgba(0,0,0,.55);max-width:52rem;margin:0 auto;}
-.about-founder-title{font-size:1.75rem;margin-bottom:.75rem;}
-.about-founder-kicker{font-size:.95rem;color:var(--muted-foreground);margin-bottom:1.5rem;}
+.value-head{display:flex;align-items:center;gap:1.25rem;margin-bottom:.75rem;}
+.value-icon{display:flex;align-items:center;justify-content:center;width:3rem;height:3rem;border-radius:.75rem;background:rgba(247,147,26,.08);}
+.value-head h3{margin:0;display:flex;align-items:center;line-height:1.15;transform:translateY(.5px);}
+.about-values-grid .value-card p{margin:0;color:var(--muted-foreground);}
 
-/* ========== Work Steps ========== */
+/* Founder-Block */
+.about-founder{display:flex;justify-content:center;padding:6rem 1rem;}
+.founder-card{max-width:950px;width:100%;margin-inline:auto;background:rgba(255,255,255,0.03);border-radius:1rem;border:1px solid var(--border);padding:2.75rem 3.25rem;box-shadow:0 25px 50px -12px rgba(0,0,0,.45);}
+.about-founder-title,.founder-card h2{text-align:center;font-size:1.75rem;margin-bottom:1rem;}
+.about-founder-kicker,.founder-card .founder-subtitle{text-align:center;font-size:.95rem;color:var(--muted-foreground);margin-bottom:2rem;}
+.about-founder-text,.founder-card p{text-align:center;font-size:1.05rem;line-height:1.7;margin-bottom:1.3rem;}
+
+/* Work Steps */
 .work-steps-grid{margin-top:2.5rem;gap:2rem;}
 .work-step-card{background:#0d0d0d;border:1px solid rgba(247,147,26,.25);border-radius:1rem;padding:1.75rem 1.5rem;}
 .work-step-number{display:inline-flex;align-items:center;justify-content:center;width:2.2rem;height:2.2rem;border-radius:999px;border:1px solid var(--border);font-size:1rem;margin-bottom:.75rem;}
 .work-step-card h3{margin-bottom:.5rem;font-size:1.15rem;}
-.work-step-card p{color:var(--muted-foreground);font-size:.95rem;}
+.work-step-card p{color:var(--muted-foreground);font-size:.95rem;margin:0;}
 
-/* ========== Promise Card ========== */
+/* Promise Card */
 .promise-card{background:radial-gradient(circle at top,rgba(247,147,26,.18),transparent 52%),#050505;border-radius:1.25rem;border:1px solid var(--border);padding:2.75rem 2.25rem;text-align:center;box-shadow:0 22px 55px rgba(0,0,0,.7);}
 .promise-card h2{font-size:1.75rem;margin-bottom:1rem;}
 .promise-card p{color:var(--muted-foreground);max-width:32rem;margin:0 auto;font-size:.98rem;}

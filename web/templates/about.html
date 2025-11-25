@@ -57,7 +57,7 @@
       <div class="values-grid max-w-7xl mx-auto">
         {# Loyalität #}
         <article class="value-card fade-in-on-scroll">
-          <div class="value-head" style="display:flex;align-items:center;gap:1.25rem;margin-bottom:.75rem;">
+          <div class="value-head">
             <div class="value-icon">
               <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M12 21s-5-3.2-8-6.3C2 12.4 1.5 9.4 3.3 7.5 4.4 6.3 6.2 6 7.7 6.7 8.6 7.1 9.3 7.8 9.7 8.6"></path>
@@ -79,7 +79,7 @@
 
         {# Einfachheit #}
         <article class="value-card fade-in-on-scroll" style="animation-delay:0.05s;">
-          <div class="value-head" style="display:flex;align-items:center;gap:1.25rem;margin-bottom:.75rem;">
+          <div class="value-head">
             <div class="value-icon">
               <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M9 18h6"></path>
@@ -102,7 +102,7 @@
 
         {# Flexibilität #}
         <article class="value-card fade-in-on-scroll" style="animation-delay:0.1s;">
-          <div class="value-head" style="display:flex;align-items:center;gap:1.25rem;margin-bottom:.75rem;">
+          <div class="value-head">
             <div class="value-icon">
               <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M13 2L3 14h9l-1 8 10-12h-9z"></path>
@@ -123,7 +123,7 @@
 
         {# Qualität #}
         <article class="value-card fade-in-on-scroll" style="animation-delay:0.15s;">
-          <div class="value-head" style="display:flex;align-items:center;gap:1.25rem;margin-bottom:.75rem;">
+          <div class="value-head">
             <div class="value-icon">
               <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M12 2l3 3h4v4l3 3-3 3v4h-4l-3 3-3-3H5v-4l-3-3 3-3V5h4z"></path>
@@ -147,9 +147,9 @@
   </section>
 
   {# WER STEHT DAHINTER – Gründerblock #}
-  <section class="section section-alt">
+  <section class="section section-alt about-founder">
     <div class="container mx-auto px-4">
-      <div class="about-founder-card fade-in-on-scroll">
+      <div class="about-founder-card founder-card fade-in-on-scroll">
         <h2 class="about-founder-title">
           {% if LANGUAGE_CODE == 'de' %}
             Wer hinter Datalization steht
@@ -164,7 +164,7 @@
             I am Tihomir – Founder, Data Analyst &amp; Project Manager
           {% endif %}
         </p>
-        <p>
+        <p class="about-founder-text">
           {% if LANGUAGE_CODE == 'de' %}
             Seit über acht Jahren bewege ich mich an der Schnittstelle zwischen Daten, 
             Technologie und Business-Strategie. Meine Leidenschaft ist es, komplexe Strukturen 
@@ -175,7 +175,7 @@
             into simple, clear and effective solutions.
           {% endif %}
         </p>
-        <p>
+        <p class="about-founder-text">
           {% if LANGUAGE_CODE == 'de' %}
             In meinen Projekten lege ich Wert auf Transparenz, Präzision und echte Partnerschaft.
             Ich arbeite nicht einfach für Unternehmen – ich arbeite mit Menschen.
@@ -202,7 +202,7 @@
 
       <div class="steps-grid max-w-7xl mx-auto">
         <div class="value-card fade-in-on-scroll">
-          <div class="value-head" style="display:flex;align-items:center;gap:1.5rem;margin-bottom:.75rem;">
+          <div class="value-head">
             <div class="value-icon"><span class="badge-primary">01</span></div>
             <h3>
               {% if LANGUAGE_CODE == 'de' %}Verstehen{% else %}Understand{% endif %}
@@ -218,7 +218,7 @@
         </div>
 
         <div class="value-card fade-in-on-scroll" style="animation-delay:0.05s;">
-          <div class="value-head" style="display:flex;align-items:center;gap:1.5rem;margin-bottom:.75rem;">
+          <div class="value-head">
             <div class="value-icon"><span class="badge-primary">02</span></div>
             <h3>
               {% if LANGUAGE_CODE == 'de' %}Konzipieren{% else %}Concept{% endif %}
@@ -234,7 +234,7 @@
         </div>
 
         <div class="value-card fade-in-on-scroll" style="animation-delay:0.1s;">
-          <div class="value-head" style="display:flex;align-items:center;gap:1.5rem;margin-bottom:.75rem;">
+          <div class="value-head">
             <div class="value-icon"><span class="badge-primary">03</span></div>
             <h3>
               {% if LANGUAGE_CODE == 'de' %}Umsetzen{% else %}Implement{% endif %}
@@ -250,7 +250,7 @@
         </div>
 
         <div class="value-card fade-in-on-scroll" style="animation-delay:0.15s;">
-          <div class="value-head" style="display:flex;align-items:center;gap:1.5rem;margin-bottom:.75rem;">
+          <div class="value-head">
             <div class="value-icon"><span class="badge-primary">04</span></div>
             <h3>
               {% if LANGUAGE_CODE == 'de' %}Optimieren{% else %}Optimize{% endif %}
