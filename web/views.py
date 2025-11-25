@@ -33,9 +33,23 @@ def case_list(request):
     return render(request, "cases_list.html", {"cases": qs})
 
 
+from django.shortcuts import render, get_object_or_404
+from .models import CaseStudy
+
 def case_detail(request, slug):
     case = get_object_or_404(CaseStudy, slug=slug, published=True)
-    return render(request, "case_detail.html", {"case": case})
+
+    # results: 1 per line → Liste
+    results_list = [
+        line.strip()
+        for line in case.results.splitlines()
+        if line.strip()
+    ]
+
+    return render(request, "case_detail.html", {
+        "case": case,
+        "results_list": results_list,
+    })
 
 
 def _is_ajax(request):

@@ -2,39 +2,295 @@
 {% block title %}{% trans "Über uns" %} – Datalization{% endblock %}
 
 {% block content %}
-<section class="section">
-  <div class="container max-w-3xl">
-    <h1 class="mb-3">{% trans "Über uns" %} / {% trans "Who we are" %}</h1>
-    <p class="text-muted mb-6">
-      {% if LANGUAGE_CODE == 'de' %}
-        Loyal leben und einfache Lösungen schaffen. Daran messen wir uns. Wir entwickeln digitale Produkte,
-        die Komplexität reduzieren und Menschen befähigen, bessere Entscheidungen zu treffen.
-      {% else %}
-        Live loyally, build simple solutions. That’s our benchmark. We craft digital products that reduce complexity
-        and enable better decisions.
-      {% endif %}
-    </p>
+<div class="min-h-screen bg-background text-foreground">
 
-    <div class="grid-2">
-      <div class="card">
-        <h3>{% trans "Was uns leitet" %}</h3>
-        <ul class="list">
-          <li>{% trans "Einfachheit vor Features" %}</li>
-          <li>{% trans "Klarheit vor Buzzwords" %}</li>
-          <li>{% trans "Tempo mit Qualität" %}</li>
-          <li>{% trans "Transparenz & Verlässlichkeit" %}</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>{% trans "Wie wir arbeiten" %}</h3>
-        <ul class="list">
-          <li>{% trans "Fokus auf Nutzen & Wirkung" %}</li>
-          <li>{% trans "Iterativ, messbar, testbar" %}</li>
-          <li>{% trans "Enge Zusammenarbeit" %}</li>
-          <li>{% trans "Sauber dokumentiert & übergebbar" %}</li>
-        </ul>
+  {# HERO #}
+  <section class="page-hero scroll-mt-20">
+    <div class="container max-w-3xl">
+      <h1 class="page-hero-title">{% trans "Über uns" %} / {% trans "Who we are" %}</h1>
+      <p class="page-hero-subtitle">
+        {% if LANGUAGE_CODE == 'de' %}
+          Loyal leben und einfache Lösungen schaffen. Daran messen wir uns. Wir entwickeln digitale Produkte,
+          die Komplexität reduzieren und Menschen befähigen, bessere Entscheidungen zu treffen.
+        {% else %}
+          Live loyally, build simple solutions. That’s our benchmark. We craft digital products that reduce complexity
+          and enable better decisions.
+        {% endif %}
+      </p>
+    </div>
+  </section>
+
+  {# VISION – optisch nah an den Cards #}
+  <section class="section">
+    <div class="container mx-auto px-4">
+      <div class="about-intro fade-in-on-scroll">
+        <p class="about-intro-text">
+          {% if LANGUAGE_CODE == 'de' %}
+            Bei Datalization glauben wir, dass Technologie Menschen befähigen soll – nicht umgekehrt.
+            Wir schaffen Lösungen, die Komplexität reduzieren und Klarheit schaffen:
+            einfach, präzise und mit Fokus auf echte Wirkung.
+          {% else %}
+            At Datalization, we believe technology should empower people – not the other way round.
+            We build solutions that reduce complexity and create clarity: simple, precise, and focused on real impact.
+          {% endif %}
+        </p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  {# UNSERE WERTE – 4 Karten mit SVG-Icons #}
+  <section class="section">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 fade-in-on-scroll">
+        <h2 class="section-title">
+          {% if LANGUAGE_CODE == 'de' %}Unsere Werte{% else %}Our values{% endif %}
+        </h2>
+        <p class="text-muted max-w-2xl mx-auto">
+          {% if LANGUAGE_CODE == 'de' %}
+            Was uns in jedem Projekt leitet.
+          {% else %}
+            What guides us in every project.
+          {% endif %}
+        </p>
+      </div>
+
+      <div class="values-grid max-w-7xl mx-auto">
+        {# Loyalität #}
+        <article class="value-card fade-in-on-scroll">
+          <div class="value-head" style="display:flex;align-items:center;gap:1.25rem;margin-bottom:.75rem;">
+            <div class="value-icon">
+              <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 21s-5-3.2-8-6.3C2 12.4 1.5 9.4 3.3 7.5 4.4 6.3 6.2 6 7.7 6.7 8.6 7.1 9.3 7.8 9.7 8.6"></path>
+                <path d="M12 21s5-3.2 8-6.3c2-2.3 2.5-5.3.7-7.2C19.6 6.3 17.8 6 16.3 6.7 15.4 7.1 14.7 7.8 14.3 8.6"></path>
+              </svg>
+            </div>
+            <h3>
+              {% if LANGUAGE_CODE == 'de' %}Loyalität{% else %}Loyalty{% endif %}
+            </h3>
+          </div>
+          <p class="text-muted">
+            {% if LANGUAGE_CODE == 'de' %}
+              Langfristige Partnerschaften und Vertrauen stehen im Zentrum unserer Arbeit.
+            {% else %}
+              Long-term partnerships and trust are at the core of how we work.
+            {% endif %}
+          </p>
+        </article>
+
+        {# Einfachheit #}
+        <article class="value-card fade-in-on-scroll" style="animation-delay:0.05s;">
+          <div class="value-head" style="display:flex;align-items:center;gap:1.25rem;margin-bottom:.75rem;">
+            <div class="value-icon">
+              <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18h6"></path>
+                <path d="M10 22h4"></path>
+                <path d="M12 2a7 7 0 0 0-4 12.7V16h8v-1.3A7 7 0 0 0 12 2z"></path>
+              </svg>
+            </div>
+            <h3>
+              {% if LANGUAGE_CODE == 'de' %}Einfachheit{% else %}Simplicity{% endif %}
+            </h3>
+          </div>
+          <p class="text-muted">
+            {% if LANGUAGE_CODE == 'de' %}
+              Wir schaffen klare, verständliche Lösungen für komplexe Herausforderungen.
+            {% else %}
+              We create clear, understandable solutions for complex challenges.
+            {% endif %}
+          </p>
+        </article>
+
+        {# Flexibilität #}
+        <article class="value-card fade-in-on-scroll" style="animation-delay:0.1s;">
+          <div class="value-head" style="display:flex;align-items:center;gap:1.25rem;margin-bottom:.75rem;">
+            <div class="value-icon">
+              <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9z"></path>
+              </svg>
+            </div>
+            <h3>
+              {% if LANGUAGE_CODE == 'de' %}Flexibilität{% else %}Flexibility{% endif %}
+            </h3>
+          </div>
+          <p class="text-muted">
+            {% if LANGUAGE_CODE == 'de' %}
+              Agil und anpassungsfähig – wir reagieren schnell auf Ihre Bedürfnisse.
+            {% else %}
+              Agile and adaptable – we respond quickly to your needs.
+            {% endif %}
+          </p>
+        </article>
+
+        {# Qualität #}
+        <article class="value-card fade-in-on-scroll" style="animation-delay:0.15s;">
+          <div class="value-head" style="display:flex;align-items:center;gap:1.25rem;margin-bottom:.75rem;">
+            <div class="value-icon">
+              <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2l3 3h4v4l3 3-3 3v4h-4l-3 3-3-3H5v-4l-3-3 3-3V5h4z"></path>
+                <path d="M9 12l2 2 4-4"></path>
+              </svg>
+            </div>
+            <h3>
+              {% if LANGUAGE_CODE == 'de' %}Qualität{% else %}Quality{% endif %}
+            </h3>
+          </div>
+          <p class="text-muted">
+            {% if LANGUAGE_CODE == 'de' %}
+              Höchste Standards in allen Projekten – von der Planung bis zur Umsetzung.
+            {% else %}
+              Highest standards in every project – from planning to implementation.
+            {% endif %}
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  {# WER STEHT DAHINTER – Gründerblock #}
+  <section class="section section-alt">
+    <div class="container mx-auto px-4">
+      <div class="about-founder-card fade-in-on-scroll">
+        <h2 class="about-founder-title">
+          {% if LANGUAGE_CODE == 'de' %}
+            Wer hinter Datalization steht
+          {% else %}
+            Who is behind Datalization
+          {% endif %}
+        </h2>
+        <p class="about-founder-kicker">
+          {% if LANGUAGE_CODE == 'de' %}
+            Ich bin Tihomir – Gründer, Daten-Analyst &amp; Projektmanager
+          {% else %}
+            I am Tihomir – Founder, Data Analyst &amp; Project Manager
+          {% endif %}
+        </p>
+        <p>
+          {% if LANGUAGE_CODE == 'de' %}
+            Seit über acht Jahren bewege ich mich an der Schnittstelle zwischen Daten, 
+            Technologie und Business-Strategie. Meine Leidenschaft ist es, komplexe Strukturen 
+            zu verstehen und daraus einfache, klare und wirkungsvolle Lösungen zu schaffen.
+          {% else %}
+            For more than eight years I’ve been working at the intersection of data, technology 
+            and business strategy. I love understanding complex structures and turning them
+            into simple, clear and effective solutions.
+          {% endif %}
+        </p>
+        <p>
+          {% if LANGUAGE_CODE == 'de' %}
+            In meinen Projekten lege ich Wert auf Transparenz, Präzision und echte Partnerschaft.
+            Ich arbeite nicht einfach für Unternehmen – ich arbeite mit Menschen.
+          {% else %}
+            In every project I value transparency, precision and true partnership.
+            I don’t just work for companies – I work with people.
+          {% endif %}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {# WIE WIR ARBEITEN – 4 Schritte, mit Nummern #}
+  <section class="section">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 fade-in-on-scroll">
+        <h2 class="section-title">
+          {% if LANGUAGE_CODE == 'de' %}Unser Ansatz{% else %}Our approach{% endif %}
+        </h2>
+        <p class="text-muted max-w-2xl mx-auto">
+          {% if LANGUAGE_CODE == 'de' %}Wie wir arbeiten{% else %}How we work{% endif %}
+        </p>
+      </div>
+
+      <div class="steps-grid max-w-7xl mx-auto">
+        <div class="value-card fade-in-on-scroll">
+          <div class="value-head" style="display:flex;align-items:center;gap:1.5rem;margin-bottom:.75rem;">
+            <div class="value-icon"><span class="badge-primary">01</span></div>
+            <h3>
+              {% if LANGUAGE_CODE == 'de' %}Verstehen{% else %}Understand{% endif %}
+            </h3>
+          </div>
+          <p class="text-muted">
+            {% if LANGUAGE_CODE == 'de' %}
+              Wir hören zu und analysieren Ihre spezifischen Herausforderungen und Ziele.
+            {% else %}
+              We listen and analyze your specific challenges and goals.
+            {% endif %}
+          </p>
+        </div>
+
+        <div class="value-card fade-in-on-scroll" style="animation-delay:0.05s;">
+          <div class="value-head" style="display:flex;align-items:center;gap:1.5rem;margin-bottom:.75rem;">
+            <div class="value-icon"><span class="badge-primary">02</span></div>
+            <h3>
+              {% if LANGUAGE_CODE == 'de' %}Konzipieren{% else %}Concept{% endif %}
+            </h3>
+          </div>
+          <p class="text-muted">
+            {% if LANGUAGE_CODE == 'de' %}
+              Gemeinsam entwickeln wir massgeschneiderte Lösungen, die genau zu Ihnen passen.
+            {% else %}
+              Together we design tailored solutions that fit your needs.
+            {% endif %}
+          </p>
+        </div>
+
+        <div class="value-card fade-in-on-scroll" style="animation-delay:0.1s;">
+          <div class="value-head" style="display:flex;align-items:center;gap:1.5rem;margin-bottom:.75rem;">
+            <div class="value-icon"><span class="badge-primary">03</span></div>
+            <h3>
+              {% if LANGUAGE_CODE == 'de' %}Umsetzen{% else %}Implement{% endif %}
+            </h3>
+          </div>
+          <p class="text-muted">
+            {% if LANGUAGE_CODE == 'de' %}
+              Mit modernen Technologien realisieren wir Ihre digitale Transformation.
+            {% else %}
+              With modern technologies we bring your digital transformation to life.
+            {% endif %}
+          </p>
+        </div>
+
+        <div class="value-card fade-in-on-scroll" style="animation-delay:0.15s;">
+          <div class="value-head" style="display:flex;align-items:center;gap:1.5rem;margin-bottom:.75rem;">
+            <div class="value-icon"><span class="badge-primary">04</span></div>
+            <h3>
+              {% if LANGUAGE_CODE == 'de' %}Optimieren{% else %}Optimize{% endif %}
+            </h3>
+          </div>
+          <p class="text-muted">
+            {% if LANGUAGE_CODE == 'de' %}
+              Wir bleiben an Ihrer Seite und verbessern kontinuierlich Ihre Lösungen.
+            {% else %}
+              We stay at your side and continuously improve your solutions.
+            {% endif %}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {# VERSPRECHEN #}
+  <section class="section">
+    <div class="container mx-auto px-4 max-w-3xl">
+      <div class="promise-card fade-in-on-scroll">
+        <h2>
+          {% if LANGUAGE_CODE == 'de' %}
+            Unser Versprechen
+          {% else %}
+            Our promise
+          {% endif %}
+        </h2>
+        <p>
+          {% if LANGUAGE_CODE == 'de' %}
+            Wir setzen auf nachhaltige Zusammenarbeit, nicht auf schnelle Erfolge.
+            Loyal zu unseren Werten, loyal zu unseren Kunden – das ist der Datalization-Weg.
+          {% else %}
+            We stand for long-term collaboration, not quick wins.
+            Loyal to our values, loyal to our clients – that’s the Datalization way.
+          {% endif %}
+        </p>
+      </div>
+    </div>
+  </section>
+
+</div>
 {% endblock %}

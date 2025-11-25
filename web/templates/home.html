@@ -35,9 +35,9 @@
 
                 <p class="hero-description animate-fade-in-delay-2">
                     {% if LANGUAGE_CODE == 'de' %}
-                        Wir transformieren komplexe Daten in klare Lösungen und digitalisieren Ihre Prozesse mit Weitblick und Loyalität.
+                        Wir transformieren komplexe Daten in klare Lösungen und digitalisieren Ihre Prozesse mit Weitblick.
                     {% else %}
-                        We transform complex data into clear solutions and digitalize your processes with vision and loyalty.
+                        We transform complex data into clear solutions and digitalize your processes with vision.
                     {% endif %}
                 </p>
 
@@ -453,134 +453,30 @@
 
     <!-- Contact Section -->
     <section id="contact" class="section-alt scroll-mt-20">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16 fade-in-on-scroll">
-                <h2 class="section-title">
-                    {% if LANGUAGE_CODE == 'de' %}Kontakt{% else %}Contact{% endif %}
-                </h2>
-                <p class="text-muted max-w-2xl mx-auto">
-                    {% if LANGUAGE_CODE == 'de' %}
-                        Lassen Sie uns Ihre Vision gemeinsam verwirklichen
-                    {% else %}
-                        Let's realize your vision together
-                    {% endif %}
-                </p>
-            </div>
-
         <div class="max-w-2xl mx-auto">
-        <div class="contact-form-container fade-in-on-scroll">
+            <div class="container text-center">
 
-            <form id="contact-form" method="post" action="{% url 'web:contact' %}" class="space-y-6">
-            {% csrf_token %}
+            <h2 class="cta-title">
+                {% if LANGUAGE_CODE == 'de' %}Kontakt{% else %}Contact{% endif %}
+            </h2>
 
-            {# hidden: Honeypot #}
-            <input type="hidden" name="website" value="">  {# Honeypot – muss leer bleiben #}
+            <p class="cta-subtitle">
+                {% if LANGUAGE_CODE == 'de' %}
+                    Lassen Sie uns Ihre Vision gemeinsam verwirklichen.
+                {% else %}
+                    Let’s bring your vision to life together.
+                {% endif %}
+            </p>
 
-            {# Vorname / Nachname #}
-            <div class="grid-2 gap-4">
-                <div class="relative">
-                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-                <label for="first_name" class="sr-only">{% trans "First name" %}</label>
-                <input
-                    type="text"
-                    id="first_name"
-                    name="first_name"
-                    class="form-input"
-                    placeholder="{% if LANGUAGE_CODE == 'de' %}Vorname{% else %}First name{% endif %}"
-                    required autocomplete="given-name">
-                </div>
-
-                <div class="relative">
-                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-                <label for="last_name" class="sr-only">{% trans "Last name" %}</label>
-                <input
-                    type="text"
-                    id="last_name"
-                    name="last_name"
-                    class="form-input"
-                    placeholder="{% if LANGUAGE_CODE == 'de' %}Nachname{% else %}Last name{% endif %}"
-                    required autocomplete="family-name">
-                </div>
-            </div>
-
-            {# Firma (optional) #}
-            <div class="relative">
-                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M3 21V7a2 2 0 0 1 2-2h4v16"></path>
-                <path d="M9 21h12V9a2 2 0 0 0-2-2h-6"></path>
-                <path d="M9 7h6"></path>
-                </svg>
-                <label for="company" class="sr-only">{% trans "Company" %}</label>
-                <input
-                type="text"
-                id="company"
-                name="company"
-                class="form-input"
-                placeholder="{% if LANGUAGE_CODE == 'de' %}Firma (optional){% else %}Company (optional){% endif %}"
-                autocomplete="organization">
-            </div>
-
-            {# E-Mail #}
-            <div class="relative">
-                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <rect x="3" y="5" width="18" height="14" rx="2"></rect>
-                <polyline points="3,7 12,13 21,7"></polyline>
-                </svg>
-                <label for="email" class="sr-only">{% trans "Email" %}</label>
-                <input
-                type="email"
-                id="email"
-                name="email"
-                class="form-input"
-                placeholder="{% if LANGUAGE_CODE == 'de' %}Ihre E-Mail{% else %}Your email{% endif %}"
-                required autocomplete="email">
-            </div>
-
-            {# Nachricht #}
-            <div class="relative">
-                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                </svg>
-                <label for="message" class="sr-only">{% trans "Message" %}</label>
-                <textarea
-                id="message"
-                name="message"
-                rows="6"
-                class="form-textarea"
-                placeholder="{% if LANGUAGE_CODE == 'de' %}Ihre Nachricht…{% else %}Your message…{% endif %}"
-                required></textarea>
-            </div>
-
-            {# Submit #}
-            <button type="submit" class="btn-primary w-full gap-2">
-                {% if LANGUAGE_CODE == 'de' %}Nachricht senden{% else %}Send message{% endif %}
-                <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <line x1="22" y1="2" x2="11" y2="13"></line>
-                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                </svg>
-            </button>
-                        </form>
-
-            <div class="contact-info">
-              <p class="text-muted mb-4">
-                {% if LANGUAGE_CODE == 'de' %}Oder kontaktieren Sie uns direkt{% else %}Or contact us directly{% endif %}
-              </p>
-              <a href="mailto:info@datalization.ch" class="contact-email">
+            <a href="{% url 'web:contact' %}" class="btn-primary cta-button">
+                {% if LANGUAGE_CODE == 'de' %}Zum Kontaktformular{% else %}Go to contact form{% endif %}
                 <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                  <polyline points="22,6 12,13 2,6"></polyline>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>
-                info@datalization.ch
-              </a>
-            </div>
-
-          </div>   {# .contact-form-container #}
+            </a>
+        </div>
+        </div>
         </div>     {# .max-w-2xl #}
       </div>       {# .container #}
     </section>     {# #contact #}

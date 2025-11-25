@@ -8,29 +8,32 @@
 <div class="min-h-screen bg-background text-foreground">
 
   {# HERO / INTRO "Unsere Lösungen" #}
-  <section class="section scroll-mt-20">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-16 fade-in-on-scroll">
-        <h1 class="section-title">
-          {% if LANGUAGE_CODE == 'de' %}
-            Unsere Lösungen
-          {% else %}
-            Our Solutions
-          {% endif %}
-        </h1>
-        <p class="text-muted max-w-2xl mx-auto">
-          {% if LANGUAGE_CODE == 'de' %}
-            Massgeschneiderte Dienstleistungen für Ihre digitale Zukunft
-          {% else %}
-            Tailored services for your digital future
-          {% endif %}
-        </p>
-      </div>
+  <section class="case-hero scroll-mt-20">
+    <div class="container mx-auto px-4 text-center fade-in-on-scroll">
+      <h1 class="case-hero-title">
+        {% if LANGUAGE_CODE == 'de' %}
+          Unsere Lösungen
+        {% else %}
+          Our Solutions
+        {% endif %}
+      </h1>
+      <p class="text-muted max-w-2xl mx-auto">
+        {% if LANGUAGE_CODE == 'de' %}
+          Massgeschneiderte Dienstleistungen für Ihre digitale Zukunft
+        {% else %}
+          Tailored services for your digital future
+        {% endif %}
+      </p>
+    </div>
+  </section>
 
-      {# SERVICE CARDS (4) #}
+  {# SECTION: Services #}
+  <section class="section">
+    <div class="container mx-auto px-4">
       <div class="grid-2 max-w-7xl mx-auto">
+
         {# Service 1 – Datenanalyse & BI #}
-        <div class="service-card fade-in-on-scroll">
+        <article class="service-card fade-in-on-scroll">
           <div class="service-head">
             <div class="service-icon">
               <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -71,10 +74,10 @@
               <span class="feature-tag">Reporting Automation</span>
             {% endif %}
           </div>
-        </div>
+        </article>
 
         {# Service 2 – Prozessautomatisierung #}
-        <div class="service-card fade-in-on-scroll" style="animation-delay: 0.1s;">
+        <article class="service-card fade-in-on-scroll" style="animation-delay:0.1s;">
           <div class="service-head">
             <div class="service-icon">
               <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -113,10 +116,10 @@
               <span class="feature-tag">Scheduling &amp; Monitoring</span>
             {% endif %}
           </div>
-        </div>
+        </article>
 
         {# Service 3 – Data Visualization #}
-        <div class="service-card fade-in-on-scroll" style="animation-delay: 0.2s;">
+        <article class="service-card fade-in-on-scroll" style="animation-delay:0.2s;">
           <div class="service-head">
             <div class="service-icon">
               <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -125,9 +128,7 @@
                 <line x1="18" y1="20" x2="18" y2="14"></line>
               </svg>
             </div>
-            <h3 class="service-title">
-              Data Visualization
-            </h3>
+            <h3 class="service-title">Data Visualization</h3>
           </div>
           <p class="service-text mb-6">
             {% if LANGUAGE_CODE == 'de' %}
@@ -153,10 +154,10 @@
               <span class="feature-tag">Mobile Responsive</span>
             {% endif %}
           </div>
-        </div>
+        </article>
 
         {# Service 4 – Digitalisierung & Software #}
-        <div class="service-card fade-in-on-scroll" style="animation-delay: 0.3s;">
+        <article class="service-card fade-in-on-scroll" style="animation-delay:0.3s;">
           <div class="service-head">
             <div class="service-icon">
               <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -196,7 +197,8 @@
               <span class="feature-tag">Legacy Migration</span>
             {% endif %}
           </div>
-        </div>
+        </article>
+
       </div>
     </div>
   </section>
@@ -222,14 +224,10 @@
       </div>
 
       <div class="grid-4 max-w-7xl mx-auto">
-        <div class="value-card fade-in-on-scroll" style="animation-delay: 0.1s; margin-top: 3rem;">
-          <div class="value-head" style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 0.75rem;">
-            <div class="value-icon">
-              <span class="badge-primary">01</span>
-            </div>
-            <h3>
-              Analyse &amp; Discovery
-            </h3>
+        <div class="value-card fade-in-on-scroll" style="animation-delay:0.1s;margin-top:3rem;">
+          <div class="value-head" style="display:flex;align-items:center;gap:1.5rem;margin-bottom:.75rem;">
+            <div class="value-icon"><span class="badge-primary">01</span></div>
+            <h3>Analyse &amp; Discovery</h3>
           </div>
           <p class="text-muted">
             {% if LANGUAGE_CODE == 'de' %}
@@ -242,14 +240,10 @@
           </p>
         </div>
 
-        <div class="value-card fade-in-on-scroll" style="animation-delay: 0.2s; margin-top: 3rem;">
-          <div class="value-head" style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 0.75rem;">
-            <div class="value-icon">
-              <span class="badge-primary">02</span>
-            </div>
-            <h3>
-              {% if LANGUAGE_CODE == 'de' %}Konzeption &amp; Design{% else %}Concept &amp; Design{% endif %}
-            </h3>
+        <div class="value-card fade-in-on-scroll" style="animation-delay:0.2s;margin-top:3rem;">
+          <div class="value-head" style="display:flex;align-items:center;gap:1.5rem;margin-bottom:.75rem;">
+            <div class="value-icon"><span class="badge-primary">02</span></div>
+            <h3>{% if LANGUAGE_CODE == 'de' %}Konzeption &amp; Design{% else %}Concept &amp; Design{% endif %}</h3>
           </div>
           <p class="text-muted">
             {% if LANGUAGE_CODE == 'de' %}
@@ -262,14 +256,10 @@
           </p>
         </div>
 
-        <div class="value-card fade-in-on-scroll" style="animation-delay: 0.3s; margin-top: 3rem;">
-          <div class="value-head" style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 0.75rem;">
-            <div class="value-icon">
-              <span class="badge-primary">03</span>
-            </div>
-            <h3>
-              {% if LANGUAGE_CODE == 'de' %}Agile Entwicklung{% else %}Agile Development{% endif %}
-            </h3>
+        <div class="value-card fade-in-on-scroll" style="animation-delay:0.3s;margin-top:3rem;">
+          <div class="value-head" style="display:flex;align-items:center;gap:1.5rem;margin-bottom:.75rem;">
+            <div class="value-icon"><span class="badge-primary">03</span></div>
+            <h3>{% if LANGUAGE_CODE == 'de' %}Agile Entwicklung{% else %}Agile Development{% endif %}</h3>
           </div>
           <p class="text-muted">
             {% if LANGUAGE_CODE == 'de' %}
@@ -282,14 +272,10 @@
           </p>
         </div>
 
-        <div class="value-card fade-in-on-scroll" style="animation-delay: 0.4s; margin-top: 3rem;">
-          <div class="value-head" style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 0.75rem;">
-            <div class="value-icon">
-              <span class="badge-primary">04</span>
-            </div>
-            <h3>
-              {% if LANGUAGE_CODE == 'de' %}Deployment &amp; Support{% else %}Deployment &amp; Support{% endif %}
-            </h3>
+        <div class="value-card fade-in-on-scroll" style="animation-delay:0.4s;margin-top:3rem;">
+          <div class="value-head" style="display:flex;align-items:center;gap:1.5rem;margin-bottom:.75rem;">
+            <div class="value-icon"><span class="badge-primary">04</span></div>
+            <h3>{% if LANGUAGE_CODE == 'de' %}Deployment &amp; Support{% else %}Deployment &amp; Support{% endif %}</h3>
           </div>
           <p class="text-muted">
             {% if LANGUAGE_CODE == 'de' %}
@@ -334,9 +320,7 @@
                 <path d="M6 22v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"></path>
               </svg>
             </div>
-            <h3>
-              {% if LANGUAGE_CODE == 'de' %}Kundenorientiert{% else %}Customer-centric{% endif %}
-            </h3>
+            <h3>{% if LANGUAGE_CODE == 'de' %}Kundenorientiert{% else %}Customer-centric{% endif %}</h3>
           </div>
           <p class="text-muted">
             {% if LANGUAGE_CODE == 'de' %}
@@ -348,16 +332,14 @@
           </p>
         </div>
 
-        <div class="value-card fade-in-on-scroll" style="animation-delay: 0.1s;">
+        <div class="value-card fade-in-on-scroll" style="animation-delay:0.1s;">
           <div class="value-head">
             <div class="value-icon">
               <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M12 1l3 5.2 5.8.8-4.2 4.1 1 5.9L12 14.8 6.4 17l1-5.9-4.2-4.1 5.8-.8z"></path>
               </svg>
             </div>
-            <h3>
-              {% if LANGUAGE_CODE == 'de' %}Qualität &amp; Sicherheit{% else %}Quality &amp; Security{% endif %}
-            </h3>
+            <h3>{% if LANGUAGE_CODE == 'de' %}Qualität &amp; Sicherheit{% else %}Quality &amp; Security{% endif %}</h3>
           </div>
           <p class="text-muted">
             {% if LANGUAGE_CODE == 'de' %}
@@ -370,16 +352,14 @@
           </p>
         </div>
 
-        <div class="value-card fade-in-on-scroll" style="animation-delay: 0.2s;">
+        <div class="value-card fade-in-on-scroll" style="animation-delay:0.2s;">
           <div class="value-head">
             <div class="value-icon">
               <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M3 12h6l3-9 3 18 3-9h3"></path>
               </svg>
             </div>
-            <h3>
-              {% if LANGUAGE_CODE == 'de' %}Agil &amp; Flexibel{% else %}Agile &amp; Flexible{% endif %}
-            </h3>
+            <h3>{% if LANGUAGE_CODE == 'de' %}Agil &amp; Flexibel{% else %}Agile &amp; Flexible{% endif %}</h3>
           </div>
           <p class="text-muted">
             {% if LANGUAGE_CODE == 'de' %}
@@ -392,7 +372,7 @@
           </p>
         </div>
 
-        <div class="value-card fade-in-on-scroll" style="animation-delay: 0.3s;">
+        <div class="value-card fade-in-on-scroll" style="animation-delay:0.3s;">
           <div class="value-head">
             <div class="value-icon">
               <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -401,9 +381,7 @@
                 <line x1="12" y1="2" x2="12" y2="22"></line>
               </svg>
             </div>
-            <h3>
-              {% if LANGUAGE_CODE == 'de' %}Transparenz{% else %}Transparency{% endif %}
-            </h3>
+            <h3>{% if LANGUAGE_CODE == 'de' %}Transparenz{% else %}Transparency{% endif %}</h3>
           </div>
           <p class="text-muted">
             {% if LANGUAGE_CODE == 'de' %}
@@ -420,8 +398,8 @@
   </section>
 
   {# CTA: Projekt besprechen #}
-  <section class="section-alt">
-    <div class="container mx-auto px-4 text-center fade-in-on-scroll">
+  <section class="case-cta-wrap">
+    <div class="container case-cta-inner fade-in-on-scroll">
       <h2 class="section-title">
         {% if LANGUAGE_CODE == 'de' %}
           Lassen Sie uns Ihr Projekt besprechen
@@ -436,8 +414,12 @@
           We look forward to learning more about your challenges.
         {% endif %}
       </p>
-      <a href="{% url 'web:contact' %}" class="hero-cta">
-        {% if LANGUAGE_CODE == 'de' %}Jetzt Kontakt aufnehmen{% else %}Get in touch{% endif %}
+      <a href="{% url 'web:contact' %}" class="case-cta-btn">
+        {% if LANGUAGE_CODE == 'de' %}
+          Projekt starten
+        {% else %}
+          Start your project
+        {% endif %}
         <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <line x1="7" y1="17" x2="17" y2="7"></line>
           <polyline points="7 7 17 7 17 17"></polyline>

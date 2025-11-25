@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260" role="img" aria-hidden="true">
+  <rect x="0" y="0" width="260" height="260" fill="none"/>
+
+  <!-- Verbindungen -->
+  <g stroke="#f7931a" stroke-width="2" stroke-linecap="round">
+    <line x1="130" y1="70" x2="70" y2="120" stroke-opacity="0.55"/>
+    <line x1="130" y1="70" x2="190" y2="120" stroke-opacity="0.55"/>
+    <line x1="70" y1="120" x2="90" y2="190" stroke-opacity="0.35"/>
+    <line x1="190" y1="120" x2="170" y2="190" stroke-opacity="0.35"/>
+    <line x1="90" y1="190" x2="170" y2="190" stroke-opacity="0.35"/>
+    <line x1="130" y1="70" x2="130" y2="190" stroke-opacity="0.28" stroke-dasharray="4 6">
+      <animate attributeName="stroke-dashoffset" values="0;20" dur="3.2s" repeatCount="indefinite"/>
+    </line>
+  </g>
+
+  <!-- zentraler Node -->
+  <circle cx="130" cy="70" r="16" fill="rgba(247,147,26,0.15)" stroke="#f7931a" stroke-width="2.5">
+    <animate attributeName="r" values="15;18;15" dur="4s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- äußere Nodes -->
+  <circle cx="70" cy="120" r="10" fill="rgba(247,147,26,0.1)" stroke="#f7931a" stroke-width="2">
+    <animate attributeName="opacity" values="0.6;1;0.6" dur="3.3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="190" cy="120" r="10" fill="rgba(247,147,26,0.1)" stroke="#f7931a" stroke-width="2">
+    <animate attributeName="opacity" values="0.6;1;0.6" dur="3.3s" begin="0.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="90" cy="190" r="9" fill="rgba(247,147,26,0.1)" stroke="#f7931a" stroke-width="2">
+    <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" begin="0.2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="170" cy="190" r="9" fill="rgba(247,147,26,0.1)" stroke="#f7931a" stroke-width="2">
+    <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" begin="0.7s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- kleiner, pulsierender Mittelpunkt unten -->
+  <circle cx="130" cy="190" r="6" fill="#f7931a" fill-opacity="0.85">
+    <animate attributeName="r" values="5;7;5" dur="2.6s" repeatCount="indefinite"/>
+  </circle>
+</svg>

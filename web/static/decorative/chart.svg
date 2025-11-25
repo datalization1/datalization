@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="chartFill" x1="0" x2="1" y1="1" y2="0">
+      <stop offset="0%" stop-color="#f7931a" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#f7931a" stop-opacity="0.85"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="260" height="260" fill="none"/>
+
+  <!-- Achsen -->
+  <line x1="40" y1="210" x2="220" y2="210" stroke="#f7931a" stroke-width="2" stroke-opacity="0.4" stroke-linecap="round"/>
+  <line x1="40" y1="60" x2="40" y2="210" stroke="#f7931a" stroke-width="2" stroke-opacity="0.18" stroke-linecap="round"/>
+
+  <!-- Balken (mit leichter Höhen-Animation) -->
+  <rect x="55" y="150" width="30" height="60" fill="url(#chartFill)" rx="4">
+    <animate attributeName="y" values="155;150;158;150" dur="4.2s" repeatCount="indefinite"/>
+    <animate attributeName="height" values="55;60;52;60" dur="4.2s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="105" y="125" width="30" height="85" fill="url(#chartFill)" rx="4">
+    <animate attributeName="y" values="128;120;130;125" dur="4.6s" repeatCount="indefinite"/>
+    <animate attributeName="height" values="82;90;80;85" dur="4.6s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="155" y="100" width="30" height="110" fill="url(#chartFill)" rx="4">
+    <animate attributeName="y" values="104;96;106;100" dur="5s" repeatCount="indefinite"/>
+    <animate attributeName="height" values="106;114;104;110" dur="5s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="205" y="78" width="30" height="132" fill="url(#chartFill)" rx="4">
+    <animate attributeName="y" values="82;74;84;78" dur="5.4s" repeatCount="indefinite"/>
+    <animate attributeName="height" values="128;136;126;132" dur="5.4s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- Linie (gepulste „Performance-Linie“) -->
+  <polyline id="line" points="70,160 120,132 170,107 220,82"
+            fill="none" stroke="#f7931a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <animate attributeName="stroke-width" values="2.4;3;2.4" dur="3.8s" repeatCount="indefinite"/>
+  </polyline>
+
+  <!-- Punkte (leichtes Aufblinken) -->
+  <circle cx="70" cy="160" r="4" fill="#f7931a">
+    <animate attributeName="r" values="3.4;4.6;3.4" dur="3.2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="120" cy="132" r="4" fill="#f7931a">
+    <animate attributeName="r" values="3.4;4.6;3.4" dur="3.2s" begin="0.3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="170" cy="107" r="4" fill="#f7931a">
+    <animate attributeName="r" values="3.4;4.6;3.4" dur="3.2s" begin="0.6s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="220" cy="82" r="4" fill="#f7931a">
+    <animate attributeName="r" values="3.4;4.6;3.4" dur="3.2s" begin="0.9s" repeatCount="indefinite"/>
+  </circle>
+</svg>
