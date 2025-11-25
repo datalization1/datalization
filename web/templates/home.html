@@ -344,33 +344,10 @@
         <div class="container mx-auto px-4">
             <div class="text-center mb-16 fade-in-on-scroll">
                 <h2 class="section-title">
-                    {% if LANGUAGE_CODE == 'de' %}Über uns{% else %}About Us{% endif %}
-                </h2>
-                <p class="text-muted">
                     {% if LANGUAGE_CODE == 'de' %}Wer wir sind{% else %}Who we are{% endif %}
-                </p>
+                </h2>
             </div>
-
             <div class="max-w-4xl mx-auto mb-16">
-                <div class="about-intro fade-in-on-scroll">
-                    <p class="about-intro-text">
-                        {% if LANGUAGE_CODE == 'de' %}
-                            Datalization ist mehr als nur ein Unternehmen - es ist eine Vision für eine digitale Zukunft, in der Komplexität durch Einfachheit ersetzt wird.
-                        {% else %}
-                            Datalization is more than just a company - it's a vision for a digital future where complexity is replaced by simplicity.
-                        {% endif %}
-                    </p>
-                    <p class="text-muted">
-                        {% if LANGUAGE_CODE == 'de' %}
-                            Geboren aus der Überzeugung, dass Technologie für Menschen geschaffen ist, entwickeln wir Lösungen, die bewegen. 
-                            Mit Freiheit im Denken, Flexibilität in der Gestaltung, Kraft in der Umsetzung und Präzision im Ergebnis gestalten wir die digitale Zukunft.
-                        {% else %}
-                            Born from the conviction that technology is made for people, we create solutions that inspire.  
-                            With freedom in thought, flexibility in design, strength in execution, and precision in outcome, we shape the digital future.
-                        {% endif %}
-                    </p>
-                </div>
-
                 <div class="grid-3 gap-6 mb-12">
                     <div class="about-principle fade-in-on-scroll">
                         <div class="principle-icon">
@@ -434,19 +411,6 @@
                         </p>
                     </div>
                 </div>
-
-                <div class="about-commitment fade-in-on-scroll">
-                    <h3 class="text-primary mb-4">
-                        {% if LANGUAGE_CODE == 'de' %}Unser Versprechen{% else %}Our Promise{% endif %}
-                    </h3>
-                    <p class="text-muted">
-                        {% if LANGUAGE_CODE == 'de' %}
-                            Wir setzen nicht auf schnelle Erfolge, sondern auf nachhaltige Partnerschaften. Loyal zu unseren Werten, loyal zu unseren Kunden - das ist der Datalization-Weg.
-                        {% else %}
-                            We don't focus on quick wins, but on sustainable partnerships. Loyal to our values, loyal to our customers - that's the Datalization way.
-                        {% endif %}
-                    </p>
-                </div>
             </div>
         </div>
     </section>
@@ -480,6 +444,5 @@
         </div>     {# .max-w-2xl #}
       </div>       {# .container #}
     </section>     {# #contact #}
-
 </div>             {# .min-h-screen wrapper #}
 {% endblock %}
