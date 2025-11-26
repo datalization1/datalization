@@ -11,4 +11,7 @@ urlpatterns = [
 
     path("cases/", views.case_list, name="cases"),
     path("cases/<slug:slug>/", views.case_detail, name="case_detail"),
+    
+    path("impressum/", views.impressum, name="impressum"),
+    path("datenschutz/", views.privacy, name="privacy"),
 ]

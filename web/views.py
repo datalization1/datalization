@@ -147,3 +147,9 @@ def contact(request):
     # GET
     form = ContactForm(initial={"language": request.LANGUAGE_CODE})
     return render(request, "contact.html", {"form": form})
+
+def impressum(request):
+    return render(request, "impressum.html")
+
+def privacy(request):
+    return render(request, "privacy.html")

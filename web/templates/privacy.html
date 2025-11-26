@@ -1,0 +1,269 @@
+{% extends "base.html" %}{% load i18n static %}
+{% block title %}{% if LANGUAGE_CODE == 'de' %}Datenschutzerklärung – Datalization{% else %}Privacy Policy – Datalization{% endif %}{% endblock %}
+
+{% block content %}
+<div class="legal-page min-h-screen bg-background text-foreground">
+
+  <section class="page-hero scroll-mt-20">
+    <div class="container max-w-3xl">
+      <h1 class="page-hero-title">
+        {% if LANGUAGE_CODE == 'de' %}
+          Datenschutzerklärung
+        {% else %}
+          Privacy Policy
+        {% endif %}
+      </h1>
+      <p class="page-hero-subtitle">
+        {% if LANGUAGE_CODE == 'de' %}
+          Informationen zur Verarbeitung personenbezogener Daten bei der Nutzung von datalization.ch.
+        {% else %}
+          Information on how we process personal data when you use datalization.ch.
+        {% endif %}
+      </p>
+    </div>
+  </section>
+
+  <section class="legal-section">
+    <div class="container max-w-3xl">
+      <div class="legal-card">
+        {% if LANGUAGE_CODE == 'de' %}
+
+          <h2 class="legal-heading">1. Verantwortliche Stelle</h2>
+          <p class="legal-text">
+            Verantwortlich für die Datenverarbeitung im Zusammenhang mit dieser Website ist:
+          </p>
+          <p class="legal-text">
+            <strong>Datalization, Inh. Danesic</strong><br>
+            Bärengasse 3<br>
+            4800 Zofingen<br>
+            E-Mail: info@datalization.ch<br>
+            Telefon: -
+          </p>
+
+          <h2 class="legal-heading">2. Geltungsbereich</h2>
+          <p class="legal-text">
+            Diese Datenschutzerklärung informiert darüber, wie wir personenbezogene Daten verarbeiten, wenn du unsere Website besuchst, mit uns in Kontakt trittst oder unsere Dienstleistungen in Anspruch nimmst. Sie basiert auf dem Schweizer Datenschutzgesetz (DSG) sowie – soweit anwendbar – der Europäischen Datenschutz-Grundverordnung (DSGVO).
+          </p>
+
+          <h2 class="legal-heading">3. Erhobene Daten und Zwecke der Verarbeitung</h2>
+          <h3 class="legal-subheading">3.1 Technische Nutzungsdaten</h3>
+          <p class="legal-text">
+            Beim Zugriff auf unsere Website werden automatisch bestimmte technische Daten durch deinen Browser übermittelt und in Logfiles gespeichert, z. B.:
+          </p>
+          <ul class="legal-list">
+            <li>IP-Adresse (gekürzt oder pseudonymisiert, soweit möglich)</li>
+            <li>Datum und Uhrzeit des Zugriffs</li>
+            <li>aufgerufene Seiten/Dateien</li>
+            <li>Browsertyp und -version</li>
+            <li>Betriebssystem und Gerätetyp</li>
+          </ul>
+          <p class="legal-text">
+            Diese Daten werden zur Sicherstellung des technischen Betriebs, zur Gewährleistung der Sicherheit (z. B. Abwehr von Angriffen) und zur Optimierung unseres Angebots verwendet.
+          </p>
+
+          <h3 class="legal-subheading">3.2 Kommunikations- und Kontaktdaten</h3>
+          <p class="legal-text">
+            Wenn du über ein Formular, per E-Mail oder telefonisch Kontakt mit uns aufnimmst, verarbeiten wir die von dir übermittelten Daten (z. B. Name, E-Mail-Adresse, Telefonnummer, Inhalte der Anfrage), um dein Anliegen zu bearbeiten und mit dir zu kommunizieren.
+          </p>
+
+          <h3 class="legal-subheading">3.3 Kunden-, Projekt- und Vertragsdaten</h3>
+          <p class="legal-text">
+            Im Rahmen von Beratungs-, Analyse- oder Softwareentwicklungsprojekten verarbeiten wir zusätzlich:
+          </p>
+          <ul class="legal-list">
+            <li>Firmen- und Kontaktdaten von Kunden</li>
+            <li>Projekt- und Vertragsinformationen</li>
+            <li>Abrechnungs- und Zahlungsdaten</li>
+            <li>technische Spezifikationen und Dokumentationen</li>
+          </ul>
+          <p class="legal-text">
+            Diese Daten werden zur Vorbereitung, Durchführung und Abwicklung der jeweiligen Geschäftsbeziehung verwendet.
+          </p>
+
+          <h2 class="legal-heading">4. Rechtsgrundlagen</h2>
+          <p class="legal-text">
+            Je nach Situation stützen wir die Datenverarbeitung auf unterschiedliche Rechtsgrundlagen:
+          </p>
+          <ul class="legal-list">
+            <li>Erfüllung eines Vertrags oder vorvertraglicher Massnahmen</li>
+            <li>Erfüllung gesetzlicher Pflichten</li>
+            <li>Wahrung berechtigter Interessen (z. B. Betrieb und Sicherheit der Website)</li>
+            <li>Einwilligung, sofern ausdrücklich eingeholt (z. B. für bestimmte Marketingmassnahmen oder optionale Cookies)</li>
+          </ul>
+
+          <h2 class="legal-heading">5. Einsatz von Dienstleistern und Datenweitergabe</h2>
+          <p class="legal-text">
+            Wir geben personenbezogene Daten nicht an Dritte weiter, sofern dies nicht für die in dieser Erklärung genannten Zwecke notwendig ist oder eine gesetzliche Pflicht besteht.
+          </p>
+          <p class="legal-text">
+            Im Rahmen des Hostings, des E-Mail-Versands, der Wartung oder Analyse können wir sorgfältig ausgewählte Dienstleister beauftragen. Diese verarbeiten personenbezogene Daten nur in unserem Auftrag und gemäss unseren Weisungen (Auftragsverarbeiter) und sind vertraglich zur Vertraulichkeit und zur Einhaltung der Datenschutzbestimmungen verpflichtet.
+          </p>
+
+          <h2 class="legal-heading">6. Datenübermittlung ins Ausland</h2>
+          <p class="legal-text">
+            Sofern wir personenbezogene Daten an Dienstleister oder Empfänger im Ausland übermitteln, erfolgt dies nur in Länder mit einem angemessenen Datenschutzniveau oder es werden geeignete Garantien (z. B. Standardvertragsklauseln) eingesetzt.
+          </p>
+
+          <h2 class="legal-heading">7. Speicherdauer</h2>
+          <p class="legal-text">
+            Wir verarbeiten und speichern personenbezogene Daten nur so lange, wie es für die jeweiligen Zwecke erforderlich ist oder wie wir gesetzlich dazu verpflichtet sind (z. B. handels- und steuerrechtliche Aufbewahrungsfristen). Anschliessend werden die Daten gelöscht oder anonymisiert.
+          </p>
+
+          <h2 class="legal-heading">8. Cookies und Analyse-Tools</h2>
+          <p class="legal-text">
+            Unsere Website kann Cookies und ähnliche Technologien einsetzen, um die Nutzung zu analysieren oder bestimmte Funktionen bereitzustellen. Du kannst in deinem Browser einstellen, dass Cookies ganz oder teilweise blockiert oder gelöscht werden. Dies kann dazu führen, dass bestimmte Funktionen der Website nicht mehr vollumfänglich nutzbar sind.
+          </p>
+          <p class="legal-text">
+            Sofern wir Drittanbieter-Tools (z. B. Analyse- oder Marketingdienste) einsetzen, informieren wir im Cookie-Banner oder in einer ergänzenden Übersicht darüber und holen – soweit gesetzlich erforderlich – deine Einwilligung ein.
+          </p>
+
+          <h2 class="legal-heading">9. Datensicherheit</h2>
+          <p class="legal-text">
+            Wir treffen angemessene technische und organisatorische Massnahmen, um personenbezogene Daten vor Verlust, Missbrauch, unbefugtem Zugriff oder unberechtigter Weitergabe zu schützen. Hierzu gehört insbesondere der Einsatz moderner Sicherheitsverfahren und Zugriffsbeschränkungen.
+          </p>
+
+          <h2 class="legal-heading">10. Rechte der betroffenen Personen</h2>
+          <p class="legal-text">
+            Dir stehen im Rahmen des anwendbaren Datenschutzrechts insbesondere folgende Rechte zu:
+          </p>
+          <ul class="legal-list">
+            <li>Recht auf Auskunft über die zu deiner Person gespeicherten Daten</li>
+            <li>Recht auf Berichtigung unrichtiger oder unvollständiger Daten</li>
+            <li>Recht auf Löschung, soweit dem keine gesetzlichen Pflichten entgegenstehen</li>
+            <li>Recht auf Einschränkung der Verarbeitung</li>
+            <li>Recht auf Datenübertragbarkeit (sofern anwendbar)</li>
+            <li>Recht auf Widerruf erteilter Einwilligungen für die Zukunft</li>
+          </ul>
+          <p class="legal-text">
+            Zur Ausübung dieser Rechte kannst du uns jederzeit über die oben genannten Kontaktdaten erreichen. Zudem hast du das Recht, dich bei einer zuständigen Aufsichtsbehörde zu beschweren, wenn du der Ansicht bist, dass deine datenschutzrechtlichen Ansprüche verletzt wurden.
+          </p>
+
+          <h2 class="legal-heading">11. Aktualität dieser Datenschutzerklärung</h2>
+          <p class="legal-text">
+            Wir können diese Datenschutzerklärung jederzeit anpassen, insbesondere wenn wir unsere Datenverarbeitung ändern oder neue gesetzliche Vorgaben gelten. Es gilt jeweils die auf dieser Website veröffentlichte aktuelle Version.
+          </p>
+
+        {% else %}
+
+          <h2 class="legal-heading">1. Controller</h2>
+          <p class="legal-text">
+            The controller responsible for data processing in connection with this website is:
+          </p>
+          <p class="legal-text">
+            <strong>Datalization, Inh. Danesic</strong><br>
+            Bärengasse 3<br>
+            4800 Zofingen<br>
+            Email: info@datalization.ch<br>
+            Phone: -
+          </p>
+
+          <h2 class="legal-heading">2. Scope</h2>
+          <p class="legal-text">
+            This Privacy Policy explains how we process personal data when you visit our website, contact us or use our services. It is based on Swiss data protection law and, where applicable, the EU General Data Protection Regulation (GDPR).
+          </p>
+
+          <h2 class="legal-heading">3. Data We Process and Purposes</h2>
+          <h3 class="legal-subheading">3.1 Technical usage data</h3>
+          <p class="legal-text">
+            When you visit our website, certain technical data is automatically transmitted by your browser and stored in log files, such as:
+          </p>
+          <ul class="legal-list">
+            <li>IP address (shortened or pseudonymised where possible)</li>
+            <li>Date and time of access</li>
+            <li>Visited pages / files</li>
+            <li>Browser type and version</li>
+            <li>Operating system and device type</li>
+          </ul>
+          <p class="legal-text">
+            This data is processed to ensure the technical operation and security of the website and to optimise our offering.
+          </p>
+
+          <h3 class="legal-subheading">3.2 Communication and contact data</h3>
+          <p class="legal-text">
+            If you contact us via a form, email or phone, we process the data you provide (such as name, email address, phone number, message content) in order to handle your request and communicate with you.
+          </p>
+
+          <h3 class="legal-subheading">3.3 Customer, project and contract data</h3>
+          <p class="legal-text">
+            In the context of consulting, analytics or software development projects, we also process:
+          </p>
+          <ul class="legal-list">
+            <li>Company and contact details of clients</li>
+            <li>Project and contract information</li>
+            <li>Billing and payment data</li>
+            <li>Technical specifications and documentation</li>
+          </ul>
+          <p class="legal-text">
+            This data is processed to prepare, perform and complete the relevant business relationship.
+          </p>
+
+          <h2 class="legal-heading">4. Legal Basis</h2>
+          <p class="legal-text">
+            Depending on the situation, we rely on different legal bases for data processing, including:
+          </p>
+          <ul class="legal-list">
+            <li>Performance of a contract or pre-contractual measures</li>
+            <li>Compliance with legal obligations</li>
+            <li>Legitimate interests (e.g. operation and security of the website)</li>
+            <li>Consent, where explicitly obtained (e.g. for certain marketing activities or optional cookies)</li>
+          </ul>
+
+          <h2 class="legal-heading">5. Use of Service Providers and Data Disclosure</h2>
+          <p class="legal-text">
+            We do not sell personal data to third parties. Data is only disclosed where necessary for the purposes described in this Policy or where there is a legal obligation.
+          </p>
+          <p class="legal-text">
+            For hosting, email delivery, maintenance or analytics, we may use carefully selected service providers. These providers process personal data only on our behalf and in accordance with our instructions and are contractually bound to confidentiality and data protection obligations.
+          </p>
+
+          <h2 class="legal-heading">6. International Data Transfers</h2>
+          <p class="legal-text">
+            If we transfer personal data to recipients or service providers abroad, this will only occur to countries with an adequate level of data protection or based on appropriate safeguards (such as Standard Contractual Clauses).
+          </p>
+
+          <h2 class="legal-heading">7. Storage Period</h2>
+          <p class="legal-text">
+            We process and store personal data only for as long as necessary to fulfil the purposes described or as required by law (e.g. commercial and tax retention obligations). Afterwards, the data is deleted or anonymised.
+          </p>
+
+          <h2 class="legal-heading">8. Cookies and Analytics</h2>
+          <p class="legal-text">
+            Our website may use cookies and similar technologies to analyse usage or provide certain functionalities. You can configure your browser to block or delete cookies. This may, however, limit some functionalities of the website.
+          </p>
+          <p class="legal-text">
+            Where we use third-party tools (e.g. analytics or marketing services), we will provide additional information in the cookie banner or a separate overview and obtain your consent where required by law.
+          </p>
+
+          <h2 class="legal-heading">9. Data Security</h2>
+          <p class="legal-text">
+            We implement appropriate technical and organisational measures to protect personal data against loss, misuse, unauthorised access or unlawful disclosure. This includes the use of modern security procedures and access restrictions.
+          </p>
+
+          <h2 class="legal-heading">10. Rights of Data Subjects</h2>
+          <p class="legal-text">
+            Under applicable data protection law, you have, in particular, the following rights:
+          </p>
+          <ul class="legal-list">
+            <li>Right of access to your personal data</li>
+            <li>Right to rectification of inaccurate or incomplete data</li>
+            <li>Right to erasure, subject to legal retention obligations</li>
+            <li>Right to restriction of processing</li>
+            <li>Right to data portability (where applicable)</li>
+            <li>Right to withdraw consent with effect for the future</li>
+          </ul>
+          <p class="legal-text">
+            You can exercise these rights at any time by contacting us using the details set out above. You also have the right to lodge a complaint with a competent supervisory authority if you believe that your data protection rights have been infringed.
+          </p>
+
+          <h2 class="legal-heading">11. Updates to this Privacy Policy</h2>
+          <p class="legal-text">
+            We may update this Privacy Policy from time to time, in particular if we change our data processing practices or if legal requirements change. The current version is always available on this website.
+          </p>
+
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+</div>
+{% endblock %}

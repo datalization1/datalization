@@ -7,7 +7,7 @@
   {# HERO #}
   <section class="page-hero scroll-mt-20">
     <div class="container max-w-3xl">
-      <h1 class="page-hero-title">{% trans "Über uns" %} / {% trans "Who we are" %}</h1>
+      <h1 class="page-hero-title">{% if LANGUAGE_CODE == 'de' %}Über uns{% else %}Who we are{% endif %}</h1>
       <p class="page-hero-subtitle">
         {% if LANGUAGE_CODE == 'de' %}
           Loyal leben und einfache Lösungen schaffen. Daran messen wir uns. Wir entwickeln digitale Produkte,
