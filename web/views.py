@@ -129,8 +129,8 @@ def contact(request):
             if request.headers.get("x-requested-with") == "XMLHttpRequest":
                 return JsonResponse({"ok": True, "message": success_text})
 
-            messages.success(request, success_text)
-            return redirect("web:home")
+            messages.success(request, _("Ihre Nachricht wurde erfolgreich gesendet."))
+            return redirect("web:contact")
 
         # Form invalid
         if request.headers.get("x-requested-with") == "XMLHttpRequest":

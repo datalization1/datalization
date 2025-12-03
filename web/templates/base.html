@@ -76,11 +76,11 @@
   {# Header / Navigation #}
   {% include 'partials_nav.html' %}
 
-  {# Messages direkt unter der Navi; Screenreader-freundlich #}
+  <!-- Messages-Block direkt NACH der Navbar -->
   {% if messages %}
-    <div class="container px-4" style="margin:12px auto;" role="status" aria-live="polite">
+    <div class="flash-messages">
       {% for message in messages %}
-        <div class="toast {{ message.tags }}">{{ message }}</div>
+        <div class="flash flash-{{ message.tags }}">{{ message }}</div>
       {% endfor %}
     </div>
   {% endif %}
@@ -98,5 +98,15 @@
   {# Scripts #}
   <script defer src="{% static 'js/main.js' %}"></script>
   {% block extra_js %}{% endblock %}
+  <script>
+    setTimeout(function(){
+      document.querySelectorAll(".flash").forEach(function(el){
+        el.style.transition="all 0.3s ease";
+        el.style.opacity="0";
+        el.style.transform="translateY(-10px)";
+        setTimeout(function(){ el.remove(); },300);
+      });
+    },5000);
+  </script>
 </body>
 </html>
