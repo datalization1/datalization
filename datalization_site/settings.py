@@ -160,11 +160,18 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-EMAIL_HOST = "smtp.sendgrid.net"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "asmtp.mail.hostpoint.ch"
 EMAIL_PORT = 587
-EMAIL_HOST_USER = "apikey"
-EMAIL_HOST_PASSWORD = os.getenv("SENDGRID_API_KEY", "")
 EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "info@datalization.ch"
+EMAIL_HOST_PASSWORD = os.getenv("HOSTPOINT_MAIL_PASSWORD", "")
+DEFAULT_FROM_EMAIL = "Datalization <info@datalization.ch>"
+
+CONTACT_RECEIVER_EMAIL = os.getenv(
+    "CONTACT_RECEIVER_EMAIL",
+    "info@datalization.ch"
+)
 
 if DEBUG:
     # lokal: nur in der Konsole anzeigen
@@ -177,12 +184,6 @@ MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
 # Explizit den SMTP-Backend setzen
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-
-# Absenderadresse für ausgehende Mails
-DEFAULT_FROM_EMAIL = os.getenv(
-    "DEFAULT_FROM_EMAIL",
-    "Datalization <info@datalization.ch>"
-)
 
 # Empfänger für Kontaktformular (in deinen Views benutzt)
 CONTACT_RECEIVER_EMAIL = os.getenv(
