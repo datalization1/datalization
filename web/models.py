@@ -71,6 +71,31 @@ class ContactMessage(models.Model):
     def __str__(self):
         company_str = f" ({self.company})" if self.company else ""
         return f"{self.first_name} {self.last_name}{company_str} – {self.created:%Y-%m-%d}"
+
+
+class StartRequest(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    first_name = models.CharField(_("First name"), max_length=80)
+    last_name = models.CharField(_("Last name"), max_length=80)
+    company = models.CharField(_("Company"), max_length=150, blank=True, null=True)
+    email = models.EmailField(_("Email"))
+    phone = models.CharField(_("Phone"), max_length=50, blank=True, null=True)
+    branches = models.CharField(_("Branches"), max_length=255, blank=True, null=True)
+    pains = models.CharField(_("Challenges"), max_length=255, blank=True, null=True)
+    start_mode = models.CharField(_("Start mode"), max_length=80, blank=True, null=True)
+    notes = models.TextField(_("Notes"), blank=True, null=True)
+    language = models.CharField(_("Language"), max_length=5, default="de")
+
+    handled = models.BooleanField(_("Processed"), default=False)
+
+    class Meta:
+        ordering = ["-created"]
+        verbose_name = _("Start request")
+        verbose_name_plural = _("Start requests")
+
+    def __str__(self):
+        company_str = f" ({self.company})" if self.company else ""
+        return f"{self.first_name} {self.last_name}{company_str} – {self.created:%Y-%m-%d}"
         
 class Page(models.Model):
     slug = models.SlugField(primary_key=True)

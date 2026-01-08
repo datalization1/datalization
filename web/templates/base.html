@@ -21,7 +21,7 @@
     {% endcomment %}
 
     {% firstof page_title "datalization – Einfachheit trifft Innovation" as seo_title %}
-    {% firstof page_description "Datalization — Daten vereinfachen. Zukunft gestalten. Data & Software Lösungen mit Weitblick und Loyalität." as seo_desc %}
+    {% firstof page_description "Datalization — Daten vereinfachen. Zukunft gestalten. Daten & Software Lösungen mit Weitblick und Loyalität." as seo_desc %}
 
     <meta name="description" content="{{ seo_desc|truncatechars:160 }}">
 
@@ -91,6 +91,9 @@
 
   {# Footer #}
   {% include 'partials_footer.html' %}
+
+  {# Sticky CTA #}
+  {% include 'partials/sticky_cta.html' %}
 
   {# Toast-Container für JS-generierte Hinweise (optional) #}
   <div id="toast-container" class="toast-container"></div>

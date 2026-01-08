@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}Passt das zu Ihnen? – Datalization{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-background text-foreground">
+
+  <section class="match-hero scroll-mt-20">
+    <div class="container mx-auto px-4 match-grid">
+      <div>
+        <p class="match-kicker">3 Fragen – klare Empfehlung</p>
+        <h1>Passt das zu Ihnen?</h1>
+        <p class="match-subline">Beantworte drei kurze Fragen und wir zeigen dir, welche Lösung von Datalization am besten passt.</p>
+      </div>
+      <div class="match-cta-card">
+        <p class="text-muted">Kein Quiz-Hype – nur eine schnelle Einschätzung, um den richtigen Einstieg zu finden.</p>
+        <a href="{% url 'web:start' %}" class="btn-primary">Direkt Kurz-Check buchen</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-section">
+    <div class="container mx-auto px-4">
+      <div class="service-heading">
+        <h2>Wähle die Aussagen, die am besten passen</h2>
+        <p>In drei Schritten zur Empfehlung</p>
+      </div>
+      <div class="match-questions" id="match-questions">
+        <!-- Questions rendered by JS -->
+      </div>
+      <div class="match-result card-surface" id="match-result" hidden>
+        <p class="mb-2"><strong>Empfehlung:</strong> <span id="match-reco">—</span></p>
+        <p class="text-muted mb-4">Wir melden uns mit einem kurzen 20-Minuten-Check und passen den Start auf deine Situation an.</p>
+        <div class="cta-row">
+          <a id="match-cta" href="{% url 'web:start' %}" class="btn-primary">Kostenlosen Check buchen</a>
+          <a href="{% url 'web:contact' %}" class="btn-secondary">Kontakt aufnehmen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+<script>
+  document.addEventListener("DOMContentLoaded", function(){
+    const data = [
+      {
+        id: "q1",
+        title: "Wie gut kennst du deine Kennzahlen?",
+        options: [
+          { value: "overview", label: "Ich habe Zahlen, aber keinen echten Überblick." },
+          { value: "excel", label: "Ich habe Excel-Listen, aber es ist mühsam." },
+          { value: "manual", label: "Wir arbeiten viel manuell / copy-paste." }
+        ]
+      },
+      {
+        id: "q2",
+        title: "Wie triffst du Entscheidungen?",
+        options: [
+          { value: "gutfeel", label: "Oft nach Bauchgefühl, wenig Datenbasis." },
+          { value: "plan", label: "Wir wollen Prognosen/Planung verbessern." },
+          { value: "integrate", label: "Systeme passen nicht zusammen / Medienbrüche." }
+        ]
+      },
+      {
+        id: "q3",
+        title: "Was ist dein Ziel?",
+        options: [
+          { value: "clarity", label: "Schnellen Überblick und Klarheit bekommen." },
+          { value: "automation", label: "Weniger manuelle Arbeit, mehr Automatisierung." },
+          { value: "build", label: "Ein Tool bauen lassen, das genau passt." }
+        ]
+      }
+    ];
+
+    const scores = {
+      "Datenanalyse & Data Science": ["overview","gutfeel","plan","clarity"],
+      "Digitalisierung & Automatisierung": ["manual","integrate","automation"],
+      "Softwareentwicklung": ["excel","build"]
+    };
+
+    const container = document.getElementById("match-questions");
+    const resultBox = document.getElementById("match-result");
+    const recoEl = document.getElementById("match-reco");
+    const cta = document.getElementById("match-cta");
+
+    function render(){
+      container.innerHTML = "";
+      data.forEach((q, idx) => {
+        const card = document.createElement("div");
+        card.className = "glass-card match-card";
+        const h = document.createElement("h3");
+        h.textContent = `${idx+1}. ${q.title}`;
+        card.appendChild(h);
+        const list = document.createElement("div");
+        list.className = "qc-pill-list";
+        q.options.forEach(opt => {
+          const label = document.createElement("label");
+          label.className = "qc-pill";
+          const input = document.createElement("input");
+          input.type = "radio";
+          input.name = q.id;
+          input.value = opt.value;
+          label.appendChild(input);
+          const span = document.createElement("span");
+          span.textContent = opt.label;
+          label.appendChild(span);
+          list.appendChild(label);
+        });
+        card.appendChild(list);
+        container.appendChild(card);
+      });
+    }
+
+    function computeRecommendation() {
+      const selected = Array.from(container.querySelectorAll("input[type='radio']:checked")).map(el => el.value);
+      if (selected.length < data.length) {
+        resultBox.hidden = true;
+        return;
+      }
+      let best = null;
+      let bestScore = -1;
+      Object.entries(scores).forEach(([service, keys])=>{
+        const score = selected.filter(v => keys.includes(v)).length;
+        if (score > bestScore) {
+          best = service;
+          bestScore = score;
+        }
+      });
+      recoEl.textContent = best || "Lassen Sie uns gemeinsam prüfen, was passt.";
+      const params = new URLSearchParams();
+      params.set("topic", best || "Unklar");
+      params.set("notes", "Match-Auswahl: " + selected.join(", "));
+      cta.href = "{% url 'web:start' %}?" + params.toString();
+      resultBox.hidden = false;
+    }
+
+    render();
+    container.addEventListener("change", function(e){
+      if (e.target && e.target.type === "radio") {
+        // highlight selection
+        const groupName = e.target.name;
+        container.querySelectorAll(`input[name='${groupName}']`).forEach(inp=>{
+          inp.parentElement.classList.remove("selected");
+        });
+        e.target.parentElement.classList.add("selected");
+        computeRecommendation();
+      }
+    });
+  });
+</script>
+{% endblock %}

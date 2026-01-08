@@ -1,0 +1,14 @@
+Neue Start-Anfrage von {{ req.first_name }} {{ req.last_name }}{% if req.company %} ({{ req.company }}){% endif %}.
+
+Kontakt:
+- E-Mail: {{ req.email }}
+{% if req.phone %}- Telefon: {{ req.phone }}{% endif %}
+{% if req.branches %}- Branchen: {{ req.branches }}{% endif %}
+{% if req.pains %}- Themen: {{ req.pains }}{% endif %}
+{% if req.start_mode %}- Startwunsch: {{ req.start_mode }}{% endif %}
+
+Nachricht/Notiz:
+{{ req.notes|default:"(keine Notiz)" }}
+
+--
+Datalization Start-Flow

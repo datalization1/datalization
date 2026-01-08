@@ -1,0 +1,87 @@
+<section class="section-alt quick-check">
+  <div class="container mx-auto px-4 max-w-4xl">
+    <div class="text-center mb-8 fade-in-on-scroll">
+      <h2 class="section-title mb-2">Passt das zu dir?</h2>
+      <p class="text-muted mb-0">4 kurze Klicks, danach siehst du unsere Empfehlung.</p>
+    </div>
+
+    <div class="quick-check-card fade-in-on-scroll">
+      <form class="quick-check-form">
+        <div class="quick-check-options">
+          <label class="qc-option">
+            <input type="checkbox" name="qc" value="overview">
+            <span>Ich habe Zahlen, aber keinen echten Überblick.</span>
+          </label>
+          <label class="qc-option">
+            <input type="checkbox" name="qc" value="excel">
+            <span>Excel ist mühsam / doppelte Eingaben nerven.</span>
+          </label>
+          <label class="qc-option">
+            <input type="checkbox" name="qc" value="manual">
+            <span>Wir wollen weniger manuelle Arbeit.</span>
+          </label>
+          <label class="qc-option">
+            <input type="checkbox" name="qc" value="forecast">
+            <span>Planung/Prognosen sollen verlässlicher werden.</span>
+          </label>
+          <label class="qc-option">
+            <input type="checkbox" name="qc" value="systems">
+            <span>Systeme passen nicht zusammen / Medienbrüche.</span>
+          </label>
+        </div>
+
+        <div class="quick-check-actions">
+          <button type="button" class="btn btn-primary qc-run">Empfehlung anzeigen</button>
+          <a href="{% url 'web:start' %}" class="btn btn-secondary qc-start-link">Unverbindlich starten</a>
+        </div>
+      </form>
+
+      <div class="quick-check-result text-muted" hidden>
+        <p class="mb-2"><strong>Empfehlung:</strong> <span class="qc-reco">—</span></p>
+        <p class="mb-4">Wir melden uns gern für einen kurzen 20-Minuten-Check.</p>
+        <a href="{% url 'web:start' %}" class="btn btn-primary btn-sm qc-start-link-secondary">Kurz-Check buchen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector(".quick-check-form");
+    if (!form) return;
+    const runBtn = form.querySelector(".qc-run");
+    const resultBox = document.querySelector(".quick-check-result");
+    const recoText = document.querySelector(".qc-reco");
+    const startLinks = document.querySelectorAll(".qc-start-link, .qc-start-link-secondary");
+
+    function recommend(values) {
+      const hasForecast = values.includes("forecast");
+      const hasOverview = values.includes("overview");
+      const hasExcel = values.includes("excel");
+      const hasManual = values.includes("manual");
+      const hasSystems = values.includes("systems");
+
+      if (hasForecast) return "Datenanalyse & Data Science";
+      if (hasOverview) return "Datenanalyse & Business Intelligence";
+      if (hasManual || hasSystems) return "Digitalisierung & Automatisierung";
+      if (hasExcel) return "Softwareentwicklung / Schnittstellen";
+      return "Gemeinsam prüfen, was zuerst sinnvoll ist";
+    }
+
+    runBtn.addEventListener("click", function () {
+      const values = Array.from(form.querySelectorAll("input[name='qc']:checked")).map(
+        (i) => i.value
+      );
+      const reco = recommend(values);
+      recoText.textContent = reco;
+      resultBox.hidden = false;
+
+      const detail = values.length ? "Themen: " + values.join(", ") : "";
+      const urlParams = new URLSearchParams();
+      if (reco) urlParams.set("topic", reco);
+      if (detail) urlParams.set("notes", detail);
+      const targetUrl = "{% url 'web:start' %}?" + urlParams.toString();
+      startLinks.forEach((link) => link.setAttribute("href", targetUrl));
+    });
+  });
+</script>

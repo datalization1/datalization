@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}{% if LANGUAGE_CODE == 'de' %}Unverbindlich starten{% else %}Unverbindlich starten{% endif %} – Datalization{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-background text-foreground">
+  <section class="section">
+    <div class="container mx-auto px-4 max-w-3xl">
+      <div class="text-center mb-8">
+        <h1 class="case-hero-title">Unverbindlich starten</h1>
+        <p class="text-muted">
+          Erzähl uns kurz, wo du stehst – wir melden uns persönlich (kein automatisches Scheduling).
+        </p>
+      </div>
+
+      <form class="start-form card p-6 space-y-5" method="post" action="{% url 'web:start_submit' %}">
+        {% csrf_token %}
+        <div class="space-y-2">
+          <label class="text-sm text-muted">Branche (Mehrfachauswahl möglich)</label>
+          <div class="grid-2 gap-2">
+            <label class="qc-option"><input type="checkbox" name="branch" value="Gastronomie"> <span>Gastronomie</span></label>
+            <label class="qc-option"><input type="checkbox" name="branch" value="Finanzen &amp; Versicherung"> <span>Finanzen &amp; Versicherung</span></label>
+            <label class="qc-option"><input type="checkbox" name="branch" value="Bau &amp; Immobilien"> <span>Bau &amp; Immobilien</span></label>
+            <label class="qc-option"><input type="checkbox" name="branch" value="Andere"> <span>Andere</span></label>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <label class="text-sm text-muted">Was beschäftigt dich aktuell?</label>
+          <div class="space-y-1">
+            <label class="qc-option"><input type="checkbox" name="pain" value="Kein Überblick über Zahlen"> <span>Kein Überblick über Zahlen</span></label>
+            <label class="qc-option"><input type="checkbox" name="pain" value="Zu viel manuelle Arbeit"> <span>Zu viel manuelle Arbeit</span></label>
+            <label class="qc-option"><input type="checkbox" name="pain" value="Entscheidungen fühlen sich unsicher an"> <span>Entscheidungen fühlen sich unsicher an</span></label>
+            <label class="qc-option"><input type="checkbox" name="pain" value="Systeme passen nicht zusammen"> <span>Systeme passen nicht zusammen</span></label>
+            <label class="qc-option"><input type="checkbox" name="pain" value="Anderes"> <span>Anderes (bitte ergänzen)</span></label>
+          </div>
+          <textarea name="message" class="input" rows="3" placeholder="Kurz beschreiben..."></textarea>
+        </div>
+
+        <div class="space-y-2">
+          <label class="text-sm text-muted">Wie möchtest du starten?</label>
+          <div class="space-y-1">
+            <label class="qc-option"><input type="radio" name="start_mode" value="Kurzes Gespräch" checked> <span>Kurzes Gespräch</span></label>
+            <label class="qc-option"><input type="radio" name="start_mode" value="Einschätzung per Mail"> <span>Einschätzung per Mail</span></label>
+            <label class="qc-option"><input type="radio" name="start_mode" value="Weiss ich noch nicht"> <span>Weiss ich noch nicht</span></label>
+          </div>
+        </div>
+
+        <div class="grid-2 gap-3">
+          <div>
+            <label class="text-sm text-muted">Vorname</label>
+            <input type="text" name="first_name" class="input" required>
+          </div>
+          <div>
+            <label class="text-sm text-muted">Nachname</label>
+            <input type="text" name="last_name" class="input" required>
+          </div>
+        </div>
+
+        <div class="grid-2 gap-3">
+          <div>
+            <label class="text-sm text-muted">Firma</label>
+            <input type="text" name="company" class="input">
+          </div>
+          <div>
+            <label class="text-sm text-muted">E-Mail</label>
+            <input type="email" name="email" class="input" required>
+          </div>
+        </div>
+
+        <div class="grid-2 gap-3">
+          <div>
+            <label class="text-sm text-muted">Telefon (optional)</label>
+            <input type="text" name="phone" class="input">
+          </div>
+          <div></div>
+        </div>
+
+        <div class="flex justify-between items-center flex-wrap gap-3">
+          <button type="submit" class="btn btn-primary">Absenden</button>
+          <p class="text-muted text-sm m-0">Wir melden uns persönlich. Keine automatische Terminbuchung.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  document.addEventListener("DOMContentLoaded", function(){
+    const form = document.querySelector(".start-form");
+    if(!form) return;
+
+    // Prefill from query params (topic/notes)
+    const params = new URLSearchParams(window.location.search);
+    const preTopic = params.get("topic");
+    const preNotes = params.get("notes");
+    const messageField = form.querySelector("textarea[name='message']");
+    if (messageField){
+      const pieces = [];
+      if (preTopic) pieces.push("Empfehlung: " + preTopic);
+      if (preNotes) pieces.push(preNotes);
+      if (pieces.length){
+        const existing = messageField.value.trim();
+        messageField.value = [existing, pieces.join(" | ")].filter(Boolean).join(" | ");
+      }
+    }
+
+    form.addEventListener("submit", function(){
+      const branches = Array.from(form.querySelectorAll("input[name='branch']:checked")).map(i=>i.value);
+      const pains = Array.from(form.querySelectorAll("input[name='pain']:checked")).map(i=>i.value);
+      const startMode = form.querySelector("input[name='start_mode']:checked")?.value || "";
+      const company = (form.querySelector("input[name='company']")?.value || "").trim();
+      const userMsgField = form.querySelector("textarea[name='message']");
+      const userMsg = (userMsgField.value || "").trim();
+      const summary = [
+        branches.length ? "Branche: " + branches.join(", ") : null,
+        pains.length ? "Themen: " + pains.join(", ") : null,
+        startMode ? "Start: " + startMode : null,
+        company ? "Firma: " + company : null,
+        userMsg ? "Notiz: " + userMsg : null
+      ].filter(Boolean).join(" | ");
+      userMsgField.value = summary || userMsg;
+    });
+  });
+</script>
+{% endblock %}

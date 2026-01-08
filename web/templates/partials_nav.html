@@ -1,46 +1,56 @@
-{% load i18n static %}
-<header class="site-header site-header--glass">
+{% load static i18n %}
+<header class="site-header">
   <div class="container nav">
-    <a class="nav__brand" href="{% url 'web:home' %}" aria-label="Datalization">
-      <img class="nav__logo" src="{% static 'img/favicon.svg' %}" alt="datalization logo">
+    <a class="nav__brand" href="{% url 'web:home' %}">
+      <img class="nav__logo" src="{% static 'img/favicon.svg' %}" alt="datalization">
       <span class="nav__word lowercase">datalization</span>
     </a>
 
-    {# Hauptnavigation – wird auf Mobile ein-/ausgeblendet #}
-    <nav class="nav__links" id="mainNav">
-      <a href="{% url 'web:services' %}">{% trans "Lösungen" %}</a>
-      <a href="{% url 'web:cases' %}">Case Studies</a>
-      <a href="{% url 'web:about' %}">{% trans "Über uns" %}</a>
-      <a href="{% url 'web:contact' %}">{% trans "Kontakt" %}</a>
+    <button class="nav__toggle" type="button" aria-label="{% trans 'Menü öffnen' %}" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M3 6h18M3 12h18M3 18h18"></path>
+      </svg>
+    </button>
+
+    <nav class="nav__links" aria-label="Main">
+      <div class="nav__dropdown">
+        <a class="nav__dropdown-toggle" href="{% url 'web:services' %}">
+          {% if LANGUAGE_CODE == 'de' %}Lösungen{% else %}Solutions{% endif %}
+          <svg class="nav__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </a>
+        <div class="nav__dropdown-menu">
+          <a href="{% url 'web:service_data_analytics' %}">{% if LANGUAGE_CODE == 'de' %}Datenanalyse &amp; Data Science{% else %}Data Analytics &amp; Data Science{% endif %}</a>
+          <a href="{% url 'web:service_software' %}">{% if LANGUAGE_CODE == 'de' %}Softwareentwicklung{% else %}Software Development{% endif %}</a>
+          <a href="{% url 'web:service_digitalisierung' %}">{% if LANGUAGE_CODE == 'de' %}Digitalisierung{% else %}Digitalization{% endif %}</a>
+          <a href="{% url 'web:service_beratung' %}">{% if LANGUAGE_CODE == 'de' %}Beratung &amp; Strategie{% else %}Consulting &amp; Strategy{% endif %}</a>
+        </div>
+      </div>
+      <a href="{% url 'web:cases' %}">{% if LANGUAGE_CODE == 'de' %}Projekte{% else %}Projects{% endif %}</a>
+      <a href="{% url 'web:about' %}">{% if LANGUAGE_CODE == 'de' %}Über uns{% else %}About{% endif %}</a>
+      <a href="{% url 'web:contact' %}">{% if LANGUAGE_CODE == 'de' %}Kontakt{% else %}Contact{% endif %}</a>
     </nav>
 
     <div class="nav__tools">
-      {# Language Switch – als „DE / EN“-Pill #}
-      <form class="lang-switch" action="{% url 'set_language' %}" method="post">
-        {% csrf_token %}
-        {% get_current_language as LANGUAGE_CODE %}
-        <label class="sr-only" for="lang-select">{% trans "Sprache" %}</label>
-        <select id="lang-select" name="language" onchange="this.form.submit()">
-          <option value="de" {% if LANGUAGE_CODE == 'de' %}selected{% endif %}>DE</option>
-          <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>EN</option>
-        </select>
-      </form>
-
-      {# Burger Button #}
-      <button
-        class="nav__toggle"
-        type="button"
-        aria-label="{% trans 'Menü öffnen' %}"
-        aria-expanded="false"
-      >
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path d="M3 6h18M3 12h18M3 18h18"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                fill="none" />
-        </svg>
-      </button>
+      <a class="nav__cta" href="{% url 'web:start' %}">
+        {% if LANGUAGE_CODE == 'de' %}Was passt zu mir?{% else %}Find my fit{% endif %}
+      </a>
+      <div class="lang-switch">
+        <form action="/i18n/setlang/" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="next" value="{{ request.path }}">
+          <input type="hidden" name="language" value="{% if LANGUAGE_CODE == 'de' %}en{% else %}de{% endif %}">
+          <button type="submit" class="lang-toggle">
+            <svg class="lang-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M2 12h20"></path>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            <span class="lang-label">{% if LANGUAGE_CODE == 'de' %}DE{% else %}EN{% endif %}</span>
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 </header>

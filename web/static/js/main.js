@@ -248,7 +248,15 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   links.addEventListener("click", (e) => {
-    if (e.target.tagName.toLowerCase() === "a") {
+    const target = e.target.closest("a, button");
+    if (!target) return;
+    if (target.classList.contains("nav__dropdown-toggle")) {
+      // Service-Dropdown im Mobile nicht sofort schließen
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+    if (target.tagName.toLowerCase() === "a") {
       closeNav();
       open = false;
     }

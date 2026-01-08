@@ -19,11 +19,35 @@
       </h1>
       <p class="text-muted max-w-2xl mx-auto">
         {% if LANGUAGE_CODE == 'de' %}
-          Massgeschneiderte Dienstleistungen für Ihre digitale Zukunft
+          Softwareentwicklung, Datenanalyse, Digitalisierung und strategische Beratung – fokussiert auf Ihre Realität
         {% else %}
-          Tailored services for your digital future
+          Software development, data analytics, digital enablement and strategy aligned with your reality
         {% endif %}
       </p>
+      <div class="mt-4 flex justify-center">
+        <a href="{% url 'web:start' %}" class="btn btn-primary btn-sm">
+          {% if LANGUAGE_CODE == 'de' %}Unverbindlich starten{% else %}Get started{% endif %}
+        </a>
+      </div>
+
+      {# Mini-Intro: übersetzt Data Analysis & Data Science in Alltagssprache #}
+      <div class="max-w-3xl mx-auto mt-6 text-muted text-center translator-intro">
+        {% if LANGUAGE_CODE == 'de' %}
+          <p class="mb-2">Zahlen verstehen. Aus Erfahrung lernen. Besser entscheiden.</p>
+          <p class="mb-0">
+            Wir helfen Unternehmen, ihre bestehenden Daten sinnvoll zu nutzen.
+            Zuerst schaffen wir Klarheit über das, was heute passiert – danach helfen wir,
+            aus diesen Erkenntnissen zu lernen und vorauszuschauen.
+          </p>
+        {% else %}
+          <p class="mb-2">Zahlen verstehen. Aus Erfahrung lernen. Besser entscheiden.</p>
+          <p class="mb-0">
+            Wir helfen Unternehmen, ihre bestehenden Daten sinnvoll zu nutzen.
+            Zuerst schaffen wir Klarheit über das, was heute passiert – danach helfen wir,
+            aus diesen Erkenntnissen zu lernen und vorauszuschauen.
+          </p>
+        {% endif %}
+      </div>
     </div>
   </section>
 
@@ -32,8 +56,61 @@
     <div class="container mx-auto px-4">
       <div class="grid-2 max-w-7xl mx-auto">
 
-        {# Service 1 – Datenanalyse & BI #}
+        {# Service 1 – Individuelle Softwareentwicklung #}
         <article class="service-card fade-in-on-scroll">
+          <div class="service-head">
+            <div class="service-icon">
+              <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+                <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+                <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+                <path d="M14 17h7"></path>
+                <path d="M17 14v6"></path>
+              </svg>
+            </div>
+            <h3 class="service-title">
+              {% if LANGUAGE_CODE == 'de' %}
+                Individuelle Softwareentwicklung
+              {% else %}
+                Custom Software Development
+              {% endif %}
+            </h3>
+          </div>
+          <p class="service-text mb-6">
+            {% if LANGUAGE_CODE == 'de' %}
+              Massgeschneiderte Web- und Datenapplikationen, die genau zu Ihrem Geschäftsmodell passen.
+              Von der Architektur bis zum Deployment entwickeln wir stabile Lösungen, die mit Ihrem Unternehmen wachsen.
+              Wir entwickeln Software nicht um der Technik willen, sondern um konkrete Abläufe einfacher und schneller zu machen.
+            {% else %}
+              Tailored web and data applications built around your business.
+              From architecture to deployment we ship reliable solutions that scale with your growth.
+              Wir entwickeln Software nicht um der Technik willen, sondern um konkrete Abläufe einfacher und schneller zu machen.
+            {% endif %}
+          </p>
+          <div class="feature-tags">
+            {% if LANGUAGE_CODE == 'de' %}
+              <span class="feature-tag">Individuelle Lösungen</span>
+              <span class="feature-tag">Web-Applikationen</span>
+              <span class="feature-tag">API-Design &amp; Integration</span>
+              <span class="feature-tag">Skalierbare Architekturen</span>
+              <span class="feature-tag">Cloud-Deployment</span>
+            {% else %}
+              <span class="feature-tag">Bespoke Solutions</span>
+              <span class="feature-tag">Web Applications</span>
+              <span class="feature-tag">API Design &amp; Integration</span>
+              <span class="feature-tag">Scalable Architectures</span>
+              <span class="feature-tag">Cloud Deployment</span>
+            {% endif %}
+          </div>
+          <div class="mt-4">
+            <a href="{% url 'web:service_software' %}" class="btn btn-secondary btn-sm">
+              {% if LANGUAGE_CODE == 'de' %}Mehr erfahren{% else %}Mehr erfahren{% endif %}
+            </a>
+          </div>
+        </article>
+
+        {# Service 2 – Datenanalyse & BI #}
+        <article class="service-card fade-in-on-scroll" style="animation-delay:0.1s;">
           <div class="service-head">
             <div class="service-icon">
               <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -44,119 +121,97 @@
             </div>
             <h3 class="service-title">
               {% if LANGUAGE_CODE == 'de' %}
-                Datenanalyse &amp; BI
+                Datenanalyse &amp; Business Intelligence
               {% else %}
-                Data Analytics &amp; BI
+                Data Analytics &amp; Business Intelligence
               {% endif %}
             </h3>
           </div>
           <p class="service-text mb-6">
             {% if LANGUAGE_CODE == 'de' %}
-              Verwandeln Sie Ihre Rohdaten in wertvolle Erkenntnisse. Wir entwickeln massgeschneiderte Analyselösungen
-              und Business-Intelligence-Dashboards, die Ihnen helfen, datengetriebene Entscheidungen zu treffen.
+              Von der Datenaufbereitung bis zum Dashboard: Wir bauen Analytics- und BI-Lösungen,
+              die Kennzahlen verlässlich liefern und Entscheidungsprozesse stützen.
+              Kurz gesagt: Sie sehen auf einen Blick, wann Sie Geld verdienen, wo Sie es verlieren und wo sich Optimierungen lohnen.
+              Auf Wunsch gehen wir einen Schritt weiter und nutzen diese Erkenntnisse, um Entscheidungen zu automatisieren und Entwicklungen vorherzusagen.
             {% else %}
-              Turn your raw data into valuable insights. We design tailored analytics solutions and business
-              intelligence dashboards that help you make data-driven decisions.
+              From data preparation to dashboards, we craft analytics and BI solutions
+              that deliver reliable KPIs and support confident decisions.
+              Kurz gesagt: Sie sehen auf einen Blick, wann Sie Geld verdienen, wo Sie es verlieren und wo sich Optimierungen lohnen.
+              Auf Wunsch gehen wir einen Schritt weiter und nutzen diese Erkenntnisse, um Entscheidungen zu automatisieren und Entwicklungen vorherzusagen.
             {% endif %}
           </p>
           <div class="feature-tags">
             {% if LANGUAGE_CODE == 'de' %}
               <span class="feature-tag">Datenaufbereitung &amp; ETL</span>
+              <span class="feature-tag">Data Warehousing</span>
               <span class="feature-tag">Custom Dashboards</span>
-              <span class="feature-tag">Predictive Analytics</span>
               <span class="feature-tag">KPI-Monitoring</span>
               <span class="feature-tag">Reporting-Automation</span>
             {% else %}
               <span class="feature-tag">Data Preparation &amp; ETL</span>
+              <span class="feature-tag">Data Warehousing</span>
               <span class="feature-tag">Custom Dashboards</span>
-              <span class="feature-tag">Predictive Analytics</span>
               <span class="feature-tag">KPI Monitoring</span>
               <span class="feature-tag">Reporting Automation</span>
             {% endif %}
           </div>
+          <div class="mt-4">
+            <a href="{% url 'web:service_data_analytics' %}" class="btn btn-secondary btn-sm">
+              {% if LANGUAGE_CODE == 'de' %}Mehr erfahren{% else %}Mehr erfahren{% endif %}
+            </a>
+          </div>
         </article>
 
-        {# Service 2 – Prozessautomatisierung #}
-        <article class="service-card fade-in-on-scroll" style="animation-delay:0.1s;">
+        {# Service 3 – Data Science Beratung & Strategie #}
+        <article class="service-card fade-in-on-scroll" style="animation-delay:0.2s;">
           <div class="service-head">
             <div class="service-icon">
               <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                <path d="M12 1l3 5.2 5.8.8-4.2 4.1 1 5.9L12 14.8 6.4 17l1-5.9-4.2-4.1 5.8-.8z"></path>
               </svg>
             </div>
             <h3 class="service-title">
               {% if LANGUAGE_CODE == 'de' %}
-                Prozessautomatisierung
+                Data Science Beratung &amp; Strategie
               {% else %}
-                Process Automation
+                Data Science Advisory &amp; Strategy
               {% endif %}
             </h3>
           </div>
           <p class="service-text mb-6">
             {% if LANGUAGE_CODE == 'de' %}
-              Automatisieren Sie wiederkehrende Aufgaben und optimieren Sie Ihre Workflows.
-              Wir entwickeln intelligente Automatisierungslösungen, die Zeit sparen und Fehler reduzieren.
+              Wir helfen Ihnen, die richtigen Use Cases zu finden, Modelle zu evaluieren und eine tragfähige Data-Science-Strategie aufzubauen,
+              die Mehrwert schafft und realistisch umsetzbar ist.
+              Wir übersetzen zwischen Fachbereich und Technik – damit Digitalisierung verständlich, sinnvoll und wirtschaftlich bleibt.
             {% else %}
-              Automate recurring tasks and streamline your workflows.
-              We build intelligent automation solutions that save time and reduce errors.
+              We guide you to the right use cases, evaluate models and shape a pragmatic data science strategy
+              that creates value and can actually be delivered.
+              Wir übersetzen zwischen Fachbereich und Technik – damit Digitalisierung verständlich, sinnvoll und wirtschaftlich bleibt.
             {% endif %}
           </p>
           <div class="feature-tags">
             {% if LANGUAGE_CODE == 'de' %}
-              <span class="feature-tag">Workflow-Automatisierung</span>
-              <span class="feature-tag">RPA-Lösungen</span>
-              <span class="feature-tag">API-Integrationen</span>
-              <span class="feature-tag">Batch-Processing</span>
-              <span class="feature-tag">Scheduling &amp; Monitoring</span>
+              <span class="feature-tag">Use-Case-Scoping</span>
+              <span class="feature-tag">Proof of Concept</span>
+              <span class="feature-tag">Modellbewertung</span>
+              <span class="feature-tag">Roadmaps &amp; Governance</span>
+              <span class="feature-tag">Enablement &amp; Training</span>
             {% else %}
-              <span class="feature-tag">Workflow Automation</span>
-              <span class="feature-tag">RPA Solutions</span>
-              <span class="feature-tag">API Integrations</span>
-              <span class="feature-tag">Batch Processing</span>
-              <span class="feature-tag">Scheduling &amp; Monitoring</span>
+              <span class="feature-tag">Use Case Scoping</span>
+              <span class="feature-tag">Proof of Concept</span>
+              <span class="feature-tag">Model Evaluation</span>
+              <span class="feature-tag">Roadmaps &amp; Governance</span>
+              <span class="feature-tag">Enablement &amp; Training</span>
             {% endif %}
+          </div>
+          <div class="mt-4">
+            <a href="{% url 'web:service_beratung' %}" class="btn btn-secondary btn-sm">
+              {% if LANGUAGE_CODE == 'de' %}Mehr erfahren{% else %}Mehr erfahren{% endif %}
+            </a>
           </div>
         </article>
 
-        {# Service 3 – Data Visualization #}
-        <article class="service-card fade-in-on-scroll" style="animation-delay:0.2s;">
-          <div class="service-head">
-            <div class="service-icon">
-              <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="6" y1="20" x2="6" y2="10"></line>
-                <line x1="12" y1="20" x2="12" y2="4"></line>
-                <line x1="18" y1="20" x2="18" y2="14"></line>
-              </svg>
-            </div>
-            <h3 class="service-title">Data Visualization</h3>
-          </div>
-          <p class="service-text mb-6">
-            {% if LANGUAGE_CODE == 'de' %}
-              Machen Sie komplexe Daten verständlich. Wir gestalten interaktive Visualisierungen und Dashboards,
-              die Ihre Daten zum Leben erwecken und Insights sofort erkennbar machen.
-            {% else %}
-              Make complex data understandable. We design interactive visualizations and dashboards that
-              bring your data to life and reveal insights at a glance.
-            {% endif %}
-          </p>
-          <div class="feature-tags">
-            {% if LANGUAGE_CODE == 'de' %}
-              <span class="feature-tag">Interaktive Dashboards</span>
-              <span class="feature-tag">Custom Charts</span>
-              <span class="feature-tag">Real-time Visualisierung</span>
-              <span class="feature-tag">Geo-Mapping</span>
-              <span class="feature-tag">Mobile-responsive</span>
-            {% else %}
-              <span class="feature-tag">Interactive Dashboards</span>
-              <span class="feature-tag">Custom Charts</span>
-              <span class="feature-tag">Real-time Visualization</span>
-              <span class="feature-tag">Geo Mapping</span>
-              <span class="feature-tag">Mobile Responsive</span>
-            {% endif %}
-          </div>
-        </article>
-
-        {# Service 4 – Digitalisierung & Software #}
+        {# Service 4 – Digitalisierung & Enablement #}
         <article class="service-card fade-in-on-scroll" style="animation-delay:0.3s;">
           <div class="service-head">
             <div class="service-icon">
@@ -167,35 +222,42 @@
             </div>
             <h3 class="service-title">
               {% if LANGUAGE_CODE == 'de' %}
-                Digitalisierung &amp; Software
+                Digitalisierung
               {% else %}
-                Digitalization &amp; Software
+                Digitalization
               {% endif %}
             </h3>
           </div>
           <p class="service-text mb-6">
             {% if LANGUAGE_CODE == 'de' %}
-              Digitalisieren Sie Ihre Prozesse mit modernen Webanwendungen. Von der Konzeption bis zum Deployment
-              entwickeln wir Lösungen, die perfekt zu Ihren Bedürfnissen passen.
+              Wir begleiten Unternehmen auf dem Weg durch die digitale Welt: Prozesse modernisieren, Systeme integrieren,
+              Mitarbeitende befähigen und nachhaltige digitale Fähigkeiten aufbauen.
+              Ziel ist weniger Aufwand im Alltag – weniger manuelle Arbeit, weniger Fehler, mehr Übersicht.
             {% else %}
-              Digitalize your processes with modern web applications. From concept to deployment we build
-              solutions perfectly aligned with your needs.
+              We guide companies through the digital landscape: modernizing processes, integrating systems,
+              upskilling teams and building sustainable digital capabilities.
+              Ziel ist weniger Aufwand im Alltag – weniger manuelle Arbeit, weniger Fehler, mehr Übersicht.
             {% endif %}
           </p>
           <div class="feature-tags">
             {% if LANGUAGE_CODE == 'de' %}
-              <span class="feature-tag">Web-Applikationen</span>
-              <span class="feature-tag">Datenbank-Design</span>
-              <span class="feature-tag">Cloud-Deployment</span>
-              <span class="feature-tag">API-Entwicklung</span>
-              <span class="feature-tag">Legacy-Migration</span>
+              <span class="feature-tag">Digitale Prozessberatung</span>
+              <span class="feature-tag">Tool- &amp; Plattformauswahl</span>
+              <span class="feature-tag">Change &amp; Training</span>
+              <span class="feature-tag">Integrationen &amp; Automatisierung</span>
+              <span class="feature-tag">Governance &amp; Operating Model</span>
             {% else %}
-              <span class="feature-tag">Web Applications</span>
-              <span class="feature-tag">Database Design</span>
-              <span class="feature-tag">Cloud Deployment</span>
-              <span class="feature-tag">API Development</span>
-              <span class="feature-tag">Legacy Migration</span>
+              <span class="feature-tag">Digital Process Consulting</span>
+              <span class="feature-tag">Tool &amp; Platform Selection</span>
+              <span class="feature-tag">Change &amp; Training</span>
+              <span class="feature-tag">Integrations &amp; Automation</span>
+              <span class="feature-tag">Governance &amp; Operating Model</span>
             {% endif %}
+          </div>
+          <div class="mt-4">
+            <a href="{% url 'web:service_digitalisierung' %}" class="btn btn-secondary btn-sm">
+              {% if LANGUAGE_CODE == 'de' %}Mehr erfahren{% else %}Mehr erfahren{% endif %}
+            </a>
           </div>
         </article>
 
@@ -393,6 +455,23 @@
             {% endif %}
           </p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  {# SECTION: Mini-Vergleich (Einfach erklärt) #}
+  <section class="section pt-0">
+    <div class="container mx-auto px-4">
+      <div class="text-center max-w-3xl mx-auto fade-in-on-scroll">
+        <p class="text-muted" style="margin-bottom:0;">
+          {% if LANGUAGE_CODE == 'de' %}
+            Einfach erklärt: Datenanalyse hilft zu verstehen, was passiert ist.
+            Intelligente Datennutzung hilft zu entscheiden, was als Nächstes sinnvoll ist.
+          {% else %}
+            Einfach erklärt: Datenanalyse hilft zu verstehen, was passiert ist.
+            Intelligente Datennutzung hilft zu entscheiden, was als Nächstes sinnvoll ist.
+          {% endif %}
+        </p>
       </div>
     </div>
   </section>

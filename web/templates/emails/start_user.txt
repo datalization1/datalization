@@ -1,0 +1,14 @@
+Hallo {{ req.first_name }},
+
+vielen Dank für deine Anfrage bei datalization. Wir melden uns zeitnah persönlich.
+
+Zusammenfassung:
+{% if req.branches %}- Branche(n): {{ req.branches }}{% endif %}
+{% if req.pains %}- Themen: {{ req.pains }}{% endif %}
+{% if req.start_mode %}- Startwunsch: {{ req.start_mode }}{% endif %}
+{% if req.notes %}- Notiz: {{ req.notes }}{% endif %}
+
+Wenn du noch Ergänzungen hast, antworte gern direkt auf diese E-Mail.
+
+Viele Grüße
+dein datalization Team

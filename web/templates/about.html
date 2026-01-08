@@ -2,13 +2,15 @@
 {% block title %}{% trans "Über uns" %} – Datalization{% endblock %}
 
 {% block content %}
-<div class="min-h-screen bg-background text-foreground">
+<div class="min-h-screen bg-background text-foreground about-page">
 
   {# HERO #}
-  <section class="page-hero scroll-mt-20">
-    <div class="container max-w-3xl">
-      <h1 class="page-hero-title">{% if LANGUAGE_CODE == 'de' %}Über uns{% else %}Who we are{% endif %}</h1>
-      <p class="page-hero-subtitle">
+  <section class="about-hero scroll-mt-20">
+    <div class="about-hero-overlay"></div>
+    <div class="container about-hero-inner">
+      <span class="about-badge">datalization</span>
+      <h1 class="about-hero-title">{% if LANGUAGE_CODE == 'de' %}Über uns{% else %}Who we are{% endif %}</h1>
+      <p class="about-hero-subtitle">
         {% if LANGUAGE_CODE == 'de' %}
           Loyal leben und einfache Lösungen schaffen. Daran messen wir uns. Wir entwickeln digitale Produkte,
           die Komplexität reduzieren und Menschen befähigen, bessere Entscheidungen zu treffen.
@@ -21,7 +23,7 @@
   </section>
 
   {# VISION – optisch nah an den Cards #}
-  <section class="section">
+  <section class="section about-section">
     <div class="container mx-auto px-4">
       <div class="about-intro fade-in-on-scroll">
         <p class="about-intro-text">
@@ -39,10 +41,10 @@
   </section>
 
   {# UNSERE WERTE – 4 Karten mit SVG-Icons #}
-  <section class="section">
+  <section class="section about-section">
     <div class="container mx-auto px-4">
       <div class="text-center mb-16 fade-in-on-scroll">
-        <h2 class="section-title">
+        <h2 class="section-title about-section-title">
           {% if LANGUAGE_CODE == 'de' %}Unsere Werte{% else %}Our values{% endif %}
         </h2>
         <p class="text-muted max-w-2xl mx-auto">
@@ -54,7 +56,7 @@
         </p>
       </div>
 
-      <div class="values-grid max-w-7xl mx-auto">
+      <div class="about-grid max-w-7xl mx-auto">
         {# Loyalität #}
         <article class="value-card fade-in-on-scroll">
           <div class="value-head">
@@ -147,7 +149,7 @@
   </section>
 
   {# WER STEHT DAHINTER – Gründerblock #}
-  <section class="section section-alt about-founder">
+  <section class="section section-alt about-section about-founder">
     <div class="container mx-auto px-4">
       <div class="about-founder-card founder-card fade-in-on-scroll">
         <h2 class="about-founder-title">
@@ -189,10 +191,10 @@
   </section>
 
   {# WIE WIR ARBEITEN – 4 Schritte, mit Nummern #}
-  <section class="section">
+  <section class="section about-section">
     <div class="container mx-auto px-4">
       <div class="text-center mb-16 fade-in-on-scroll">
-        <h2 class="section-title">
+        <h2 class="section-title about-section-title">
           {% if LANGUAGE_CODE == 'de' %}Unser Ansatz{% else %}Our approach{% endif %}
         </h2>
         <p class="text-muted max-w-2xl mx-auto">
@@ -200,7 +202,7 @@
         </p>
       </div>
 
-      <div class="steps-grid max-w-7xl mx-auto">
+      <div class="about-grid steps-grid max-w-7xl mx-auto">
         <div class="value-card fade-in-on-scroll">
           <div class="value-head">
             <div class="value-icon"><span class="badge-primary">01</span></div>
@@ -269,7 +271,7 @@
   </section>
 
   {# VERSPRECHEN #}
-  <section class="section">
+  <section class="section about-section">
     <div class="container mx-auto px-4 max-w-3xl">
       <div class="promise-card fade-in-on-scroll">
         <h2>

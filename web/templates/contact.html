@@ -5,26 +5,29 @@
 
 {% block content %}
 
-<section class="page-hero page-hero--compact scroll-mt-20 text-center">
-  <div class="container max-w-3xl">
-    <h1 class="page-hero-title">
-      {% if LANGUAGE_CODE == 'de' %}Kontakt{% else %}Contact{% endif %}
-    </h1>
-    <p class="page-hero-subtitle">
-      {% if LANGUAGE_CODE == 'de' %}
-        Lassen Sie uns Ihre Vision gemeinsam verwirklichen.
-      {% else %}
-        Let’s bring your vision to life together.
-      {% endif %}
-    </p>
+<section class="contact-hero scroll-mt-20">
+  <div class="contact-hero-overlay"></div>
+  <div class="container px-4">
+    <div class="contact-hero-inner">
+      <div class="contact-hero-badge">datalization</div>
+      <h1 class="contact-hero-title">
+        {% if LANGUAGE_CODE == 'de' %}Kontakt{% else %}Contact{% endif %}
+      </h1>
+      <p class="contact-hero-subtitle">
+        {% if LANGUAGE_CODE == 'de' %}
+          Lassen Sie uns gemeinsam Ihre digitale Zukunft gestalten.
+        {% else %}
+          Let’s shape your digital future together.
+        {% endif %}
+      </p>
+    </div>
   </div>
 </section>
 
-<section class="section section--compact">
+<section class="contact-section">
   <div class="container px-4">
-    <div class="max-w-2xl mx-auto">
-      <div class="contact-form-container fade-in-on-scroll">
-
+    <div class="contact-grid">
+      <div class="contact-card">
         {% if messages %}
           <div class="form-messages">
             {% for message in messages %}
@@ -36,93 +39,56 @@
         {% endif %}
 
         <form id="contact-form" method="post" action="{% url 'web:contact' %}" class="space-y-6">
+          <div class="form-intro">
+            <h2>{% if LANGUAGE_CODE == 'de' %}Schreiben Sie uns{% else %}Write to us{% endif %}</h2>
+            <p class="text-muted">
+              {% if LANGUAGE_CODE == 'de' %}
+                Füllen Sie das Formular aus und wir melden uns persönlich bei Ihnen.
+              {% else %}
+                Fill out the form and we will contact you personally.
+              {% endif %}
+            </p>
+          </div>
           {% csrf_token %}
+          <input type="hidden" name="website" value="">
 
-          {# hidden: Honeypot #}
-          <input type="hidden" name="website" value="">  {# Honeypot – muss leer bleiben #}
-
-          {# Vorname / Nachname #}
           <div class="grid-2 gap-4">
-            <div class="relative">
-              <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-              </svg>
-              <label for="first_name" class="sr-only">{% trans "First name" %}</label>
-              <input
-                type="text"
-                id="first_name"
-                name="first_name"
-                class="form-input"
-                placeholder="{% if LANGUAGE_CODE == 'de' %}Vorname{% else %}First name{% endif %}"
-                required autocomplete="given-name">
+            <div class="form-field">
+              <label class="form-label" for="first_name">{% if LANGUAGE_CODE == 'de' %}Vorname{% else %}First name{% endif %}</label>
+              <input type="text" id="first_name" name="first_name" class="form-input" placeholder="{% if LANGUAGE_CODE == 'de' %}Vorname{% else %}First name{% endif %}" required autocomplete="given-name">
             </div>
-
-            <div class="relative">
-              <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-              </svg>
-              <label for="last_name" class="sr-only">{% trans "Last name" %}</label>
-              <input
-                type="text"
-                id="last_name"
-                name="last_name"
-                class="form-input"
-                placeholder="{% if LANGUAGE_CODE == 'de' %}Nachname{% else %}Last name{% endif %}"
-                required autocomplete="family-name">
+            <div class="form-field">
+              <label class="form-label" for="last_name">{% if LANGUAGE_CODE == 'de' %}Nachname{% else %}Last name{% endif %}</label>
+              <input type="text" id="last_name" name="last_name" class="form-input" placeholder="{% if LANGUAGE_CODE == 'de' %}Nachname{% else %}Last name{% endif %}" required autocomplete="family-name">
             </div>
           </div>
 
-          {# Firma (optional) #}
-          <div class="relative">
-            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M3 21V7a2 2 0 0 1 2-2h4v16"></path>
-              <path d="M9 21h12V9a2 2 0 0 0-2-2h-6"></path>
-              <path d="M9 7h6"></path>
-            </svg>
-            <label for="company" class="sr-only">{% trans "Company" %}</label>
-            <input
-              type="text"
-              id="company"
-              name="company"
-              class="form-input"
-              placeholder="{% if LANGUAGE_CODE == 'de' %}Firma (optional){% else %}Company (optional){% endif %}"
-              autocomplete="organization">
+          <div class="form-field">
+            <label class="form-label" for="company">{% if LANGUAGE_CODE == 'de' %}Firma (optional){% else %}Company (optional){% endif %}</label>
+            <input type="text" id="company" name="company" class="form-input" placeholder="{% if LANGUAGE_CODE == 'de' %}Firma (optional){% else %}Company (optional){% endif %}" autocomplete="organization">
           </div>
 
-          {# E-Mail #}
-          <div class="relative">
-            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <rect x="3" y="5" width="18" height="14" rx="2"></rect>
-              <polyline points="3,7 12,13 21,7"></polyline>
-            </svg>
-            <label for="email" class="sr-only">{% trans "Email" %}</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              class="form-input"
-              placeholder="{% if LANGUAGE_CODE == 'de' %}Ihre E-Mail{% else %}Your email{% endif %}"
-              required autocomplete="email">
+          <div class="form-field">
+            <label class="form-label" for="email">{% if LANGUAGE_CODE == 'de' %}E-Mail{% else %}Email{% endif %}</label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="{% if LANGUAGE_CODE == 'de' %}Ihre E-Mail{% else %}Your email{% endif %}" required autocomplete="email">
           </div>
 
-          {# Nachricht #}
-          <div class="relative">
-            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-            </svg>
-            <label for="message" class="sr-only">{% trans "Message" %}</label>
-            <textarea
-              id="message"
-              name="message"
-              rows="6"
-              class="form-textarea"
-              placeholder="{% if LANGUAGE_CODE == 'de' %}Ihre Nachricht…{% else %}Your message…{% endif %}"
-              required></textarea>
+          <div class="form-field">
+            <label class="form-label" for="service">{% if LANGUAGE_CODE == 'de' %}Gewünschter Service{% else %}Desired Service{% endif %}</label>
+            <select id="service" name="service" class="contact-select">
+              <option value="">{% if LANGUAGE_CODE == 'de' %}Wählen Sie einen Service{% else %}Select a service{% endif %}</option>
+              <option>{% if LANGUAGE_CODE == 'de' %}Datenanalyse &amp; Data Science{% else %}Data Analytics &amp; Data Science{% endif %}</option>
+              <option>{% if LANGUAGE_CODE == 'de' %}Softwareentwicklung{% else %}Software Development{% endif %}</option>
+              <option>{% if LANGUAGE_CODE == 'de' %}Digitalisierung{% else %}Digitalization{% endif %}</option>
+              <option>{% if LANGUAGE_CODE == 'de' %}Beratung &amp; Strategie{% else %}Consulting &amp; Strategy{% endif %}</option>
+            </select>
           </div>
 
-          {# Submit #}
+          <div class="form-field">
+            <label class="form-label" for="message">{% if LANGUAGE_CODE == 'de' %}Nachricht{% else %}Message{% endif %}</label>
+            <textarea id="message" name="message" rows="6" class="form-textarea" placeholder="{% if LANGUAGE_CODE == 'de' %}Ihre Nachricht…{% else %}Your message…{% endif %}" required></textarea>
+          </div>
+
           <button type="submit" class="btn-primary w-full gap-2">
             {% if LANGUAGE_CODE == 'de' %}Nachricht senden{% else %}Send message{% endif %}
             <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -131,20 +97,48 @@
             </svg>
           </button>
         </form>
+      </div>
 
-        <div class="contact-info">
-          <p class="text-muted mb-4">
-            {% if LANGUAGE_CODE == 'de' %}Oder kontaktieren Sie uns direkt{% else %}Or contact us directly{% endif %}
-          </p>
-          <a href="mailto:info@datalization.ch" class="contact-email">
-            <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-              <polyline points="22,6 12,13 2,6"></polyline>
-            </svg>
-            info@datalization.ch
-          </a>
+      <div class="contact-right">
+        <div class="contact-info-card">
+          <h3>{% if LANGUAGE_CODE == 'de' %}Kontaktinformationen{% else %}Contact Information{% endif %}</h3>
+          <ul class="contact-list">
+            <li>
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                  <polyline points="3,7 12,13 21,7"></polyline>
+                </svg>
+              </div>
+              <div>
+                <div class="contact-label">{% if LANGUAGE_CODE == 'de' %}E-Mail{% else %}Email{% endif %}</div>
+                <a href="mailto:info@datalization.ch" class="contact-link">info@datalization.ch</a>
+              </div>
+            </li>
+            <li>
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M12 21s6-5.5 6-10.5S15.5 3 12 3 6 5.5 6 10.5 12 21 12 21z"></path>
+                  <circle cx="12" cy="10.5" r="2.5"></circle>
+                </svg>
+              </div>
+              <div>
+                <div class="contact-label">{% if LANGUAGE_CODE == 'de' %}Standort{% else %}Location{% endif %}</div>
+                <span class="contact-link">4800 Zofingen, Schweiz</span>
+              </div>
+            </li>
+          </ul>
         </div>
 
+        <div class="contact-why-card">
+          <h3>{% if LANGUAGE_CODE == 'de' %}Warum Datalization?{% else %}Why Datalization?{% endif %}</h3>
+          <ul class="contact-why-list">
+            <li><span class="contact-why-icon">✔</span>{% if LANGUAGE_CODE == 'de' %}Individuelle Lösungen für Ihre Bedürfnisse{% else %}Tailored solutions for your needs{% endif %}</li>
+            <li><span class="contact-why-icon">✔</span>{% if LANGUAGE_CODE == 'de' %}Transparente Kommunikation und Prozesse{% else %}Transparent communication and processes{% endif %}</li>
+            <li><span class="contact-why-icon">✔</span>{% if LANGUAGE_CODE == 'de' %}Langfristige Partnerschaften{% else %}Long-term partnerships{% endif %}</li>
+            <li><span class="contact-why-icon">✔</span>{% if LANGUAGE_CODE == 'de' %}Moderne Technologien und Best Practices{% else %}Modern technologies and best practices{% endif %}</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

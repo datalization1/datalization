@@ -11,6 +11,10 @@
 <div class="min-h-screen bg-background text-foreground">
     <!-- Hero Section -->
     <section class="hero-section animate-fade-in">
+        <div class="hero-orbs">
+          <div class="hero-orb hero-orb-1 animate-pulse"></div>
+          <div class="hero-orb hero-orb-2 animate-pulse delay-1000"></div>
+        </div>
         <div class="container mx-auto px-4 z-10 text-center">
             <div class="max-w-4xl mx-auto">
                 <div class="hero-badge animate-scale-in">
@@ -35,9 +39,9 @@
 
                 <p class="hero-description animate-fade-in-delay-2">
                     {% if LANGUAGE_CODE == 'de' %}
-                        Wir transformieren komplexe Daten in klare Lösungen und digitalisieren Ihre Prozesse mit Weitblick.
+                        Wir transformieren komplexe Daten in klare Lösungen und digitalisieren Ihre Prozesse mit Weitblick und Loyalität.
                     {% else %}
-                        We transform complex data into clear solutions and digitalize your processes with vision.
+                        We transform complex data into clear solutions and digitalize your processes with vision and loyalty.
                     {% endif %}
                 </p>
 
@@ -59,6 +63,27 @@
         </div>
     </section>
 
+    <!-- Quick Check CTA -->
+    <section class="quick-check-banner">
+      <div class="container mx-auto px-4 text-center">
+        <div class="quick-check-inner">
+          <div class="qc-icon-pulse" aria-hidden="true" style="width:80px;height:80px;display:flex;align-items:center;justify-content:center;">
+            ✨
+          </div>
+          <h2 style="font-size:2.25rem;margin-bottom:.5rem;">
+            {% if LANGUAGE_CODE == 'de' %}Welche Lösung passt zu mir?{% else %}Which solution is right for me?{% endif %}
+          </h2>
+          <p class="text-muted" style="margin-bottom:1.25rem;">
+            {% if LANGUAGE_CODE == 'de' %}Machen Sie unseren 3-Fragen-Check und finden Sie es heraus{% else %}Take our 3-question check and find out{% endif %}
+          </p>
+          <div class="cta-row" style="justify-content:center;">
+            <a href="{% url 'web:match' %}" class="btn-primary">
+              {% if LANGUAGE_CODE == 'de' %}Zum Quick-Check{% else %}Start Quick-Check{% endif %}
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
     <!-- Vision Section -->
     <section class="section-alt">
         <div class="container mx-auto px-4">
@@ -75,7 +100,7 @@
                 </p>
             </div>
 
-            <div class="grid-3 max-w-6xl mx-auto">
+            <div class="grid-3 max-w-6xl mx-auto vision-values">
                 <div class="value-card fade-in-on-scroll">
                     <div class="value-head">
                       <div class="value-icon">
@@ -445,4 +470,40 @@
       </div>       {# .container #}
     </section>     {# #contact #}
 </div>             {# .min-h-screen wrapper #}
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+<script>
+  document.addEventListener("DOMContentLoaded", function(){
+    const list = document.getElementById("qc-home-list");
+    const resultBox = document.getElementById("qc-home-result");
+    const recoEl = document.getElementById("qc-home-reco");
+    const cta = document.getElementById("qc-home-cta");
+    if (list && resultBox && recoEl && cta){
+      const radios = list.querySelectorAll("input[type='radio']");
+      const labels = list.querySelectorAll(".qc-pill");
+      function recommend(val){
+        if (["overview","forecast","gutfeel","profit"].includes(val)) return "Datenanalyse & Data Science könnte genau das Richtige für Sie sein.";
+        if (val === "excel") return "Individuelle Software oder Schnittstellen entlasten Ihr Team.";
+        if (val === "manual") return "Digitalisierung & Automatisierung reduziert manuelle Arbeit.";
+        return "Lassen Sie uns gemeinsam prüfen, was zuerst sinnvoll ist.";
+      }
+      function update(){
+        labels.forEach(l=>l.classList.remove("selected"));
+        const selected = Array.from(radios).find(r=>r.checked);
+        if(!selected){ resultBox.hidden = true; return; }
+        selected.parentElement.classList.add("selected");
+        const reco = recommend(selected.value);
+        recoEl.textContent = reco;
+        const urlParams = new URLSearchParams();
+        urlParams.set("topic", reco);
+        urlParams.set("notes", "Themen: " + selected.value);
+        cta.href = "{% url 'web:start' %}?" + urlParams.toString();
+        resultBox.hidden = false;
+      }
+      radios.forEach(r=>r.addEventListener("change", update));
+    }
+  });
+</script>
 {% endblock %}

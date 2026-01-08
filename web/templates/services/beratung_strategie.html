@@ -1,0 +1,311 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}Beratung & Strategie – Datalization{% endblock %}
+{% block head_meta %}
+  {% firstof page_title "Beratung & Strategie – Datalization" as seo_title %}
+  {% firstof page_description "Klarheit im Kopf – und ein Plan, der sich lohnt. Orientierung vor Investitionen." as seo_desc %}
+  <meta name="description" content="{{ seo_desc|truncatechars:160 }}">
+  <meta property="og:title" content="{{ seo_title }}">
+  <meta property="og:description" content="{{ seo_desc|truncatechars:200 }}">
+{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-background text-foreground">
+
+  <section class="service-hero service-hero--wide scroll-mt-20">
+    <div class="container mx-auto px-4 service-hero-grid hero-align">
+      <div class="hero-copy">
+        <h1>Klarheit gewinnen, Prioritäten setzen – strategisch digitalisieren</h1>
+        <p>Wir helfen Ihnen, den richtigen Weg zu finden – ohne Buzzwords, ohne teure Umwege.</p>
+        <div class="cta-row">
+          <a href="{% url 'web:start' %}" class="btn-primary">Kurz-Check buchen</a>
+          <a href="#beispiele" class="btn-secondary">Beispiel ansehen</a>
+        </div>
+      </div>
+      <div class="service-visual">
+        <img src="https://images.unsplash.com/photo-1758691736084-4ef3e6f6a2cf?auto=format&fit=crop&w=1400&q=80" alt="Business Consulting & Strategy Meeting mit klaren Prioritäten und Roadmap" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="quick-check-banner">
+    <div class="container mx-auto px-4 text-center">
+      <div class="quick-check-inner">
+        <div class="qc-icon-pulse" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-lg text-primary">
+            <path d="M12 2l2.4 4.8L19 8l-4 4 1 6-4-2.4L8 18l1-6-4-4 4.6-.8L12 2z"></path>
+          </svg>
+        </div>
+        <h2>Passt diese Lösung zu mir?</h2>
+        <p>Machen Sie unseren 3-Fragen-Check und finden Sie es heraus</p>
+        <div class="cta-row" style="justify-content:center;">
+          <a href="{% url 'web:match' %}" class="btn-primary">Zum Quick-Check</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-section outcomes-section">
+    <div class="container mx-auto px-4">
+      <div class="service-heading" style="text-align:left;max-width:820px;margin-left:auto;margin-right:auto;">
+        <h2>Was Sie am Ende haben</h2>
+        <p>Klarheit, Struktur und ein Fahrplan für Ihre digitale Zukunft.</p>
+      </div>
+      <div class="outcomes-wrap">
+        <ul class="outcomes-list">
+          <li class="outcomes-item"><span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg></span><span>Eine klare Datenstrategie – abgestimmt auf Ihre Geschäftsziele</span></li>
+          <li class="outcomes-item"><span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg></span><span>Priorisierte Roadmap mit realistischen Meilensteinen</span></li>
+          <li class="outcomes-item"><span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg></span><span>Technologie-Empfehlungen mit Kosten-Nutzen-Bewertung</span></li>
+          <li class="outcomes-item"><span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg></span><span>Risiko-Analyse und Vermeidung teurer Fehlentscheidungen</span></li>
+          <li class="outcomes-item"><span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg></span><span>Alignment im Team durch strukturierte Workshops</span></li>
+          <li class="outcomes-item"><span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg></span><span>Entscheidungsgrundlagen für Geschäftsführung und Stakeholder</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-section process-section">
+    <div class="container mx-auto px-4">
+      <div class="service-heading">
+        <h2>Wie wir vorgehen</h2>
+        <p>Strukturiert, pragmatisch und auf Ihre Realität abgestimmt.</p>
+      </div>
+      <div class="process-timeline">
+        <div class="process-item">
+          <div class="process-icon">
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="7"></circle>
+                <path d="M21 21l-4.3-4.3"></path>
+              </svg>
+            </div>
+            <span class="process-number">1</span>
+          </div>
+          <div class="process-card">
+            <h3>Standortbestimmung</h3>
+            <p>Wir analysieren Ihre aktuelle Situation, Ziele und Herausforderungen.</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-icon">
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18c0 2 3 3 3 3s3-1 3-3-1-3-3-3-3-1-3-3 3-3 3-3"></path>
+              </svg>
+            </div>
+            <span class="process-number">2</span>
+          </div>
+          <div class="process-card">
+            <h3>Strategieentwicklung</h3>
+            <p>Workshops und Konzeptarbeit mit Ihrem Team – mit klaren Ergebnissen.</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-icon">
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 5h18"></path><path d="M3 9h18"></path><path d="M3 15h10"></path><path d="M3 19h6"></path>
+              </svg>
+            </div>
+            <span class="process-number">3</span>
+          </div>
+          <div class="process-card">
+            <h3>Roadmap & Empfehlungen</h3>
+            <p>Priorisierte Maßnahmen, Technologie-Auswahl und Ressourcenplanung.</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-icon">
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 4h14"></path><path d="M5 20h14"></path><path d="M9 16h6"></path><path d="M9 8h6"></path><path d="M12 4v16"></path>
+              </svg>
+            </div>
+            <span class="process-number">4</span>
+          </div>
+          <div class="process-card">
+            <h3>Umsetzungsbegleitung</h3>
+            <p>Optional: Wir unterstützen bei der Implementierung oder Review.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="beispiele" class="service-section example-section">
+    <div class="container mx-auto px-4">
+      <div class="service-heading">
+        <h2>Typische Projekte</h2>
+        <p>Strategische Beratung in verschiedenen Bereichen</p>
+      </div>
+      <div class="card-grid example-grid">
+        <div class="example-card">
+          <div class="example-icon">🧭</div>
+          <div class="example-tag">Datenstrategie-Entwicklung</div>
+          <p>Wie nutzen wir Daten, um bessere Entscheidungen zu treffen?</p>
+        </div>
+        <div class="example-card">
+          <div class="example-icon">🎯</div>
+          <div class="example-tag">Digitalisierungs-Roadmap</div>
+          <p>Welche Prozesse digitalisieren wir wann – und warum?</p>
+        </div>
+        <div class="example-card">
+          <div class="example-icon">📈</div>
+          <div class="example-tag">Tool-Evaluierung</div>
+          <p>Welche Software passt zu uns? Make-or-Buy Entscheidungen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-section deliverables-section">
+    <div class="container mx-auto px-4">
+      <div class="service-heading">
+        <h2>Was Sie konkret erhalten</h2>
+        <p>Klare Empfehlungen und umsetzbare Pläne</p>
+      </div>
+      <div class="deliverables-grid">
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 5h16"></path><path d="M4 9h16"></path><path d="M4 15h10"></path><path d="M4 19h6"></path>
+            </svg>
+          </div>
+          <div>
+            <h3>Strategiedokument mit klaren Empfehlungen</h3>
+            <p>Strukturiert und praxisnah</p>
+          </div>
+        </div>
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 5h18"></path><path d="M3 9h18"></path><path d="M3 15h10"></path><path d="M3 19h6"></path>
+            </svg>
+          </div>
+          <div>
+            <h3>Priorisierte Roadmap mit Zeitplan und Meilensteinen</h3>
+            <p>Realistisch und umsetzbar</p>
+          </div>
+        </div>
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M9 12l2 2 4-4"></path>
+            </svg>
+          </div>
+          <div>
+            <h3>Technologie-Bewertung und Empfehlungen</h3>
+            <p>Objektiv und transparent</p>
+          </div>
+        </div>
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 3h18v12H3z"></path><path d="M3 9h18"></path><path d="M9 21h6"></path><path d="M10 15h4"></path>
+            </svg>
+          </div>
+          <div>
+            <h3>Kosten-Nutzen-Analyse und ROI-Schätzungen</h3>
+            <p>Für informierte Entscheidungen</p>
+          </div>
+        </div>
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 4h14"></path><path d="M5 20h14"></path><path d="M9 16h6"></path><path d="M9 8h6"></path><path d="M12 4v16"></path>
+            </svg>
+          </div>
+          <div>
+            <h3>Workshop-Ergebnisse und Alignment im Team</h3>
+            <p>Alle ziehen am gleichen Strang</p>
+          </div>
+        </div>
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6z"></path><path d="M12 12v6"></path>
+            </svg>
+          </div>
+          <div>
+            <h3>Entscheidungsgrundlagen für Geschäftsführung</h3>
+            <p>Klar und nachvollziehbar</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-section faq-section">
+    <div class="container mx-auto px-4">
+      <div class="service-heading">
+        <h2>Häufige Fragen</h2>
+        <p>Antworten auf die wichtigsten Fragen</p>
+      </div>
+      <div class="faq-grid">
+        <details class="faq-card" open>
+          <summary>Wie lange dauert ein Strategieprojekt?</summary>
+          <p>Typisch 4–8 Wochen, je nach Komplexität. Für eine Standortbestimmung reichen oft 2–3 Sitzungen.</p>
+        </details>
+        <details class="faq-card">
+          <summary>Was kostet eine Strategieberatung?</summary>
+          <p>Kompakte Standortbestimmung ab ca. CHF 3'000–5'000, umfassendere Projekte ab ca. CHF 10'000+. Wir kalkulieren transparent.</p>
+        </details>
+        <details class="faq-card">
+          <summary>Brauchen wir danach weitere Unterstützung?</summary>
+          <p>Optional. Wir können Umsetzung begleiten, als Sparringspartner dienen oder Sie arbeiten die Roadmap selbst ab.</p>
+        </details>
+        <details class="faq-card">
+          <summary>Was unterscheidet Sie von klassischen Unternehmensberatungen?</summary>
+          <p>Wir setzen selbst um: Softwareentwicklung und Digitalisierung – Empfehlungen sind pragmatisch und realistisch.</p>
+        </details>
+        <details class="faq-card">
+          <summary>Können Sie auch bei der Umsetzung helfen?</summary>
+          <p>Ja, von der Strategie bis zur Umsetzung – alles aus einer Hand.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-section">
+    <div class="container mx-auto px-4">
+      <div class="cta-panel cta-panel-hero">
+        <h2>Bereit für strategische Klarheit?</h2>
+        <p>Buchen Sie einen kostenlosen 20-Minuten Check. Wir besprechen Ihre Situation und zeigen auf, wie eine klare Strategie Ihnen Sicherheit und Fokus gibt.</p>
+        <div class="cta-row" style="justify-content:center;">
+          <a href="{% url 'web:start' %}" class="btn-primary">Check buchen</a>
+          <a href="{% url 'web:contact' %}" class="btn-secondary">Oder schreiben Sie uns</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sticky-cta" id="sticky-cta">
+    <a href="{% url 'web:start' %}" class="sticky-cta-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="4" width="18" height="18" rx="4"></rect>
+        <path d="M8 2v4"></path><path d="M16 2v4"></path><path d="M3 10h18"></path>
+      </svg>
+      <span>Mehr erfahren?</span>
+    </a>
+  </div>
+
+</div>
+<script>
+  (function() {
+    const sticky = document.getElementById('sticky-cta');
+    if (!sticky) return;
+    const toggleVisibility = () => {
+      if (window.scrollY > 500) {
+        sticky.classList.add('visible');
+      } else {
+        sticky.classList.remove('visible');
+      }
+    };
+    document.addEventListener('scroll', toggleVisibility, { passive: true });
+    toggleVisibility();
+  })();
+</script>
+{% endblock %}

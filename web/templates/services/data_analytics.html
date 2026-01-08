@@ -1,0 +1,381 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}Datenanalyse & Data Science – Datalization{% endblock %}
+{% block head_meta %}
+  {% firstof page_title "Datenanalyse & Data Science – Datalization" as seo_title %}
+  {% firstof page_description "Aus Zahlen wird Klarheit – wir helfen KMUs, Überblick zu gewinnen und aus Erfahrung zu lernen." as seo_desc %}
+  <meta name="description" content="{{ seo_desc|truncatechars:160 }}">
+  <meta property="og:title" content="{{ seo_title }}">
+  <meta property="og:description" content="{{ seo_desc|truncatechars:200 }}">
+{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-background text-foreground">
+
+  <section class="service-hero service-hero--wide scroll-mt-20">
+    <div class="container mx-auto px-4 service-hero-grid hero-align">
+      <div class="hero-copy">
+        <h1>Aus Zahlen wird Klarheit</h1>
+        <p>Wir helfen KMUs, den Überblick zu gewinnen und aus Erfahrung zu lernen – verständlich, praxisnah und ohne Daten-Chaos.</p>
+        <div class="cta-row">
+          <a href="{% url 'web:start' %}" class="btn-primary">Kurz-Check buchen</a>
+          <a href="#beispiele" class="btn-secondary">Beispiel ansehen</a>
+        </div>
+      </div>
+      <div class="service-visual">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=80" alt="Data Analytics Dashboard mit Real-time KPIs und Predictive Insights" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="quick-check-banner">
+    <div class="container mx-auto px-4 text-center">
+      <div class="quick-check-inner">
+        <div class="qc-icon-pulse" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-lg text-primary">
+            <path d="M12 2l2.4 4.8L19 8l-4 4 1 6-4-2.4L8 18l1-6-4-4 4.6-.8L12 2z"></path>
+          </svg>
+        </div>
+        <h2>Passt das zu Ihnen?</h2>
+        <p>Wählen Sie, was auf Sie zutrifft:</p>
+        <div class="outcomes-wrap" style="margin-top:1.5rem;">
+          <ul class="outcomes-list">
+            <li class="outcomes-item"><span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg></span><span>Ich habe Zahlen, aber keinen Überblick</span></li>
+            <li class="outcomes-item"><span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg></span><span>Ich arbeite in Excel, aber es ist mühsam</span></li>
+            <li class="outcomes-item"><span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg></span><span>Wir wollen weniger manuelle Arbeit</span></li>
+            <li class="outcomes-item"><span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg></span><span>Wir möchten Prognosen/Planung verbessern</span></li>
+            <li class="outcomes-item"><span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg></span><span>Entscheidungen basieren zu oft auf Gefühl</span></li>
+            <li class="outcomes-item"><span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg></span><span>Wir wissen nicht, was wirklich profitabel ist</span></li>
+          </ul>
+        </div>
+        <div class="cta-row" style="justify-content:center;margin-top:1.25rem;">
+          <a href="{% url 'web:start' %}" class="btn-primary">Kostenlosen 20-Minuten Check buchen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-section outcomes-section">
+    <div class="container mx-auto px-4">
+      <div class="service-heading" style="text-align:left;max-width:820px;margin-left:auto;margin-right:auto;">
+        <h2>Was Sie am Ende haben</h2>
+        <p>Konkrete Verbesserungen in Ihrem Alltag – nicht nur schöne Dashboards.</p>
+      </div>
+      <div class="outcomes-two-col">
+        <div class="outcomes-wrap">
+          <ul class="outcomes-list">
+            <li class="outcomes-item"><span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg></span><span>Überblick über Umsatz, Deckung und Zeitverläufe auf einen Blick</span></li>
+            <li class="outcomes-item"><span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg></span><span>Frühwarnsignale bei Abweichungen – bevor Probleme entstehen</span></li>
+            <li class="outcomes-item"><span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg></span><span>Entscheidungen weniger nach Gefühl, mehr nach Sichtbarkeit</span></li>
+            <li class="outcomes-item"><span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg></span><span>Planung wird ruhiger (Personal, Einkauf, Kapazitäten)</span></li>
+            <li class="outcomes-item"><span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg></span><span>Weniger Zeit mit Excel-Arbeit, mehr Zeit für strategische Fragen</span></li>
+            <li class="outcomes-item"><span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg></span><span>Fundierte Basis für Gespräche mit Bank, Partnern oder Investoren</span></li>
+          </ul>
+        </div>
+        <div class="outcomes-visual">
+          <div class="ba-card ba-before">
+            <div class="ba-title">Vorher</div>
+            <div class="ba-lines">
+              <span style="width:78%"></span>
+              <span style="width:64%"></span>
+              <span style="width:88%"></span>
+            </div>
+            <div class="ba-caption">Excel-Chaos, keine Übersicht</div>
+          </div>
+          <div class="ba-card ba-after">
+            <div class="ba-title">Nachher</div>
+            <div class="ba-lines">
+              <span style="width:92%"></span>
+              <span style="width:85%"></span>
+              <span style="width:80%"></span>
+            </div>
+            <div class="ba-caption">Klare Kennzahlen, sofort verfügbar</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-section process-section">
+    <div class="container mx-auto px-4">
+      <div class="service-heading">
+        <h2>So arbeiten wir</h2>
+        <p>Von der Herausforderung zur Lösung – in klaren Schritten</p>
+      </div>
+      <div class="process-timeline">
+        <div class="process-item">
+          <div class="process-icon">
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="7" r="4"></circle>
+                <path d="M5.5 21a6.5 6.5 0 0 1 13 0"></path>
+              </svg>
+            </div>
+            <span class="process-number">1</span>
+          </div>
+          <div class="process-card">
+            <h3>Kennenlernen & Ziel klären</h3>
+            <p>Wir verstehen Ihre Herausforderung: Was soll besser werden? Welche Fragen bleiben heute unbeantwortet?</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-icon">
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 5h16"></path><path d="M4 9h16"></path><path d="M4 15h10"></path><path d="M4 19h6"></path>
+              </svg>
+            </div>
+            <span class="process-number">2</span>
+          </div>
+          <div class="process-card">
+            <h3>Datenquellen verbinden</h3>
+            <p>Daten aus Kasse, Excel, ERP oder Buchhaltung zusammenführen – und Struktur schaffen.</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-icon">
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M8 12h8"></path>
+                <path d="M12 8v8"></path>
+              </svg>
+            </div>
+            <span class="process-number">3</span>
+          </div>
+          <div class="process-card">
+            <h3>Struktur & KPIs definieren</h3>
+            <p>Gemeinsam festlegen, welche Kennzahlen wirklich wichtig sind – verständlich und umsetzbar.</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-icon">
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="14" rx="2"></rect>
+                <path d="M3 10h18"></path>
+              </svg>
+            </div>
+            <span class="process-number">4</span>
+          </div>
+          <div class="process-card">
+            <h3>Dashboard / Report bauen</h3>
+            <p>Übersichtliche Visualisierungen, die täglich nutzbar sind – ohne Schulung.</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-icon">
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 17l6-6 4 4 7-7"></path><path d="M14 7h7v7"></path>
+              </svg>
+            </div>
+            <span class="process-number">5</span>
+          </div>
+          <div class="process-card">
+            <h3>Prognosen & Automatisierung (Optional)</h3>
+            <p>Vorhersagen für Umsatz, Bedarf oder Risiken – damit Sie rechtzeitig planen.</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-icon">
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 4h14"></path><path d="M5 20h14"></path><path d="M9 16h6"></path><path d="M9 8h6"></path><path d="M12 4v16"></path>
+              </svg>
+            </div>
+            <span class="process-number">6</span>
+          </div>
+          <div class="process-card">
+            <h3>Übergabe & Schulung</h3>
+            <p>Verständliche Einführung, Fragen klären, Ansprechpartner bleiben.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="beispiele" class="service-section example-section">
+    <div class="container mx-auto px-4">
+      <div class="service-heading">
+        <h2>Beispiele aus der Praxis</h2>
+        <p>Branchen-neutral, aber nah am Alltag</p>
+      </div>
+      <div class="card-grid example-grid">
+        <div class="example-card">
+          <div class="example-icon">🍽️</div>
+          <div class="example-tag">Gastronomie</div>
+          <p>Mittag vs. Abend – welche Karte lohnt sich? Welche Gerichte bringen Marge?</p>
+        </div>
+        <div class="example-card">
+          <div class="example-icon">🛠️</div>
+          <div class="example-tag">Handwerk</div>
+          <p>Welche Aufträge bringen echten Gewinn? Wo geht Zeit verloren?</p>
+        </div>
+        <div class="example-card">
+          <div class="example-icon">🛡️</div>
+          <div class="example-tag">Versicherung</div>
+          <p>Welche Fälle häufen sich? Wo lohnt sich Prävention statt Reaktion?</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-section deliverables-section">
+    <div class="container mx-auto px-4">
+      <div class="service-heading">
+        <h2>Was wir liefern</h2>
+        <p>Konkrete Ergebnisse, sofort nutzbar</p>
+      </div>
+      <div class="deliverables-grid">
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6z"></path><path d="M12 12v6"></path>
+            </svg>
+          </div>
+          <div>
+            <h3>KPI-Set + Definitionen</h3>
+            <p>Klare Kennzahlen, die zu Ihrem Geschäft passen</p>
+          </div>
+        </div>
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="14" rx="2"></rect>
+              <path d="M3 10h18"></path>
+            </svg>
+          </div>
+          <div>
+            <h3>Dashboard (Power BI / Web)</h3>
+            <p>Interaktive Visualisierung Ihrer Daten</p>
+          </div>
+        </div>
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 5h16"></path><path d="M4 9h16"></path><path d="M4 15h10"></path><path d="M4 19h6"></path>
+            </svg>
+          </div>
+          <div>
+            <h3>Report-Automation</h3>
+            <p>Automatische Updates – keine manuelle Arbeit mehr</p>
+          </div>
+        </div>
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 3h18v12H3z"></path><path d="M3 9h18"></path><path d="M9 21h6"></path><path d="M10 15h4"></path>
+            </svg>
+          </div>
+          <div>
+            <h3>Datenmodell / Grundlage</h3>
+            <p>Saubere Struktur für zukünftige Erweiterungen</p>
+          </div>
+        </div>
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16v16H4z"></path><path d="M8 8h8v3H8z"></path><path d="M8 13h5v3H8z"></path>
+            </svg>
+          </div>
+          <div>
+            <h3>Dokumentation</h3>
+            <p>Alles verständlich erklärt – für Sie und Ihr Team</p>
+          </div>
+        </div>
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 4h14"></path><path d="M5 20h14"></path><path d="M9 16h6"></path><path d="M9 8h6"></path><path d="M12 4v16"></path>
+            </svg>
+          </div>
+          <div>
+            <h3>Einführung & Support</h3>
+            <p>Persönliche Schulung und laufende Unterstützung</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-section faq-section">
+    <div class="container mx-auto px-4">
+      <div class="service-heading">
+        <h2>Häufige Fragen</h2>
+        <p>Klarheit schaffen, bevor es losgeht</p>
+      </div>
+      <div class="faq-grid">
+        <details class="faq-card" open>
+          <summary>Muss ich neue Software kaufen?</summary>
+          <p>Nicht zwingend. Wir arbeiten mit dem, was Sie bereits haben. Falls nötig, empfehlen wir kosteneffiziente Lösungen wie Power BI oder Web-Dashboards.</p>
+        </details>
+        <details class="faq-card">
+          <summary>Was, wenn meine Daten unvollständig sind?</summary>
+          <p>Häufig der Fall: Wir strukturieren, zeigen Lücken und erzielen Klarheit auch mit 70% der Daten.</p>
+        </details>
+        <details class="faq-card">
+          <summary>Kann ich klein starten?</summary>
+          <p>Ja. Wir beginnen oft mit 2-3 wichtigen Kennzahlen und erweitern bei Mehrwert.</p>
+        </details>
+        <details class="faq-card">
+          <summary>Wer sieht meine Daten?</summary>
+          <p>Nur Berechtigte. Wir arbeiten vertraulich und unterschreiben bei Bedarf NDAs.</p>
+        </details>
+        <details class="faq-card">
+          <summary>Wie schnell sehe ich Ergebnisse?</summary>
+          <p>Erste Dashboards oft in 2–4 Wochen; komplexere Analysen brauchen etwas länger.</p>
+        </details>
+        <details class="faq-card">
+          <summary>Ist das ein Grossprojekt?</summary>
+          <p>Nein, wir gehen pragmatisch Schritt für Schritt vor – kein Big Bang.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-section">
+    <div class="container mx-auto px-4">
+      <div class="cta-panel cta-panel-hero">
+        <h2>Bereit für mehr Klarheit?</h2>
+        <p>Buchen Sie einen kostenlosen 20-Minuten Check. Wir schauen gemeinsam, ob und wie Datenanalyse Ihnen helfen kann.</p>
+        <div class="cta-row" style="justify-content:center;">
+          <a href="{% url 'web:start' %}" class="btn-primary">Jetzt Check buchen</a>
+          <a href="{% url 'web:contact' %}" class="btn-secondary">Kontakt aufnehmen</a>
+        </div>
+        <div class="cta-row" style="justify-content:center;margin-top:1rem;">
+          <a href="{% static 'docs/datenanalyse.pdf' %}" class="link-accent" download>📥 Datenanalyse &amp; Data Science – Kompakt erklärt (PDF)</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sticky-cta" id="sticky-cta">
+    <a href="{% url 'web:start' %}" class="sticky-cta-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="4" width="18" height="18" rx="4"></rect>
+        <path d="M8 2v4"></path><path d="M16 2v4"></path><path d="M3 10h18"></path>
+      </svg>
+      <span>Kurz-Check buchen</span>
+    </a>
+  </div>
+
+</div>
+<script>
+  (function() {
+    const sticky = document.getElementById('sticky-cta');
+    if (!sticky) return;
+    const toggleVisibility = () => {
+      if (window.scrollY > 500) {
+        sticky.classList.add('visible');
+      } else {
+        sticky.classList.remove('visible');
+      }
+    };
+    document.addEventListener('scroll', toggleVisibility, { passive: true });
+    toggleVisibility();
+  })();
+</script>
+{% endblock %}
