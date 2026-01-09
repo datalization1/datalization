@@ -353,6 +353,7 @@ export function Software({ language, onContact, onNavigateToFinder }: SoftwarePr
         title={t.outcomes.title}
         description={t.outcomes.description}
         outcomes={t.outcomes.items}
+        backgroundImage="https://images.unsplash.com/photo-1742072594013-c87f855e29ca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2Z0d2FyZSUyMGNvZGUlMjBkZXZlbG9wbWVudCUyMHNjcmVlbnxlbnwxfHx8fDE3Njc5NDYwMDF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
       />
 
       <ProcessSection

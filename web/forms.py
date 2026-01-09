@@ -6,12 +6,13 @@ from .models import ContactMessage, StartRequest
 class ContactForm(forms.ModelForm):
     class Meta:
         model = ContactMessage
-        fields = ["first_name", "last_name", "company", "email", "message"]
+        fields = ["first_name", "last_name", "company", "email", "phone", "message"]
         widgets = {
             "first_name": forms.TextInput(attrs={"placeholder": _("Vorname"), "class": "form-input"}),
             "last_name":  forms.TextInput(attrs={"placeholder": _("Nachname"), "class": "form-input"}),
             "company":    forms.TextInput(attrs={"placeholder": _("Firma (optional)"), "class": "form-input"}),
             "email":      forms.EmailInput(attrs={"placeholder": _("Ihre E-Mail"), "class": "form-input"}),
+            "phone":      forms.TextInput(attrs={"placeholder": _("Telefon (optional)"), "class": "form-input", "type": "tel"}),
             "message":    forms.Textarea(attrs={"rows": 6, "placeholder": _("Ihre Nachricht…"), "class": "form-textarea"}),
         }
 

@@ -5,37 +5,48 @@
 {% block title %}Passt das zu Ihnen? – Datalization{% endblock %}
 
 {% block content %}
-<div class="min-h-screen bg-background text-foreground">
+<div class="min-h-screen match-page bg-background text-foreground">
 
   <section class="match-hero scroll-mt-20">
-    <div class="container mx-auto px-4 match-grid">
-      <div>
-        <p class="match-kicker">3 Fragen – klare Empfehlung</p>
-        <h1>Passt das zu Ihnen?</h1>
-        <p class="match-subline">Beantworte drei kurze Fragen und wir zeigen dir, welche Lösung von Datalization am besten passt.</p>
-      </div>
-      <div class="match-cta-card">
-        <p class="text-muted">Kein Quiz-Hype – nur eine schnelle Einschätzung, um den richtigen Einstieg zu finden.</p>
-        <a href="{% url 'web:start' %}" class="btn-primary">Direkt Kurz-Check buchen</a>
-      </div>
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="match-hero-title">Was passt zu dir?</h1>
+      <p class="match-subline">Drei kurze Fragen – und du weisst, wie wir dir helfen können.</p>
     </div>
   </section>
 
-  <section class="service-section">
+  <section class="match-section">
     <div class="container mx-auto px-4">
-      <div class="service-heading">
-        <h2>Wähle die Aussagen, die am besten passen</h2>
-        <p>In drei Schritten zur Empfehlung</p>
-      </div>
-      <div class="match-questions" id="match-questions">
-        <!-- Questions rendered by JS -->
-      </div>
-      <div class="match-result card-surface" id="match-result" hidden>
-        <p class="mb-2"><strong>Empfehlung:</strong> <span id="match-reco">—</span></p>
-        <p class="text-muted mb-4">Wir melden uns mit einem kurzen 20-Minuten-Check und passen den Start auf deine Situation an.</p>
-        <div class="cta-row">
-          <a id="match-cta" href="{% url 'web:start' %}" class="btn-primary">Kostenlosen Check buchen</a>
-          <a href="{% url 'web:contact' %}" class="btn-secondary">Kontakt aufnehmen</a>
+      <div class="match-shell">
+        <div class="match-progress">
+          <div class="match-progress-label"><span id="match-progress-text">Frage 1 von 3</span></div>
+          <div id="match-percent">0%</div>
+        </div>
+        <div class="match-progress-bar"><div class="match-progress-fill" id="match-bar"></div></div>
+        <p class="match-helper" id="match-helper"></p>
+
+        <div class="match-questions" id="match-questions"></div>
+
+        <div class="match-actions" id="match-nav">
+          <button class="btn-secondary match-ghost" id="match-back" disabled style="display:none;">Zurück</button>
+          <button class="btn-primary btn-block match-primary" id="match-next">Weiter</button>
+        </div>
+
+        <div class="match-result card-surface" id="match-result" hidden>
+          <div class="match-result-card">
+            <div class="match-result-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2l2.5 5 5.5.5-4 3.7 1.2 5.3-5-2.7-5 2.7L8 11.2l-4-3.7 5.5-.5z"></path>
+              </svg>
+            </div>
+            <p class="match-result-kicker">Ergebnis</p>
+            <h3 class="section-title match-result-title">Basierend auf deinen Antworten scheint Folgendes gut zu passen:</h3>
+            <p class="text-muted match-result-subline">Im Gespräch schauen wir gemeinsam, was davon wirklich Sinn macht – und was nicht.</p>
+            <div id="match-recos" class="match-reco-list"></div>
+            <div class="match-cta-row">
+              <a id="match-cta" href="{% url 'web:booking' %}" class="btn-primary match-primary">Unverbindlich besprechen</a>
+              <button class="btn-secondary match-ghost" id="match-reset">Zurück</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -47,111 +58,497 @@
 {% block extra_js %}
 {{ block.super }}
 <script>
-  document.addEventListener("DOMContentLoaded", function(){
-    const data = [
-      {
-        id: "q1",
-        title: "Wie gut kennst du deine Kennzahlen?",
-        options: [
-          { value: "overview", label: "Ich habe Zahlen, aber keinen echten Überblick." },
-          { value: "excel", label: "Ich habe Excel-Listen, aber es ist mühsam." },
-          { value: "manual", label: "Wir arbeiten viel manuell / copy-paste." }
-        ]
-      },
-      {
-        id: "q2",
-        title: "Wie triffst du Entscheidungen?",
-        options: [
-          { value: "gutfeel", label: "Oft nach Bauchgefühl, wenig Datenbasis." },
-          { value: "plan", label: "Wir wollen Prognosen/Planung verbessern." },
-          { value: "integrate", label: "Systeme passen nicht zusammen / Medienbrüche." }
-        ]
-      },
-      {
-        id: "q3",
-        title: "Was ist dein Ziel?",
-        options: [
-          { value: "clarity", label: "Schnellen Überblick und Klarheit bekommen." },
-          { value: "automation", label: "Weniger manuelle Arbeit, mehr Automatisierung." },
-          { value: "build", label: "Ein Tool bauen lassen, das genau passt." }
-        ]
-      }
-    ];
+document.addEventListener("DOMContentLoaded", function(){
+  const qs = document.getElementById("match-questions");
+  const progressText = document.getElementById("match-progress-text");
+  const percentLabel = document.getElementById("match-percent");
+  const barFill = document.getElementById("match-bar");
+  const helper = document.getElementById("match-helper");
+  const backBtn = document.getElementById("match-back");
+  const nextBtn = document.getElementById("match-next");
+  const resultBox = document.getElementById("match-result");
+  const recosBox = document.getElementById("match-recos");
+  const ctaLink = document.getElementById("match-cta");
+  const resetBtn = document.getElementById("match-reset");
 
-    const scores = {
-      "Datenanalyse & Data Science": ["overview","gutfeel","plan","clarity"],
-      "Digitalisierung & Automatisierung": ["manual","integrate","automation"],
-      "Softwareentwicklung": ["excel","build"]
-    };
+  // Scoring buckets
+  const score = { data:0, digital:0, software:0, strategy:0 };
+  const answers = { q1:[], q2:[], q3:null };
 
-    const container = document.getElementById("match-questions");
-    const resultBox = document.getElementById("match-result");
-    const recoEl = document.getElementById("match-reco");
-    const cta = document.getElementById("match-cta");
+  // Question defs (texts)
+  const Q1 = {
+    id:"q1",
+    headline:"Wo stehst du gerade?",
+    title:"Was beschreibt deine aktuelle Situation am besten?",
+    subtitle:"Wähle bis zu 2 Antworten.",
+    type:"multi",
+    max:2,
+    options:[
+      {v:"q1_a1", label:"Ich habe Zahlen, aber keinen klaren Überblick"},
+      {v:"q1_a2", label:"Viele Dinge laufen noch manuell oder doppelt"},
+      {v:"q1_a3", label:"Wir nutzen mehrere Tools, die nicht richtig zusammenspielen"},
+      {v:"q1_a4", label:"Entscheidungen fühlen sich oft unsicher an"},
+      {v:"q1_a5", label:"Ich weiss nicht, wo ich am sinnvollsten ansetzen soll"},
+    ]
+  };
 
-    function render(){
-      container.innerHTML = "";
-      data.forEach((q, idx) => {
-        const card = document.createElement("div");
-        card.className = "glass-card match-card";
-        const h = document.createElement("h3");
-        h.textContent = `${idx+1}. ${q.title}`;
-        card.appendChild(h);
-        const list = document.createElement("div");
-        list.className = "qc-pill-list";
-        q.options.forEach(opt => {
-          const label = document.createElement("label");
-          label.className = "qc-pill";
-          const input = document.createElement("input");
-          input.type = "radio";
-          input.name = q.id;
-          input.value = opt.value;
-          label.appendChild(input);
-          const span = document.createElement("span");
-          span.textContent = opt.label;
-          label.appendChild(span);
-          list.appendChild(label);
-        });
-        card.appendChild(list);
-        container.appendChild(card);
-      });
+  const Q2_MAP = {
+    data: {
+      headline:"Was macht dir im Alltag am meisten Mühe?",
+      subtitle:"Was kostet dich aktuell am meisten Energie?",
+      title:"Was macht dir im Alltag dabei am meisten Mühe?",
+      type:"multi",
+      max:2,
+      options:[
+        {v:"d1", label:"Ich sehe Zahlen, aber keine Zusammenhänge", s:{data:2}},
+        {v:"d2", label:"Ich muss mir Infos mühsam zusammensuchen", s:{data:2,software:1}},
+        {v:"d3", label:"Auswertungen kommen zu spät oder sind unklar", s:{data:2,digital:1}},
+        {v:"d4", label:"Planung fühlt sich wie Raten an", s:{data:2,strategy:1}},
+        {v:"d5", label:"Ich vertraue den Zahlen nicht richtig", s:{data:2,strategy:1}},
+      ]
+    },
+    digital: {
+      headline:"Was macht dir im Alltag am meisten Mühe?",
+      subtitle:"Was kostet dich aktuell am meisten Energie?",
+      title:"Was kostet dich dabei am meisten Zeit oder Nerven?",
+      type:"multi", max:2,
+      options:[
+        {v:"g1", label:"Daten mehrfach erfassen", s:{digital:2,software:1}},
+        {v:"g2", label:"Viel Abstimmung per E-Mail oder Telefon", s:{digital:2,strategy:1}},
+        {v:"g3", label:"Fehler durch manuelle Arbeit", s:{digital:2}},
+        {v:"g4", label:"Keine klaren Abläufe", s:{digital:2,strategy:1}},
+        {v:"g5", label:"Zu wenig Zeit fürs Kerngeschäft", s:{digital:2}},
+      ]
+    },
+    software: {
+      headline:"Was macht dir im Alltag am meisten Mühe?",
+      subtitle:"Was kostet dich aktuell am meisten Energie?",
+      title:"Wo merkst du das am stärksten?",
+      type:"multi", max:2,
+      options:[
+        {v:"s1", label:"Daten müssen von Hand übertragen werden", s:{software:2,digital:1}},
+        {v:"s2", label:"Informationen sind an verschiedenen Orten", s:{software:2,data:1}},
+        {v:"s3", label:"Bestehende Software ist zu unflexibel", s:{software:2}},
+        {v:"s4", label:"Excel dient als Notlösung", s:{software:2,data:1}},
+        {v:"s5", label:"Prozesse brechen an Übergängen", s:{software:2,strategy:1}},
+      ]
+    },
+    strategy: { // also planning
+      headline:"Was macht dir im Alltag am meisten Mühe?",
+      subtitle:"Was kostet dich aktuell am meisten Energie?",
+      title:"Was trifft am ehesten zu?",
+      type:"multi", max:2,
+      options:[
+        {v:"t1", label:"Zu viele Möglichkeiten, zu wenig Orientierung", s:{strategy:2}},
+        {v:"t2", label:"Ich weiss nicht, womit ich starten soll", s:{strategy:2}},
+        {v:"t3", label:"Investitionen fühlen sich riskant an", s:{strategy:2}},
+        {v:"t4", label:"Mir fehlt ein Gesamtbild", s:{strategy:2,data:1}},
+        {v:"t5", label:"Ich brauche eine ehrliche Einschätzung von aussen", s:{strategy:2}},
+      ]
+    },
+    planning: { // shares mapping with strategy in Q1 A4
+      headline:"Was macht dir im Alltag am meisten Mühe?",
+      subtitle:"Was kostet dich aktuell am meisten Energie?",
+      title:"Warum fühlt sich das aktuell so an?",
+      type:"multi", max:2,
+      options:[
+        {v:"p1", label:"Mir fehlt eine klare Entscheidungsgrundlage", s:{data:2,strategy:1}},
+        {v:"p2", label:"Entwicklungen erkenne ich zu spät", s:{data:2,strategy:1}},
+        {v:"p3", label:"Ich reagiere mehr, als dass ich plane", s:{data:2}},
+        {v:"p4", label:"Zahlen widersprechen sich", s:{data:2,software:1}},
+        {v:"p5", label:"Ich weiss nicht, welchen Kennzahlen ich trauen soll", s:{data:2,strategy:1}},
+      ]
+    }
+  };
+
+  const Q3_MAP = {
+    data: {
+      headline:"Was wünschst du dir stattdessen?",
+      subtitle:"Was würde dir den grössten Mehrwert bringen?",
+      title:"Was würde dir aktuell am meisten helfen?",
+      type:"single",
+      options:[
+        {v:"d3_1", label:"Klarer Überblick auf einen Blick", s:{data:3}},
+        {v:"d3_2", label:"Bessere Planung für die Zukunft", s:{data:3,strategy:1}},
+        {v:"d3_3", label:"Frühere Hinweise statt spätes Reagieren", s:{data:3}},
+        {v:"d3_4", label:"Weniger Zeit für Auswertungen", s:{data:3,digital:1}},
+        {v:"d3_5", label:"Mehr Vertrauen in Entscheidungen", s:{data:3,strategy:1}},
+      ]
+    },
+    digital: {
+      headline:"Was wünschst du dir stattdessen?",
+      subtitle:"Was würde dir den grössten Mehrwert bringen?",
+      title:"Was würde dir aktuell am meisten helfen?",
+      type:"single",
+      options:[
+        {v:"g3_1", label:"Weniger manuelle Arbeit", s:{digital:3,software:1}},
+        {v:"g3_2", label:"Klarere Abläufe", s:{digital:3,strategy:1}},
+        {v:"g3_3", label:"Weniger Fehler", s:{digital:3}},
+        {v:"g3_4", label:"Zeitersparnis im Alltag", s:{digital:3}},
+        {v:"g3_5", label:"Mehr Fokus aufs Kerngeschäft", s:{digital:3}},
+      ]
+    },
+    software: {
+      headline:"Was wünschst du dir stattdessen?",
+      subtitle:"Was würde dir den grössten Mehrwert bringen?",
+      title:"Was würde dir aktuell am meisten helfen?",
+      type:"single",
+      options:[
+        {v:"s3_1", label:"Ein System, das wirklich passt", s:{software:3}},
+        {v:"s3_2", label:"Weniger Excel & Workarounds", s:{software:3,data:1}},
+        {v:"s3_3", label:"Saubere Übergaben zwischen Tools", s:{software:3,digital:1}},
+        {v:"s3_4", label:"Bessere Übersicht", s:{software:3,data:1}},
+        {v:"s3_5", label:"Eine Lösung, die mitwachsen kann", s:{software:3,strategy:1}},
+      ]
+    },
+    planning: {
+      headline:"Was wünschst du dir stattdessen?",
+      subtitle:"Was würde dir den grössten Mehrwert bringen?",
+      title:"Was würde dir aktuell am meisten helfen?",
+      type:"single",
+      options:[
+        {v:"p3_1", label:"Bessere Planung & ruhigere Entscheidungen", s:{data:3,strategy:1}},
+        {v:"p3_2", label:"Klarere Kennzahlen, denen ich vertraue", s:{data:3}},
+        {v:"p3_3", label:"Früher erkennen, was auf uns zukommt", s:{data:3}},
+        {v:"p3_4", label:"Weniger Überraschungen im Alltag", s:{data:3}},
+        {v:"p3_5", label:"Ein klarer Plan, was wir zuerst angehen", s:{strategy:3}},
+      ]
+    },
+    strategy: {
+      headline:"Was wünschst du dir stattdessen?",
+      subtitle:"Was würde dir den grössten Mehrwert bringen?",
+      title:"Was würde dir aktuell am meisten helfen?",
+      type:"single",
+      options:[
+        {v:"t3_1", label:"Klarer Plan für die nächsten Schritte", s:{strategy:3}},
+        {v:"t3_2", label:"Prioritäten statt Aktionismus", s:{strategy:3}},
+        {v:"t3_3", label:"Sicherheit vor Investitionen", s:{strategy:3}},
+        {v:"t3_4", label:"Eine ehrliche Einschätzung, was sich lohnt", s:{strategy:3}},
+        {v:"t3_5", label:"Orientierung, ohne ein Grossprojekt zu starten", s:{strategy:3}},
+      ]
+    }
+  };
+
+  function resetScores(){
+    score.data = score.digital = score.software = score.strategy = 0;
+  }
+
+  function applyQ1Scoring(vals){
+    vals.forEach(val=>{
+      if (val === "q1_a1") score.data += 3;
+      if (val === "q1_a2") score.digital += 3;
+      if (val === "q1_a3") score.software += 3;
+      if (val === "q1_a4") { score.data += 2; score.strategy += 2; }
+      if (val === "q1_a5") score.strategy += 3;
+    });
+  }
+
+  function renderQuestion(step){
+    qs.innerHTML = "";
+    let def;
+    if (step === 1) {
+      def = Q1;
+      if (helper) helper.textContent = "Wähle das aus, was deinem Alltag am nächsten kommt (bis zu 2).";
+    } else if (step === 2) {
+      const path = determinePath();
+      def = Q2_MAP[path] || Q2_MAP.strategy;
+      if (helper) helper.textContent = "Wähle bis zu 2 Optionen.";
+    } else {
+      const path = determinePath();
+      def = Q3_MAP[path] || Q3_MAP.strategy;
+      if (helper) helper.textContent = "Bitte wähle eine Option.";
     }
 
-    function computeRecommendation() {
-      const selected = Array.from(container.querySelectorAll("input[type='radio']:checked")).map(el => el.value);
-      if (selected.length < data.length) {
-        resultBox.hidden = true;
-        return;
-      }
-      let best = null;
-      let bestScore = -1;
-      Object.entries(scores).forEach(([service, keys])=>{
-        const score = selected.filter(v => keys.includes(v)).length;
-        if (score > bestScore) {
-          best = service;
-          bestScore = score;
+    const card = document.createElement("div");
+    card.className = "match-card";
+
+    const titleText = def.headline || def.title;
+    const subtitleText = def.headline ? (def.subtitle || def.title) : def.subtitle;
+
+    const h = document.createElement("h3");
+    h.className = "match-card-title";
+    h.textContent = titleText;
+    card.appendChild(h);
+
+    if (subtitleText) {
+      const sub = document.createElement("p");
+      sub.className = "match-subtext";
+      sub.textContent = subtitleText;
+      card.appendChild(sub);
+    }
+
+    const list = document.createElement("div");
+    list.className = "match-options";
+
+    def.options.forEach(opt=>{
+      const label = document.createElement("label");
+      label.className = "match-option";
+      const input = document.createElement("input");
+      input.type = def.type === "multi" ? "checkbox" : "radio";
+      input.name = def.id;
+      input.value = opt.v;
+      label.appendChild(input);
+      const span = document.createElement("span");
+      span.className = "opt-label";
+      span.textContent = opt.label;
+      label.appendChild(span);
+      const mark = document.createElement("span");
+      mark.className = "opt-check";
+      label.appendChild(mark);
+      list.appendChild(label);
+    });
+
+    card.appendChild(list);
+    qs.appendChild(card);
+
+    // Preselect existing answers
+    if (step === 1 && answers.q1.length){
+      answers.q1.forEach(v=>{
+        qs.querySelector(`input[value="${v}"]`)?.setAttribute("checked","checked");
+        qs.querySelector(`input[value="${v}"]`)?.parentElement.classList.add("selected");
+      });
+    }
+    if (step === 2 && answers.q2.length){
+      answers.q2.forEach(v=>{
+        qs.querySelector(`input[value="${v}"]`)?.setAttribute("checked","checked");
+      });
+    }
+    if (step === 3 && answers.q3){
+      qs.querySelector(`input[value="${answers.q3}"]`)?.setAttribute("checked","checked");
+    }
+
+    // selection handling
+    list.addEventListener("change", (e)=>{
+      if (e.target && e.target.tagName === "INPUT") {
+        if (def.type === "single") {
+          list.querySelectorAll("label").forEach(l=>l.classList.remove("selected"));
+          e.target.parentElement.classList.add("selected");
+        } else {
+          const max = def.max || 2;
+          const checkedVals = Array.from(list.querySelectorAll("input:checked")).map(i=>i.value);
+          if (checkedVals.length > max) {
+            e.target.checked = false;
+            return;
+          }
+          list.querySelectorAll("label").forEach(l=>l.classList.remove("selected"));
+          checkedVals.forEach(val=>{
+            list.querySelector(`input[value="${val}"]`)?.parentElement.classList.add("selected");
+          });
         }
-      });
-      recoEl.textContent = best || "Lassen Sie uns gemeinsam prüfen, was passt.";
-      const params = new URLSearchParams();
-      params.set("topic", best || "Unklar");
-      params.set("notes", "Match-Auswahl: " + selected.join(", "));
-      cta.href = "{% url 'web:start' %}?" + params.toString();
-      resultBox.hidden = false;
-    }
-
-    render();
-    container.addEventListener("change", function(e){
-      if (e.target && e.target.type === "radio") {
-        // highlight selection
-        const groupName = e.target.name;
-        container.querySelectorAll(`input[name='${groupName}']`).forEach(inp=>{
-          inp.parentElement.classList.remove("selected");
-        });
-        e.target.parentElement.classList.add("selected");
-        computeRecommendation();
       }
     });
+  }
+
+  function determinePath(){
+    const local = {data:0,digital:0,software:0,strategy:0};
+    answers.q1.forEach(val=>{
+      if (val === "q1_a1") local.data += 3;
+      if (val === "q1_a2") local.digital += 3;
+      if (val === "q1_a3") local.software += 3;
+      if (val === "q1_a4") { local.data += 2; local.strategy += 2; }
+      if (val === "q1_a5") local.strategy += 3;
+    });
+    const sorted = Object.entries(local).sort((a,b)=>b[1]-a[1]);
+    if (!sorted.length || sorted[0][1] === 0) return "strategy";
+    return sorted[0][0];
+  }
+
+  function validate(step){
+    const inputs = qs.querySelectorAll("input");
+    if (step === 1){
+      const checked = Array.from(inputs).filter(i=>i.checked);
+      return checked.length > 0 && checked.length <= (Q1.max || 2);
+    }
+    if (step === 2){
+      const checked = Array.from(inputs).filter(i=>i.checked);
+      return checked.length > 0 && checked.length <= 2;
+    }
+    if (step === 3){
+      return Array.from(inputs).some(i=>i.checked);
+    }
+    return false;
+  }
+
+  function capture(step){
+    const checked = Array.from(qs.querySelectorAll("input:checked")).map(i=>i.value);
+    if (step === 1) answers.q1 = checked;
+    if (step === 2) answers.q2 = checked;
+    if (step === 3) answers.q3 = checked[0] || null;
+  }
+
+  function applyScoring(){
+    resetScores();
+    if (answers.q1) applyQ1Scoring(answers.q1);
+
+    // Q2 scoring
+    const path = determinePath();
+    const q2def = Q2_MAP[path] || Q2_MAP.strategy;
+    const optMap2 = Object.fromEntries(q2def.options.map(o=>[o.v,o.s]));
+    answers.q2.forEach(v=>{
+      const s = optMap2[v];
+      if (s) Object.entries(s).forEach(([k,val])=> score[k]+=val);
+    });
+
+    // Q3 scoring
+    const q3def = Q3_MAP[path] || Q3_MAP.strategy;
+    const optMap3 = Object.fromEntries(q3def.options.map(o=>[o.v,o.s]));
+    if (answers.q3){
+      const s = optMap3[answers.q3];
+      if (s) Object.entries(s).forEach(([k,val])=> score[k]+=val);
+    }
+  }
+
+  function computeReco(){
+    applyScoring();
+    const entries = Object.entries(score);
+    entries.sort((a,b)=>b[1]-a[1]);
+    let [top1, top1Score] = entries[0];
+    let [top2, top2Score] = entries[1];
+
+    // tie-break
+    if (top1Score === top2Score) {
+      if (score.strategy >= 5) { top1="strategy"; top1Score=score.strategy; }
+      else {
+        const priority = ["data","digital","software","strategy"];
+        entries.sort((a,b)=> priority.indexOf(a[0]) - priority.indexOf(b[0]));
+        [top1] = entries;
+      }
+    }
+
+    const showSecond = top2Score >= (top1Score - 2);
+    renderReco(top1, showSecond ? top2 : null);
+  }
+
+  function renderReco(primary, secondary){
+    recosBox.innerHTML = "";
+    const texts = {
+      data:{
+        title:"Datenanalyse & Data Science",
+        body:"Du brauchst keine neuen Zahlen – sondern Klarheit. Wir machen Zusammenhänge sichtbar und helfen dir, ruhiger zu planen statt nur zu reagieren."
+      },
+      digital:{
+        title:"Digitalisierung",
+        body:"Du gewinnst Zeit zurück, indem wir manuelle Schritte vereinfachen oder automatisieren. Ziel: weniger Aufwand, weniger Fehler, mehr Fokus."
+      },
+      software:{
+        title:"Softwareentwicklung",
+        body:"Wenn Standardtools nicht passen, bauen wir eine Lösung, die deine Abläufe wirklich unterstützt – und Systeme sauber verbindet."
+      },
+      strategy:{
+        title:"Beratung & Strategie",
+        body:"Wir sortieren gemeinsam, was sich lohnt, und definieren einen klaren nächsten Schritt – ohne Aktionismus und ohne Overengineering."
+      }
+    };
+    const icons = {
+      data:"📊",
+      digital:"⚙️",
+      software:"💻",
+      strategy:"🧭"
+    };
+
+    const makeItem = (key)=>{
+      const wrap = document.createElement("div");
+      wrap.className = "match-reco-item";
+      const meta = document.createElement("div");
+      meta.className = "match-reco-meta";
+      const ico = document.createElement("div");
+      ico.className = "match-reco-icon";
+      ico.textContent = icons[key] || "★";
+      const txtWrap = document.createElement("div");
+      const h = document.createElement("p");
+      h.className = "match-reco-title";
+      h.textContent = texts[key]?.title || key;
+      const p = document.createElement("p");
+      p.className = "match-reco-sub";
+      p.textContent = texts[key]?.body || "";
+      txtWrap.appendChild(h);
+      txtWrap.appendChild(p);
+      meta.appendChild(ico);
+      meta.appendChild(txtWrap);
+      wrap.appendChild(meta);
+      const arrow = document.createElement("span");
+      arrow.className = "match-reco-arrow";
+      arrow.textContent = "→";
+      wrap.appendChild(arrow);
+      return wrap;
+    };
+
+    recosBox.appendChild(makeItem(primary));
+
+    if (secondary) {
+      recosBox.appendChild(makeItem(secondary));
+    }
+
+    // prepare CTA links with notes
+    const params = new URLSearchParams();
+    params.set("topic", texts[primary]?.title || primary);
+    const notes = [
+      answers.q1 ? "Q1: "+answers.q1 : null,
+      answers.q2.length ? "Q2: "+answers.q2.join(", ") : null,
+      answers.q3 ? "Q3: "+answers.q3 : null,
+      secondary ? "Second: "+(texts[secondary]?.title || secondary) : null
+    ].filter(Boolean).join(" | ");
+    if (notes) params.set("notes", notes);
+    ctaLink.href = "{% url 'web:booking' %}?"+params.toString();
+  }
+
+  // Flow controls
+  const totalSteps = 3;
+  let step = 1;
+  renderQuestion(step);
+  const updateProgress = (isResult=false)=>{
+    const pct = Math.round((step/totalSteps)*100);
+    if (percentLabel) percentLabel.textContent = isResult ? "Ergebnis" : (pct + "%");
+    if (barFill) barFill.style.width = pct + "%";
+    if (progressText) progressText.textContent = isResult ? "Ergebnis" : `Frage ${step} von ${totalSteps}`;
+  };
+  updateProgress();
+
+  backBtn.addEventListener("click", ()=>{
+    if (step <=1) return;
+    step--;
+    renderQuestion(step);
+    backBtn.disabled = step === 1;
+    backBtn.style.display = step === 1 ? "none" : "inline-flex";
+    nextBtn.textContent = "Weiter";
+    updateProgress();
   });
+
+  nextBtn.addEventListener("click", ()=>{
+    if (!validate(step)) return;
+    capture(step);
+    if (step < 3) {
+      step++;
+      renderQuestion(step);
+      backBtn.disabled = step === 1;
+      backBtn.style.display = step === 1 ? "none" : "inline-flex";
+      nextBtn.textContent = step === 3 ? "Ergebnis anzeigen" : "Weiter";
+      updateProgress();
+    } else {
+      computeReco();
+      resultBox.hidden = false;
+      qs.innerHTML = "";
+      helper.textContent = "Das ist deine Einschätzung. Du kannst deine Antworten anpassen.";
+      backBtn.disabled = true;
+      backBtn.style.display = "none";
+      nextBtn.disabled = true;
+      updateProgress(true);
+      document.getElementById("match-nav").style.display = "none";
+    }
+  });
+
+  resetBtn?.addEventListener("click", ()=>{
+    answers.q1 = null; answers.q2=[]; answers.q3=null;
+    resetScores();
+    step = 1;
+    backBtn.disabled = true;
+    backBtn.style.display = "none";
+    nextBtn.disabled = false;
+    document.getElementById("match-nav").style.display = "flex";
+    renderQuestion(step);
+    resultBox.hidden = true;
+    updateProgress();
+  });
+});
 </script>
 {% endblock %}

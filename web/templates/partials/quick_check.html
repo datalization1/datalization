@@ -32,14 +32,14 @@
 
         <div class="quick-check-actions">
           <button type="button" class="btn btn-primary qc-run">Empfehlung anzeigen</button>
-          <a href="{% url 'web:start' %}" class="btn btn-secondary qc-start-link">Unverbindlich starten</a>
+          <a href="{% url 'web:booking' %}" class="btn btn-secondary qc-start-link">Unverbindlich starten</a>
         </div>
       </form>
 
       <div class="quick-check-result text-muted" hidden>
         <p class="mb-2"><strong>Empfehlung:</strong> <span class="qc-reco">—</span></p>
         <p class="mb-4">Wir melden uns gern für einen kurzen 20-Minuten-Check.</p>
-        <a href="{% url 'web:start' %}" class="btn btn-primary btn-sm qc-start-link-secondary">Kurz-Check buchen</a>
+        <a href="{% url 'web:booking' %}" class="btn btn-primary btn-sm qc-start-link-secondary">Kurz-Check buchen</a>
       </div>
     </div>
   </div>
@@ -80,7 +80,7 @@
       const urlParams = new URLSearchParams();
       if (reco) urlParams.set("topic", reco);
       if (detail) urlParams.set("notes", detail);
-      const targetUrl = "{% url 'web:start' %}?" + urlParams.toString();
+      const targetUrl = "{% url 'web:booking' %}?" + urlParams.toString();
       startLinks.forEach((link) => link.setAttribute("href", targetUrl));
     });
   });

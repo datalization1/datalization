@@ -5,255 +5,95 @@
 {% block title %}Datalization – {% trans "Case Studies" %}{% endblock %}
 
 {% block content %}
-<div class="min-h-screen bg-background text-foreground">
+<div class="min-h-screen bg-background text-foreground cases-page">
+  <!-- Hero -->
+  <section class="cases-hero scroll-mt-20">
+    <div class="container mx-auto px-4 text-center">
+      <h1>Case Studies</h1>
+      <p class="cases-subtext">
+        {% if LANGUAGE_CODE == 'de' %}
+          Erfolgsgeschichten unserer Kunden – von der Herausforderung zur Lösung
+        {% else %}
+          Success stories of our clients – from challenge to solution
+        {% endif %}
+      </p>
+      <p class="cases-subtext-muted">
+        {% if LANGUAGE_CODE == 'de' %}
+          Erfahren Sie, wie wir Unternehmen bei ihrer digitalen Transformation unterstützen und messbare Erfolge erzielen.
+        {% else %}
+          See how we support companies in their digital transformation and achieve measurable results.
+        {% endif %}
+      </p>
 
-  <!-- Hero: Titel + Unterzeile -->
-  <section class="scroll-mt-20">
-      <div class="case-hero">
-        <div class="container max-w-3xl mx-auto text-center">
-          <h1 class="case-hero-title">Case Studies</h1>
-          <p class="text-muted max-w-2xl mx-auto">
-            {% if LANGUAGE_CODE == 'de' %}
-              Erfolgsgeschichten unserer Kunden – von der Herausforderung zur Lösung
-            {% else %}
-              Success stories of our clients – from challenge to solution
-            {% endif %}
-          </p>
-        </div>
-      </div>
+    </div>
+  </section>
 
-      <!-- Grid mit Case Cards -->
-      <div class="case-list max-w-7xl mx-auto">
+  <!-- Case List -->
+  <section class="cases-list-section">
+    <div class="container mx-auto px-4">
+      <div class="cases-list-grid">
         {% for c in cases %}
-          <div class="case-row-outer {% cycle 'layout-left' 'layout-right' %}">
-            {% if forloop.counter|divisibleby:2 %}
-              <!-- EVEN (Case right, Icon left) -->
-              <div class="case-icon-col">
-                {% with idx=forloop.counter|stringformat:"s" %}
-                  {% include "icons/decorative-"|add:idx|add:".html" %}
-                {% endwith %}
-              </div>
-              <div class="case-card-col">
-                <article class="case-card fade-in-on-scroll">
+          <article
+            class="case-feature-card"
+            id="case-{{ c.slug }}"
+            role="button"
+            tabindex="0"
+            data-case-title="{{ c.title|escape }}"
+            data-case-client="{{ c.client_brief|default:''|escape }}"
+            data-case-summary="{{ c.summary|default:''|escape }}"
+            data-case-problem="{{ c.problem_brief|default:''|escape }}"
+            data-case-results="{{ c.result_list|join:'||'|default:''|escape }}"
+            data-case-category="{{ c.category|default:''|escape }}"
+            data-case-image="{% if c.image %}{{ c.image.url }}{% endif %}"
+            data-case-tech="{{ c.tech_stack|default:''|escape }}"
+          >
+            <div class="case-feature-media">
+              {% if c.category %}
+                <span class="case-feature-badge">{{ c.category }}</span>
+              {% endif %}
+              {% if c.image %}
+                <img src="{{ c.image.url }}" alt="{{ c.title }}" loading="lazy" class="case-feature-img">
+              {% else %}
+                <div class="case-feature-placeholder">D</div>
+              {% endif %}
+            </div>
+            <div class="case-feature-content">
+              <h3>{{ c.title }}</h3>
+              {% if c.client_brief %}
+                <p class="case-feature-meta">{{ c.client_brief }}</p>
+              {% endif %}
+              {% with summary_text=c.summary|default:c.problem_brief %}
+                {% if summary_text %}
+                  <p class="case-feature-summary">{{ summary_text|truncatechars:220 }}</p>
+                {% endif %}
+              {% endwith %}
 
-                  <!-- Bild + Kategorie-Badge -->
-                  <div class="case-image">
-                    {% if c.image %}
-                      <img
-                        src="{{ c.image.url }}"
-                        alt="{{ c.title }}"
-                        class="case-img"
-                        loading="lazy"
-                        decoding="async"
-                      >
-                    {% else %}
-                      <div class="case-img case-img--placeholder">D</div>
-                    {% endif %}
+              {% if c.problem_brief %}
+                <div class="case-feature-section">
+                  <div class="case-feature-label">{% if LANGUAGE_CODE == 'de' %}Herausforderung{% else %}Challenge{% endif %}</div>
+                  <p>{{ c.problem_brief|truncatechars:220 }}</p>
+                </div>
+              {% endif %}
 
-                    {% if c.category %}
-                      <div class="case-badge">
-                        <span class="badge-primary">{{ c.category }}</span>
-                      </div>
-                    {% endif %}
-                  </div>
+              {% if c.summary %}
+                <div class="case-feature-section">
+                  <div class="case-feature-label">{% if LANGUAGE_CODE == 'de' %}Lösung{% else %}Solution{% endif %}</div>
+                  <p>{{ c.summary|truncatechars:220 }}</p>
+                </div>
+              {% endif %}
 
-                  <!-- Inhalt -->
-                  <div class="p-6">
-                    <h2 class="mb-3">
-                      <a href="{% url 'web:case_detail' slug=c.slug %}">
-                        {{ c.title }}
-                      </a>
-                    </h2>
-
-                    <p class="text-muted mb-6">
-                      {% if c.summary %}
-                        {{ c.summary|truncatechars:200 }}
-                      {% elif c.problem_brief %}
-                        {{ c.problem_brief|truncatechars:200 }}
-                      {% else %}
-                        {% if LANGUAGE_CODE == 'de' %}
-                          Ausgewähltes Kundenprojekt mit messbaren Ergebnissen.
-                        {% else %}
-                          Selected client project with measurable results.
-                        {% endif %}
-                      {% endif %}
-                    </p>
-
-                    <!-- Client / Problem / Result – Figma-Style Rows -->
-                    <div class="case-rows">
-
-                      <!-- Client -->
-                      <div class="case-row case-row--client">
-                        <div class="case-row-icon-wrap"></div>
-                        <div>
-                          <div class="case-row-label">
-                            {% trans "Client" %}
-                          </div>
-                          <p class="text-muted case-row-text">
-                            {{ c.client_brief|default:"–" }}
-                          </p>
-                        </div>
-                      </div>
-
-                      <!-- Problem -->
-                      <div class="case-row case-row--problem">
-                        <div class="case-row-icon-wrap"></div>
-                        <div>
-                          <div class="case-row-label">
-                            {% trans "Problem" %}
-                          </div>
-                          <p class="text-muted case-row-text">
-                            {{ c.problem_brief|default:"–" }}
-                          </p>
-                        </div>
-                      </div>
-
-                      <!-- Result -->
-                      <div class="case-row case-row--result">
-                        <div class="case-row-icon-wrap"></div>
-                        <div>
-                          <div class="case-row-label">
-                            {% trans "Result" %}
-                          </div>
-                          {% if c.result_list %}
-                            <ul class="text-muted" style="margin:0; padding-left:1.1rem;">
-                              {% for item in c.result_list %}
-                                <li>{{ item }}</li>
-                              {% endfor %}
-                            </ul>
-                          {% else %}
-                            <p class="text-muted case-row-text">–</p>
-                          {% endif %}
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- CTA -->
-                    <a class="view-more-btn" href="{% url 'web:case_detail' slug=c.slug %}">
-                      {% if LANGUAGE_CODE == 'de' %}Details ansehen{% else %}View details{% endif %}
-                      <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="7" y1="17" x2="17" y2="7"></line>
-                        <polyline points="7 7 17 7 17 17"></polyline>
-                      </svg>
-                    </a>
-                  </div>
-                </article>
-              </div>
-            {% else %}
-              <!-- ODD (Case left, Icon right) -->
-              <div class="case-card-col">
-                <article class="case-card fade-in-on-scroll">
-
-                  <!-- Bild + Kategorie-Badge -->
-                  <div class="case-image">
-                    {% if c.image %}
-                      <img
-                        src="{{ c.image.url }}"
-                        alt="{{ c.title }}"
-                        class="case-img"
-                        loading="lazy"
-                        decoding="async"
-                      >
-                    {% else %}
-                      <div class="case-img case-img--placeholder">D</div>
-                    {% endif %}
-
-                    {% if c.category %}
-                      <div class="case-badge">
-                        <span class="badge-primary">{{ c.category }}</span>
-                      </div>
-                    {% endif %}
-                  </div>
-
-                  <!-- Inhalt -->
-                  <div class="p-6">
-                    <h2 class="mb-3">
-                      <a href="{% url 'web:case_detail' slug=c.slug %}">
-                        {{ c.title }}
-                      </a>
-                    </h2>
-
-                    <p class="text-muted mb-6">
-                      {% if c.summary %}
-                        {{ c.summary|truncatechars:200 }}
-                      {% elif c.problem_brief %}
-                        {{ c.problem_brief|truncatechars:200 }}
-                      {% else %}
-                        {% if LANGUAGE_CODE == 'de' %}
-                          Ausgewähltes Kundenprojekt mit messbaren Ergebnissen.
-                        {% else %}
-                          Selected client project with measurable results.
-                        {% endif %}
-                      {% endif %}
-                    </p>
-
-                    <!-- Client / Problem / Result – Figma-Style Rows -->
-                    <div class="case-rows">
-
-                      <!-- Client -->
-                      <div class="case-row case-row--client">
-                        <div class="case-row-icon-wrap"></div>
-                        <div>
-                          <div class="case-row-label">
-                            {% trans "Client" %}
-                          </div>
-                          <p class="text-muted case-row-text">
-                            {{ c.client_brief|default:"–" }}
-                          </p>
-                        </div>
-                      </div>
-
-                      <!-- Problem -->
-                      <div class="case-row case-row--problem">
-                        <div class="case-row-icon-wrap"></div>
-                        <div>
-                          <div class="case-row-label">
-                            {% trans "Problem" %}
-                          </div>
-                          <p class="text-muted case-row-text">
-                            {{ c.problem_brief|default:"–" }}
-                          </p>
-                        </div>
-                      </div>
-
-                      <!-- Result -->
-                      <div class="case-row case-row--result">
-                        <div class="case-row-icon-wrap"></div>
-                        <div>
-                          <div class="case-row-label">
-                            {% trans "Result" %}
-                          </div>
-                          {% if c.result_list %}
-                            <ul class="text-muted" style="margin:0; padding-left:1.1rem;">
-                              {% for item in c.result_list %}
-                                <li>{{ item }}</li>
-                              {% endfor %}
-                            </ul>
-                          {% else %}
-                            <p class="text-muted case-row-text">–</p>
-                          {% endif %}
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- CTA -->
-                    <a class="view-more-btn" href="{% url 'web:case_detail' slug=c.slug %}">
-                      {% if LANGUAGE_CODE == 'de' %}Details ansehen{% else %}View details{% endif %}
-                      <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="7" y1="17" x2="17" y2="7"></line>
-                        <polyline points="7 7 17 7 17 17"></polyline>
-                      </svg>
-                    </a>
-                  </div>
-                </article>
-              </div>
-              <div class="case-icon-col">
-                {% with idx=forloop.counter|stringformat:"s" %}
-                  {% include "icons/decorative-"|add:idx|add:".html" %}
-                {% endwith %}
-              </div>
-            {% endif %}
-          </div>
+              {% if c.result_list %}
+                <div class="case-feature-section">
+                  <div class="case-feature-label">{% if LANGUAGE_CODE == 'de' %}Ergebnisse{% else %}Results{% endif %}</div>
+                  <ul class="case-feature-results">
+                    {% for item in c.result_list %}
+                      <li><span class="case-result-icon">✔</span>{{ item|truncatechars:120 }}</li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
+            </div>
+          </article>
         {% empty %}
           <p class="text-muted text-center py-10">
             {% if LANGUAGE_CODE == 'de' %}
@@ -266,34 +106,158 @@
       </div>
     </div>
   </section>
-  <section class="case-cta-wrap">
-  <div class="container case-cta-inner">
-    <h2 class="case-cta-title">
-      {% if LANGUAGE_CODE == 'de' %}
-        Ihr Projekt könnte das nächste sein
-      {% else %}
-        Your project could be the next one
-      {% endif %}
-    </h2>
-    <p class="case-cta-text">
-      {% if LANGUAGE_CODE == 'de' %}
-        Lassen Sie uns gemeinsam Ihre Erfolgsgeschichte schreiben.
-      {% else %}
-        Let’s write your next success story together.
-      {% endif %}
-    </p>
-    <a href="/#contact" class="case-cta-btn">
-      {% if LANGUAGE_CODE == 'de' %}Projekt starten{% else %}Start a project{% endif %}
-      <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="7" y1="17" x2="17" y2="7"></line>
-        <polyline points="7 7 17 7 17 17"></polyline>
-      </svg>
-    </a>
-  </div>
-</section>
 </div>
-{% endblock %}
 
-{% block extra_scripts %}
-  <script src="{% static 'js/case-icons.js' %}"></script>
+<!-- Case Modal -->
+<div class="case-modal" id="case-modal" hidden>
+  <div class="case-modal__backdrop"></div>
+  <div class="case-modal__dialog">
+    <button class="case-modal__close" id="case-modal-close" aria-label="Close">×</button>
+    <div class="case-modal__media">
+      <span class="case-feature-badge" id="case-modal-badge" hidden></span>
+      <img id="case-modal-img" alt="">
+    </div>
+    <div class="case-modal__body">
+      <h3 id="case-modal-title"></h3>
+      <p class="case-feature-meta" id="case-modal-client"></p>
+      <p class="case-feature-summary" id="case-modal-summary"></p>
+
+      <div class="case-feature-section" id="modal-problem" hidden>
+        <div class="case-feature-label">{% if LANGUAGE_CODE == 'de' %}Herausforderung{% else %}Challenge{% endif %}</div>
+        <p></p>
+      </div>
+
+      <div class="case-feature-section" id="modal-solution" hidden>
+        <div class="case-feature-label">{% if LANGUAGE_CODE == 'de' %}Lösung{% else %}Solution{% endif %}</div>
+        <p></p>
+      </div>
+
+      <div class="case-feature-section" id="modal-results" hidden>
+        <div class="case-feature-label">{% if LANGUAGE_CODE == 'de' %}Ergebnisse{% else %}Results{% endif %}</div>
+        <ul class="case-feature-results"></ul>
+      </div>
+
+      <div class="case-feature-section" id="modal-tech" hidden>
+        <div class="case-feature-label">{% if LANGUAGE_CODE == 'de' %}Technologien{% else %}Technologies{% endif %}</div>
+        <div class="case-feature-tags"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function(){
+    const modal = document.getElementById('case-modal');
+    const closeBtn = document.getElementById('case-modal-close');
+    const imgEl = document.getElementById('case-modal-img');
+    const badgeEl = document.getElementById('case-modal-badge');
+    const titleEl = document.getElementById('case-modal-title');
+    const clientEl = document.getElementById('case-modal-client');
+    const summaryEl = document.getElementById('case-modal-summary');
+    const problemWrap = document.getElementById('modal-problem');
+    const solutionWrap = document.getElementById('modal-solution');
+    const resultsWrap = document.getElementById('modal-results');
+    const techWrap = document.getElementById('modal-tech');
+
+    function openModal(data){
+      titleEl.textContent = data.title || '';
+      clientEl.textContent = data.client || '';
+      summaryEl.textContent = data.summary || '';
+
+      if (data.image) {
+        imgEl.src = data.image;
+        imgEl.alt = data.title || '';
+      } else {
+        imgEl.src = '';
+        imgEl.alt = '';
+      }
+
+      if (data.category) {
+        badgeEl.hidden = false;
+        badgeEl.textContent = data.category;
+      } else {
+        badgeEl.hidden = true;
+      }
+
+      if (data.problem) {
+        problemWrap.hidden = false;
+        problemWrap.querySelector('p').textContent = data.problem;
+      } else {
+        problemWrap.hidden = true;
+      }
+
+      if (data.solution) {
+        solutionWrap.hidden = false;
+        solutionWrap.querySelector('p').textContent = data.solution;
+      } else {
+        solutionWrap.hidden = true;
+      }
+
+      const resultsList = resultsWrap.querySelector('ul');
+      resultsList.innerHTML = '';
+      if (data.results && data.results.length) {
+        resultsWrap.hidden = false;
+        data.results.forEach(item=>{
+          const li = document.createElement('li');
+          const icon = document.createElement('span');
+          icon.className = 'case-result-icon';
+          icon.textContent = '✔';
+          li.appendChild(icon);
+          li.appendChild(document.createTextNode(item));
+          resultsList.appendChild(li);
+        });
+      } else {
+        resultsWrap.hidden = true;
+      }
+
+      const techList = techWrap.querySelector('.case-feature-tags');
+      techList.innerHTML = '';
+      if (data.tech && data.tech.length) {
+        techWrap.hidden = false;
+        data.tech.forEach(tag=>{
+          const span = document.createElement('span');
+          span.className = 'case-tech-tag';
+          span.textContent = tag;
+          techList.appendChild(span);
+        });
+      } else {
+        techWrap.hidden = true;
+      }
+
+      modal.hidden = false;
+      document.body.classList.add('modal-open');
+    }
+
+    function closeModal(){
+      modal.hidden = true;
+      document.body.classList.remove('modal-open');
+    }
+
+    document.querySelectorAll('.case-feature-card').forEach(card=>{
+      card.addEventListener('click', ()=>{
+        const resRaw = card.dataset.caseResults || '';
+        const resArr = resRaw ? resRaw.split('||').filter(Boolean) : [];
+        const techRaw = card.dataset.caseTech || '';
+        const techArr = techRaw ? techRaw.split(',').map(t=>t.trim()).filter(Boolean) : [];
+        openModal({
+          title: card.dataset.caseTitle || '',
+          client: card.dataset.caseClient || '',
+          summary: card.dataset.caseSummary || '',
+          problem: card.dataset.caseProblem || '',
+          solution: card.dataset.caseSummary || '',
+          results: resArr,
+          category: card.dataset.caseCategory || '',
+          image: card.dataset.caseImage || '',
+          tech: techArr
+        });
+      });
+      card.addEventListener('keypress',(e)=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); card.click(); } });
+    });
+
+    closeBtn?.addEventListener('click', closeModal);
+    modal?.addEventListener('click',(e)=>{ if(e.target === modal || e.target.classList.contains('case-modal__backdrop')) closeModal(); });
+    document.addEventListener('keydown',(e)=>{ if(e.key==='Escape' && !modal.hidden) closeModal(); });
+  })();
+</script>
 {% endblock %}
+</div>

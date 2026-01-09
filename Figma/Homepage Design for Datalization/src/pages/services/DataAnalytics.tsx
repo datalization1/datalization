@@ -482,6 +482,7 @@ export function DataAnalytics({ language, onContact, onNavigateToFinder }: DataA
         description={t.outcomes.description}
         outcomes={t.outcomes.items}
         visual={<OutcomesVisual />}
+        backgroundImage="https://images.unsplash.com/photo-1723987251277-18fc0a1effd0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXRhJTIwYW5hbHl0aWNzJTIwY2hhcnRzJTIwZ3JhcGhzfGVufDF8fHx8MTc2Nzk0NjAwMXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
       />
 
       <ProcessSection

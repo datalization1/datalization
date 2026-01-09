@@ -24,7 +24,7 @@ const translations = {
       {
         title: 'Wo stehst du gerade?',
         subtitle: 'Was beschreibt deine aktuelle Situation am besten?',
-        type: 'single' as const,
+        type: 'multi' as const,
         options: [
           { id: 'no-overview', label: 'Ich habe Zahlen, aber keinen Überblick', scores: { 'data-analytics': 2, 'consulting': 1 } },
           { id: 'excel', label: 'Ich arbeite viel mit Excel oder Listen', scores: { 'software': 2, 'digitalization': 1 } },
@@ -35,9 +35,8 @@ const translations = {
       },
       {
         title: 'Was macht dir im Alltag am meisten Mühe?',
-        subtitle: 'Was kostet dich aktuell am meisten Energie? (max. 2 auswählbar)',
+        subtitle: 'Was kostet dich aktuell am meisten Energie?',
         type: 'multi' as const,
-        maxSelections: 2,
         options: [
           { id: 'decisions', label: 'Entscheidungen fühlen sich unsicher an', scores: { 'data-analytics': 2, 'consulting': 1 } },
           { id: 'admin', label: 'Zu viel Zeit geht für Administration drauf', scores: { 'digitalization': 2, 'software': 1 } },
@@ -49,7 +48,7 @@ const translations = {
       {
         title: 'Was wünschst du dir stattdessen?',
         subtitle: 'Was würde dir den grössten Mehrwert bringen?',
-        type: 'single' as const,
+        type: 'multi' as const,
         options: [
           { id: 'overview', label: 'Klarer Überblick auf einen Blick', scores: { 'data-analytics': 2, 'software': 1 } },
           { id: 'automation', label: 'Weniger manuelle Arbeit', scores: { 'digitalization': 2, 'software': 1 } },
@@ -84,32 +83,31 @@ const translations = {
   },
   en: {
     title: 'What fits your needs?',
-    subtitle: 'Three quick questions – and you\'ll know how we can help',
+    subtitle: 'Three quick questions – and you\\\'ll know how we can help',
     nextButton: 'Next',
     backButton: 'Back',
     showResult: 'Show result',
     resultTitle: 'Based on your answers, the following seems to be a good fit:',
-    resultSubtitle: 'In a conversation, we\'ll look together at what really makes sense – and what doesn\'t.',
+    resultSubtitle: 'In a conversation, we\\\'ll look together at what really makes sense – and what doesn\\\'t.',
     ctaPrimary: 'Schedule a call',
     ctaSecondary: 'Learn more',
     questions: [
       {
         title: 'Where are you right now?',
         subtitle: 'What best describes your current situation?',
-        type: 'single' as const,
+        type: 'multi' as const,
         options: [
           { id: 'no-overview', label: 'I have data, but no overview', scores: { 'data-analytics': 2, 'consulting': 1 } },
           { id: 'excel', label: 'I work a lot with Excel or lists', scores: { 'software': 2, 'digitalization': 1 } },
           { id: 'manual', label: 'Many things are still done manually', scores: { 'digitalization': 2, 'software': 1 } },
-          { id: 'systems', label: 'Our systems don\'t fit together properly', scores: { 'software': 2, 'consulting': 1 } },
-          { id: 'profit', label: 'I don\'t know exactly where we make or lose money', scores: { 'data-analytics': 2, 'consulting': 1 } },
+          { id: 'systems', label: 'Our systems don\\\'t fit together properly', scores: { 'software': 2, 'consulting': 1 } },
+          { id: 'profit', label: 'I don\\\'t know exactly where we make or lose money', scores: { 'data-analytics': 2, 'consulting': 1 } },
         ],
       },
       {
         title: 'What causes you the most trouble in everyday life?',
-        subtitle: 'What currently costs you the most energy? (max. 2 selectable)',
+        subtitle: 'What currently costs you the most energy?',
         type: 'multi' as const,
-        maxSelections: 2,
         options: [
           { id: 'decisions', label: 'Decisions feel uncertain', scores: { 'data-analytics': 2, 'consulting': 1 } },
           { id: 'admin', label: 'Too much time spent on administration', scores: { 'digitalization': 2, 'software': 1 } },
@@ -121,7 +119,7 @@ const translations = {
       {
         title: 'What would you like instead?',
         subtitle: 'What would bring you the greatest benefit?',
-        type: 'single' as const,
+        type: 'multi' as const,
         options: [
           { id: 'overview', label: 'Clear overview at a glance', scores: { 'data-analytics': 2, 'software': 1 } },
           { id: 'automation', label: 'Less manual work', scores: { 'digitalization': 2, 'software': 1 } },
@@ -364,40 +362,68 @@ export function ServiceFinder({ language, onServiceClick, scrollToContact }: Ser
                 <p className="text-zinc-400 mb-8">{currentQuestion.subtitle}</p>
 
                 {/* Options */}
-                <div className="space-y-3 mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                   {currentQuestion.options.map((option, index) => {
                     const isSelected = answers[currentStep]?.includes(option.id);
+                    const isMulti = currentQuestion.type === 'multi';
+                    const atMaxSelections = isMulti && currentQuestion.maxSelections && 
+                      (answers[currentStep]?.length || 0) >= currentQuestion.maxSelections;
+                    const isDisabled = isMulti && atMaxSelections && !isSelected;
+                    
                     return (
                       <motion.button
                         key={option.id}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.3, delay: index * 0.05 }}
                         onClick={() => handleOptionSelect(option.id)}
-                        className={`w-full text-left p-4 rounded-xl border-2 transition-all ${
+                        disabled={isDisabled}
+                        className={`group relative text-left p-6 rounded-2xl border-2 transition-all duration-300 ${
                           isSelected
-                            ? 'border-[#f7931a] bg-[#f7931a]/10 text-white'
-                            : 'border-zinc-700 hover:border-zinc-600 bg-zinc-800/50'
+                            ? 'border-[#f7931a] bg-gradient-to-br from-[#f7931a]/20 to-[#f7931a]/5 shadow-lg shadow-[#f7931a]/20'
+                            : isDisabled
+                            ? 'border-zinc-800 bg-zinc-900/30 opacity-50 cursor-not-allowed'
+                            : 'border-zinc-800 bg-zinc-900/50 hover:border-zinc-700 hover:bg-zinc-800/50 hover:shadow-lg hover:scale-[1.02]'
                         }`}
                       >
-                        <div className="flex items-center gap-3">
+                        {/* Selection Indicator */}
+                        <div className="absolute top-4 right-4">
                           <div
-                            className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${
-                              isSelected ? 'border-[#f7931a] bg-[#f7931a]' : 'border-zinc-600'
+                            className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${
+                              isSelected 
+                                ? 'border-[#f7931a] bg-[#f7931a]' 
+                                : 'border-zinc-600 group-hover:border-zinc-500'
                             }`}
                           >
                             {isSelected && (
-                              <motion.div
-                                initial={{ scale: 0 }}
-                                animate={{ scale: 1 }}
-                                className="w-2 h-2 bg-zinc-950 rounded-full"
-                              />
+                              <motion.svg
+                                initial={{ scale: 0, rotate: -180 }}
+                                animate={{ scale: 1, rotate: 0 }}
+                                className="w-4 h-4 text-zinc-950"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth={3}
+                              >
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                              </motion.svg>
                             )}
                           </div>
-                          <span className={isSelected ? 'text-white' : 'text-zinc-300'}>
-                            {option.label}
-                          </span>
                         </div>
+
+                        {/* Card Content */}
+                        <div className="pr-8">
+                          <p className={`text-base leading-relaxed transition-colors ${
+                            isSelected ? 'text-white font-medium' : 'text-zinc-300 group-hover:text-white'
+                          }`}>
+                            {option.label}
+                          </p>
+                        </div>
+
+                        {/* Hover Effect Border Glow */}
+                        {!isDisabled && !isSelected && (
+                          <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#f7931a]/0 to-[#f7931a]/0 group-hover:from-[#f7931a]/5 group-hover:to-transparent transition-all duration-300 pointer-events-none" />
+                        )}
                       </motion.button>
                     );
                   })}

@@ -353,6 +353,7 @@ export function Consulting({ language, onContact, onNavigateToFinder }: Consulti
         title={t.outcomes.title}
         description={t.outcomes.description}
         outcomes={t.outcomes.items}
+        backgroundImage="https://images.unsplash.com/photo-1765438868883-43efce4fd145?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMHN0cmF0ZWd5JTIwcGxhbm5pbmd8ZW58MXx8fHwxNzY3OTQ0MzI3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
       />
 
       <ProcessSection

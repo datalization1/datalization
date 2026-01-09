@@ -58,6 +58,7 @@ class ContactMessage(models.Model):
     company = models.CharField(_("Company"), max_length=150, blank=True, null=True)
     
     email = models.EmailField(_("Email"))
+    phone = models.CharField(_("Phone"), max_length=50, blank=True, null=True)
     message = models.TextField(_("Message"))
     language = models.CharField(_("Language"), max_length=5, default="de")
 

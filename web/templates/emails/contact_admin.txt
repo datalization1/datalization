@@ -4,6 +4,7 @@ Sprache: {{ msg.language }}
 Name: {{ msg.first_name }} {{ msg.last_name }}
 Firma: {{ msg.company|default:"-" }}
 E-Mail: {{ msg.email }}
+Telefon: {{ msg.phone|default:"-" }}
 
 Nachricht:
 {{ msg.message }}

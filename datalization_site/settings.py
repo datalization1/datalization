@@ -33,6 +33,8 @@ ALLOWED_HOSTS = os.getenv(
     ".herokuapp.com,localhost,127.0.0.1,testserver"
 ).split(",")
 
+ADMIN_PASSWORD = "v836eRd@xGSmkGN"
+
 _csrf_defaults = ["https://*.herokuapp.com"]
 if DEBUG:
     _csrf_defaults += ["http://localhost:8000", "http://127.0.0.1:8000"]

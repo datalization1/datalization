@@ -4,22 +4,50 @@
     <div class="footer__grid">
       <!-- Brand -->
       <div>
-        <div class="brand">
-          <img class="nav__logo" src="{% static 'img/favicon.svg' %}" alt="datalization logo">
-          <span class="nav__word lowercase">datalization</span>
-        </div>
+        <a href="{% url 'web:home' %}" class="footer__brand">
+          <img class="footer__logo-img" src="{% static 'img/favicon.svg' %}" alt="datalization logo">
+          <span class="footer__brand-word">datalization</span>
+        </a>
         <p class="muted">
           {% if LANGUAGE_CODE == 'de' %}Einfachheit trifft Innovation{% else %}Simplicity meets Innovation{% endif %}
         </p>
       </div>
 
-      <!-- Contact (mit Icons) -->
+      <!-- Services -->
+      <div>
+        <h4 class="footer__title">{% if LANGUAGE_CODE == 'de' %}Services{% else %}Services{% endif %}</h4>
+        <ul class="footer__list">
+          <li><a class="footer__link" href="{% url 'web:service_data_analytics' %}">{% if LANGUAGE_CODE == 'de' %}Data Analytics &amp; Data Science{% else %}Data Analytics &amp; Data Science{% endif %}</a></li>
+          <li><a class="footer__link" href="{% url 'web:service_software' %}">{% if LANGUAGE_CODE == 'de' %}Softwareentwicklung{% else %}Software Development{% endif %}</a></li>
+          <li><a class="footer__link" href="{% url 'web:service_digitalisierung' %}">{% if LANGUAGE_CODE == 'de' %}Digitalisierung{% else %}Digitalization{% endif %}</a></li>
+          <li><a class="footer__link" href="{% url 'web:service_beratung' %}">{% if LANGUAGE_CODE == 'de' %}Beratung &amp; Strategie{% else %}Consulting &amp; Strategy{% endif %}</a></li>
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <h4 class="footer__title">{% if LANGUAGE_CODE == 'de' %}Unternehmen{% else %}Company{% endif %}</h4>
+        <ul class="footer__list">
+          <li><a class="footer__link" href="{% url 'web:about' %}">{% if LANGUAGE_CODE == 'de' %}Über uns{% else %}About us{% endif %}</a></li>
+          <li><a class="footer__link" href="{% url 'web:cases' %}">{% if LANGUAGE_CODE == 'de' %}Projekte{% else %}Projects{% endif %}</a></li>
+          <li><a class="footer__link" href="{% url 'web:contact' %}">{% if LANGUAGE_CODE == 'de' %}Kontakt{% else %}Contact{% endif %}</a></li>
+        </ul>
+      </div>
+
+      <!-- Tools -->
+      <div>
+        <h4 class="footer__title">{% if LANGUAGE_CODE == 'de' %}Tools{% else %}Tools{% endif %}</h4>
+        <ul class="footer__list">
+          <li><a class="footer__link" href="{% url 'web:match' %}">{% if LANGUAGE_CODE == 'de' %}Was passt zu mir?{% else %}Find my fit{% endif %}</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
       <div>
         <h4 class="footer__title">{% trans "Kontakt" %}</h4>
         <ul class="footer__list">
           <li>
             <a class="footer__link footer__link--icon" href="mailto:info@datalization.ch">
-              <!-- Mail Icon -->
               <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <rect x="3" y="5" width="18" height="14" rx="2"></rect>
                 <polyline points="3,7 12,13 21,7"></polyline>
@@ -29,7 +57,6 @@
           </li>
           <li>
             <a class="footer__link footer__link--icon" href="https://www.linkedin.com/company/datalization1/" target="_blank" rel="noopener">
-              <!-- LinkedIn Icon -->
               <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <rect x="3" y="8" width="4" height="12"></rect>
                 <circle cx="5" cy="5" r="2"></circle>
@@ -41,28 +68,15 @@
         </ul>
       </div>
 
-      <!-- Legal -->
-      <div>
-        <h4 class="footer__title">
-          {% if LANGUAGE_CODE == 'de' %}Rechtliches{% else %}Legal{% endif %}
-        </h4>
-        <ul class="footer__list">
-          <li>
-            <a class="footer__link" href="{% url 'web:privacy' %}">
-              {% if LANGUAGE_CODE == 'de' %}Datenschutz{% else %}Privacy{% endif %}
-            </a>
-          </li>
-          <li>
-            <a class="footer__link" href="{% url 'web:impressum' %}">
-              {% if LANGUAGE_CODE == 'de' %}Impressum{% else %}Imprint{% endif %}
-            </a>
-          </li>
-        </ul>
-      </div>
+    </div>
 
     <div class="footer__bottom">
-      <span>© <span id="current-year"></span> Datalization.</span>
-      <span class="muted">{% if LANGUAGE_CODE == 'de' %}Alle Rechte vorbehalten.{% else %}All rights reserved.{% endif %}</span>
+      <span>© <span id="current-year"></span> Datalization. {% if LANGUAGE_CODE == 'de' %}Alle Rechte vorbehalten.{% else %}All rights reserved.{% endif %}</span>
+      <div class="footer__bottom-links">
+        <a class="footer__link" href="{% url 'web:privacy' %}">{% if LANGUAGE_CODE == 'de' %}Datenschutz{% else %}Privacy{% endif %}</a>
+        <a class="footer__link" href="{% url 'web:impressum' %}">{% if LANGUAGE_CODE == 'de' %}Impressum{% else %}Imprint{% endif %}</a>
+        <a class="footer__link" href="{% url 'web:booking' %}">{% if LANGUAGE_CODE == 'de' %}Kurz-Check{% else %}Quick Check{% endif %}</a>
+      </div>
     </div>
   </div>
 </footer>

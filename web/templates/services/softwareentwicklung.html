@@ -20,7 +20,7 @@
         <h1>Software, die mitdenkt</h1>
         <p>Wir entwickeln individuelle Lösungen, die genau zu Ihren Prozessen passen – ohne Umwege, ohne Ballast.</p>
         <div class="cta-row">
-          <a href="{% url 'web:start' %}" class="btn-primary">Kurz-Check buchen</a>
+          <a href="{% url 'web:booking' %}" class="btn-primary">Kurz-Check buchen</a>
           <a href="#beispiele" class="btn-secondary">Beispiel ansehen</a>
         </div>
       </div>
@@ -33,15 +33,22 @@
   <section class="quick-check-banner">
     <div class="container mx-auto px-4 text-center">
       <div class="quick-check-inner">
-        <div class="qc-icon-pulse" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-lg text-primary">
+        <div class="qc-icon-glow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M12 2l2.4 4.8L19 8l-4 4 1 6-4-2.4L8 18l1-6-4-4 4.6-.8L12 2z"></path>
           </svg>
         </div>
-        <h2>Passt diese Lösung zu mir?</h2>
-        <p>Machen Sie unseren 3-Fragen-Check und finden Sie es heraus</p>
-        <div class="cta-row" style="justify-content:center;">
-          <a href="{% url 'web:match' %}" class="btn-primary">Zum Quick-Check</a>
+        <div class="quick-check-simple">
+          <h2 class="qc-title">Passt diese Lösung zu mir?</h2>
+          <p class="qc-subline">Machen Sie unseren 3-Fragen-Check und finden Sie es heraus</p>
+          <div class="qc-cta-wrap">
+            <a href="{% url 'web:match' %}" class="qc-cta">
+              Zum Quick-Check
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -318,7 +325,7 @@
         <h2>Bereit für Software, die wirklich passt?</h2>
         <p>Buchen Sie einen kostenlosen 20-Minuten Check. Wir besprechen Ihre Situation und zeigen auf, wie individuelle Software Ihren Alltag erleichtern kann.</p>
         <div class="cta-row" style="justify-content:center;">
-          <a href="{% url 'web:start' %}" class="btn-primary">Check buchen</a>
+          <a href="{% url 'web:booking' %}" class="btn-primary">Check buchen</a>
           <a href="{% url 'web:contact' %}" class="btn-secondary">Oder schreiben Sie uns</a>
         </div>
       </div>
@@ -326,7 +333,7 @@
   </section>
 
   <div class="sticky-cta" id="sticky-cta">
-    <a href="{% url 'web:start' %}" class="sticky-cta-btn">
+    <a href="{% url 'web:booking' %}" class="sticky-cta-btn">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <rect x="3" y="4" width="18" height="18" rx="4"></rect>
         <path d="M8 2v4"></path><path d="M16 2v4"></path><path d="M3 10h18"></path>

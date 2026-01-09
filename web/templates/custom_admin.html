@@ -1,0 +1,171 @@
+{% extends "admin_base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}Admin – datalization{% endblock %}
+
+{% block content %}
+<div class="admin-app">
+  <aside class="admin-sidebar">
+    <div class="admin-brand">
+      <img src="{% static 'img/favicon.svg' %}" alt="datalization" width="30" height="30">
+      <div>
+        <div class="brand-name">datalization</div>
+        <div class="brand-sub">Admin Panel</div>
+      </div>
+    </div>
+    <nav class="admin-nav">
+      <a class="nav-item active" href="#dashboard">{% trans "Dashboard" %}</a>
+      <a class="nav-item" href="#contacts">{% trans "Kontaktanfragen" %}</a>
+      <a class="nav-item" href="#cases">{% trans "Case Studies" %}</a>
+      <a class="nav-item" href="#leads">{% trans "Kurz-Check Leads" %}</a>
+    </nav>
+    <div class="admin-footer-nav">
+      <a class="nav-item" href="{% url 'web:custom_admin' %}?logout=1">{% trans "Abmelden" %}</a>
+    </div>
+  </aside>
+
+  <div class="admin-main">
+    <header class="admin-topbar" id="dashboard">
+      <div>
+        <h1 class="admin-title">{% trans "Dashboard" %}</h1>
+        <p class="admin-subtitle">{% trans "Willkommen zurück! Hier ist deine Übersicht." %}</p>
+      </div>
+      <a class="btn-secondary" href="{% url 'web:custom_admin' %}?logout=1">{% trans "Logout" %}</a>
+    </header>
+
+    <div class="admin-stats">
+      <div class="admin-stat">
+        <p class="label">{% trans "Case Studies" %}</p>
+        <p class="value">{{ cases|length }}</p>
+        <p class="meta"><span class="pill pill-success tiny">{{ cases_published }}</span> {% trans "aktiv" %} • <span class="pill pill-muted tiny">{{ cases_hidden }}</span> {% trans "verborgen" %}</p>
+      </div>
+      <div class="admin-stat">
+        <p class="label">{% trans "Kontaktanfragen" %}</p>
+        <p class="value">{{ contacts|length }}</p>
+        <p class="meta"><span class="pill pill-muted tiny">{{ contacts_open }}</span> {% trans "offen" %} • <span class="pill pill-success tiny">{{ contacts_done }}</span> {% trans "erledigt" %}</p>
+      </div>
+      <div class="admin-stat">
+        <p class="label">{% trans "Kurz-Check Leads" %}</p>
+        <p class="value">{{ starts|length }}</p>
+        <p class="meta"><span class="pill pill-muted tiny">{{ starts_open }}</span> {% trans "offen" %} • <span class="pill pill-success tiny">{{ starts_done }}</span> {% trans "erledigt" %}</p>
+      </div>
+    </div>
+
+    <section class="admin-section" id="contacts">
+      <div class="admin-section-head row">
+        <div>
+          <h2>{% trans "Kontaktanfragen" %}</h2>
+          <p class="hint">{% trans "Verwalte eingehende Anfragen" %}</p>
+        </div>
+        <div class="admin-search">
+          <input type="search" placeholder="{% trans 'Suche nach Name oder E-Mail' %}">
+          <button class="filter-btn">{% trans "Alle Status" %}</button>
+        </div>
+      </div>
+
+      <div class="admin-summary-cards">
+        <div class="summary-card"><div class="summary-value">{{ contacts_open }}</div><div class="summary-label">{% trans "Neu" %}</div></div>
+        <div class="summary-card"><div class="summary-value">{{ contacts_done }}</div><div class="summary-label">{% trans "Abgeschlossen" %}</div></div>
+      </div>
+
+      <div class="two-col">
+        <div class="list-stack">
+          {% for msg in contacts %}
+          <div class="list-card">
+            <div class="list-card-head">
+              <div>
+                <div class="list-title">{{ msg.first_name }} {{ msg.last_name }}</div>
+                <div class="list-sub">{{ msg.email }}</div>
+                <div class="list-sub">{{ msg.created|date:"d.m.Y H:i" }}</div>
+              </div>
+              <span class="pill {% if msg.handled %}pill-success{% else %}pill-muted{% endif %}">{{ msg.handled|yesno:_("Erledigt,Neu") }}</span>
+            </div>
+            <p class="list-text">{{ msg.message|truncatechars:140 }}</p>
+          </div>
+          {% empty %}
+          <p class="muted">{% trans "Keine Einträge." %}</p>
+          {% endfor %}
+        </div>
+        <div class="details-placeholder">
+          <p>{% trans "Wähle eine Anfrage aus, um Details anzuzeigen." %}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="admin-section" id="cases">
+      <div class="admin-section-head row">
+        <div>
+          <h2>{% trans "Case Studies" %}</h2>
+          <p class="hint">{% trans "Projekte verwalten" %}</p>
+        </div>
+        <div class="admin-search">
+          <input type="search" placeholder="{% trans 'Suche nach Titel oder Kunde' %}">
+          <button class="btn-secondary small">{% trans "Neue Case Study" %}</button>
+        </div>
+      </div>
+      <div class="card-grid">
+        {% for case in cases %}
+        <div class="case-card-admin">
+          {% if case.image %}
+            <img src="{{ case.image.url }}" alt="{{ case.title }}">
+          {% else %}
+            <div class="case-card-img-placeholder">d</div>
+          {% endif %}
+          <div class="case-card-body">
+            <div class="case-card-status">
+              <span class="pill {% if case.published %}pill-success{% else %}pill-muted{% endif %}">{% if case.published %}{% trans "Veröffentlicht" %}{% else %}{% trans "Entwurf" %}{% endif %}</span>
+              <span class="pill pill-muted">{{ case.category|default:"-" }}</span>
+            </div>
+            <h3>{{ case.title }}</h3>
+            <p class="muted">{{ case.summary|default:case.problem_brief|truncatechars:110 }}</p>
+            {% if case.tech_stack %}
+            <div class="tags">
+              <span class="tag">{{ case.tech_stack }}</span>
+            </div>
+            {% endif %}
+            <div class="case-card-actions">
+              <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="toggle_publish">
+                <input type="hidden" name="case_id" value="{{ case.id }}">
+                <button type="submit" class="btn-small">{% if case.published %}{% trans "Verstecken" %}{% else %}{% trans "Veröffentlichen" %}{% endif %}</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        {% empty %}
+          <p class="muted">{% trans "Keine Case Studies gefunden." %}</p>
+        {% endfor %}
+      </div>
+    </section>
+
+    <div class="admin-grid-2">
+      <section class="admin-section" id="customers">
+        <div class="admin-section-head row">
+          <div>
+            <h2>{% trans "Kunden" %}</h2>
+            <p class="hint">{% trans "Verwalte Kundendaten" %}</p>
+          </div>
+          <button class="btn-secondary small">{% trans "Neuer Kunde" %}</button>
+        </div>
+        <p class="muted">{% trans "Keine Kundendaten hinterlegt. Dies ist ein Platzhalter – bitte anpassen, sobald ein Kundenmodell existiert." %}</p>
+      </section>
+
+      <section class="admin-section" id="content">
+        <div class="admin-section-head row">
+          <div>
+            <h2>{% trans "Inhalte" %}</h2>
+            <p class="hint">{% trans "Texte verwalten" %}</p>
+          </div>
+          <div class="lang-toggle">
+            <button class="pill pill-muted">{% trans "DE" %}</button>
+            <button class="pill pill-muted">{% trans "EN" %}</button>
+          </div>
+        </div>
+        <p class="muted">{% trans "Content-Editing noch nicht angebunden. Sobald ein CMS/Modelle vorhanden sind, können hier Felder erscheinen." %}</p>
+      </section>
+    </div>
+  </div>
+</div>
+{% endblock %}

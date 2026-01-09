@@ -74,6 +74,11 @@
           </div>
 
           <div class="form-field">
+            <label class="form-label" for="phone">{% if LANGUAGE_CODE == 'de' %}Telefon (optional){% else %}Phone (optional){% endif %}</label>
+            <input type="tel" id="phone" name="phone" class="form-input" placeholder="{% if LANGUAGE_CODE == 'de' %}Ihre Telefonnummer{% else %}Your phone number{% endif %}" autocomplete="tel">
+          </div>
+
+          <div class="form-field">
             <label class="form-label" for="service">{% if LANGUAGE_CODE == 'de' %}Gewünschter Service{% else %}Desired Service{% endif %}</label>
             <select id="service" name="service" class="contact-select">
               <option value="">{% if LANGUAGE_CODE == 'de' %}Wählen Sie einen Service{% else %}Select a service{% endif %}</option>

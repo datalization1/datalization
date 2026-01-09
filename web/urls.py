@@ -12,7 +12,9 @@ urlpatterns = [
     path("services/beratung-strategie/", views.service_beratung, name="service_beratung"),
     path("start/", views.start, name="start"),
     path("start/submit/", views.start_submit, name="start_submit"),
+    path("booking/", views.booking, name="booking"),
     path("match/", views.match, name="match"),
+    path("custom-admin/", views.custom_admin, name="custom_admin"),
     path("about/", views.about, name="about"),
     path("contact/", views.contact, name="contact"), 
 

@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+{% load static i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}{% if LANGUAGE_CODE == 'de' %}Kurz-Check buchen{% else %}Book Quick Check{% endif %} – Datalization{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-background text-foreground booking-page">
+  <div class="container mx-auto px-4">
+    <div class="text-center booking-header">
+      <h1 class="booking-title">{% if LANGUAGE_CODE == 'de' %}Kurz-Check buchen{% else %}Book Quick Check{% endif %}</h1>
+      <p class="booking-subtitle">{% if LANGUAGE_CODE == 'de' %}Kostenloses 20-Minuten Gespräch{% else %}Free 20-minute consultation{% endif %}</p>
+      <p class="booking-description">
+        {% if LANGUAGE_CODE == 'de' %}
+          Buchen Sie jetzt Ihren persönlichen Kurz-Check. Wir schauen gemeinsam, ob und wie unsere Leistungen zu Ihren Bedürfnissen passen.
+        {% else %}
+          Book your personal quick check. We will see together if and how our services fit your needs.
+        {% endif %}
+      </p>
+    </div>
+
+    <div class="booking-grid">
+      <!-- Left Column -->
+      <div class="booking-left">
+        <div class="booking-card">
+          <h3>{% if LANGUAGE_CODE == 'de' %}Was Sie erwartet{% else %}What to expect{% endif %}</h3>
+          <ul class="booking-list">
+            <li>
+              <span class="booking-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12l4 4L19 7"></path>
+                </svg>
+              </span>
+              {% if LANGUAGE_CODE == 'de' %}Kostenlos &amp; unverbindlich{% else %}Free &amp; non-binding{% endif %}
+            </li>
+            <li>
+              <span class="booking-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+                  <path d="M8 2v4"></path><path d="M16 2v4"></path><path d="M3 10h18"></path><path d="M12 14v4"></path>
+                </svg>
+              </span>
+              {% if LANGUAGE_CODE == 'de' %}20 Minuten persönliches Gespräch{% else %}20-minute personal call{% endif %}
+            </li>
+            <li>
+              <span class="booking-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 3a9 9 0 1 0 9 9"></path>
+                  <path d="M12 7v5l3 2"></path>
+                </svg>
+              </span>
+              {% if LANGUAGE_CODE == 'de' %}Konkrete Einschätzung Ihrer Situation{% else %}Concrete assessment of your situation{% endif %}
+            </li>
+            <li>
+              <span class="booking-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14"></path>
+                  <path d="M12 5l7 7-7 7"></path>
+                </svg>
+              </span>
+              {% if LANGUAGE_CODE == 'de' %}Erste Lösungsansätze &amp; nächste Schritte{% else %}First solution ideas &amp; next steps{% endif %}
+            </li>
+            <li>
+              <span class="booking-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 13l2 2 4-4"></path>
+                  <circle cx="12" cy="12" r="9"></circle>
+                </svg>
+              </span>
+              {% if LANGUAGE_CODE == 'de' %}Keine versteckten Kosten{% else %}No hidden costs{% endif %}
+            </li>
+          </ul>
+        </div>
+
+        <div class="booking-card">
+          <h3>{% if LANGUAGE_CODE == 'de' %}So funktioniert's{% else %}How it works{% endif %}</h3>
+          <ul class="booking-steps">
+            <li>
+              <span class="step-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 20h9"></path>
+                  <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z"></path>
+                </svg>
+              </span>
+              <div>
+                <div class="step-title">{% if LANGUAGE_CODE == 'de' %}Formular ausfüllen{% else %}Fill the form{% endif %}</div>
+                <div class="step-text">{% if LANGUAGE_CODE == 'de' %}Teilen Sie uns Ihre Kontaktdaten und Ihren Wunschtermin mit.{% else %}Share your contact details and preferred date.{% endif %}</div>
+              </div>
+            </li>
+            <li>
+              <span class="step-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+                  <path d="M16 2v4"></path><path d="M8 2v4"></path><path d="M3 10h18"></path>
+                </svg>
+              </span>
+              <div>
+                <div class="step-title">{% if LANGUAGE_CODE == 'de' %}Terminbestätigung{% else %}Confirm appointment{% endif %}</div>
+                <div class="step-text">{% if LANGUAGE_CODE == 'de' %}Wir melden uns innerhalb von 24h mit Terminvorschlägen.{% else %}We reply within 24h with slots.{% endif %}</div>
+              </div>
+            </li>
+            <li>
+              <span class="step-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"></path>
+                </svg>
+              </span>
+              <div>
+                <div class="step-title">{% if LANGUAGE_CODE == 'de' %}20-Min Gespräch{% else %}20-min call{% endif %}</div>
+                <div class="step-text">{% if LANGUAGE_CODE == 'de' %}Gespräch per Telefon, Videocall oder vor Ort.{% else %}Call via phone, video, or onsite.{% endif %}</div>
+              </div>
+            </li>
+            <li>
+              <span class="step-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14"></path>
+                  <path d="M12 5l7 7-7 7"></path>
+                </svg>
+              </span>
+              <div>
+                <div class="step-title">{% if LANGUAGE_CODE == 'de' %}Nächste Schritte{% else %}Next steps{% endif %}</div>
+                <div class="step-text">{% if LANGUAGE_CODE == 'de' %}Sie erhalten konkrete Empfehlungen.{% else %}You receive concrete recommendations.{% endif %}</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <div class="booking-form-card">
+        <h3>{% if LANGUAGE_CODE == 'de' %}Ihre Kontaktdaten{% else %}Your contact details{% endif %}</h3>
+        <form method="post" action="{% url 'web:start_submit' %}" class="space-y-6 booking-form">
+          {% csrf_token %}
+          <input type="hidden" name="language" value="{{ LANGUAGE_CODE }}">
+          <div class="grid-2 gap-4">
+            <div class="form-field">
+              <label class="form-label" for="first_name">{% if LANGUAGE_CODE == 'de' %}Vorname{% else %}First name{% endif %} <span class="req">*</span></label>
+              <input type="text" id="first_name" name="first_name" class="form-input" placeholder="Max" required>
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="last_name">{% if LANGUAGE_CODE == 'de' %}Nachname{% else %}Last name{% endif %} <span class="req">*</span></label>
+              <input type="text" id="last_name" name="last_name" class="form-input" placeholder="Mustermann" required>
+            </div>
+          </div>
+
+          <div class="grid-2 gap-4">
+            <div class="form-field">
+              <label class="form-label" for="email">{% if LANGUAGE_CODE == 'de' %}E-Mail{% else %}Email{% endif %} <span class="req">*</span></label>
+              <input type="email" id="email" name="email" class="form-input" placeholder="max@beispiel.ch" required>
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="phone">{% if LANGUAGE_CODE == 'de' %}Telefon (optional){% else %}Phone (optional){% endif %}</label>
+              <input type="tel" id="phone" name="phone" class="form-input" placeholder="+41 79 123 45 67">
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="company">{% if LANGUAGE_CODE == 'de' %}Firma (optional){% else %}Company (optional){% endif %}</label>
+            <input type="text" id="company" name="company" class="form-input" placeholder="{% if LANGUAGE_CODE == 'de' %}Ihre Firma{% else %}Your company{% endif %}">
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="branches">{% if LANGUAGE_CODE == 'de' %}Interessiert an{% else %}Interested in{% endif %} <span class="req">*</span></label>
+            <select id="branches" name="branches" class="contact-select" required>
+              <option value="general">{% if LANGUAGE_CODE == 'de' %}Allgemeine Beratung{% else %}General consulting{% endif %}</option>
+              <option value="data-analytics">Data Analytics &amp; Data Science</option>
+              <option value="software">Softwareentwicklung</option>
+              <option value="digitalization">Digitalisierung</option>
+              <option value="consulting">Beratung &amp; Strategie</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="notes">{% if LANGUAGE_CODE == 'de' %}Ihre Situation (optional){% else %}Your situation (optional){% endif %}</label>
+            <textarea id="notes" name="notes" rows="4" class="form-textarea" placeholder="{% if LANGUAGE_CODE == 'de' %}Beschreiben Sie kurz Ihre aktuelle Herausforderung…{% else %}Describe your current challenge…{% endif %}"></textarea>
+          </div>
+
+          <div class="grid-2 gap-4">
+            <div class="form-field">
+              <label class="form-label" for="pains">{% if LANGUAGE_CODE == 'de' %}Wunschtermin (optional){% else %}Preferred date (optional){% endif %}</label>
+              <input type="date" id="pains" name="pains" class="form-input">
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="start_mode">{% if LANGUAGE_CODE == 'de' %}Bevorzugte Uhrzeit{% else %}Preferred time{% endif %}</label>
+              <select id="start_mode" name="start_mode" class="contact-select">
+                <option value="morning">{% if LANGUAGE_CODE == 'de' %}Vormittags (9–12 Uhr){% else %}Morning (9–12){% endif %}</option>
+                <option value="afternoon">{% if LANGUAGE_CODE == 'de' %}Nachmittags (12–17 Uhr){% else %}Afternoon (12–17){% endif %}</option>
+                <option value="evening">{% if LANGUAGE_CODE == 'de' %}Abends (17–20 Uhr){% else %}Evening (17–20){% endif %}</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary w-full gap-2">
+            {% if LANGUAGE_CODE == 'de' %}Jetzt Kurz-Check buchen{% else %}Book quick check now{% endif %}
+          </button>
+          <p class="text-muted text-sm">
+            {% if LANGUAGE_CODE == 'de' %}Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Daten gemäß unserer Datenschutzerklärung zu.{% else %}By submitting you agree to our privacy policy.{% endif %}
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

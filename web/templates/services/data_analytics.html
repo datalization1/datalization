@@ -20,7 +20,7 @@
         <h1>Aus Zahlen wird Klarheit</h1>
         <p>Wir helfen KMUs, den Überblick zu gewinnen und aus Erfahrung zu lernen – verständlich, praxisnah und ohne Daten-Chaos.</p>
         <div class="cta-row">
-          <a href="{% url 'web:start' %}" class="btn-primary">Kurz-Check buchen</a>
+          <a href="{% url 'web:booking' %}" class="btn-primary">Kurz-Check buchen</a>
           <a href="#beispiele" class="btn-secondary">Beispiel ansehen</a>
         </div>
       </div>
@@ -33,25 +33,22 @@
   <section class="quick-check-banner">
     <div class="container mx-auto px-4 text-center">
       <div class="quick-check-inner">
-        <div class="qc-icon-pulse" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-lg text-primary">
+        <div class="qc-icon-glow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M12 2l2.4 4.8L19 8l-4 4 1 6-4-2.4L8 18l1-6-4-4 4.6-.8L12 2z"></path>
           </svg>
         </div>
-        <h2>Passt das zu Ihnen?</h2>
-        <p>Wählen Sie, was auf Sie zutrifft:</p>
-        <div class="outcomes-wrap" style="margin-top:1.5rem;">
-          <ul class="outcomes-list">
-            <li class="outcomes-item"><span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg></span><span>Ich habe Zahlen, aber keinen Überblick</span></li>
-            <li class="outcomes-item"><span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg></span><span>Ich arbeite in Excel, aber es ist mühsam</span></li>
-            <li class="outcomes-item"><span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg></span><span>Wir wollen weniger manuelle Arbeit</span></li>
-            <li class="outcomes-item"><span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg></span><span>Wir möchten Prognosen/Planung verbessern</span></li>
-            <li class="outcomes-item"><span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg></span><span>Entscheidungen basieren zu oft auf Gefühl</span></li>
-            <li class="outcomes-item"><span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg></span><span>Wir wissen nicht, was wirklich profitabel ist</span></li>
-          </ul>
-        </div>
-        <div class="cta-row" style="justify-content:center;margin-top:1.25rem;">
-          <a href="{% url 'web:start' %}" class="btn-primary">Kostenlosen 20-Minuten Check buchen</a>
+        <div class="quick-check-simple">
+          <h2 class="qc-title">Passt diese Lösung zu mir?</h2>
+          <p class="qc-subline">Machen Sie unseren 3-Fragen-Check und finden Sie es heraus</p>
+          <div class="qc-cta-wrap">
+            <a href="{% url 'web:booking' %}" class="qc-cta">
+              Zum Quick-Check
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -201,23 +198,23 @@
     <div class="container mx-auto px-4">
       <div class="service-heading">
         <h2>Beispiele aus der Praxis</h2>
-        <p>Branchen-neutral, aber nah am Alltag</p>
+        <p>Branchen-neutrale Szenarien, die zeigen, was möglich ist</p>
       </div>
-      <div class="card-grid example-grid">
-        <div class="example-card">
-          <div class="example-icon">🍽️</div>
+      <div class="example-grid example-grid--wide">
+        <div class="example-card example-card--wide">
+          <div class="example-icon">ψq</div>
           <div class="example-tag">Gastronomie</div>
-          <p>Mittag vs. Abend – welche Karte lohnt sich? Welche Gerichte bringen Marge?</p>
+          <p>Mittag vs. Abend – welche Karte lohnt sich?<br>Welche Gerichte bringen wirklich Marge?</p>
         </div>
-        <div class="example-card">
+        <div class="example-card example-card--wide">
           <div class="example-icon">🛠️</div>
           <div class="example-tag">Handwerk</div>
-          <p>Welche Aufträge bringen echten Gewinn? Wo geht Zeit verloren?</p>
+          <p>Welche Aufträge bringen echten Gewinn?<br>Wo geht Zeit verloren?</p>
         </div>
-        <div class="example-card">
+        <div class="example-card example-card--wide">
           <div class="example-icon">🛡️</div>
           <div class="example-tag">Versicherung</div>
-          <p>Welche Fälle häufen sich? Wo lohnt sich Prävention statt Reaktion?</p>
+          <p>Welche Fälle häufen sich? Wo lohnt sich<br>Prävention statt Reaktion?</p>
         </div>
       </div>
     </div>
@@ -342,18 +339,15 @@
         <h2>Bereit für mehr Klarheit?</h2>
         <p>Buchen Sie einen kostenlosen 20-Minuten Check. Wir schauen gemeinsam, ob und wie Datenanalyse Ihnen helfen kann.</p>
         <div class="cta-row" style="justify-content:center;">
-          <a href="{% url 'web:start' %}" class="btn-primary">Jetzt Check buchen</a>
+          <a href="{% url 'web:booking' %}" class="btn-primary">Jetzt Check buchen</a>
           <a href="{% url 'web:contact' %}" class="btn-secondary">Kontakt aufnehmen</a>
-        </div>
-        <div class="cta-row" style="justify-content:center;margin-top:1rem;">
-          <a href="{% static 'docs/datenanalyse.pdf' %}" class="link-accent" download>📥 Datenanalyse &amp; Data Science – Kompakt erklärt (PDF)</a>
         </div>
       </div>
     </div>
   </section>
 
   <div class="sticky-cta" id="sticky-cta">
-    <a href="{% url 'web:start' %}" class="sticky-cta-btn">
+    <a href="{% url 'web:booking' %}" class="sticky-cta-btn">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <rect x="3" y="4" width="18" height="18" rx="4"></rect>
         <path d="M8 2v4"></path><path d="M16 2v4"></path><path d="M3 10h18"></path>

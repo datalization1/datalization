@@ -43,7 +43,11 @@ def service_beratung(request):
 
 
 def start(request):
-    return render(request, "start.html", {"form": StartForm(initial={"language": request.LANGUAGE_CODE})})
+    # Weiterleitung auf die neue Booking-Seite
+    return redirect("web:booking")
+
+def booking(request):
+    return render(request, "booking.html", {"form": StartForm(initial={"language": request.LANGUAGE_CODE})})
 
 
 def match(request):
@@ -104,16 +108,89 @@ from .models import CaseStudy
 def case_detail(request, slug):
     case = get_object_or_404(CaseStudy, slug=slug, published=True)
 
-    # results: 1 per line → Liste
-    results_list = [
-        line.strip()
-        for line in case.results.splitlines()
-        if line.strip()
-    ]
+    # Results as list via model helper
+    results_list = case.result_list()
 
     return render(request, "case_detail.html", {
         "case": case,
         "results_list": results_list,
+    })
+
+
+def _admin_authorized(request):
+    return request.session.get("custom_admin") is True
+
+
+def custom_admin(request):
+    admin_password = getattr(settings, "ADMIN_PASSWORD", None)
+
+    # Handle logout
+    if request.GET.get("logout"):
+        request.session.pop("custom_admin", None)
+        return redirect("web:custom_admin")
+
+    # Handle login POST
+    if request.method == "POST" and not _admin_authorized(request):
+        provided = request.POST.get("password", "")
+        if admin_password and provided == admin_password:
+            request.session["custom_admin"] = True
+            messages.success(request, _("Erfolgreich angemeldet."))
+            return redirect("web:custom_admin")
+        messages.error(request, _("Falsches Passwort."))
+
+    if not _admin_authorized(request):
+        return render(request, "custom_admin_login.html")
+
+    # Simple actions
+    if request.method == "POST":
+        action = request.POST.get("action")
+        if action == "toggle_publish":
+            case_id = request.POST.get("case_id")
+            case = get_object_or_404(CaseStudy, id=case_id)
+            case.published = not case.published
+            case.save()
+            messages.success(request, _("Status geändert für %(title)s") % {"title": case.title})
+        elif action == "handle_contact":
+            contact_id = request.POST.get("contact_id")
+            msg = get_object_or_404(ContactMessage, id=contact_id)
+            msg.handled = True
+            msg.save(update_fields=["handled"])
+            messages.success(request, _("Kontakt markiert als erledigt."))
+        elif action == "handle_start":
+            start_id = request.POST.get("start_id")
+            start = get_object_or_404(StartRequest, id=start_id)
+            start.handled = True
+            start.save(update_fields=["handled"])
+            messages.success(request, _("Start-Anfrage markiert als erledigt."))
+        return redirect("web:custom_admin")
+
+    cases_qs = CaseStudy.objects.all().order_by("-date")
+    contacts_qs = ContactMessage.objects.all().order_by("-created")
+    starts_qs = StartRequest.objects.all().order_by("-created")
+
+    # Counts auf Basis der vollen QuerySets, nicht der gesliceten
+    contacts_open = contacts_qs.filter(handled=False).count()
+    contacts_done = contacts_qs.filter(handled=True).count()
+    starts_open = starts_qs.filter(handled=False).count()
+    starts_done = starts_qs.filter(handled=True).count()
+    cases_published = cases_qs.filter(published=True).count()
+    cases_hidden = cases_qs.filter(published=False).count()
+
+    # Anzeige nur der neuesten 50
+    cases = cases_qs
+    contacts = contacts_qs[:50]
+    starts = starts_qs[:50]
+
+    return render(request, "custom_admin.html", {
+        "cases": cases,
+        "contacts": contacts,
+        "starts": starts,
+        "contacts_open": contacts_open,
+        "contacts_done": contacts_done,
+        "starts_open": starts_open,
+        "starts_done": starts_done,
+        "cases_published": cases_published,
+        "cases_hidden": cases_hidden,
     })
 
 

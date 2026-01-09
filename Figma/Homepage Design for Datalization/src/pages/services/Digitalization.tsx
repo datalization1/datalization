@@ -353,6 +353,7 @@ export function Digitalization({ language, onContact, onNavigateToFinder }: Digi
         title={t.outcomes.title}
         description={t.outcomes.description}
         outcomes={t.outcomes.items}
+        backgroundImage="https://images.unsplash.com/photo-1759752393975-7ca7b302fcc6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwd29ya2Zsb3clMjBhdXRvbWF0aW9ufGVufDF8fHx8MTc2NzkwMTY0M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
       />
 
       <ProcessSection
