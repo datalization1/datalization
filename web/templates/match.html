@@ -78,17 +78,15 @@ document.addEventListener("DOMContentLoaded", function(){
   // Question defs (texts)
   const Q1 = {
     id:"q1",
-    headline:"Wo stehst du gerade?",
-    title:"Was beschreibt deine aktuelle Situation am besten?",
-    subtitle:"Wähle bis zu 2 Antworten.",
-    type:"multi",
-    max:2,
+    headline:"Was ist aktuell dein wichtigstes Ziel?",
+    title:"Wähle eine Option.",
+    subtitle:"So können wir direkt die passende Richtung bestimmen.",
+    type:"single",
     options:[
-      {v:"q1_a1", label:"Ich habe Zahlen, aber keinen klaren Überblick"},
-      {v:"q1_a2", label:"Viele Dinge laufen noch manuell oder doppelt"},
-      {v:"q1_a3", label:"Wir nutzen mehrere Tools, die nicht richtig zusammenspielen"},
-      {v:"q1_a4", label:"Entscheidungen fühlen sich oft unsicher an"},
-      {v:"q1_a5", label:"Ich weiss nicht, wo ich am sinnvollsten ansetzen soll"},
+      {v:"q1_data", label:"Klarer Überblick & Kennzahlen (Reporting/BI)"},
+      {v:"q1_digital", label:"Weniger manuelle Arbeit & Fehler (Prozesse/Automatisierung)"},
+      {v:"q1_software", label:"Tools verbinden oder System fehlt (Integration/Portale)"},
+      {v:"q1_strategy", label:"Prioritäten & Roadmap (Orientierung/Plan)"},
     ]
   };
 
@@ -161,72 +159,25 @@ document.addEventListener("DOMContentLoaded", function(){
     }
   };
 
+  const Q3_START = {
+    id:"q3",
+    headline:"Wie möchtest du starten?",
+    subtitle:"So wählen wir den sinnvollsten nächsten Schritt – ohne Overengineering.",
+    title:"Wähle eine Option.",
+    type:"single",
+    options:[
+      {v:"start_check", label:"Kurz-Check (60–90 Min) – Einschätzung & klare Empfehlung", s:{strategy:2}},
+      {v:"start_pilot", label:"Pilot (1–2 Wochen) – kleiner PoC/MVP mit messbarem Ergebnis", s:{strategy:1,software:1,digital:1,data:1}},
+      {v:"start_project", label:"Direkt Projekt – Umsetzung mit klaren Deliverables", s:{strategy:1,software:2,digital:2,data:2}},
+    ]
+  };
+
   const Q3_MAP = {
-    data: {
-      headline:"Was wünschst du dir stattdessen?",
-      subtitle:"Was würde dir den grössten Mehrwert bringen?",
-      title:"Was würde dir aktuell am meisten helfen?",
-      type:"single",
-      options:[
-        {v:"d3_1", label:"Klarer Überblick auf einen Blick", s:{data:3}},
-        {v:"d3_2", label:"Bessere Planung für die Zukunft", s:{data:3,strategy:1}},
-        {v:"d3_3", label:"Frühere Hinweise statt spätes Reagieren", s:{data:3}},
-        {v:"d3_4", label:"Weniger Zeit für Auswertungen", s:{data:3,digital:1}},
-        {v:"d3_5", label:"Mehr Vertrauen in Entscheidungen", s:{data:3,strategy:1}},
-      ]
-    },
-    digital: {
-      headline:"Was wünschst du dir stattdessen?",
-      subtitle:"Was würde dir den grössten Mehrwert bringen?",
-      title:"Was würde dir aktuell am meisten helfen?",
-      type:"single",
-      options:[
-        {v:"g3_1", label:"Weniger manuelle Arbeit", s:{digital:3,software:1}},
-        {v:"g3_2", label:"Klarere Abläufe", s:{digital:3,strategy:1}},
-        {v:"g3_3", label:"Weniger Fehler", s:{digital:3}},
-        {v:"g3_4", label:"Zeitersparnis im Alltag", s:{digital:3}},
-        {v:"g3_5", label:"Mehr Fokus aufs Kerngeschäft", s:{digital:3}},
-      ]
-    },
-    software: {
-      headline:"Was wünschst du dir stattdessen?",
-      subtitle:"Was würde dir den grössten Mehrwert bringen?",
-      title:"Was würde dir aktuell am meisten helfen?",
-      type:"single",
-      options:[
-        {v:"s3_1", label:"Ein System, das wirklich passt", s:{software:3}},
-        {v:"s3_2", label:"Weniger Excel & Workarounds", s:{software:3,data:1}},
-        {v:"s3_3", label:"Saubere Übergaben zwischen Tools", s:{software:3,digital:1}},
-        {v:"s3_4", label:"Bessere Übersicht", s:{software:3,data:1}},
-        {v:"s3_5", label:"Eine Lösung, die mitwachsen kann", s:{software:3,strategy:1}},
-      ]
-    },
-    planning: {
-      headline:"Was wünschst du dir stattdessen?",
-      subtitle:"Was würde dir den grössten Mehrwert bringen?",
-      title:"Was würde dir aktuell am meisten helfen?",
-      type:"single",
-      options:[
-        {v:"p3_1", label:"Bessere Planung & ruhigere Entscheidungen", s:{data:3,strategy:1}},
-        {v:"p3_2", label:"Klarere Kennzahlen, denen ich vertraue", s:{data:3}},
-        {v:"p3_3", label:"Früher erkennen, was auf uns zukommt", s:{data:3}},
-        {v:"p3_4", label:"Weniger Überraschungen im Alltag", s:{data:3}},
-        {v:"p3_5", label:"Ein klarer Plan, was wir zuerst angehen", s:{strategy:3}},
-      ]
-    },
-    strategy: {
-      headline:"Was wünschst du dir stattdessen?",
-      subtitle:"Was würde dir den grössten Mehrwert bringen?",
-      title:"Was würde dir aktuell am meisten helfen?",
-      type:"single",
-      options:[
-        {v:"t3_1", label:"Klarer Plan für die nächsten Schritte", s:{strategy:3}},
-        {v:"t3_2", label:"Prioritäten statt Aktionismus", s:{strategy:3}},
-        {v:"t3_3", label:"Sicherheit vor Investitionen", s:{strategy:3}},
-        {v:"t3_4", label:"Eine ehrliche Einschätzung, was sich lohnt", s:{strategy:3}},
-        {v:"t3_5", label:"Orientierung, ohne ein Grossprojekt zu starten", s:{strategy:3}},
-      ]
-    }
+    data: Q3_START,
+    digital: Q3_START,
+    software: Q3_START,
+    strategy: Q3_START,
+    planning: Q3_START
   };
 
   function resetScores(){
@@ -234,13 +185,13 @@ document.addEventListener("DOMContentLoaded", function(){
   }
 
   function applyQ1Scoring(vals){
-    vals.forEach(val=>{
-      if (val === "q1_a1") score.data += 3;
-      if (val === "q1_a2") score.digital += 3;
-      if (val === "q1_a3") score.software += 3;
-      if (val === "q1_a4") { score.data += 2; score.strategy += 2; }
-      if (val === "q1_a5") score.strategy += 3;
-    });
+    const val = (vals && vals[0]) || null;
+    if (!val) return;
+
+    if (val === "q1_data") score.data += 4;
+    if (val === "q1_digital") score.digital += 4;
+    if (val === "q1_software") score.software += 4;
+    if (val === "q1_strategy") score.strategy += 4;
   }
 
   function renderQuestion(step){
@@ -248,7 +199,7 @@ document.addEventListener("DOMContentLoaded", function(){
     let def;
     if (step === 1) {
       def = Q1;
-      if (helper) helper.textContent = "Wähle das aus, was deinem Alltag am nächsten kommt (bis zu 2).";
+      if (helper) helper.textContent = "Bitte wähle eine Option.";
     } else if (step === 2) {
       const path = determinePath();
       def = Q2_MAP[path] || Q2_MAP.strategy;
@@ -340,24 +291,18 @@ document.addEventListener("DOMContentLoaded", function(){
   }
 
   function determinePath(){
-    const local = {data:0,digital:0,software:0,strategy:0};
-    answers.q1.forEach(val=>{
-      if (val === "q1_a1") local.data += 3;
-      if (val === "q1_a2") local.digital += 3;
-      if (val === "q1_a3") local.software += 3;
-      if (val === "q1_a4") { local.data += 2; local.strategy += 2; }
-      if (val === "q1_a5") local.strategy += 3;
-    });
-    const sorted = Object.entries(local).sort((a,b)=>b[1]-a[1]);
-    if (!sorted.length || sorted[0][1] === 0) return "strategy";
-    return sorted[0][0];
+    const v = (answers.q1 && answers.q1[0]) ? answers.q1[0] : null;
+    if (v === "q1_data") return "data";
+    if (v === "q1_digital") return "digital";
+    if (v === "q1_software") return "software";
+    if (v === "q1_strategy") return "strategy";
+    return "strategy";
   }
 
   function validate(step){
     const inputs = qs.querySelectorAll("input");
     if (step === 1){
-      const checked = Array.from(inputs).filter(i=>i.checked);
-      return checked.length > 0 && checked.length <= (Q1.max || 2);
+      return Array.from(inputs).some(i=>i.checked);
     }
     if (step === 2){
       const checked = Array.from(inputs).filter(i=>i.checked);
@@ -414,6 +359,15 @@ document.addEventListener("DOMContentLoaded", function(){
         [top1] = entries;
       }
     }
+
+    const diff = top1Score - top2Score;
+    const confidence =
+      diff >= 4 ? "Sehr passend" :
+      diff >= 2 ? "Gut passend" :
+      "Gemischt";
+
+    const kicker = document.querySelector(".match-result-kicker");
+    if (kicker) kicker.textContent = `Ergebnis · ${confidence}`;
 
     const showSecond = top2Score >= (top1Score - 2);
     renderReco(top1, showSecond ? top2 : null);
@@ -538,13 +492,17 @@ document.addEventListener("DOMContentLoaded", function(){
   });
 
   resetBtn?.addEventListener("click", ()=>{
-    answers.q1 = null; answers.q2=[]; answers.q3=null;
+    answers.q1 = [];
+    answers.q2 = [];
+    answers.q3 = null;
     resetScores();
     step = 1;
+
     backBtn.disabled = true;
     backBtn.style.display = "none";
     nextBtn.disabled = false;
     document.getElementById("match-nav").style.display = "flex";
+
     renderQuestion(step);
     resultBox.hidden = true;
     updateProgress();
