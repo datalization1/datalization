@@ -23,6 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Detect Heroku dyno environment
 ON_HEROKU = "DYNO" in os.environ
+USE_CLOUDINARY = bool(os.getenv("CLOUDINARY_URL"))
 
 # In production (on Heroku), default DEBUG to 0. Locally default to 1.
 DEBUG = os.getenv("DEBUG", "0" if ON_HEROKU else "1") == "1"
@@ -61,6 +62,9 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django.contrib.sitemaps",
 ]
+if USE_CLOUDINARY:
+    INSTALLED_APPS.insert(6, "cloudinary_storage")
+    INSTALLED_APPS.append("cloudinary")
 SITE_ID = 1
 
 MIDDLEWARE = [
@@ -147,7 +151,14 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATICFILES_DIRS = []
 STATIC_ROOT = BASE_DIR / "staticfiles"
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
@@ -156,6 +167,10 @@ STATICFILES_FINDERS = [
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+if USE_CLOUDINARY:
+    STORAGES["default"] = {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    }
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
