@@ -38,6 +38,7 @@
             id="case-{{ c.slug }}"
             role="button"
             tabindex="0"
+            data-case-slug="{{ c.slug }}"
             data-case-title="{{ c.title|escape }}"
             data-case-client="{{ c.client_brief|default:''|escape }}"
             data-case-summary="{{ c.summary|default:''|escape }}"
@@ -47,14 +48,14 @@
             data-case-image="{% if c.safe_image_url %}{{ c.safe_image_url }}{% endif %}"
             data-case-tech="{{ c.tech_stack|default:''|escape }}"
           >
-            <div class="case-feature-media">
+            <div class="case-feature-media" data-case-preview-host>
               {% if c.category %}
                 <span class="case-feature-badge">{{ c.category }}</span>
               {% endif %}
               {% if c.safe_image_url %}
-                <img src="{{ c.safe_image_url }}" alt="{{ c.title }}" loading="lazy" class="case-feature-img">
+                <img src="{{ c.safe_image_url }}" alt="{{ c.title }}" loading="lazy" class="case-feature-img" data-case-fallback-media>
               {% else %}
-                <div class="case-feature-placeholder">D</div>
+                <div class="case-feature-placeholder" data-case-fallback-media>D</div>
               {% endif %}
             </div>
             <div class="case-feature-content">
@@ -186,6 +187,279 @@
 
 <script>
   (function(){
+    function normalizeCasePreviewKey(slug, title) {
+      const source = ((slug || '') + ' ' + (title || '')).toLowerCase();
+      if (source.includes('steuer') || source.includes('tax') || source.includes('treuh')) return 'tax-submission';
+      if (source.includes('lead intelligence') || source.includes('lead-intelligence') || source.includes('data mining') || source.includes('automation') || source.includes('mining')) return 'lead-intelligence';
+      if (source.includes('dokumentenplattform') || source.includes('broker') || source.includes('aktienregister') || source.includes('document-platform')) return 'document-platform';
+      return '';
+    }
+
+    function renderDocumentPlatformLoop(host) {
+      host.insertAdjacentHTML('beforeend', `
+        <div class="case-loop case-loop--docs" aria-hidden="true">
+          <div class="case-loop__label">Digitale Dokumentenplattform</div>
+          <div class="case-loop__docs-grid">
+            <div><div class="case-loop__header">Eingang</div><div class="case-loop__col" data-docs-inbox></div></div>
+            <div><div class="case-loop__header">Verarbeitung</div><div class="case-loop__col" data-docs-processing></div></div>
+            <div><div class="case-loop__header">Verifiziert</div><div class="case-loop__col" data-docs-verified></div></div>
+          </div>
+          <div class="case-loop__progress"><span data-docs-progress></span></div>
+          <div class="case-loop__kpis">
+            <div class="case-loop__pill"><strong data-docs-kpi-count>0</strong><span>Dokumente</span></div>
+            <div class="case-loop__pill"><strong data-docs-kpi-pct>0%</strong><span>Digitalisiert</span></div>
+          </div>
+        </div>
+      `);
+
+      const docs = [
+        { title: 'Kaufvertrag', sub: 'Immobilien', color: '#2a3d5c' },
+        { title: 'Aktienregister', sub: 'Broker', color: '#3a2d5c' },
+        { title: 'Grundbuchauszug', sub: 'Immobilien', color: '#2a3d5c' },
+        { title: 'Depotauszug', sub: 'Broker', color: '#3a2d5c' },
+        { title: 'Mietvertrag', sub: 'Immobilien', color: '#2a3d5c' }
+      ];
+      const inbox = host.querySelector('[data-docs-inbox]');
+      const processing = host.querySelector('[data-docs-processing]');
+      const verified = host.querySelector('[data-docs-verified]');
+      const progress = host.querySelector('[data-docs-progress]');
+      const kpiCount = host.querySelector('[data-docs-kpi-count]');
+      const kpiPct = host.querySelector('[data-docs-kpi-pct]');
+      const duration = 6000;
+      let start = null;
+
+      function makeCard(doc, statusClass) {
+        const card = document.createElement('div');
+        card.className = 'case-loop__doc-card is-visible';
+        card.innerHTML = '<div class="case-loop__doc-icon" style="background:' + doc.color + '"></div><div class="case-loop__doc-copy"><div class="case-loop__doc-title">' + doc.title + '</div><div class="case-loop__doc-sub">' + doc.sub + '</div></div><div class="case-loop__dot is-' + statusClass + '"></div>';
+        return card;
+      }
+
+      function syncCol(el, count, statusClass) {
+        while (el.children.length > count) el.removeChild(el.lastChild);
+        while (el.children.length < count) el.appendChild(makeCard(docs[el.children.length % docs.length], statusClass));
+      }
+
+      function frame(ts) {
+        if (!host.isConnected) return;
+        if (!start) start = ts;
+        const t = ((ts - start) % duration) / duration;
+        progress.style.width = (t * 100) + '%';
+        kpiCount.textContent = Math.floor(t * 15);
+        kpiPct.textContent = Math.round(t * 100) + '%';
+        const inboxCount = t < 0.3 ? Math.floor((t / 0.3) * docs.length) : Math.max(0, Math.floor(docs.length - ((t - 0.3) / 0.35) * docs.length));
+        const procCount = t < 0.3 ? 0 : (t < 0.65 ? Math.floor(((t - 0.3) / 0.35) * docs.length) : Math.max(0, Math.floor(docs.length - ((t - 0.65) / 0.25) * docs.length)));
+        const verCount = t < 0.65 ? 0 : Math.floor(((t - 0.65) / 0.3) * docs.length);
+        syncCol(inbox, Math.min(Math.max(0, inboxCount), 4), 'pending');
+        syncCol(processing, Math.min(Math.max(0, procCount), 4), 'processing');
+        syncCol(verified, Math.min(Math.max(0, verCount), 4), 'verified');
+        requestAnimationFrame(frame);
+      }
+
+      requestAnimationFrame(frame);
+    }
+
+    function renderTaxSubmissionLoop(host) {
+      host.insertAdjacentHTML('beforeend', `
+        <div class="case-loop case-loop--tax" aria-hidden="true">
+          <div class="case-loop__label">Steuereinreichung digital</div>
+          <div class="case-loop__papers" data-tax-papers></div>
+          <div class="case-loop__phone">
+            <div class="case-loop__phone-notch"></div>
+            <div class="case-loop__phone-screen">
+              <svg class="case-loop__ring" viewBox="0 0 36 36">
+                <circle cx="18" cy="18" r="14" fill="none" stroke="#2a2a2a" stroke-width="3"></circle>
+                <circle cx="18" cy="18" r="14" fill="none" stroke="#c87a20" stroke-width="3" stroke-dasharray="87.96" stroke-dashoffset="87.96" stroke-linecap="round" transform="rotate(-90 18 18)" data-tax-ring></circle>
+                <text x="18" y="22" text-anchor="middle" fill="#d4a055" font-size="7" data-tax-ring-label>0%</text>
+              </svg>
+              <div class="case-loop__checklist" data-tax-checklist></div>
+              <div class="case-loop__send" data-tax-send>Sicher uebermitteln</div>
+            </div>
+          </div>
+          <div class="case-loop__progress case-loop__progress--wide"><span data-tax-progress></span></div>
+        </div>
+      `);
+
+      const items = ['Lohnausweis', 'Quittungen', 'Kontoauszug', 'Wertschriften', 'Krankheitskosten'];
+      const paperDefs = [
+        { left: '8%', top: '30%', w: 52, h: 60, rotate: -8 },
+        { left: '14%', top: '50%', w: 44, h: 54, rotate: 5 },
+        { left: '5%', top: '55%', w: 38, h: 48, rotate: -3 },
+        { left: '25%', top: '35%', w: 50, h: 58, rotate: 7 },
+        { left: '30%', top: '55%', w: 42, h: 52, rotate: -5 }
+      ];
+      const papers = host.querySelector('[data-tax-papers]');
+      const ring = host.querySelector('[data-tax-ring]');
+      const ringLabel = host.querySelector('[data-tax-ring-label]');
+      const checklist = host.querySelector('[data-tax-checklist]');
+      const send = host.querySelector('[data-tax-send]');
+      const progress = host.querySelector('[data-tax-progress]');
+      const duration = 6000;
+      let start = null;
+
+      paperDefs.forEach((paper, i) => {
+        const el = document.createElement('div');
+        el.className = 'case-loop__paper';
+        el.dataset.paperIndex = String(i);
+        el.style.cssText = 'left:' + paper.left + ';top:' + paper.top + ';width:' + paper.w + 'px;height:' + paper.h + 'px;transform:rotate(' + paper.rotate + 'deg);';
+        el.innerHTML = '<div class="case-loop__paper-line"></div><div class="case-loop__paper-line is-short"></div><div class="case-loop__paper-line"></div><div class="case-loop__paper-line is-short"></div>';
+        papers.appendChild(el);
+      });
+
+      function frame(ts) {
+        if (!host.isConnected) return;
+        if (!start) start = ts;
+        const t = ((ts - start) % duration) / duration;
+        progress.style.width = (t * 100) + '%';
+        ring.setAttribute('stroke-dashoffset', String(87.96 * (1 - t)));
+        ringLabel.textContent = Math.round(t * 100) + '%';
+
+        paperDefs.forEach((paper, i) => {
+          const el = papers.querySelector('[data-paper-index="' + i + '"]');
+          const fadeStart = 0.1 + i * 0.1;
+          const fadeEnd = fadeStart + 0.15;
+          if (t < fadeStart) {
+            el.style.opacity = '1';
+            el.style.transform = 'rotate(' + paper.rotate + 'deg) translateY(0)';
+          } else if (t < fadeEnd) {
+            const ft = (t - fadeStart) / (fadeEnd - fadeStart);
+            el.style.opacity = String(1 - ft);
+            el.style.transform = 'rotate(' + paper.rotate + 'deg) translateY(' + (-ft * 30) + 'px)';
+          } else {
+            el.style.opacity = '0';
+          }
+        });
+
+        const count = Math.floor(t * (items.length + 1));
+        checklist.innerHTML = '';
+        items.slice(0, Math.min(count, items.length)).forEach((item, i) => {
+          const done = i < count - 1 || t > 0.9;
+          const row = document.createElement('div');
+          row.className = 'case-loop__check-item';
+          row.innerHTML = '<span class="case-loop__check-dot' + (done ? ' is-done' : '') + '"></span><span class="case-loop__check-label' + (done ? ' is-done' : '') + '">' + item + '</span>';
+          checklist.appendChild(row);
+        });
+        send.style.opacity = t > 0.88 ? String(Math.min(1, (t - 0.88) / 0.08)) : '0';
+        requestAnimationFrame(frame);
+      }
+
+      requestAnimationFrame(frame);
+    }
+
+    function renderLeadIntelligenceLoop(host) {
+      host.insertAdjacentHTML('beforeend', `
+        <div class="case-loop case-loop--leads" aria-hidden="true">
+          <div class="case-loop__label">Lead Intelligence · Immobilien</div>
+          <div class="case-loop__map">
+            <svg class="case-loop__map-grid" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <pattern id="case-loop-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <path d="M20 0L0 0 0 20" fill="none" stroke="#4a4a55" stroke-width="0.5"></path>
+                </pattern>
+              </defs>
+              <rect width="300" height="200" fill="url(#case-loop-grid)"></rect>
+            </svg>
+            <div class="case-loop__pulses" data-leads-pulses></div>
+          </div>
+          <div class="case-loop__lead-panel">
+            <div class="case-loop__header">Qualifizierte Leads</div>
+            <div class="case-loop__lead-list" data-leads-list></div>
+          </div>
+          <div class="case-loop__lead-kpis">
+            <div class="case-loop__kpi-box"><strong data-leads-sources>0</strong><span>Quellen</span></div>
+            <div class="case-loop__kpi-box"><strong data-leads-count>0</strong><span>Leads heute</span></div>
+            <div class="case-loop__kpi-box"><strong data-leads-score>—</strong><span>Ø Score</span></div>
+          </div>
+          <div class="case-loop__progress case-loop__progress--right"><span data-leads-progress></span></div>
+        </div>
+      `);
+
+      const leads = [
+        { name: 'M. Brunner', loc: 'Zuerich', score: 94, color: '#2a3d5c', initials: 'MB' },
+        { name: 'K. Steiner', loc: 'Bern', score: 87, color: '#3a2d5c', initials: 'KS' },
+        { name: 'A. Mueller', loc: 'Basel', score: 81, color: '#2d3d2a', initials: 'AM' },
+        { name: 'P. Frei', loc: 'Luzern', score: 76, color: '#3d2d2a', initials: 'PF' }
+      ];
+      const pulseDefs = [
+        { x: '15%', y: '35%', delay: 0 },
+        { x: '30%', y: '55%', delay: 0.12 },
+        { x: '22%', y: '65%', delay: 0.24 },
+        { x: '40%', y: '42%', delay: 0.08 },
+        { x: '10%', y: '70%', delay: 0.18 },
+        { x: '35%', y: '25%', delay: 0.3 },
+        { x: '48%', y: '60%', delay: 0.05 }
+      ];
+      const pulseHost = host.querySelector('[data-leads-pulses]');
+      const leadList = host.querySelector('[data-leads-list]');
+      const sources = host.querySelector('[data-leads-sources]');
+      const leadCount = host.querySelector('[data-leads-count]');
+      const leadScore = host.querySelector('[data-leads-score]');
+      const progress = host.querySelector('[data-leads-progress]');
+      const duration = 6000;
+      let start = null;
+
+      pulseDefs.forEach((pulse, i) => {
+        const el = document.createElement('div');
+        el.className = 'case-loop__pulse';
+        el.dataset.pulseIndex = String(i);
+        el.style.cssText = 'left:' + pulse.x + ';top:' + pulse.y + ';width:8px;height:8px;background:#c87a20;opacity:0;margin-left:-4px;margin-top:-4px;';
+        pulseHost.appendChild(el);
+      });
+
+      function frame(ts) {
+        if (!host.isConnected) return;
+        if (!start) start = ts;
+        const t = ((ts - start) % duration) / duration;
+        progress.style.width = (t * 100) + '%';
+
+        pulseDefs.forEach((pulse, i) => {
+          const el = pulseHost.querySelector('[data-pulse-index="' + i + '"]');
+          const phase = (t + (1 - pulse.delay)) % 1;
+          const size = 8 + phase * 16;
+          const opacity = phase < 0.5 ? phase * 1.4 : (1 - phase) * 1.4;
+          el.style.width = size + 'px';
+          el.style.height = size + 'px';
+          el.style.marginLeft = (-size / 2) + 'px';
+          el.style.marginTop = (-size / 2) + 'px';
+          el.style.opacity = String(Math.max(0, Math.min(0.7, opacity)));
+        });
+
+        sources.textContent = Math.min(7, Math.floor(t * 10));
+        leadCount.textContent = Math.floor(t * 34);
+        leadScore.textContent = t > 0.2 ? Math.round(76 + t * 12) : '—';
+
+        const count = Math.min(leads.length, Math.floor(t * (leads.length * 1.5)));
+        while (leadList.children.length > count) leadList.removeChild(leadList.lastChild);
+        while (leadList.children.length < count && leadList.children.length < leads.length) {
+          const lead = leads[leadList.children.length];
+          const card = document.createElement('div');
+          card.className = 'case-loop__lead-card' + (leadList.children.length === 0 ? ' is-highlight' : '');
+          card.innerHTML = '<div class="case-loop__lead-avatar" style="background:' + lead.color + ';color:#aac">' + lead.initials + '</div><div class="case-loop__lead-copy"><div class="case-loop__lead-name">' + lead.name + '</div><div class="case-loop__lead-loc">' + lead.loc + '</div></div><div class="case-loop__lead-score' + (lead.score > 90 ? ' is-hot' : '') + '">' + lead.score + '</div>';
+          leadList.appendChild(card);
+        }
+
+        requestAnimationFrame(frame);
+      }
+
+      requestAnimationFrame(frame);
+    }
+
+    function mountCasePreviewLoops() {
+      document.querySelectorAll('.case-feature-card').forEach(card => {
+        const host = card.querySelector('[data-case-preview-host]');
+        if (!host) return;
+        const previewKey = normalizeCasePreviewKey(card.dataset.caseSlug || '', card.dataset.caseTitle || '');
+        if (!previewKey) return;
+        const fallback = host.querySelector('[data-case-fallback-media]');
+        if (fallback) fallback.remove();
+        if (previewKey === 'document-platform') renderDocumentPlatformLoop(host);
+        if (previewKey === 'tax-submission') renderTaxSubmissionLoop(host);
+        if (previewKey === 'lead-intelligence') renderLeadIntelligenceLoop(host);
+      });
+    }
+
+    mountCasePreviewLoops();
+
     const modal = document.getElementById('case-modal');
     const closeBtn = document.getElementById('case-modal-close');
     const imgEl = document.getElementById('case-modal-img');
@@ -264,11 +538,13 @@
       }
 
       modal.hidden = false;
+      document.documentElement.classList.add('modal-open');
       document.body.classList.add('modal-open');
     }
 
     function closeModal(){
       modal.hidden = true;
+      document.documentElement.classList.remove('modal-open');
       document.body.classList.remove('modal-open');
     }
 
