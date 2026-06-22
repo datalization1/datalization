@@ -44,15 +44,15 @@
             data-case-problem="{{ c.problem_brief|default:''|escape }}"
             data-case-results="{{ c.result_list|join:'||'|default:''|escape }}"
             data-case-category="{{ c.category|default:''|escape }}"
-            data-case-image="{% if c.image %}{{ c.image.url }}{% endif %}"
+            data-case-image="{% if c.safe_image_url %}{{ c.safe_image_url }}{% endif %}"
             data-case-tech="{{ c.tech_stack|default:''|escape }}"
           >
             <div class="case-feature-media">
               {% if c.category %}
                 <span class="case-feature-badge">{{ c.category }}</span>
               {% endif %}
-              {% if c.image %}
-                <img src="{{ c.image.url }}" alt="{{ c.title }}" loading="lazy" class="case-feature-img">
+              {% if c.safe_image_url %}
+                <img src="{{ c.safe_image_url }}" alt="{{ c.title }}" loading="lazy" class="case-feature-img">
               {% else %}
                 <div class="case-feature-placeholder">D</div>
               {% endif %}

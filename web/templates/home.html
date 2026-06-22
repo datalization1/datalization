@@ -337,8 +337,8 @@
                 <div class="case-card fade-in-on-scroll" style="--i: {{ forloop.counter0 }};">
                     
                     <div class="case-image">
-                    {% if case.image %}
-                      <img src="{{ case.image.url }}" alt="{{ case.title }}" class="case-img" loading="lazy" decoding="async">
+                    {% if case.safe_image_url %}
+                      <img src="{{ case.safe_image_url }}" alt="{{ case.title }}" class="case-img" loading="lazy" decoding="async">
                     {% endif %}
                     <div class="case-badge">
                         <span class="badge-primary">{{ case.category }}</span>

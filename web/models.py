@@ -46,6 +46,17 @@ class CaseStudy(models.Model):
         # Split by lines, trim and drop empties
         return [ln.strip() for ln in self.result_points.splitlines() if ln.strip()]
 
+    @property
+    def safe_image_url(self):
+        if not self.image or not getattr(self.image, "name", ""):
+            return ""
+        try:
+            if not self.image.storage.exists(self.image.name):
+                return ""
+            return self.image.url
+        except Exception:
+            return ""
+
     class Meta:
         ordering = ["-date"]
 

@@ -28,9 +28,9 @@
         {% endif %}
       </header>
 
-      {% if case.image %}
+      {% if case.safe_image_url %}
         <div class="mb-10">
-          <img class="case-hero-img" src="{{ case.image.url }}" alt="{{ case.title }}">
+          <img class="case-hero-img" src="{{ case.safe_image_url }}" alt="{{ case.title }}">
         </div>
       {% endif %}
 

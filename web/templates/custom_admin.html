@@ -108,7 +108,9 @@
         {% for case in cases %}
         <div class="case-card-admin">
           {% if case.image %}
-            <img src="{{ case.image.url }}" alt="{{ case.title }}">
+            {% if case.safe_image_url %}
+              <img src="{{ case.safe_image_url }}" alt="{{ case.title }}">
+            {% endif %}
           {% else %}
             <div class="case-card-img-placeholder">d</div>
           {% endif %}

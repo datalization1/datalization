@@ -1,4 +1,7 @@
 from django.test import TestCase
+from datetime import date
+
+from .models import CaseStudy
 
 
 class SiteIconRoutesTests(TestCase):
@@ -35,3 +38,22 @@ class SiteIconRoutesTests(TestCase):
         self.assertIn('href="/favicon-48.png"', html)
         self.assertIn('href="/favicon.ico"', html)
         self.assertIn('href="/site.webmanifest"', html)
+
+
+class CaseImageRenderingTests(TestCase):
+    def test_missing_case_image_does_not_render_broken_img_tag(self):
+        case = CaseStudy.objects.create(
+            title="Broken Media Case",
+            slug="broken-media-case",
+            summary="Test summary",
+            date=date(2026, 1, 1),
+            published=True,
+        )
+        case.image.name = "cases/does-not-exist.jpg"
+        case.save(update_fields=["image"])
+
+        response = self.client.get("/de/cases/")
+        html = response.content.decode("utf-8")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertNotIn('src="/media/cases/does-not-exist.jpg"', html)
