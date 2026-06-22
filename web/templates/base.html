@@ -36,13 +36,13 @@
     <meta property="og:description" content="{{ seo_desc|truncatechars:200 }}">
     <meta property="og:url" content="{{ request.build_absolute_uri|default:'' }}">
     <meta property="og:site_name" content="datalization">
-    <meta property="og:image" content="https://www.datalization.ch/static/img/favicon.svg">
+    <meta property="og:image" content="https://www.datalization.ch/icon-512.png">
 
     {# Twitter Cards #}
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="{{ seo_title }}">
     <meta name="twitter:description" content="{{ seo_desc|truncatechars:200 }}">
-    <meta name="twitter:image" content="https://www.datalization.ch/static/img/favicon.svg">
+    <meta name="twitter:image" content="https://www.datalization.ch/icon-512.png">
 
     {# Optional: Organisation Structured Data (JSON-LD) #}
     <script type="application/ld+json">
@@ -51,14 +51,21 @@
       "@type": "Organization",
       "name": "datalization",
       "url": "https://www.datalization.ch",
-      "logo": "https://www.datalization.ch/static/img/favicon.svg",
-      "sameAs": []
+      "logo": "https://www.datalization.ch/icon-512.png",
+      "sameAs": [
+        "https://www.linkedin.com/company/datalization1/"
+      ]
     }
     </script>
   {% endblock %}
 
-  {# Favicon #}
+  {# Favicon / Site Icon #}
   <link rel="icon" type="image/svg+xml" href="{% static 'img/favicon.svg' %}">
+  <link rel="icon" type="image/png" sizes="48x48" href="{% url 'favicon_png' %}">
+  <link rel="shortcut icon" href="{% url 'favicon_ico' %}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{% url 'apple_touch_icon' %}">
+  <link rel="manifest" href="{% url 'site_webmanifest' %}">
+  <meta name="theme-color" content="#0a0a0a">
 
   {# Fonts (falls du sie brauchst, optional) #}
   <link rel="preconnect" href="https://fonts.googleapis.com">

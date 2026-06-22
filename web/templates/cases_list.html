@@ -106,6 +106,45 @@
       </div>
     </div>
   </section>
+
+  <section class="case-cta-wrap">
+    <div class="container case-cta-inner fade-in-on-scroll">
+      <h2 class="case-cta-title">
+        {% if LANGUAGE_CODE == 'de' %}
+          Bereit fuer Ihre Erfolgsgeschichte?
+        {% else %}
+          Ready for your success story?
+        {% endif %}
+      </h2>
+      <p class="case-cta-text">
+        {% if LANGUAGE_CODE == 'de' %}
+          Lassen Sie uns gemeinsam Ihr naechstes Projekt zum Erfolg fuehren.
+        {% else %}
+          Let's turn your next project into a measurable success together.
+        {% endif %}
+      </p>
+      <div class="case-cta-actions">
+        <a href="{% url 'web:booking' %}" class="case-cta-btn case-cta-btn--secondary">
+          {% if LANGUAGE_CODE == 'de' %}
+            Kurz-Check buchen
+          {% else %}
+            Book quick check
+          {% endif %}
+        </a>
+        <a href="{% url 'web:contact' %}" class="case-cta-btn">
+          {% if LANGUAGE_CODE == 'de' %}
+            Jetzt Kontakt aufnehmen
+          {% else %}
+            Contact us now
+          {% endif %}
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
 </div>
 
 <!-- Case Modal -->
