@@ -53,7 +53,15 @@
                 <span class="case-feature-badge">{{ c.category }}</span>
               {% endif %}
               {% if c.safe_image_url %}
-                <img src="{{ c.safe_image_url }}" alt="{{ c.title }}" loading="lazy" class="case-feature-img" data-case-fallback-media>
+                <img
+                  src="{{ c.safe_image_url }}"
+                  alt="{{ c.title }}"
+                  loading="lazy"
+                  class="case-feature-img"
+                  data-case-fallback-media
+                  onerror="this.hidden=true; this.nextElementSibling.hidden=false;"
+                >
+                <div class="case-feature-placeholder" hidden>D</div>
               {% else %}
                 <div class="case-feature-placeholder" data-case-fallback-media>D</div>
               {% endif %}
@@ -65,21 +73,21 @@
               {% endif %}
               {% with summary_text=c.summary|default:c.problem_brief %}
                 {% if summary_text %}
-                  <p class="case-feature-summary">{{ summary_text|truncatechars:220 }}</p>
+                  <p class="case-feature-summary">{{ summary_text }}</p>
                 {% endif %}
               {% endwith %}
 
               {% if c.problem_brief %}
                 <div class="case-feature-section">
                   <div class="case-feature-label">{% if LANGUAGE_CODE == 'de' %}Herausforderung{% else %}Challenge{% endif %}</div>
-                  <p>{{ c.problem_brief|truncatechars:220 }}</p>
+                  <p>{{ c.problem_brief }}</p>
                 </div>
               {% endif %}
 
               {% if c.summary %}
                 <div class="case-feature-section">
                   <div class="case-feature-label">{% if LANGUAGE_CODE == 'de' %}Lösung{% else %}Solution{% endif %}</div>
-                  <p>{{ c.summary|truncatechars:220 }}</p>
+                  <p>{{ c.summary }}</p>
                 </div>
               {% endif %}
 
@@ -88,7 +96,7 @@
                   <div class="case-feature-label">{% if LANGUAGE_CODE == 'de' %}Ergebnisse{% else %}Results{% endif %}</div>
                   <ul class="case-feature-results">
                     {% for item in c.result_list %}
-                      <li><span class="case-result-icon">✔</span>{{ item|truncatechars:120 }}</li>
+                      <li><span class="case-result-icon">✔</span>{{ item }}</li>
                     {% endfor %}
                   </ul>
                 </div>
@@ -153,11 +161,12 @@
   <div class="case-modal__backdrop"></div>
   <div class="case-modal__dialog">
     <button class="case-modal__close" id="case-modal-close" aria-label="Close">×</button>
-    <div class="case-modal__media">
+    <div class="case-modal__media" id="case-modal-media" hidden>
       <span class="case-feature-badge" id="case-modal-badge" hidden></span>
       <img id="case-modal-img" alt="">
     </div>
     <div class="case-modal__body">
+      <span class="case-feature-badge case-feature-badge--inline" id="case-modal-badge-inline" hidden></span>
       <h3 id="case-modal-title"></h3>
       <p class="case-feature-meta" id="case-modal-client"></p>
       <p class="case-feature-summary" id="case-modal-summary"></p>
@@ -462,8 +471,11 @@
 
     const modal = document.getElementById('case-modal');
     const closeBtn = document.getElementById('case-modal-close');
+    const mediaEl = document.getElementById('case-modal-media');
+    const bodyEl = modal?.querySelector('.case-modal__body');
     const imgEl = document.getElementById('case-modal-img');
     const badgeEl = document.getElementById('case-modal-badge');
+    const inlineBadgeEl = document.getElementById('case-modal-badge-inline');
     const titleEl = document.getElementById('case-modal-title');
     const clientEl = document.getElementById('case-modal-client');
     const summaryEl = document.getElementById('case-modal-summary');
@@ -471,26 +483,59 @@
     const solutionWrap = document.getElementById('modal-solution');
     const resultsWrap = document.getElementById('modal-results');
     const techWrap = document.getElementById('modal-tech');
+    let modalImageRequestId = 0;
+
+    function setBadge(category, useMediaBadge) {
+      if (!category) {
+        badgeEl.hidden = true;
+        inlineBadgeEl.hidden = true;
+        return;
+      }
+
+      badgeEl.textContent = category;
+      inlineBadgeEl.textContent = category;
+      badgeEl.hidden = !useMediaBadge;
+      inlineBadgeEl.hidden = useMediaBadge;
+    }
+
+    function resetModalMedia() {
+      modalImageRequestId += 1;
+      mediaEl.hidden = true;
+      badgeEl.hidden = true;
+      imgEl.removeAttribute('src');
+      imgEl.alt = '';
+    }
+
+    function updateModalMedia(data) {
+      const currentRequestId = ++modalImageRequestId;
+
+      if (!data.image) {
+        resetModalMedia();
+        setBadge(data.category, false);
+        return;
+      }
+
+      const probe = new Image();
+      probe.onload = function () {
+        if (currentRequestId !== modalImageRequestId) return;
+        imgEl.src = data.image;
+        imgEl.alt = data.title || '';
+        mediaEl.hidden = false;
+        setBadge(data.category, true);
+      };
+      probe.onerror = function () {
+        if (currentRequestId !== modalImageRequestId) return;
+        resetModalMedia();
+        setBadge(data.category, false);
+      };
+      probe.src = data.image;
+    }
 
     function openModal(data){
       titleEl.textContent = data.title || '';
       clientEl.textContent = data.client || '';
       summaryEl.textContent = data.summary || '';
-
-      if (data.image) {
-        imgEl.src = data.image;
-        imgEl.alt = data.title || '';
-      } else {
-        imgEl.src = '';
-        imgEl.alt = '';
-      }
-
-      if (data.category) {
-        badgeEl.hidden = false;
-        badgeEl.textContent = data.category;
-      } else {
-        badgeEl.hidden = true;
-      }
+      updateModalMedia(data);
 
       if (data.problem) {
         problemWrap.hidden = false;
@@ -540,12 +585,16 @@
       modal.hidden = false;
       document.documentElement.classList.add('modal-open');
       document.body.classList.add('modal-open');
+      if (bodyEl) bodyEl.scrollTop = 0;
+      modal.scrollTop = 0;
     }
 
     function closeModal(){
       modal.hidden = true;
       document.documentElement.classList.remove('modal-open');
       document.body.classList.remove('modal-open');
+      resetModalMedia();
+      inlineBadgeEl.hidden = true;
     }
 
     document.querySelectorAll('.case-feature-card').forEach(card=>{
@@ -575,4 +624,3 @@
   })();
 </script>
 {% endblock %}
-</div>
