@@ -71,11 +71,6 @@
               {% if c.client_brief %}
                 <p class="case-feature-meta">{{ c.client_brief }}</p>
               {% endif %}
-              {% with summary_text=c.summary|default:c.problem_brief %}
-                {% if summary_text %}
-                  <p class="case-feature-summary">{{ summary_text }}</p>
-                {% endif %}
-              {% endwith %}
 
               {% if c.problem_brief %}
                 <div class="case-feature-section">
@@ -95,8 +90,8 @@
                 <div class="case-feature-section">
                   <div class="case-feature-label">{% if LANGUAGE_CODE == 'de' %}Ergebnisse{% else %}Results{% endif %}</div>
                   <ul class="case-feature-results">
-                    {% for item in c.result_list %}
-                      <li><span class="case-result-icon">✔</span>{{ item }}</li>
+                    {% for item in c.result_list|slice:":3" %}
+                      <li><span class="case-result-icon">✔</span><span class="case-result-text">{{ item }}</span></li>
                     {% endfor %}
                   </ul>
                 </div>
@@ -617,6 +612,14 @@
       });
       card.addEventListener('keypress',(e)=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); card.click(); } });
     });
+
+    if (window.location.hash && window.location.hash.startsWith('#case-')) {
+      const targetCard = document.querySelector(window.location.hash);
+      if (targetCard) {
+        targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        window.setTimeout(() => targetCard.click(), 180);
+      }
+    }
 
     closeBtn?.addEventListener('click', closeModal);
     modal?.addEventListener('click',(e)=>{ if(e.target === modal || e.target.classList.contains('case-modal__backdrop')) closeModal(); });

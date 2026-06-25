@@ -335,7 +335,6 @@
             <div class="grid-3 max-w-7xl mx-auto">
                 {% for case in case_studies %}
                 <div class="case-card fade-in-on-scroll" style="--i: {{ forloop.counter0 }};">
-                    
                     <div class="case-image">
                     {% if case.safe_image_url %}
                       <img src="{{ case.safe_image_url }}" alt="{{ case.title }}" class="case-img" loading="lazy" decoding="async">
@@ -345,9 +344,37 @@
                     </div>
                     </div>
 
-                    <div class="p-6">
-                    <h3 class="mb-3">{{ case.title }}</h3>
-                    <p class="text-muted mb-6">{{ case.summary|truncatechars:150 }}</p>
+                    <div class="case-card-body p-6">
+                    <h3>{{ case.title }}</h3>
+
+                    <div class="case-card-preview">
+                        {% if case.problem_brief %}
+                            <div class="case-card-preview-section">
+                                <div class="case-feature-label">{% if LANGUAGE_CODE == 'de' %}Herausforderung{% else %}Challenge{% endif %}</div>
+                                <p>{{ case.problem_brief }}</p>
+                            </div>
+                        {% endif %}
+
+                        {% if case.summary %}
+                            <div class="case-card-preview-section">
+                                <div class="case-feature-label">{% if LANGUAGE_CODE == 'de' %}Lösung{% else %}Solution{% endif %}</div>
+                                <p>{{ case.summary }}</p>
+                            </div>
+                        {% endif %}
+
+                        {% with results=case.result_list %}
+                            {% if results %}
+                                <div class="case-card-preview-section">
+                                    <div class="case-feature-label">{% if LANGUAGE_CODE == 'de' %}Ergebnisse{% else %}Results{% endif %}</div>
+                                    <ul class="case-card-results">
+                                        {% for item in results|slice:":3" %}
+                                            <li><span class="case-result-icon">✔</span><span class="case-result-text">{{ item }}</span></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        {% endwith %}
+                    </div>
 
                     <a class="view-more-btn" href="{% url 'web:cases' %}#case-{{ case.slug }}">
                         {% if LANGUAGE_CODE == 'de' %}Mehr erfahren{% else %}Learn more{% endif %}

@@ -16,7 +16,7 @@ class CaseStudyAdmin(admin.ModelAdmin):
     list_editable = ("published",)
 
     fieldsets = (
-        (None, {"fields": ("title", "category", "slug", "summary", "image", "date", "published")}),
+        (None, {"fields": ("title", "category", "slug", "summary", "preview_animation", "image", "date", "published")}),
         (_("Client / Problem / Result"), {
             "fields": ("client_brief", "problem_brief", "result_points"),
             "description": _("Beim Result jeweils eine Aussage pro Zeile. "),

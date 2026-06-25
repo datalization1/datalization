@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Case Preview Loops</title>
+  <style>
+    :root{
+      --bg:#090909;
+      --panel:#121214;
+      --panel-border:rgba(255,255,255,.08);
+      --text:#f3f3f3;
+      --muted:#a1a1aa;
+      --brand:#f7931a;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:radial-gradient(circle at top, rgba(247,147,26,.08), transparent 28%), var(--bg);
+      color:var(--text);
+      padding:40px 20px 64px;
+    }
+    .page{
+      max-width:1280px;
+      margin:0 auto;
+    }
+    .intro{
+      max-width:860px;
+      margin:0 0 28px;
+    }
+    .intro h1{
+      margin:0 0 10px;
+      font-size:2.25rem;
+      line-height:1.15;
+      font-weight:700;
+    }
+    .intro p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.6;
+    }
+    .stack{
+      display:grid;
+      gap:18px;
+    }
+    .case-card{
+      display:grid;
+      grid-template-columns:minmax(0,1.05fr) minmax(0,1.15fr);
+      min-height:420px;
+      background:rgba(14,14,16,.96);
+      border:1px solid var(--panel-border);
+      border-radius:22px;
+      overflow:hidden;
+      box-shadow:0 18px 48px rgba(0,0,0,.34);
+    }
+    .media-cell{
+      background:#0b0b0d;
+      min-height:420px;
+      position:relative;
+    }
+    .content-cell{
+      padding:28px 28px 24px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      overflow:hidden;
+    }
+    .eyebrow{
+      display:inline-flex;
+      width:max-content;
+      align-items:center;
+      gap:8px;
+      padding:8px 14px;
+      border-radius:999px;
+      background:var(--brand);
+      color:#0b0b0b;
+      font-weight:700;
+      font-size:.95rem;
+      box-shadow:0 10px 24px rgba(247,147,26,.25);
+    }
+    h2{
+      margin:0;
+      font-size:2rem;
+      line-height:1.15;
+    }
+    .meta{
+      color:var(--muted);
+      font-size:1rem;
+      line-height:1.5;
+      margin:0;
+    }
+    .section-title{
+      margin:10px 0 0;
+      color:var(--brand);
+      font-size:1.05rem;
+      font-weight:700;
+    }
+    .results{
+      margin:0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:10px;
+    }
+    .results li{
+      display:flex;
+      gap:10px;
+      color:var(--text);
+      line-height:1.5;
+    }
+    .results li::before{
+      content:"✔";
+      color:var(--brand);
+      flex:0 0 auto;
+      font-weight:700;
+    }
+    .note{
+      margin-top:22px;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+    .sr-only{
+      position:absolute !important;
+      width:1px;
+      height:1px;
+      padding:0;
+      margin:-1px;
+      overflow:hidden;
+      clip:rect(0,0,0,0);
+      white-space:nowrap;
+      border:0;
+    }
+    @media (max-width: 960px){
+      .case-card{grid-template-columns:1fr}
+      .media-cell{min-height:280px}
+      .content-cell{padding:22px}
+      h2{font-size:1.6rem}
+    }
+
+    .loop-wrap,.tx-wrap,.li-wrap{
+      width:100%;
+      height:100%;
+      aspect-ratio:auto;
+      border-radius:0;
+      position:relative;
+      overflow:hidden;
+      font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    }
+    .loop-label,.tx-label,.li-label{
+      position:absolute;
+      top:12px;
+      left:14px;
+      font-size:11px;
+      letter-spacing:.12em;
+      color:#7b7b84;
+      text-transform:uppercase;
+      z-index:3;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="intro">
+      <h1>Lokale Vorschau der Case-Study-Loops</h1>
+      <p>Hier kannst du die drei animierten Vorschauen zuerst isoliert prüfen. Wenn sie passen, binden wir sie anschliessend in die Projekte-Ansicht ein und ersetzen dort die statischen Vorschaubilder.</p>
+    </section>
+
+    <section class="stack">
+      <article class="case-card">
+        <div class="media-cell">
+          <style>
+          .loop-wrap { background: #171719; }
+          .dash-grid { position: absolute; inset: 40px 16px 16px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+          .col-header { font-size: 9px; color: #666; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; padding-bottom: 4px; border-bottom: 0.5px solid #2a2a2a; }
+          .col { display: flex; flex-direction: column; gap: 5px; }
+          .doc-card { border-radius: 6px; padding: 7px 8px; background: #242424; border: 0.5px solid #2e2e2e; display: flex; align-items: center; gap: 7px; opacity: 0; transform: translateY(8px); transition: none; }
+          .doc-card.visible { opacity: 1; transform: translateY(0); transition: opacity 0.4s ease, transform 0.4s ease; }
+          .doc-icon { width: 20px; height: 24px; border-radius: 3px; flex-shrink: 0; position: relative; }
+          .doc-icon::after { content: ''; position: absolute; top: 0; right: 0; width: 6px; height: 6px; border-left: 6px solid transparent; border-bottom: 6px solid #1a1a1a; }
+          .doc-info { flex: 1; min-width: 0; }
+          .doc-title { font-size: 8px; color: #ccc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+          .doc-sub { font-size: 7px; color: #555; margin-top: 2px; }
+          .status-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+          .status-pending { background: #555; }
+          .status-processing { background: #c87a20; animation: pulse-dot 1s ease-in-out infinite; }
+          .status-verified { background: #2d7a4f; }
+          @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.4} }
+          .source-area { position: absolute; bottom: 14px; right: 14px; display: flex; flex-direction: column; gap: 4px; }
+          .kpi-pill { background: #222; border: 0.5px solid #2e2e2e; border-radius: 20px; padding: 3px 8px; display: flex; align-items: center; gap: 5px; }
+          .kpi-num { font-size: 10px; font-weight: 500; color: #d4a055; }
+          .kpi-label { font-size: 8px; color: #555; }
+          .progress-bar { position: absolute; bottom: 14px; left: 16px; right: 130px; height: 2px; background: #2a2a2a; border-radius: 2px; overflow: hidden; }
+          .progress-fill { height: 100%; background: #c87a20; border-radius: 2px; width: 0%; transition: width 0.05s linear; }
+          </style>
+          <div class="loop-wrap" id="case1">
+            <h2 class="sr-only">Animierter Loop: Digitale Dokumentenplattform fuer Immobilien und Broker</h2>
+            <div class="loop-label">Digitale Dokumentenplattform</div>
+            <div class="dash-grid">
+              <div><div class="col-header">Eingang</div><div class="col" id="col-inbox"></div></div>
+              <div><div class="col-header">Verarbeitung</div><div class="col" id="col-processing"></div></div>
+              <div><div class="col-header">Verifiziert</div><div class="col" id="col-verified"></div></div>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="prog"></div></div>
+            <div class="source-area">
+              <div class="kpi-pill"><span class="kpi-num" id="kpi-docs">0</span><span class="kpi-label">Dokumente</span></div>
+              <div class="kpi-pill"><span class="kpi-num" id="kpi-pct">0%</span><span class="kpi-label">Digitalisiert</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="content-cell">
+          <div class="eyebrow">App Development / FinTech</div>
+          <h2>Digitale Dokumentenplattform fuer Immobilien, Aktienregister und Broker</h2>
+          <p class="meta">Vorschau-Loop fuer die Kartenansicht: Dokumente fliessen von Eingang ueber Verarbeitung zu verifiziertem Bestand.</p>
+          <div class="section-title">Was geprueft werden soll</div>
+          <ul class="results">
+            <li>Wirkt der Loop strukturiert und hochwertig statt generisch?</li>
+            <li>Passt die Animation zur Plattform- und Automationslogik?</li>
+            <li>Ist die visuelle Dichte fuer die Projektkarte richtig?</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="case-card">
+        <div class="media-cell">
+          <style>
+          .tx-wrap { background: #161618; }
+          .phone-frame { position: absolute; right: 18%; top: 50%; transform: translateY(-50%); width: 88px; border-radius: 14px; background: #0f0f0f; border: 1.5px solid #333; padding: 8px 5px; display: flex; flex-direction: column; align-items: center; gap: 3px; }
+          .phone-notch { width: 20px; height: 4px; background: #222; border-radius: 2px; margin-bottom: 4px; }
+          .phone-screen { width: 100%; background: #141414; border-radius: 6px; padding: 6px 5px; display: flex; flex-direction: column; gap: 3px; min-height: 108px; }
+          .upload-progress-ring { width: 36px; height: 36px; margin: 4px auto; }
+          .checklist-item { display: flex; align-items: center; gap: 4px; }
+          .ci-check { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+          .ci-label { font-size: 6px; color: #888; }
+          .ci-label.done { color: #2d7a4f; }
+          .send-btn { margin-top: 4px; background: #c87a20; border-radius: 4px; padding: 3px 0; text-align: center; font-size: 6px; color: #000; font-weight: 500; opacity: 0; transition: opacity 0.3s; }
+          .paper-doc { position: absolute; background: #2a2a2a; border: 0.5px solid #333; border-radius: 4px; display: flex; flex-direction: column; gap: 3px; padding: 5px; }
+          .pd-line { height: 2px; background: #3a3a3a; border-radius: 1px; }
+          .pd-line.short { width: 60%; }
+          </style>
+          <div class="tx-wrap" id="case2">
+            <h2 class="sr-only">Animierter Loop: Steuerunterlagen per Smartphone digital uebermitteln</h2>
+            <div class="tx-label">Steuereinreichung digital</div>
+            <div id="papers-container"></div>
+            <div class="phone-frame" id="phone">
+              <div class="phone-notch"></div>
+              <div class="phone-screen">
+                <svg class="upload-progress-ring" viewBox="0 0 36 36" id="ring-svg">
+                  <circle cx="18" cy="18" r="14" fill="none" stroke="#2a2a2a" stroke-width="3"></circle>
+                  <circle cx="18" cy="18" r="14" fill="none" stroke="#c87a20" stroke-width="3" stroke-dasharray="87.96" stroke-dashoffset="87.96" stroke-linecap="round" transform="rotate(-90 18 18)" id="ring-circle"></circle>
+                  <text x="18" y="22" text-anchor="middle" fill="#d4a055" font-size="7" id="ring-pct">0%</text>
+                </svg>
+                <div id="checklist" style="display:flex;flex-direction:column;gap:3px;margin-top:2px;"></div>
+                <div class="send-btn" id="send-btn">Sicher uebermitteln</div>
+              </div>
+            </div>
+            <div style="position:absolute;bottom:14px;left:16px;right:16px;height:1.5px;background:#252525;border-radius:1px;overflow:hidden;">
+              <div id="prog2" style="height:100%;background:#c87a20;border-radius:1px;width:0%;transition:width 0.05s linear;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="content-cell">
+          <div class="eyebrow">App Development / FinTech</div>
+          <h2>Digitale Loesung zur Uebermittlung von Steuerunterlagen</h2>
+          <p class="meta">Vorschau-Loop fuer die Kartenansicht: unsortierte Unterlagen werden in einen sauberen mobilen Einreichungsprozess ueberfuehrt.</p>
+          <div class="section-title">Was geprueft werden soll</div>
+          <ul class="results">
+            <li>Ist der Smartphone-Fokus sofort klar?</li>
+            <li>Wirkt der Ablauf sicher, schnell und digital?</li>
+            <li>Bleibt die Animation auf Kartenhoehe gut lesbar?</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="case-card">
+        <div class="media-cell">
+          <style>
+          .li-wrap { background: #141416; }
+          .map-area { position: absolute; left: 0; top: 0; bottom: 0; width: 55%; border-right: 0.5px solid #222; }
+          .map-grid { position: absolute; inset: 0; opacity: 0.15; }
+          .leads-panel { position: absolute; right: 0; top: 0; bottom: 0; left: 55%; padding: 34px 12px 12px; display: flex; flex-direction: column; gap: 6px; }
+          .panel-title { font-size: 8px; color: #555; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 2px; }
+          .lead-card { background: #1e1e22; border: 0.5px solid #2a2a2e; border-radius: 6px; padding: 6px 8px; display: flex; align-items: center; gap: 6px; opacity: 0; transform: translateX(8px); transition: none; }
+          .lead-card.visible { opacity: 1; transform: translateX(0); transition: opacity 0.35s ease, transform 0.35s ease; }
+          .lead-card.highlight { border-color: #c87a20; box-shadow: 0 0 0 1px #c87a2033; }
+          .lead-avatar { width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 7px; font-weight: 500; flex-shrink: 0; }
+          .lead-info { flex: 1; min-width: 0; }
+          .lead-name { font-size: 8px; color: #ccc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+          .lead-loc { font-size: 7px; color: #555; }
+          .lead-score { font-size: 9px; font-weight: 500; }
+          .kpi-row { position: absolute; bottom: 12px; left: 14px; display: flex; gap: 8px; }
+          .kpi-box { background: #1e1e22; border: 0.5px solid #2a2a2e; border-radius: 6px; padding: 4px 8px; }
+          .kpi-val { font-size: 11px; font-weight: 500; color: #d4a055; }
+          .kpi-lbl { font-size: 7px; color: #555; }
+          .pulse-dot { position: absolute; border-radius: 50%; pointer-events: none; }
+          </style>
+          <div class="li-wrap" id="case3">
+            <h2 class="sr-only">Animierter Loop: Data Mining und Lead Intelligence fuer Immobilienverkaeufer</h2>
+            <div class="li-label">Lead Intelligence · Immobilien</div>
+            <div class="map-area" id="map-area">
+              <svg class="map-grid" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                    <path d="M20 0L0 0 0 20" fill="none" stroke="#4a4a55" stroke-width="0.5"></path>
+                  </pattern>
+                </defs>
+                <rect width="300" height="200" fill="url(#grid)"></rect>
+              </svg>
+              <div id="pulses-container"></div>
+            </div>
+            <div class="leads-panel">
+              <div class="panel-title">Qualifizierte Leads</div>
+              <div id="leads-list" style="display:flex;flex-direction:column;gap:5px;flex:1;overflow:hidden;"></div>
+            </div>
+            <div class="kpi-row">
+              <div class="kpi-box"><div class="kpi-val" id="kpi-sources">0</div><div class="kpi-lbl">Quellen</div></div>
+              <div class="kpi-box"><div class="kpi-val" id="kpi-leads">0</div><div class="kpi-lbl">Leads heute</div></div>
+              <div class="kpi-box"><div class="kpi-val" id="kpi-score">—</div><div class="kpi-lbl">Ø Score</div></div>
+            </div>
+            <div style="position:absolute;bottom:12px;right:14px;left:calc(55% + 14px);height:1.5px;background:#252525;border-radius:1px;overflow:hidden;">
+              <div id="prog3" style="height:100%;background:#c87a20;border-radius:1px;width:0%;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="content-cell">
+          <div class="eyebrow">Data Mining / Automation</div>
+          <h2>Data Mining &amp; Lead Intelligence fuer Immobilienverkaeufer</h2>
+          <p class="meta">Vorschau-Loop fuer die Kartenansicht: Signale auf der Karte, qualifizierte Leads im Panel und steigende Kennzahlen im gleichen Takt.</p>
+          <div class="section-title">Was geprueft werden soll</div>
+          <ul class="results">
+            <li>Passt die Dynamik zum Thema Automatisierung und Scoring?</li>
+            <li>Ist der Loop ruhig genug fuer die Website und trotzdem lebendig?</li>
+            <li>Ist die Richtung besser als das bisherige statische Dashboard-Bild?</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <p class="note">Wenn einer der drei Loops passt, binden wir ihn im naechsten Schritt in die Projekte-Kartenansicht ein und lassen das statische Bild nur noch im geoeffneten Detail erscheinen.</p>
+  </main>
+
+  <script>
+  (function(){
+    const docs = [
+      { title: 'Kaufvertrag', sub: 'Immobilien', color: '#2a3d5c' },
+      { title: 'Aktienregister', sub: 'Broker', color: '#3a2d5c' },
+      { title: 'Grundbuchauszug', sub: 'Immobilien', color: '#2a3d5c' },
+      { title: 'Depotauszug', sub: 'Broker', color: '#3a2d5c' },
+      { title: 'Mietvertrag', sub: 'Immobilien', color: '#2a3d5c' }
+    ];
+    const totalDuration = 6000;
+    let start1 = null;
+    function makeCard(doc, statusClass) {
+      const d = document.createElement('div');
+      d.className = 'doc-card';
+      d.innerHTML = '<div class="doc-icon" style="background:' + doc.color + '"></div><div class="doc-info"><div class="doc-title">' + doc.title + '</div><div class="doc-sub">' + doc.sub + '</div></div><div class="status-dot status-' + statusClass + '"></div>';
+      return d;
+    }
+    function tick1(ts){
+      if (!start1) start1 = ts;
+      const elapsed = (ts - start1) % totalDuration;
+      const t = elapsed / totalDuration;
+      document.getElementById('prog').style.width = (t * 100) + '%';
+      document.getElementById('kpi-docs').textContent = Math.floor(t * 15);
+      document.getElementById('kpi-pct').textContent = Math.round(t * 100) + '%';
+      const inbox = document.getElementById('col-inbox');
+      const processing = document.getElementById('col-processing');
+      const verified = document.getElementById('col-verified');
+      const inboxCount = t < 0.3 ? Math.floor((t / 0.3) * docs.length) : Math.max(0, Math.floor(docs.length - ((t - 0.3) / 0.35) * docs.length));
+      const procCount = t < 0.3 ? 0 : (t < 0.65 ? Math.floor(((t - 0.3) / 0.35) * docs.length) : Math.max(0, Math.floor(docs.length - ((t - 0.65) / 0.25) * docs.length)));
+      const verCount = t < 0.65 ? 0 : Math.floor(((t - 0.65) / 0.3) * docs.length);
+      function syncCol(el, count, statusClass){
+        while (el.children.length > count) el.removeChild(el.lastChild);
+        while (el.children.length < count) {
+          const card = makeCard(docs[el.children.length % docs.length], statusClass);
+          el.appendChild(card);
+          requestAnimationFrame(() => card.classList.add('visible'));
+        }
+      }
+      syncCol(inbox, Math.min(Math.max(0, inboxCount), 4), 'pending');
+      syncCol(processing, Math.min(Math.max(0, procCount), 4), 'processing');
+      syncCol(verified, Math.min(Math.max(0, verCount), 4), 'verified');
+      requestAnimationFrame(tick1);
+    }
+    requestAnimationFrame(tick1);
+  })();
+
+  (function(){
+    const items = ['Lohnausweis', 'Quittungen', 'Kontoauszug', 'Wertschriften', 'Krankheitskosten'];
+    const paperDefs = [
+      { left: '8%', top: '30%', w: 52, h: 60, rotate: -8 },
+      { left: '14%', top: '50%', w: 44, h: 54, rotate: 5 },
+      { left: '5%', top: '55%', w: 38, h: 48, rotate: -3 },
+      { left: '25%', top: '35%', w: 50, h: 58, rotate: 7 },
+      { left: '30%', top: '55%', w: 42, h: 52, rotate: -5 }
+    ];
+    const cont = document.getElementById('papers-container');
+    paperDefs.forEach((p, i) => {
+      const el = document.createElement('div');
+      el.className = 'paper-doc';
+      el.style.cssText = 'left:' + p.left + ';top:' + p.top + ';width:' + p.w + 'px;height:' + p.h + 'px;transform:rotate(' + p.rotate + 'deg);';
+      el.id = 'paper-' + i;
+      el.innerHTML = '<div class="pd-line"></div><div class="pd-line short"></div><div class="pd-line"></div><div class="pd-line short"></div>';
+      cont.appendChild(el);
+    });
+    const totalDuration = 6000;
+    let start2 = null;
+    function tick2(ts){
+      if (!start2) start2 = ts;
+      const elapsed = (ts - start2) % totalDuration;
+      const t = elapsed / totalDuration;
+      document.getElementById('prog2').style.width = (t * 100) + '%';
+      const pct = Math.round(t * 100);
+      const circumference = 87.96;
+      document.getElementById('ring-circle').setAttribute('stroke-dashoffset', circumference * (1 - t));
+      document.getElementById('ring-pct').textContent = pct + '%';
+      paperDefs.forEach((p, i) => {
+        const el = document.getElementById('paper-' + i);
+        const fadeStart = 0.1 + i * 0.1;
+        const fadeEnd = fadeStart + 0.15;
+        if (t < fadeStart) {
+          el.style.opacity = '1';
+          el.style.transform = 'rotate(' + p.rotate + 'deg) translateY(0)';
+        } else if (t < fadeEnd) {
+          const ft = (t - fadeStart) / (fadeEnd - fadeStart);
+          el.style.opacity = String(1 - ft);
+          el.style.transform = 'rotate(' + p.rotate + 'deg) translateY(' + (-ft * 30) + 'px)';
+        } else {
+          el.style.opacity = '0';
+        }
+      });
+      const checklist = document.getElementById('checklist');
+      const count = Math.floor(t * (items.length + 1));
+      checklist.innerHTML = '';
+      items.slice(0, Math.min(count, items.length)).forEach((item, i) => {
+        const div = document.createElement('div');
+        const done = i < count - 1 || t > 0.9;
+        div.className = 'checklist-item';
+        div.innerHTML = '<div class="ci-check" style="background:' + (done ? '#2d7a4f' : '#c87a20') + '"></div><span class="ci-label ' + (done ? 'done' : '') + '">' + item + '</span>';
+        checklist.appendChild(div);
+      });
+      document.getElementById('send-btn').style.opacity = t > 0.88 ? String(Math.min(1, (t - 0.88) / 0.08)) : '0';
+      requestAnimationFrame(tick2);
+    }
+    requestAnimationFrame(tick2);
+  })();
+
+  (function(){
+    const leads = [
+      { name: 'M. Brunner', loc: 'Zuerich', score: 94, color: '#2a3d5c', initials: 'MB' },
+      { name: 'K. Steiner', loc: 'Bern', score: 87, color: '#3a2d5c', initials: 'KS' },
+      { name: 'A. Mueller', loc: 'Basel', score: 81, color: '#2d3d2a', initials: 'AM' },
+      { name: 'P. Frei', loc: 'Luzern', score: 76, color: '#3d2d2a', initials: 'PF' }
+    ];
+    const pulseDefs = [
+      { x: '15%', y: '35%', delay: 0 },
+      { x: '30%', y: '55%', delay: 0.12 },
+      { x: '22%', y: '65%', delay: 0.24 },
+      { x: '40%', y: '42%', delay: 0.08 },
+      { x: '10%', y: '70%', delay: 0.18 },
+      { x: '35%', y: '25%', delay: 0.3 },
+      { x: '48%', y: '60%', delay: 0.05 }
+    ];
+    const cont = document.getElementById('pulses-container');
+    pulseDefs.forEach((p, i) => {
+      const el = document.createElement('div');
+      el.className = 'pulse-dot';
+      el.id = 'pulse-' + i;
+      el.style.cssText = 'left:' + p.x + ';top:' + p.y + ';width:8px;height:8px;background:#c87a20;opacity:0;margin-left:-4px;margin-top:-4px;';
+      cont.appendChild(el);
+    });
+    const totalDuration = 6000;
+    let start3 = null;
+    function tick3(ts){
+      if (!start3) start3 = ts;
+      const elapsed = (ts - start3) % totalDuration;
+      const t = elapsed / totalDuration;
+      document.getElementById('prog3').style.width = (t * 100) + '%';
+      pulseDefs.forEach((p, i) => {
+        const el = document.getElementById('pulse-' + i);
+        const phase = (t + (1 - p.delay)) % 1;
+        const size = 8 + phase * 16;
+        const op = phase < 0.5 ? phase * 1.4 : (1 - phase) * 1.4;
+        el.style.width = size + 'px';
+        el.style.height = size + 'px';
+        el.style.marginLeft = (-size / 2) + 'px';
+        el.style.marginTop = (-size / 2) + 'px';
+        el.style.opacity = String(Math.max(0, Math.min(0.7, op)));
+      });
+      document.getElementById('kpi-sources').textContent = Math.min(7, Math.floor(t * 10));
+      document.getElementById('kpi-leads').textContent = Math.floor(t * 34);
+      document.getElementById('kpi-score').textContent = t > 0.2 ? Math.round(76 + t * 12) : '—';
+      const list = document.getElementById('leads-list');
+      const count = Math.min(leads.length, Math.floor(t * (leads.length * 1.5)));
+      while (list.children.length > count) list.removeChild(list.lastChild);
+      while (list.children.length < count && list.children.length < leads.length) {
+        const lead = leads[list.children.length];
+        const card = document.createElement('div');
+        card.className = 'lead-card' + (list.children.length === 0 ? ' highlight' : '');
+        card.innerHTML = '<div class="lead-avatar" style="background:' + lead.color + ';color:#aac">' + lead.initials + '</div><div class="lead-info"><div class="lead-name">' + lead.name + '</div><div class="lead-loc">' + lead.loc + '</div></div><div class="lead-score" style="color:' + (lead.score > 90 ? '#c87a20' : '#888') + '">' + lead.score + '</div>';
+        list.appendChild(card);
+        requestAnimationFrame(() => card.classList.add('visible'));
+      }
+      requestAnimationFrame(tick3);
+    }
+    requestAnimationFrame(tick3);
+  })();
+  </script>
+</body>
+</html>

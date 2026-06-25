@@ -22,6 +22,7 @@ class CaseStudy(models.Model):
     result_points  = models.TextField(_("Result (Bullet points)"), blank=True,
         help_text=_("Eine Aufzählung, je Zeile ein Punkt."))
 
+    preview_animation = models.FileField(upload_to="cases/previews/", blank=True, null=True)
     image       = models.ImageField(upload_to="cases/", blank=True, null=True)
     date        = models.DateField()
     published   = models.BooleanField(
@@ -54,6 +55,17 @@ class CaseStudy(models.Model):
             if not self.image.storage.exists(self.image.name):
                 return ""
             return self.image.url
+        except Exception:
+            return ""
+
+    @property
+    def safe_preview_animation_url(self):
+        if not self.preview_animation or not getattr(self.preview_animation, "name", ""):
+            return ""
+        try:
+            if not self.preview_animation.storage.exists(self.preview_animation.name):
+                return ""
+            return self.preview_animation.url
         except Exception:
             return ""
 
