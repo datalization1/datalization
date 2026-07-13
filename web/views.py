@@ -1,10 +1,14 @@
+import logging
+import json
 from datetime import timedelta
+from urllib import error, parse, request as urllib_request
 from django.http import JsonResponse
 from django.utils import timezone
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.translation import gettext as _
 from django.contrib import messages
 from django.conf import settings
+from django.core import signing
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.cache import cache_page
 from django.views.decorators.http import require_http_methods
@@ -12,6 +16,12 @@ from .models import CaseStudy, ContactMessage, StartRequest
 from .forms import ContactForm, StartForm
 from django.core.mail import send_mail, EmailMessage, EmailMultiAlternatives
 from django.template.loader import render_to_string
+
+logger = logging.getLogger(__name__)
+
+CONTACT_FORM_TOKEN_SALT = "web.contact_form"
+CONTACT_FORM_MIN_SECONDS = 3
+CONTACT_FORM_MAX_AGE_SECONDS = 3600
 
 @ensure_csrf_cookie
 def home(request):
@@ -198,12 +208,118 @@ def _is_ajax(request):
     return request.headers.get("x-requested-with") == "XMLHttpRequest"
 
 
+def _make_contact_form_token(request):
+    return signing.dumps(
+        {
+            "path": request.path,
+            "ts": timezone.now().timestamp(),
+        },
+        salt=CONTACT_FORM_TOKEN_SALT,
+    )
+
+
+def _get_client_ip(request):
+    forwarded_for = request.headers.get("CF-Connecting-IP") or request.headers.get("X-Forwarded-For", "")
+    if forwarded_for:
+        return forwarded_for.split(",")[0].strip()
+    return request.META.get("REMOTE_ADDR", "")
+
+
+def _validate_contact_form_token(request):
+    token = request.POST.get("contact_form_token", "")
+    if not token:
+        return False
+
+    try:
+        payload = signing.loads(
+            token,
+            salt=CONTACT_FORM_TOKEN_SALT,
+            max_age=CONTACT_FORM_MAX_AGE_SECONDS,
+        )
+    except signing.BadSignature:
+        return False
+    except signing.SignatureExpired:
+        return False
+
+    if payload.get("path") != request.path:
+        return False
+
+    rendered_at = payload.get("ts")
+    if rendered_at is None:
+        return False
+
+    age_seconds = timezone.now().timestamp() - float(rendered_at)
+    return age_seconds >= CONTACT_FORM_MIN_SECONDS
+
+
+def _validate_turnstile(request):
+    if not getattr(settings, "TURNSTILE_ENABLED", False):
+        return True
+
+    token = request.POST.get("cf-turnstile-response", "").strip()
+    if not token:
+        return False
+
+    try:
+        encoded_payload = parse.urlencode(
+            {
+                "secret": settings.TURNSTILE_SECRET_KEY,
+                "response": token,
+                "remoteip": _get_client_ip(request),
+            }
+        ).encode("utf-8")
+        verify_request = urllib_request.Request(
+            "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+            data=encoded_payload,
+            headers={"Content-Type": "application/x-www-form-urlencoded"},
+        )
+        with urllib_request.urlopen(verify_request, timeout=5) as response:
+            payload = json.loads(response.read().decode("utf-8"))
+    except (error.URLError, ValueError, json.JSONDecodeError) as exc:
+        logger.warning("Turnstile validation failed: %s", exc)
+        return False
+
+    return bool(payload.get("success"))
+
+
+def _contact_context(request, form):
+    return {
+        "form": form,
+        "contact_form_token": _make_contact_form_token(request),
+        "turnstile_enabled": getattr(settings, "TURNSTILE_ENABLED", False),
+        "turnstile_site_key": getattr(settings, "TURNSTILE_SITE_KEY", ""),
+    }
+
+
 @require_http_methods(["GET", "POST"])
 @ensure_csrf_cookie
 def contact(request):
     if request.method == "POST":
         form = ContactForm(request.POST)
-        if form.is_valid():
+        form_is_valid = form.is_valid()
+
+        if request.POST.get("website"):
+            form.add_error(None, _("Spam detection triggered."))
+        if not _validate_contact_form_token(request):
+            form.add_error(
+                None,
+                _(
+                    "Bitte senden Sie das Formular erneut ab."
+                    if request.LANGUAGE_CODE == "de"
+                    else "Please submit the form again."
+                ),
+            )
+        if not _validate_turnstile(request):
+            form.add_error(
+                None,
+                _(
+                    "Bitte bestätigen Sie, dass Sie ein Mensch sind."
+                    if request.LANGUAGE_CODE == "de"
+                    else "Please confirm that you are human."
+                ),
+            )
+
+        if form_is_valid and not form.errors:
             cd = form.cleaned_data
 
             # De-Dup: gleiche Email + gleicher Text innerhalb von 20 Sekunden
@@ -216,7 +332,9 @@ def contact(request):
 
             msg = None
             if not exists:
-                msg = form.save()
+                msg = form.save(commit=False)
+                msg.language = request.LANGUAGE_CODE
+                msg.save()
 
                 # ---------- Admin-Mail ----------
                 try:
@@ -284,11 +402,11 @@ def contact(request):
             if request.LANGUAGE_CODE == "de"
             else "Please check your input."
         )
-        return redirect("web:home")
+        return render(request, "contact.html", _contact_context(request, form), status=400)
 
     # GET
     form = ContactForm(initial={"language": request.LANGUAGE_CODE})
-    return render(request, "contact.html", {"form": form})
+    return render(request, "contact.html", _contact_context(request, form))
 
 def impressum(request):
     return render(request, "impressum.html")

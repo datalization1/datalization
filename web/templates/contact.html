@@ -38,6 +38,16 @@
           </div>
         {% endif %}
 
+        {% if form.non_field_errors %}
+          <div class="form-messages">
+            {% for error in form.non_field_errors %}
+              <div class="form-message form-message-error">
+                {{ error }}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
         <form id="contact-form" method="post" action="{% url 'web:contact' %}" class="space-y-6">
           <div class="form-intro">
             <h2>{% if LANGUAGE_CODE == 'de' %}Schreiben Sie uns{% else %}Write to us{% endif %}</h2>
@@ -50,32 +60,36 @@
             </p>
           </div>
           {% csrf_token %}
-          <input type="hidden" name="website" value="">
+          <input type="hidden" name="contact_form_token" value="{{ contact_form_token }}">
+          <div style="position:absolute;left:-9999px;opacity:0;pointer-events:none;" aria-hidden="true">
+            <label for="website">Website</label>
+            <input type="text" id="website" name="website" value="" tabindex="-1" autocomplete="off">
+          </div>
 
           <div class="grid-2 gap-4">
             <div class="form-field">
               <label class="form-label" for="first_name">{% if LANGUAGE_CODE == 'de' %}Vorname{% else %}First name{% endif %}</label>
-              <input type="text" id="first_name" name="first_name" class="form-input" placeholder="{% if LANGUAGE_CODE == 'de' %}Vorname{% else %}First name{% endif %}" required autocomplete="given-name">
+              <input type="text" id="first_name" name="first_name" class="form-input" placeholder="{% if LANGUAGE_CODE == 'de' %}Vorname{% else %}First name{% endif %}" value="{{ form.first_name.value|default_if_none:'' }}" required autocomplete="given-name">
             </div>
             <div class="form-field">
               <label class="form-label" for="last_name">{% if LANGUAGE_CODE == 'de' %}Nachname{% else %}Last name{% endif %}</label>
-              <input type="text" id="last_name" name="last_name" class="form-input" placeholder="{% if LANGUAGE_CODE == 'de' %}Nachname{% else %}Last name{% endif %}" required autocomplete="family-name">
+              <input type="text" id="last_name" name="last_name" class="form-input" placeholder="{% if LANGUAGE_CODE == 'de' %}Nachname{% else %}Last name{% endif %}" value="{{ form.last_name.value|default_if_none:'' }}" required autocomplete="family-name">
             </div>
           </div>
 
           <div class="form-field">
             <label class="form-label" for="company">{% if LANGUAGE_CODE == 'de' %}Firma (optional){% else %}Company (optional){% endif %}</label>
-            <input type="text" id="company" name="company" class="form-input" placeholder="{% if LANGUAGE_CODE == 'de' %}Firma (optional){% else %}Company (optional){% endif %}" autocomplete="organization">
+            <input type="text" id="company" name="company" class="form-input" placeholder="{% if LANGUAGE_CODE == 'de' %}Firma (optional){% else %}Company (optional){% endif %}" value="{{ form.company.value|default_if_none:'' }}" autocomplete="organization">
           </div>
 
           <div class="form-field">
             <label class="form-label" for="email">{% if LANGUAGE_CODE == 'de' %}E-Mail{% else %}Email{% endif %}</label>
-            <input type="email" id="email" name="email" class="form-input" placeholder="{% if LANGUAGE_CODE == 'de' %}Ihre E-Mail{% else %}Your email{% endif %}" required autocomplete="email">
+            <input type="email" id="email" name="email" class="form-input" placeholder="{% if LANGUAGE_CODE == 'de' %}Ihre E-Mail{% else %}Your email{% endif %}" value="{{ form.email.value|default_if_none:'' }}" required autocomplete="email">
           </div>
 
           <div class="form-field">
             <label class="form-label" for="phone">{% if LANGUAGE_CODE == 'de' %}Telefon (optional){% else %}Phone (optional){% endif %}</label>
-            <input type="tel" id="phone" name="phone" class="form-input" placeholder="{% if LANGUAGE_CODE == 'de' %}Ihre Telefonnummer{% else %}Your phone number{% endif %}" autocomplete="tel">
+            <input type="tel" id="phone" name="phone" class="form-input" placeholder="{% if LANGUAGE_CODE == 'de' %}Ihre Telefonnummer{% else %}Your phone number{% endif %}" value="{{ form.phone.value|default_if_none:'' }}" autocomplete="tel">
           </div>
 
           <div class="form-field">
@@ -91,8 +105,24 @@
 
           <div class="form-field">
             <label class="form-label" for="message">{% if LANGUAGE_CODE == 'de' %}Nachricht{% else %}Message{% endif %}</label>
-            <textarea id="message" name="message" rows="6" class="form-textarea" placeholder="{% if LANGUAGE_CODE == 'de' %}Ihre Nachricht…{% else %}Your message…{% endif %}" required></textarea>
+            <textarea id="message" name="message" rows="6" class="form-textarea" placeholder="{% if LANGUAGE_CODE == 'de' %}Ihre Nachricht…{% else %}Your message…{% endif %}" required>{{ form.message.value|default_if_none:'' }}</textarea>
           </div>
+
+          {% if turnstile_enabled %}
+            <div class="form-field">
+              <label class="form-label" for="turnstile-widget">
+                {% if LANGUAGE_CODE == 'de' %}Bestätigung{% else %}Verification{% endif %}
+              </label>
+              <div
+                id="turnstile-widget"
+                class="cf-turnstile"
+                data-sitekey="{{ turnstile_site_key }}"
+                data-theme="light"
+                data-size="flexible"
+                data-action="contact"
+              ></div>
+            </div>
+          {% endif %}
 
           <button type="submit" class="btn-primary w-full gap-2">
             {% if LANGUAGE_CODE == 'de' %}Nachricht senden{% else %}Send message{% endif %}
@@ -149,4 +179,11 @@
   </div>
 </section>
 
+{% endblock %}
+
+{% block extra_js %}
+  {{ block.super }}
+  {% if turnstile_enabled %}
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  {% endif %}
 {% endblock %}

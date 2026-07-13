@@ -83,6 +83,13 @@ function getCookie(name) {
   return null;
 }
 
+function resetTurnstile(form) {
+  const widget = form.querySelector(".cf-turnstile");
+  if (!widget || !window.turnstile || typeof window.turnstile.reset !== "function")
+    return;
+  window.turnstile.reset();
+}
+
 /**
  * Handle contact form submission
  * - Prevents double-binding and double-submit
@@ -119,6 +126,17 @@ function initContactForm() {
           document.documentElement.lang === "de"
             ? "Bitte füllen Sie alle Pflichtfelder aus."
             : "Please fill in all required fields.";
+        showToast(msg, "error");
+        form.dataset.submitting = "0";
+        return;
+      }
+
+      const turnstileWidget = form.querySelector(".cf-turnstile");
+      if (turnstileWidget && !formData.get("cf-turnstile-response")) {
+        const msg =
+          document.documentElement.lang === "de"
+            ? "Bitte bestätigen Sie, dass Sie ein Mensch sind."
+            : "Please confirm that you are human.";
         showToast(msg, "error");
         form.dataset.submitting = "0";
         return;
@@ -168,7 +186,9 @@ function initContactForm() {
               : "Thank you! We'll get back to you soon.";
           showToast(successMsg, "success");
           form.reset();
+          resetTurnstile(form);
         } else {
+          resetTurnstile(form);
           const errorMsg =
             document.documentElement.lang === "de"
               ? "Bitte prüfen Sie Ihre Eingaben."
@@ -180,6 +200,7 @@ function initContactForm() {
         }
       } catch (err) {
         console.error("Error submitting form:", err);
+        resetTurnstile(form);
         const fallbackMsg =
           document.documentElement.lang === "de"
             ? "Ein unerwarteter Fehler ist aufgetreten."
