@@ -120,7 +120,7 @@
               <span class="pill pill-muted">{{ case.category|default:"-" }}</span>
             </div>
             <h3>{{ case.title }}</h3>
-            <p class="muted">{{ case.summary|default:case.problem_brief|truncatechars:110 }}</p>
+            <p class="muted">{{ case.summary_localized|default:case.problem_localized|truncatechars:110 }}</p>
             {% if case.tech_stack %}
             <div class="tags">
               <span class="tag">{{ case.tech_stack }}</span>

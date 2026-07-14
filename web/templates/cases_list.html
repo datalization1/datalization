@@ -41,8 +41,8 @@
             data-case-slug="{{ c.slug }}"
             data-case-title="{{ c.title|escape }}"
             data-case-client="{{ c.client_brief|default:''|escape }}"
-            data-case-summary="{{ c.summary|default:''|escape }}"
-            data-case-problem="{{ c.problem_brief|default:''|escape }}"
+            data-case-summary="{{ c.summary_localized|default:''|escape }}"
+            data-case-problem="{{ c.problem_localized|default:''|escape }}"
             data-case-results="{{ c.result_list|join:'||'|default:''|escape }}"
             data-case-category="{{ c.category|default:''|escape }}"
             data-case-image="{% if c.safe_image_url %}{{ c.safe_image_url }}{% endif %}"
@@ -72,17 +72,17 @@
                 <p class="case-feature-meta">{{ c.client_brief }}</p>
               {% endif %}
 
-              {% if c.problem_brief %}
+              {% if c.problem_localized %}
                 <div class="case-feature-section">
                   <div class="case-feature-label">{% if LANGUAGE_CODE == 'de' %}Herausforderung{% else %}Challenge{% endif %}</div>
-                  <p>{{ c.problem_brief }}</p>
+                  <p>{{ c.problem_localized }}</p>
                 </div>
               {% endif %}
 
-              {% if c.summary %}
+              {% if c.summary_localized %}
                 <div class="case-feature-section">
                   <div class="case-feature-label">{% if LANGUAGE_CODE == 'de' %}Lösung{% else %}Solution{% endif %}</div>
-                  <p>{{ c.summary }}</p>
+                  <p>{{ c.summary_localized }}</p>
                 </div>
               {% endif %}
 

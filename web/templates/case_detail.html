@@ -21,9 +21,9 @@
         <h1 class="section-title mb-3">
           {{ case.title }}
         </h1>
-        {% if case.summary %}
+        {% if case.summary_localized %}
           <p class="text-muted max-w-2xl">
-            {{ case.summary }}
+            {{ case.summary_localized }}
           </p>
         {% endif %}
       </header>
@@ -42,7 +42,7 @@
 
         <div class="cpr-col">
           <div class="cpr-title">{% trans "Problem" %}</div>
-          <p>{{ case.problem_brief|default:"–"|linebreaksbr }}</p>
+          <p>{{ case.problem_localized|default:"–"|linebreaksbr }}</p>
         </div>
 
         <div class="cpr-col">

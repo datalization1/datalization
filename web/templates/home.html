@@ -348,17 +348,17 @@
                     <h3>{{ case.title }}</h3>
 
                     <div class="case-card-preview">
-                        {% if case.problem_brief %}
+                        {% if case.problem_localized %}
                             <div class="case-card-preview-section">
                                 <div class="case-feature-label">{% if LANGUAGE_CODE == 'de' %}Herausforderung{% else %}Challenge{% endif %}</div>
-                                <p>{{ case.problem_brief }}</p>
+                                <p>{{ case.problem_localized }}</p>
                             </div>
                         {% endif %}
 
-                        {% if case.summary %}
+                        {% if case.summary_localized %}
                             <div class="case-card-preview-section">
                                 <div class="case-feature-label">{% if LANGUAGE_CODE == 'de' %}Lösung{% else %}Solution{% endif %}</div>
-                                <p>{{ case.summary }}</p>
+                                <p>{{ case.summary_localized }}</p>
                             </div>
                         {% endif %}
 

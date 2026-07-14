@@ -11,15 +11,25 @@ from .models import CaseStudy
 class CaseStudyAdmin(admin.ModelAdmin):
     list_display  = ("title", "category", "date", "published")
     list_filter   = ("published", "category", "date")
-    search_fields = ("title", "summary", "client_brief", "problem_brief", "tech_stack")
+    search_fields = (
+        "title", "summary", "summary_en",
+        "client_brief", "problem_brief", "problem_brief_en", "tech_stack",
+    )
     prepopulated_fields = {"slug": ("title",)}
     list_editable = ("published",)
 
     fieldsets = (
-        (None, {"fields": ("title", "category", "slug", "summary", "preview_animation", "image", "date", "published")}),
-        (_("Client / Problem / Result"), {
-            "fields": ("client_brief", "problem_brief", "result_points"),
-            "description": _("Beim Result jeweils eine Aussage pro Zeile. "),
+        (None, {"fields": ("title", "category", "slug", "preview_animation", "image", "date", "published")}),
+        (_("Client"), {
+            "fields": ("client_brief",),
+        }),
+        (_("Deutsche Version"), {
+            "fields": ("problem_brief", "summary", "result_points"),
+            "description": _("Beim Result jeweils eine Aussage pro Zeile."),
+        }),
+        (_("English Version"), {
+            "fields": ("problem_brief_en", "summary_en", "result_points_en"),
+            "description": _("Optional. Falls leer, wird auf die deutsche Version zurückgegriffen."),
         }),
         (_("KPIs & Tech"), {
             "fields": ("kpis", "tech_stack"),
