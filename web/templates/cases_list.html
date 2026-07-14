@@ -156,34 +156,36 @@
   <div class="case-modal__backdrop"></div>
   <div class="case-modal__dialog">
     <button class="case-modal__close" id="case-modal-close" aria-label="Close">×</button>
-    <div class="case-modal__media" id="case-modal-media" hidden>
-      <span class="case-feature-badge" id="case-modal-badge" hidden></span>
-      <img id="case-modal-img" alt="">
-    </div>
-    <div class="case-modal__body">
-      <span class="case-feature-badge case-feature-badge--inline" id="case-modal-badge-inline" hidden></span>
-      <h3 id="case-modal-title"></h3>
-      <p class="case-feature-meta" id="case-modal-client"></p>
-      <p class="case-feature-summary" id="case-modal-summary"></p>
-
-      <div class="case-feature-section" id="modal-problem" hidden>
-        <div class="case-feature-label">{% if LANGUAGE_CODE == 'de' %}Herausforderung{% else %}Challenge{% endif %}</div>
-        <p></p>
+    <div class="case-modal__scroll" id="case-modal-scroll">
+      <div class="case-modal__media" id="case-modal-media" hidden>
+        <span class="case-feature-badge" id="case-modal-badge" hidden></span>
+        <img id="case-modal-img" alt="">
       </div>
+      <div class="case-modal__body">
+        <span class="case-feature-badge case-feature-badge--inline" id="case-modal-badge-inline" hidden></span>
+        <h3 id="case-modal-title"></h3>
+        <p class="case-feature-meta" id="case-modal-client"></p>
+        <p class="case-feature-summary" id="case-modal-summary"></p>
 
-      <div class="case-feature-section" id="modal-solution" hidden>
-        <div class="case-feature-label">{% if LANGUAGE_CODE == 'de' %}Lösung{% else %}Solution{% endif %}</div>
-        <p></p>
-      </div>
+        <div class="case-feature-section" id="modal-problem" hidden>
+          <div class="case-feature-label">{% if LANGUAGE_CODE == 'de' %}Herausforderung{% else %}Challenge{% endif %}</div>
+          <p></p>
+        </div>
 
-      <div class="case-feature-section" id="modal-results" hidden>
-        <div class="case-feature-label">{% if LANGUAGE_CODE == 'de' %}Ergebnisse{% else %}Results{% endif %}</div>
-        <ul class="case-feature-results"></ul>
-      </div>
+        <div class="case-feature-section" id="modal-solution" hidden>
+          <div class="case-feature-label">{% if LANGUAGE_CODE == 'de' %}Lösung{% else %}Solution{% endif %}</div>
+          <p></p>
+        </div>
 
-      <div class="case-feature-section" id="modal-tech" hidden>
-        <div class="case-feature-label">{% if LANGUAGE_CODE == 'de' %}Technologien{% else %}Technologies{% endif %}</div>
-        <div class="case-feature-tags"></div>
+        <div class="case-feature-section" id="modal-results" hidden>
+          <div class="case-feature-label">{% if LANGUAGE_CODE == 'de' %}Ergebnisse{% else %}Results{% endif %}</div>
+          <ul class="case-feature-results"></ul>
+        </div>
+
+        <div class="case-feature-section" id="modal-tech" hidden>
+          <div class="case-feature-label">{% if LANGUAGE_CODE == 'de' %}Technologien{% else %}Technologies{% endif %}</div>
+          <div class="case-feature-tags"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -467,7 +469,7 @@
     const modal = document.getElementById('case-modal');
     const closeBtn = document.getElementById('case-modal-close');
     const mediaEl = document.getElementById('case-modal-media');
-    const bodyEl = modal?.querySelector('.case-modal__body');
+    const scrollEl = document.getElementById('case-modal-scroll');
     const imgEl = document.getElementById('case-modal-img');
     const badgeEl = document.getElementById('case-modal-badge');
     const inlineBadgeEl = document.getElementById('case-modal-badge-inline');
@@ -580,7 +582,7 @@
       modal.hidden = false;
       document.documentElement.classList.add('modal-open');
       document.body.classList.add('modal-open');
-      if (bodyEl) bodyEl.scrollTop = 0;
+      if (scrollEl) scrollEl.scrollTop = 0;
       modal.scrollTop = 0;
     }
 
