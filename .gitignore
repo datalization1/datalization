@@ -14,3 +14,7 @@ __pycache__/
 
 # Dumps / DB-Exports
 latest.dump
+
+# Local SQLite dev database
+db.sqlite3
+db.sqlite3-journal
