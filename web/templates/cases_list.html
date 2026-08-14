@@ -111,6 +111,37 @@
     </div>
   </section>
 
+  <!-- Monekey-Hinweis: Case Study ist inzwischen eigenständiges Produkt -->
+  <section class="monekey-highlight-wrap">
+    <div class="container mx-auto px-4">
+      <a href="{% url 'web:monekey' %}" class="monekey-highlight fade-in-on-scroll">
+        <div class="monekey-highlight__badge">Monekey</div>
+        <div class="monekey-highlight__body">
+          <h3>
+            {% if LANGUAGE_CODE == 'de' %}
+              Aus der Case Study „Digitale Dokumentenplattform“ wurde ein Produkt
+            {% else %}
+              Our "Digital document platform" case study has become a product
+            {% endif %}
+          </h3>
+          <p>
+            {% if LANGUAGE_CODE == 'de' %}
+              Monekey ist die digitale Dokumentenplattform für Immobilienverwaltung, Treuhand und Brokerage – zentral, sicher und mandantenfähig.
+            {% else %}
+              Monekey is the digital document platform for real estate management, trust and brokerage – central, secure and multi-tenant.
+            {% endif %}
+          </p>
+        </div>
+        <span class="monekey-highlight__cta">
+          {% if LANGUAGE_CODE == 'de' %}Zur Produktseite{% else %}Open product page{% endif %}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path>
+          </svg>
+        </span>
+      </a>
+    </div>
+  </section>
+
   <section class="case-cta-wrap">
     <div class="container case-cta-inner fade-in-on-scroll">
       <h2 class="case-cta-title">

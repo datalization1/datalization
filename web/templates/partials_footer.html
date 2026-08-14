@@ -13,14 +13,21 @@
         </p>
       </div>
 
-      <!-- Services -->
+      <!-- Lösungen -->
       <div>
-        <h4 class="footer__title">{% if LANGUAGE_CODE == 'de' %}Services{% else %}Services{% endif %}</h4>
+        <h4 class="footer__title">{% if LANGUAGE_CODE == 'de' %}Lösungen{% else %}Solutions{% endif %}</h4>
         <ul class="footer__list">
-          <li><a class="footer__link" href="{% url 'web:service_data_analytics' %}">{% if LANGUAGE_CODE == 'de' %}Data Analytics &amp; Data Science{% else %}Data Analytics &amp; Data Science{% endif %}</a></li>
-          <li><a class="footer__link" href="{% url 'web:service_software' %}">{% if LANGUAGE_CODE == 'de' %}Softwareentwicklung{% else %}Software Development{% endif %}</a></li>
-          <li><a class="footer__link" href="{% url 'web:service_digitalisierung' %}">{% if LANGUAGE_CODE == 'de' %}Digitalisierung{% else %}Digitalization{% endif %}</a></li>
-          <li><a class="footer__link" href="{% url 'web:service_beratung' %}">{% if LANGUAGE_CODE == 'de' %}Beratung &amp; Strategie{% else %}Consulting &amp; Strategy{% endif %}</a></li>
+          <li><a class="footer__link footer__link--strong" href="{% url 'web:service_it_support' %}">{% if LANGUAGE_CODE == 'de' %}IT-Support &amp; Cloud{% else %}IT Support &amp; Cloud{% endif %}</a></li>
+          <li><a class="footer__link footer__link--strong" href="{% url 'web:services' %}">{% if LANGUAGE_CODE == 'de' %}Projekte &amp; Entwicklung{% else %}Projects &amp; Development{% endif %}</a></li>
+          <li class="footer__sublist-wrap">
+            <ul class="footer__sublist">
+              <li><a class="footer__link footer__link--muted" href="{% url 'web:service_software' %}">{% if LANGUAGE_CODE == 'de' %}Softwareentwicklung{% else %}Software Development{% endif %}</a></li>
+              <li><a class="footer__link footer__link--muted" href="{% url 'web:service_data_analytics' %}">{% if LANGUAGE_CODE == 'de' %}Datenanalyse &amp; Data Science{% else %}Data Analytics &amp; Data Science{% endif %}</a></li>
+              <li><a class="footer__link footer__link--muted" href="{% url 'web:service_digitalisierung' %}">{% if LANGUAGE_CODE == 'de' %}Digitalisierung{% else %}Digitalization{% endif %}</a></li>
+              <li><a class="footer__link footer__link--muted" href="{% url 'web:service_beratung' %}">{% if LANGUAGE_CODE == 'de' %}Beratung &amp; Strategie{% else %}Consulting &amp; Strategy{% endif %}</a></li>
+            </ul>
+          </li>
+          <li><a class="footer__link footer__link--strong" href="{% url 'web:monekey' %}">Monekey</a></li>
         </ul>
       </div>
 

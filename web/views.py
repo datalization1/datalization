@@ -52,6 +52,14 @@ def service_beratung(request):
     return render(request, "services/beratung_strategie.html")
 
 
+def service_it_support(request):
+    return render(request, "services/it_support.html")
+
+
+def monekey(request):
+    return render(request, "monekey.html")
+
+
 def start(request):
     # Weiterleitung auf die neue Booking-Seite
     return redirect("web:booking")

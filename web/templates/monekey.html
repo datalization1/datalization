@@ -1,0 +1,304 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}Monekey – {% if LANGUAGE_CODE == 'de' %}Dokumentenprozesse einfach digital{% else %}Document processes made simple{% endif %}{% endblock %}
+
+{% block head_meta %}
+  {% if LANGUAGE_CODE == 'de' %}
+    {% firstof page_title "Monekey – Digitale Dokumentenplattform für Immobilien, Treuhand und Brokerage" as seo_title %}
+    {% firstof page_description "Monekey ist die digitale Dokumentenplattform für Immobilienverwaltung, Treuhand und Brokerage – mit Kundenportal, rollenbasierten Berechtigungen und zentraler Ablage." as seo_desc %}
+  {% else %}
+    {% firstof page_title "Monekey – Digital document platform for real estate, trust and brokerage" as seo_title %}
+    {% firstof page_description "Monekey is the digital document platform for real estate management, trust and brokerage – with client portals, role-based permissions and central storage." as seo_desc %}
+  {% endif %}
+  <meta name="description" content="{{ seo_desc|truncatechars:160 }}">
+  <meta property="og:title" content="{{ seo_title }}">
+  <meta property="og:description" content="{{ seo_desc|truncatechars:200 }}">
+{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-background text-foreground">
+
+  <section class="service-hero service-hero--wide scroll-mt-20">
+    <div class="container mx-auto px-4 service-hero-grid hero-align">
+      <div class="hero-copy">
+        <div class="hero-badge" style="margin-bottom:1rem;">
+          <span class="text-primary">Monekey</span>
+        </div>
+        <h1>
+          {% if LANGUAGE_CODE == 'de' %}
+            Monekey – Dokumentenprozesse einfach digital
+          {% else %}
+            Monekey – document processes made simply digital
+          {% endif %}
+        </h1>
+        <p>
+          {% if LANGUAGE_CODE == 'de' %}
+            Die digitale Dokumentenplattform für Immobilienverwaltung, Treuhand und Brokerage.
+            Zentral, sicher und mandantenfähig – damit Sie sich nicht mehr durch E-Mails wühlen müssen.
+          {% else %}
+            The digital document platform for real estate management, trust and brokerage.
+            Central, secure and multi-tenant – so you no longer have to dig through emails.
+          {% endif %}
+        </p>
+        <div class="cta-row">
+          <a href="{% url 'web:contact' %}" class="btn-primary">
+            {% if LANGUAGE_CODE == 'de' %}Demo anfragen{% else %}Request a demo{% endif %}
+          </a>
+          <a href="#zielgruppen" class="btn-secondary">
+            {% if LANGUAGE_CODE == 'de' %}Für wen ist Monekey?{% else %}Who is Monekey for?{% endif %}
+          </a>
+        </div>
+      </div>
+      <div class="service-visual">
+        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1400&q=80" alt="{% if LANGUAGE_CODE == 'de' %}Monekey – digitale Dokumentenplattform mit zentraler Ablage und Kundenportal{% else %}Monekey – digital document platform with central storage and client portal{% endif %}" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem / Lösung -->
+  <section class="service-section">
+    <div class="container mx-auto px-4">
+      <div class="monekey-split">
+        <div class="monekey-split__col monekey-split__col--problem">
+          <div class="monekey-split__label">
+            {% if LANGUAGE_CODE == 'de' %}Das kennen Sie?{% else %}Does this sound familiar?{% endif %}
+          </div>
+          <ul class="monekey-split__list">
+            <li>{% if LANGUAGE_CODE == 'de' %}Dokumente verteilt auf E-Mail, Netzwerklaufwerken und Cloud-Ordnern{% else %}Documents scattered across email, network drives and cloud folders{% endif %}</li>
+            <li>{% if LANGUAGE_CODE == 'de' %}Endlose E-Mail-Kette mit Anhängen und unklarem Versionsstand{% else %}Endless email threads with attachments and unclear versioning{% endif %}</li>
+            <li>{% if LANGUAGE_CODE == 'de' %}Kunden fragen ständig nach denselben Unterlagen{% else %}Clients repeatedly ask for the same documents{% endif %}</li>
+            <li>{% if LANGUAGE_CODE == 'de' %}Sicherheitsrisiken durch ungeschützte Weitergabe sensibler Daten{% else %}Security risks from unprotected sharing of sensitive data{% endif %}</li>
+          </ul>
+        </div>
+        <div class="monekey-split__col monekey-split__col--solution">
+          <div class="monekey-split__label monekey-split__label--accent">
+            {% if LANGUAGE_CODE == 'de' %}Mit Monekey{% else %}With Monekey{% endif %}
+          </div>
+          <ul class="monekey-split__list">
+            <li>{% if LANGUAGE_CODE == 'de' %}Eine zentrale, mandantenfähige Plattform für alle Dokumente{% else %}One central, multi-tenant platform for all documents{% endif %}</li>
+            <li>{% if LANGUAGE_CODE == 'de' %}Sicheres Kundenportal – Ihre Kunden holen und bringen Dokumente selbst{% else %}A secure client portal – your clients pick up and drop off documents themselves{% endif %}</li>
+            <li>{% if LANGUAGE_CODE == 'de' %}Rollenbasierte Berechtigungen bis auf Dokumentebene{% else %}Role-based permissions down to the document level{% endif %}</li>
+            <li>{% if LANGUAGE_CODE == 'de' %}Nachvollziehbare Ablage mit Versionierung und Audit-Log{% else %}Traceable storage with versioning and audit log{% endif %}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Zielgruppen -->
+  <section id="zielgruppen" class="service-section example-section">
+    <div class="container mx-auto px-4">
+      <div class="service-heading">
+        <h2>{% if LANGUAGE_CODE == 'de' %}Für wen Monekey gemacht ist{% else %}Who Monekey is built for{% endif %}</h2>
+        <p>{% if LANGUAGE_CODE == 'de' %}Vier Branchen mit ähnlichen Dokumenten-Herausforderungen{% else %}Four industries with similar document challenges{% endif %}</p>
+      </div>
+      <div class="card-grid example-grid">
+        <div class="example-card">
+          <div class="example-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21h18"></path>
+              <path d="M5 21V7l7-4 7 4v14"></path>
+              <path d="M9 9h.01"></path><path d="M9 13h.01"></path><path d="M9 17h.01"></path>
+              <path d="M15 9h.01"></path><path d="M15 13h.01"></path><path d="M15 17h.01"></path>
+            </svg>
+          </div>
+          <div class="example-tag">{% if LANGUAGE_CODE == 'de' %}Immobilienverwaltung{% else %}Real estate management{% endif %}</div>
+          <p>
+            {% if LANGUAGE_CODE == 'de' %}
+              Mietverträge, Grundbuchauszüge, Abrechnungen und Protokolle – zentral pro Liegenschaft, mit gezieltem Zugriff für Eigentümer und Mieter.
+            {% else %}
+              Rental contracts, land register extracts, statements and protocols – centralized per property, with targeted access for owners and tenants.
+            {% endif %}
+          </p>
+        </div>
+        <div class="example-card">
+          <div class="example-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-3z"></path>
+              <path d="M9 12l2 2 4-4"></path>
+            </svg>
+          </div>
+          <div class="example-tag">{% if LANGUAGE_CODE == 'de' %}Treuhand{% else %}Trust &amp; fiduciary{% endif %}</div>
+          <p>
+            {% if LANGUAGE_CODE == 'de' %}
+              Steuerunterlagen, Buchhaltung und Belege sicher pro Mandant – mit Portal für den Austausch statt E-Mail-Anhängen.
+            {% else %}
+              Tax documents, accounting and receipts securely per client – with a portal for exchange instead of email attachments.
+            {% endif %}
+          </p>
+        </div>
+        <div class="example-card">
+          <div class="example-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 17l6-6 4 4 8-8"></path>
+              <path d="M14 7h7v7"></path>
+            </svg>
+          </div>
+          <div class="example-tag">Brokerage</div>
+          <p>
+            {% if LANGUAGE_CODE == 'de' %}
+              Depotauszüge, KYC-Unterlagen und Reports – strukturiert, versioniert und mit klaren Zugriffsrechten.
+            {% else %}
+              Portfolio statements, KYC documents and reports – structured, versioned and with clear access rights.
+            {% endif %}
+          </p>
+        </div>
+        <div class="example-card">
+          <div class="example-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h13a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3V4z"></path>
+              <path d="M4 17a3 3 0 0 1 3-3h13"></path>
+              <path d="M8 8h8"></path>
+              <path d="M8 11h5"></path>
+            </svg>
+          </div>
+          <div class="example-tag">{% if LANGUAGE_CODE == 'de' %}Aktienregister{% else %}Share register{% endif %}</div>
+          <p>
+            {% if LANGUAGE_CODE == 'de' %}
+              Aktionärsdaten, Übertragungen und Registerauszüge nachvollziehbar geführt – mit Audit-Log und definierten Rechten pro Rolle.
+            {% else %}
+              Shareholder data, transfers and register extracts kept traceable – with audit log and defined permissions per role.
+            {% endif %}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature-Blöcke -->
+  <section class="service-section deliverables-section">
+    <div class="container mx-auto px-4">
+      <div class="service-heading">
+        <h2>{% if LANGUAGE_CODE == 'de' %}Was Monekey kann{% else %}What Monekey does{% endif %}</h2>
+        <p>{% if LANGUAGE_CODE == 'de' %}Die wichtigsten Funktionen im Überblick{% else %}The key features at a glance{% endif %}</p>
+      </div>
+      <div class="deliverables-grid">
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+          </div>
+          <div>
+            <h3>{% if LANGUAGE_CODE == 'de' %}Zentrale Dokumentenablage{% else %}Central document storage{% endif %}</h3>
+            <p>{% if LANGUAGE_CODE == 'de' %}Strukturiert pro Mandant, Liegenschaft oder Kunde – volltextsuchbar.{% else %}Structured per client, property or customer – with full-text search.{% endif %}</p>
+          </div>
+        </div>
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <div>
+            <h3>{% if LANGUAGE_CODE == 'de' %}Kundenportal{% else %}Client portal{% endif %}</h3>
+            <p>{% if LANGUAGE_CODE == 'de' %}Ihre Kunden greifen selbstständig auf ihre Dokumente zu und laden neue hoch.{% else %}Your clients access their documents independently and upload new ones.{% endif %}</p>
+          </div>
+        </div>
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
+          <div>
+            <h3>{% if LANGUAGE_CODE == 'de' %}Rollen &amp; Berechtigungen{% else %}Roles &amp; permissions{% endif %}</h3>
+            <p>{% if LANGUAGE_CODE == 'de' %}Feingranular steuerbar – vom Team-Mitglied bis zum externen Berater.{% else %}Fine-grained control – from team member to external advisor.{% endif %}</p>
+          </div>
+        </div>
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <div>
+            <h3>{% if LANGUAGE_CODE == 'de' %}Sicherheit &amp; Compliance{% else %}Security &amp; compliance{% endif %}</h3>
+            <p>{% if LANGUAGE_CODE == 'de' %}Verschlüsselte Ablage, Audit-Log und Datenhaltung mit Fokus auf Schweizer Anforderungen.{% else %}Encrypted storage, audit log and data handling with a Swiss focus.{% endif %}</p>
+          </div>
+        </div>
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16v6H4z"></path><path d="M4 14h16v6H4z"></path>
+              <path d="M8 7h.01"></path><path d="M8 17h.01"></path>
+            </svg>
+          </div>
+          <div>
+            <h3>{% if LANGUAGE_CODE == 'de' %}Versionierung{% else %}Versioning{% endif %}</h3>
+            <p>{% if LANGUAGE_CODE == 'de' %}Jede Änderung nachvollziehbar – Sie sehen jederzeit, wer wann was geändert hat.{% else %}Every change traceable – see who changed what and when.{% endif %}</p>
+          </div>
+        </div>
+        <div class="deliverable-card">
+          <div class="deliverable-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 5h16"></path><path d="M4 9h16"></path><path d="M4 15h10"></path><path d="M4 19h6"></path>
+            </svg>
+          </div>
+          <div>
+            <h3>{% if LANGUAGE_CODE == 'de' %}Zusammenarbeit{% else %}Collaboration{% endif %}</h3>
+            <p>{% if LANGUAGE_CODE == 'de' %}Kommentare, Freigaben und klare Aufgaben – ohne E-Mail-Chaos.{% else %}Comments, approvals and clear tasks – without the email chaos.{% endif %}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Status / Early Access -->
+  <section class="service-section">
+    <div class="container mx-auto px-4">
+      <div class="monekey-status">
+        <div class="monekey-status__badge">
+          {% if LANGUAGE_CODE == 'de' %}Aktueller Status{% else %}Current status{% endif %}
+        </div>
+        <h2>{% if LANGUAGE_CODE == 'de' %}Monekey ist in aktiver Entwicklung{% else %}Monekey is in active development{% endif %}</h2>
+        <p>
+          {% if LANGUAGE_CODE == 'de' %}
+            Wir bauen Monekey Schritt für Schritt zusammen mit Pilotkunden auf. Wenn Sie zu einer der drei Zielgruppen gehören und früh dabei sein möchten, sprechen wir gerne über Early-Access – inklusive Mitgestaltung der Roadmap.
+          {% else %}
+            We are building Monekey step by step together with pilot customers. If you belong to one of the three target groups and want to be there early, let's talk about early access – including a say on the roadmap.
+          {% endif %}
+        </p>
+        <div class="cta-row" style="justify-content:center;">
+          <a href="{% url 'web:contact' %}" class="btn-primary">
+            {% if LANGUAGE_CODE == 'de' %}Demo anfragen{% else %}Request a demo{% endif %}
+          </a>
+          <a href="{% url 'web:contact' %}" class="btn-secondary">
+            {% if LANGUAGE_CODE == 'de' %}Als Pilotkunde melden{% else %}Sign up as a pilot customer{% endif %}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sticky-cta" id="sticky-cta">
+    <a href="{% url 'web:contact' %}" class="sticky-cta-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      </svg>
+      <span>{% if LANGUAGE_CODE == 'de' %}Demo anfragen{% else %}Request a demo{% endif %}</span>
+    </a>
+  </div>
+
+</div>
+
+<script>
+  (function() {
+    const sticky = document.getElementById('sticky-cta');
+    if (!sticky) return;
+    const toggleVisibility = () => {
+      if (window.scrollY > 500) {
+        sticky.classList.add('visible');
+      } else {
+        sticky.classList.remove('visible');
+      }
+    };
+    document.addEventListener('scroll', toggleVisibility, { passive: true });
+    toggleVisibility();
+  })();
+</script>
+{% endblock %}

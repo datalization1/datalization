@@ -4,7 +4,7 @@
 
 {% block head_meta %}
   {{ block.super }}
-  <meta name="description" content="Datalization unterstützt Unternehmen dabei, Datenprodukte, Data Warehouses und Analytics-Lösungen einfach, skalierbar und zukunftssicher aufzubauen.">
+  <meta name="description" content="Datalization unterstützt KMU mit IT-Support für Microsoft 365 und Azure, individuellen Daten- und Softwareprojekten sowie Monekey, der digitalen Dokumentenplattform.">
 {% endblock %}
 
 {% block content %}
@@ -160,7 +160,7 @@
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Services / Säulen Section -->
     <section id="services" class="section scroll-mt-20">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16 fade-in-on-scroll">
@@ -169,46 +169,55 @@
                 </h2>
                 <p class="text-muted max-w-2xl mx-auto">
                     {% if LANGUAGE_CODE == 'de' %}
-                        Massgeschneiderte Dienstleistungen für Ihre digitale Zukunft
+                        Drei Wege, wie wir Sie unterstützen – von der laufenden IT-Betreuung über individuelle Projekte bis zur fertigen Lösung.
                     {% else %}
-                        Tailored services for your digital future
+                        Three ways we support you – from ongoing IT operations and custom projects to a ready-made product.
                     {% endif %}
                 </p>
             </div>
 
-            <div class="grid-2 max-w-7xl mx-auto service-card-grid">
-                <!-- Service 1 -->
-                <a href="{% url 'web:service_data_analytics' %}" class="service-card fade-in-on-scroll service-card--link">
+            <div class="grid-3 max-w-7xl mx-auto service-card-grid pillar-card-grid">
+                <!-- Säule 1 – IT-Support & Cloud -->
+                <a href="{% url 'web:service_it_support' %}" class="service-card pillar-card fade-in-on-scroll service-card--link">
+                    <div class="pillar-card__media">
+                        <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1200&q=80" alt="{% if LANGUAGE_CODE == 'de' %}IT-Support für KMU – Microsoft 365 und Azure Betreuung{% else %}IT support for SMEs – Microsoft 365 and Azure operations{% endif %}" loading="lazy">
+                    </div>
                     <div class="service-head">
                       <div class="service-icon">
                         <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                          <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-                          <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
-                          <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                          <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
                         </svg>
                       </div>
                       <h3 class="service-title">
-                        {% if LANGUAGE_CODE == 'de' %}Datenanalyse{% else %}Data Analysis{% endif %}
+                        {% if LANGUAGE_CODE == 'de' %}Wir betreiben Ihre IT{% else %}We run your IT{% endif %}
                       </h3>
                     </div>
                     <p class="service-text mb-6">
                         {% if LANGUAGE_CODE == 'de' %}
-                            Verwandeln Sie Rohdaten in wertvolle Erkenntnisse. Wir analysieren, interpretieren und visualisieren Ihre Daten für fundierte Entscheidungen.
+                            Zuverlässiger IT-Support für KMU: Wir verwalten Ihre Microsoft-365- und Azure-Umgebung, migrieren Ihre Daten sicher in die Cloud und sind da, wenn Sie uns brauchen – damit Sie sich auf Ihr Geschäft konzentrieren können.
                         {% else %}
-                            Transform raw data into valuable insights. We analyze, interpret and visualize your data for informed decisions.
+                            Reliable IT support for SMEs: we manage your Microsoft 365 and Azure environment, migrate your data safely to the cloud and are there when you need us – so you can focus on your business.
                         {% endif %}
                     </p>
                     <div class="feature-tags">
-                        <span class="feature-tag">Business Intelligence</span>
-                        <span class="feature-tag">Predictive Analytics</span>
-                        <span class="feature-tag">Data Visualization</span>
-                        <span class="feature-tag">Reporting</span>
+                        <span class="feature-tag">Microsoft 365</span>
+                        <span class="feature-tag">Azure</span>
+                        {% if LANGUAGE_CODE == 'de' %}
+                            <span class="feature-tag">Datenmigration</span>
+                            <span class="feature-tag">Laufender Support</span>
+                        {% else %}
+                            <span class="feature-tag">Data Migration</span>
+                            <span class="feature-tag">Ongoing Support</span>
+                        {% endif %}
                     </div>
                     <span class="service-card__arrow">➜</span>
                 </a>
 
-                <!-- Service 2 -->
-                <a href="{% url 'web:service_software' %}" class="service-card fade-in-on-scroll service-card--link" style="animation-delay: 0.1s;">
+                <!-- Säule 2 – Projekte & Entwicklung -->
+                <a href="{% url 'web:services' %}" class="service-card pillar-card fade-in-on-scroll service-card--link" style="animation-delay: 0.1s;">
+                    <div class="pillar-card__media">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" alt="{% if LANGUAGE_CODE == 'de' %}Projekte auf Mandats- und Contracting-Basis – Team beim Planen{% else %}Projects on a mandate and contracting basis – team planning together{% endif %}" loading="lazy">
+                    </div>
                     <div class="service-head">
                       <div class="service-icon">
                         <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -217,103 +226,87 @@
                         </svg>
                       </div>
                       <h3 class="service-title">
-                        {% if LANGUAGE_CODE == 'de' %}Softwareentwicklung{% else %}Software Development{% endif %}
+                        {% if LANGUAGE_CODE == 'de' %}Wir setzen Ihr Projekt um{% else %}We deliver your project{% endif %}
                       </h3>
                     </div>
                     <p class="service-text mb-6">
                         {% if LANGUAGE_CODE == 'de' %}
-                            Individuelle Softwarelösungen, die perfekt auf Ihre Bedürfnisse zugeschnitten sind. Von der Konzeption bis zur Implementierung.
+                            Individuelle Software-, Daten- und Digitalisierungsprojekte auf Mandats- oder Contracting-Basis. Von der Analyse über die Entwicklung bis zum Betrieb – massgeschneidert und transparent.
                         {% else %}
-                            Custom software solutions perfectly tailored to your needs. From concept to implementation.
+                            Custom software, data and digitalization projects on a mandate or contracting basis. From analysis through development to operation – tailored and transparent.
                         {% endif %}
                     </p>
                     <div class="feature-tags">
                         {% if LANGUAGE_CODE == 'de' %}
-                            <span class="feature-tag">Web-Applikationen</span>
+                            <span class="feature-tag">Softwareentwicklung</span>
+                            <span class="feature-tag">Datenanalyse &amp; BI</span>
                             <span class="feature-tag">Automatisierung</span>
-                            <span class="feature-tag">API-Integration</span>
-                            <span class="feature-tag">Cloud-Lösungen</span>
+                            <span class="feature-tag">Digitalisierung</span>
                         {% else %}
-                            <span class="feature-tag">Web Applications</span>
+                            <span class="feature-tag">Software Development</span>
+                            <span class="feature-tag">Data Analytics &amp; BI</span>
                             <span class="feature-tag">Automation</span>
-                            <span class="feature-tag">API Integration</span>
-                            <span class="feature-tag">Cloud Solutions</span>
+                            <span class="feature-tag">Digitalization</span>
                         {% endif %}
                     </div>
                     <span class="service-card__arrow">➜</span>
                 </a>
 
-                <!-- Service 3 -->
-                <a href="{% url 'web:service_digitalisierung' %}" class="service-card fade-in-on-scroll service-card--link" style="animation-delay: 0.2s;">
+                <!-- Säule 3 – Monekey -->
+                <a href="{% url 'web:monekey' %}" class="service-card pillar-card fade-in-on-scroll service-card--link" style="animation-delay: 0.2s;">
+                    <div class="pillar-card__media">
+                        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80" alt="{% if LANGUAGE_CODE == 'de' %}Monekey – digitale Dokumentenplattform für Immobilien, Treuhand und Brokerage{% else %}Monekey – digital document platform for real estate, trust and brokerage{% endif %}" loading="lazy">
+                    </div>
                     <div class="service-head">
                       <div class="service-icon">
                         <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                          <polyline points="14 2 14 8 20 8"></polyline>
+                          <line x1="9" y1="13" x2="15" y2="13"></line>
+                          <line x1="9" y1="17" x2="13" y2="17"></line>
                         </svg>
                       </div>
                       <h3 class="service-title">
-                        {% if LANGUAGE_CODE == 'de' %}Digitalisierung{% else %}Digitalization{% endif %}
+                        {% if LANGUAGE_CODE == 'de' %}Unsere fertige Lösung: Monekey{% else %}Our ready-made solution: Monekey{% endif %}
                       </h3>
                     </div>
                     <p class="service-text mb-6">
                         {% if LANGUAGE_CODE == 'de' %}
-                            Optimieren Sie Ihre Geschäftsprozesse durch intelligente Digitalisierung. Effizienter, schneller, zukunftsorientiert.
+                            Die digitale Dokumentenplattform für Immobilienverwaltung, Treuhand und Brokerage. Dokumente, Kundenportale und Zusammenarbeit – zentral, sicher und sofort einsatzbereit.
                         {% else %}
-                            Optimize your business processes through intelligent digitalization. More efficient, faster, future-oriented.
+                            The digital document platform for real estate management, trust and brokerage. Documents, client portals and collaboration – central, secure and ready to use.
                         {% endif %}
                     </p>
                     <div class="feature-tags">
                         {% if LANGUAGE_CODE == 'de' %}
-                            <span class="feature-tag">Prozessoptimierung</span>
-                            <span class="feature-tag">Workflow-Automatisierung</span>
-                            <span class="feature-tag">Digitale Transformation</span>
-                            <span class="feature-tag">Change Management</span>
+                            <span class="feature-tag">Dokumentenmanagement</span>
+                            <span class="feature-tag">Kundenportal</span>
+                            <span class="feature-tag">SaaS</span>
                         {% else %}
-                            <span class="feature-tag">Process Optimization</span>
-                            <span class="feature-tag">Workflow Automation</span>
-                            <span class="feature-tag">Digital Transformation</span>
-                            <span class="feature-tag">Change Management</span>
+                            <span class="feature-tag">Document Management</span>
+                            <span class="feature-tag">Client Portal</span>
+                            <span class="feature-tag">SaaS</span>
                         {% endif %}
                     </div>
                     <span class="service-card__arrow">➜</span>
                 </a>
+            </div>
 
-                <!-- Service 4 -->
-                <a href="{% url 'web:service_beratung' %}" class="service-card fade-in-on-scroll service-card--link" style="animation-delay: 0.3s;">
-                    <div class="service-head">
-                      <div class="service-icon">
-                        <svg class="icon-lg text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                          <line x1="18" y1="20" x2="18" y2="10"></line>
-                          <line x1="12" y1="20" x2="12" y2="4"></line>
-                          <line x1="6" y1="20" x2="6" y2="14"></line>
+            <!-- Zusätzlicher Quick-Check-Verweis unter den Säulen -->
+            <div class="pillar-quickcheck-hint fade-in-on-scroll">
+                <p class="text-muted">
+                    {% if LANGUAGE_CODE == 'de' %}
+                        Nicht sicher, was zu Ihnen passt?
+                    {% else %}
+                        Not sure which pillar fits you?
+                    {% endif %}
+                    <a href="{% url 'web:match' %}" class="pillar-quickcheck-link">
+                        {% if LANGUAGE_CODE == 'de' %}Machen Sie den 3-Fragen-Check{% else %}Take the 3-question check{% endif %}
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path>
                         </svg>
-                      </div>
-                      <h3 class="service-title">
-                        {% if LANGUAGE_CODE == 'de' %}Beratung & Strategie{% else %}Consulting & Strategy{% endif %}
-                      </h3>
-                    </div>
-                    <p class="service-text mb-6">
-                        {% if LANGUAGE_CODE == 'de' %}
-                            Strategische Beratung für Ihre datengetriebene Zukunft. Wir entwickeln mit Ihnen den optimalen Weg zur Digitalisierung.
-                        {% else %}
-                            Strategic consulting for your data-driven future. We develop the optimal path to digitalization with you.
-                        {% endif %}
-                    </p>
-                    <div class="feature-tags">
-                        {% if LANGUAGE_CODE == 'de' %}
-                            <span class="feature-tag">Daten-Strategie</span>
-                            <span class="feature-tag">IT-Consulting</span>
-                            <span class="feature-tag">ROI-Optimierung</span>
-                            <span class="feature-tag">Technologie-Evaluation</span>
-                        {% else %}
-                            <span class="feature-tag">Data Strategy</span>
-                            <span class="feature-tag">IT Consulting</span>
-                            <span class="feature-tag">ROI Optimization</span>
-                            <span class="feature-tag">Technology Evaluation</span>
-                        {% endif %}
-                    </div>
-                    <span class="service-card__arrow">➜</span>
-                </a>
+                    </a>
+                </p>
             </div>
         </div>
     </section>

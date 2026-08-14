@@ -20,11 +20,18 @@
             <polyline points="6 9 12 15 18 9"></polyline>
           </svg>
         </a>
-        <div class="nav__dropdown-menu">
-          <a href="{% url 'web:service_data_analytics' %}">{% if LANGUAGE_CODE == 'de' %}Datenanalyse &amp; Data Science{% else %}Data Analytics &amp; Data Science{% endif %}</a>
-          <a href="{% url 'web:service_software' %}">{% if LANGUAGE_CODE == 'de' %}Softwareentwicklung{% else %}Software Development{% endif %}</a>
-          <a href="{% url 'web:service_digitalisierung' %}">{% if LANGUAGE_CODE == 'de' %}Digitalisierung{% else %}Digitalization{% endif %}</a>
-          <a href="{% url 'web:service_beratung' %}">{% if LANGUAGE_CODE == 'de' %}Beratung &amp; Strategie{% else %}Consulting &amp; Strategy{% endif %}</a>
+        <div class="nav__dropdown-menu nav__dropdown-menu--pillars">
+          <a class="nav__pillar" href="{% url 'web:service_it_support' %}">{% if LANGUAGE_CODE == 'de' %}IT-Support &amp; Cloud{% else %}IT Support &amp; Cloud{% endif %}</a>
+
+          <a class="nav__pillar" href="{% url 'web:services' %}">{% if LANGUAGE_CODE == 'de' %}Projekte &amp; Entwicklung{% else %}Projects &amp; Development{% endif %}</a>
+          <div class="nav__subgroup">
+            <a href="{% url 'web:service_software' %}">{% if LANGUAGE_CODE == 'de' %}Softwareentwicklung{% else %}Software Development{% endif %}</a>
+            <a href="{% url 'web:service_data_analytics' %}">{% if LANGUAGE_CODE == 'de' %}Datenanalyse &amp; Data Science{% else %}Data Analytics &amp; Data Science{% endif %}</a>
+            <a href="{% url 'web:service_digitalisierung' %}">{% if LANGUAGE_CODE == 'de' %}Digitalisierung{% else %}Digitalization{% endif %}</a>
+            <a href="{% url 'web:service_beratung' %}">{% if LANGUAGE_CODE == 'de' %}Beratung &amp; Strategie{% else %}Consulting &amp; Strategy{% endif %}</a>
+          </div>
+
+          <a class="nav__pillar" href="{% url 'web:monekey' %}">Monekey</a>
         </div>
       </div>
       <a href="{% url 'web:cases' %}">{% if LANGUAGE_CODE == 'de' %}Projekte{% else %}Projects{% endif %}</a>
