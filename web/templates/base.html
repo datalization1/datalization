@@ -59,8 +59,8 @@
     </script>
   {% endblock %}
 
-  {# Favicon / Site Icon #}
-  <link rel="icon" type="image/svg+xml" href="{% static 'img/favicon.svg' %}">
+  {# Favicon / Site Icon – site-icon.svg hat soliden Hintergrund fuer gute Sichtbarkeit in Google-Suchergebnissen #}
+  <link rel="icon" type="image/svg+xml" href="{% url 'site_icon_svg' %}">
   <link rel="icon" type="image/png" sizes="48x48" href="{% url 'favicon_png' %}">
   <link rel="shortcut icon" href="{% url 'favicon_ico' %}">
   <link rel="apple-touch-icon" sizes="180x180" href="{% url 'apple_touch_icon' %}">

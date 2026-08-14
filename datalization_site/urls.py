@@ -44,7 +44,7 @@ def serve_icon(filename, content_type):
 
 
 def favicon_ico(_):
-    return serve_icon("favicon-48.png", "image/png")
+    return serve_icon("favicon.ico", "image/x-icon")
 
 
 def favicon_png(_):
