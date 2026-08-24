@@ -330,3 +330,20 @@ if (!("scrollBehavior" in document.documentElement.style)) {
 window.scrollToSection = scrollToSection;
 window.toggleLanguage = toggleLanguage;
 window.showToast = showToast;
+
+// === Theme-Umschalter (Hell/Dunkel) ===
+(function () {
+  const btn = document.getElementById("themeToggle");
+  if (!btn) return;
+  btn.addEventListener("click", () => {
+    const current =
+      document.documentElement.getAttribute("data-theme") === "light"
+        ? "light"
+        : "dark";
+    const next = current === "light" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", next);
+    try {
+      localStorage.setItem("theme", next);
+    } catch (e) {}
+  });
+})();

@@ -72,6 +72,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+  {# Theme (Hell/Dunkel) – vor dem Paint setzen, um Flackern zu vermeiden #}
+  <script>
+    (function(){
+      try{
+        var s = localStorage.getItem('theme');
+        var t = (s === 'light' || s === 'dark') ? s
+              : (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        document.documentElement.setAttribute('data-theme', t);
+      }catch(e){ document.documentElement.setAttribute('data-theme','dark'); }
+    })();
+  </script>
+
   {# Styles #}
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   {% block extra_css %}{% endblock %}
