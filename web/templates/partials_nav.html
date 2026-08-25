@@ -2,7 +2,7 @@
 <header class="site-header">
   <div class="container nav">
     <a class="nav__brand" href="{% url 'web:home' %}">
-      <img class="nav__logo" src="{% static 'img/favicon.svg' %}" alt="datalization">
+      {% include 'partials/logo_mark.html' with cls="nav__logo" label="datalization" %}
       <span class="nav__word lowercase">datalization</span>
     </a>
 

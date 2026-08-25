@@ -5,7 +5,7 @@
       <!-- Brand -->
       <div>
         <a href="{% url 'web:home' %}" class="footer__brand">
-          <img class="footer__logo-img" src="{% static 'img/favicon.svg' %}" alt="datalization logo">
+          {% include 'partials/logo_mark.html' with cls="footer__logo-img" label="datalization" %}
           <span class="footer__brand-word">datalization</span>
         </a>
         <p class="muted">

@@ -7,7 +7,7 @@
 <section class="admin-login-shell">
   <div class="admin-login-card">
     <div class="admin-login-logo">
-      <img src="{% static 'img/favicon.svg' %}" alt="datalization" width="34" height="34">
+      {% include 'partials/logo_mark.html' with cls="admin-logo admin-logo--lg" label="datalization" %}
       <span>datalization Admin</span>
     </div>
     <h1 class="admin-title">{% trans "Admin Login" %}</h1>
