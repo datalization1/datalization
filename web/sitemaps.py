@@ -12,6 +12,7 @@ class StaticViewSitemap(Sitemap):
     protocol = "https"
     i18n = True
     alternates = True
+    x_default = True
 
     # Startseite wichtiger als der Rest
     PRIORITIES = {
@@ -50,6 +51,7 @@ class CaseSitemap(Sitemap):
     protocol = "https"
     i18n = True
     alternates = True
+    x_default = True
 
     def items(self):
         return CaseStudy.objects.filter(published=True)

@@ -26,6 +26,15 @@
       <link rel="canonical" href="{{ request.build_absolute_uri }}">
     {% endif %}
 
+    {# Sprachfassungen: sagt Google, dass /de/ und /en/ dieselbe Seite sind
+       und die Adresse ohne Praefix die sprachneutrale Einstiegsseite ist. #}
+    {% for alt in hreflang_alternates %}
+      <link rel="alternate" hreflang="{{ alt.code }}" href="{{ alt.url }}">
+    {% endfor %}
+    {% if hreflang_x_default %}
+      <link rel="alternate" hreflang="x-default" href="{{ hreflang_x_default }}">
+    {% endif %}
+
     {# Open Graph #}
     <meta property="og:type" content="website">
     <meta property="og:title" content="{{ seo_title }}">
