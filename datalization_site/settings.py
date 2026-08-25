@@ -250,6 +250,14 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 # Redirect to HTTPS only on Heroku when not in DEBUG. Locally keep HTTP.
 SECURE_SSL_REDIRECT = ON_HEROKU and not DEBUG
 
+# datalization.ch dauerhaft auf www.datalization.ch umleiten (301 durch die
+# CommonMiddleware). Ohne das sind beide Hostnamen erreichbar und
+# kanonisieren sich jeweils selbst - fuer Google zwei identische Websites.
+# Die Weiterleitung muss in Django passieren, weil die Apex-Domain per DNS
+# direkt auf Heroku zeigt und Cloudflare gar nicht erreicht.
+# Nur in Produktion, sonst wuerde lokal 127.0.0.1 zu www.127.0.0.1.
+PREPEND_WWW = ON_HEROKU and not DEBUG
+
 # --- Production security hardening ---
 if ON_HEROKU and not DEBUG:
     SESSION_COOKIE_SECURE = True
