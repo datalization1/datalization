@@ -8,6 +8,7 @@
     <p><strong>Firma:</strong> {{ msg.company|default:"-" }}</p>
     <p><strong>E-Mail:</strong> {{ msg.email }}</p>
     <p><strong>Telefon:</strong> {{ msg.phone|default:"-" }}</p>
+    <p><strong>Anliegen:</strong> {{ msg.service|default:"-" }}</p>
 
     <h3>Nachricht</h3>
     <p style="white-space: pre-line;">{{ msg.message }}</p>

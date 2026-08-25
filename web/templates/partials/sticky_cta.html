@@ -1,6 +1,7 @@
 {% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
-{% if not request or request.path != "/start/" %}
+{% url 'web:booking' as booking_url %}
+{% if not request or request.path != booking_url %}
   <a href="{% url 'web:booking' %}" class="sticky-cta" aria-label="{% if LANGUAGE_CODE == 'de' %}Unverbindlich starten{% else %}Get started{% endif %}">
     <span>{% if LANGUAGE_CODE == 'de' %}Unverbindlich starten{% else %}Get started{% endif %}</span>
   </a>

@@ -160,11 +160,10 @@
           <div class="form-field">
             <label class="form-label" for="branches">{% if LANGUAGE_CODE == 'de' %}Interessiert an{% else %}Interested in{% endif %} <span class="req">*</span></label>
             <select id="branches" name="branches" class="contact-select" required>
-              <option value="general">{% if LANGUAGE_CODE == 'de' %}Allgemeine Beratung{% else %}General consulting{% endif %}</option>
-              <option value="data-analytics">Data Analytics &amp; Data Science</option>
-              <option value="software">Softwareentwicklung</option>
-              <option value="digitalization">Digitalisierung</option>
-              <option value="consulting">Beratung &amp; Strategie</option>
+              <option value="unsure">{% if LANGUAGE_CODE == 'de' %}Ich weiss es noch nicht genau{% else %}I'm not sure yet{% endif %}</option>
+              <option value="it-support">{% if LANGUAGE_CODE == 'de' %}IT-Support &amp; Cloud{% else %}IT Support &amp; Cloud{% endif %}</option>
+              <option value="projects">{% if LANGUAGE_CODE == 'de' %}Projekte &amp; Entwicklung{% else %}Projects &amp; Development{% endif %}</option>
+              <option value="monekey">Monekey</option>
             </select>
           </div>
 

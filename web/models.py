@@ -103,6 +103,10 @@ class ContactMessage(models.Model):
     
     email = models.EmailField(_("Email"))
     phone = models.CharField(_("Phone"), max_length=50, blank=True, null=True)
+    service = models.CharField(
+        _("Requested service"), max_length=60, blank=True,
+        help_text=_("Auswahl aus dem Kontaktformular."),
+    )
     message = models.TextField(_("Message"))
     language = models.CharField(_("Language"), max_length=5, default="de")
 

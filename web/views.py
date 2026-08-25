@@ -159,8 +159,9 @@ def monekey(request):
 
 
 def start(request):
-    # Weiterleitung auf die neue Booking-Seite
-    return redirect("web:booking")
+    # /start/ gibt es nur noch als Weiterleitung auf die Buchungsseite.
+    # permanent=True, damit Google die alte Adresse konsolidiert.
+    return redirect("web:booking", permanent=True)
 
 def booking(request):
     return render(request, "booking.html", seo("booking", form=StartForm(initial={"language": request.LANGUAGE_CODE})))
@@ -441,6 +442,8 @@ def contact(request):
             if not exists:
                 msg = form.save(commit=False)
                 msg.language = request.LANGUAGE_CODE
+                # Auswahl "Worum geht es?" wurde bisher verworfen
+                msg.service = (request.POST.get("service") or "").strip()[:60]
                 msg.save()
 
                 # ---------- Admin-Mail ----------

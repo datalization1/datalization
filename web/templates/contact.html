@@ -91,13 +91,13 @@
           </div>
 
           <div class="form-field">
-            <label class="form-label" for="service">{% if LANGUAGE_CODE == 'de' %}Gewünschter Service{% else %}Desired Service{% endif %}</label>
+            <label class="form-label" for="service">{% if LANGUAGE_CODE == 'de' %}Worum geht es?{% else %}What is it about?{% endif %}</label>
             <select id="service" name="service" class="contact-select">
-              <option value="">{% if LANGUAGE_CODE == 'de' %}Wählen Sie einen Service{% else %}Select a service{% endif %}</option>
-              <option>{% if LANGUAGE_CODE == 'de' %}Datenanalyse &amp; Data Science{% else %}Data Analytics &amp; Data Science{% endif %}</option>
-              <option>{% if LANGUAGE_CODE == 'de' %}Softwareentwicklung{% else %}Software Development{% endif %}</option>
-              <option>{% if LANGUAGE_CODE == 'de' %}Digitalisierung{% else %}Digitalization{% endif %}</option>
-              <option>{% if LANGUAGE_CODE == 'de' %}Beratung &amp; Strategie{% else %}Consulting &amp; Strategy{% endif %}</option>
+              <option value="">{% if LANGUAGE_CODE == 'de' %}Bitte wählen{% else %}Please select{% endif %}</option>
+              <option>{% if LANGUAGE_CODE == 'de' %}Ich weiss es noch nicht genau{% else %}I'm not sure yet{% endif %}</option>
+              <option>{% if LANGUAGE_CODE == 'de' %}IT-Support &amp; Cloud{% else %}IT Support &amp; Cloud{% endif %}</option>
+              <option>{% if LANGUAGE_CODE == 'de' %}Projekte &amp; Entwicklung{% else %}Projects &amp; Development{% endif %}</option>
+              <option>Monekey</option>
             </select>
           </div>
 

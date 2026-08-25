@@ -608,20 +608,20 @@ html.modal-open,body.modal-open{overflow:hidden;overscroll-behavior:none;}
 
 /* ========== Hero ========== */
 .hero-section{ position:relative; min-height:calc(100vh - 72px); padding-top:100px; padding-bottom:120px; display:flex; align-items:center; }
-.hero-badge{ display:inline-block; margin-bottom:1.5rem; padding:.5rem 1.5rem; border:1px solid rgba(212,175,55,.3); border-radius:9999px; }
+.hero-badge{ display:inline-block; margin-bottom:1.5rem; padding:.5rem 1.5rem; border:1px solid rgba(247,147,26,.3); border-radius:9999px; }
 .hero-title{ font-size: 3rem; font-weight: 600; margin-bottom: 1.5rem; text-align: center; max-width: 26ch; margin-left: auto; margin-right: auto; white-space: normal; background: linear-gradient(to right, var(--foreground), var(--primary), var(--foreground)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 @media (min-width:768px){ .hero-title{ font-size: 3.5rem; max-width: 30ch; } }
 .hero-subtitle{ font-size:1.25rem; color:var(--primary); margin-bottom:1rem; }
 @media (min-width:768px){ .hero-subtitle{ font-size:1.5rem; } }
 .hero-description{ color:var(--muted-foreground); max-width:42rem; margin:0 auto 3rem; }
 .hero-cta{ display:inline-flex; align-items:center; gap:.5rem; padding:1rem 2rem; background:var(--primary); color:var(--primary-foreground); border-radius:9999px; border:none; cursor:pointer; font-weight:500; transition:all .2s; }
-.hero-cta:hover{ background-color:rgba(212,175,55,.9); }
+.hero-cta:hover{ background-color:rgba(247,147,26,.9); }
 .hero-orbs{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
 .hero-orb{position:absolute;border-radius:9999px;filter:blur(80px);}
 .hero-orb-1{top:20%;left:18%;width:22rem;height:22rem;background:rgba(247,147,26,0.2);}
 .hero-orb-2{bottom:16%;right:18%;width:22rem;height:22rem;background:rgba(247,147,26,0.12);}
 .scroll-indicator{ position: absolute; left: 50%; bottom: 100px; transform: translateX(-50%); z-index: 3; pointer-events: none; }
-.scroll-indicator-border{ width:1.5rem; height:2.5rem; border:2px solid rgba(212,175,55,.5); border-radius:9999px; display:flex; align-items:flex-start; justify-content:center; padding:.5rem; }
+.scroll-indicator-border{ width:1.5rem; height:2.5rem; border:2px solid rgba(247,147,26,.5); border-radius:9999px; display:flex; align-items:flex-start; justify-content:center; padding:.5rem; }
 .scroll-indicator-dot{ width:.25rem; height:.5rem; border-radius:9999px; background:var(--primary); display:block; animation:scroll-bounce 2s infinite; will-change:transform; }
 @keyframes scroll-bounce{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(6px);} }
 
@@ -634,11 +634,11 @@ html.modal-open,body.modal-open{overflow:hidden;overscroll-behavior:none;}
 
 /* ========== Value / Service Cards ========== */
 .value-card,.service-card{ background:var(--card); border:1px solid var(--border); border-radius:1rem; padding:2rem; transition:all .3s; }
-.value-card:hover,.service-card:hover{ border-color:rgba(212,175,55,.5); }
-.value-icon{ width:4rem; height:4rem; background:rgba(212,175,55,.1); border-radius:1rem; display:flex; align-items:center; justify-content:center; margin-bottom:1.5rem; transition:background-color .3s; }
-.value-card:hover .value-icon{ background:rgba(212,175,55,.2); }
-.service-icon{ width:3.5rem; height:3.5rem; background:rgba(212,175,55,.1); border-radius:.75rem; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:background-color .3s; }
-.service-card:hover .service-icon{ background:rgba(212,175,55,.2); }
+.value-card:hover,.service-card:hover{ border-color:rgba(247,147,26,.5); }
+.value-icon{ width:4rem; height:4rem; background:rgba(247,147,26,.1); border-radius:1rem; display:flex; align-items:center; justify-content:center; margin-bottom:1.5rem; transition:background-color .3s; }
+.value-card:hover .value-icon{ background:rgba(247,147,26,.2); }
+.service-icon{ width:3.5rem; height:3.5rem; background:rgba(247,147,26,.1); border-radius:.75rem; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:background-color .3s; }
+.service-card:hover .service-icon{ background:rgba(247,147,26,.2); }
 .feature-tags{ display:flex; flex-wrap:wrap; gap:.5rem; }
 .feature-tag{ padding:.25rem .75rem; background:var(--secondary); border:1px solid var(--border); border-radius:9999px; font-size:.875rem; }
 
@@ -705,7 +705,7 @@ html.modal-open,body.modal-open{overflow:hidden;overscroll-behavior:none;}
 .about-intro{background:radial-gradient(circle at top,rgba(247,147,26,.18),transparent 60%),rgba(10,10,10,.96);border-radius:1.25rem;padding:3rem 2.5rem;margin:0 auto 3rem;max-width:60rem;text-align:center;box-shadow:0 18px 45px rgba(0,0,0,.65);}
 .about-intro-text{font-size:1.25rem;line-height:1.6;color:var(--muted-foreground);margin-bottom:0;}
 .about-principle{text-align:center;}
-.principle-icon{ width:4rem; height:4rem; background:rgba(212,175,55,.1); border-radius:1rem; display:flex; align-items:center; justify-content:center; margin:0 auto 1rem; }
+.principle-icon{ width:4rem; height:4rem; background:rgba(247,147,26,.1); border-radius:1rem; display:flex; align-items:center; justify-content:center; margin:0 auto 1rem; }
 .about-commitment{ background:var(--card); border:1px solid var(--border); border-radius:1rem; padding:2rem; text-align:center; }
 
 /* ========== Contact ========== */
@@ -776,7 +776,7 @@ html.modal-open,body.modal-open{overflow:hidden;overscroll-behavior:none;}
 
 /* ========== Buttons (shared) ========== */
 .btn-primary{ background:var(--primary); color:var(--primary-foreground); border:none; padding:1rem 2rem; border-radius:9999px; cursor:pointer; font-weight:500; transition:all .2s; display:inline-flex; align-items:center; justify-content:center; }
-.btn-primary:hover{ background-color:rgba(212,175,55,.9); }
+.btn-primary:hover{ background-color:rgba(247,147,26,.9); }
 .btn-primary:focus,
 .btn-primary:focus-visible{ outline:none; box-shadow:none; }
 .btn-ghost{ background:none; border:none; color:var(--foreground); cursor:pointer; padding:.5rem .75rem; border-radius:.375rem; transition:background-color .2s; display:inline-flex; align-items:center; }
@@ -899,7 +899,7 @@ body.theme-light .nav__logo--dark  { display: none; }
   width: 56px;
   height: 56px;
   border-radius: .75rem;
-  background-color: rgba(212,175,55,.10);
+  background-color: rgba(247,147,26,.10);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -964,7 +964,7 @@ body.theme-light .nav__logo--dark  { display: none; }
   display:flex;
   align-items:center;
   justify-content:center;
-  background-color: rgba(212,175,55,.10);
+  background-color: rgba(247,147,26,.10);
   border-radius:.75rem;
 }
 
@@ -1010,7 +1010,7 @@ body {max-width: 100%;overflow-x: hidden;}
 .about-intro{background:radial-gradient(circle at top,rgba(247,147,26,.18),transparent 60%),rgba(10,10,10,.96);border-radius:1.25rem;padding:3rem 2.5rem;margin:0 auto 3rem;max-width:60rem;text-align:center;box-shadow:0 18px 45px rgba(0,0,0,.65);}
 .about-intro-text{font-size:1.25rem;line-height:1.6;color:var(--muted-foreground);margin-bottom:0;}
 .about-principle{text-align:center;}
-.principle-icon{width:4rem;height:4rem;background:rgba(212,175,55,.1);border-radius:1rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;}
+.principle-icon{width:4rem;height:4rem;background:rgba(247,147,26,.1);border-radius:1rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;}
 .about-commitment{background:var(--card);border:1px solid var(--border);border-radius:1rem;padding:2rem;text-align:center;}
 
 .about-hero{position:relative;padding:5rem 0 4rem;overflow:hidden;background:var(--background);}
