@@ -2,15 +2,6 @@
 {% load i18n static %}
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block title %}Softwareentwicklung – Datalization{% endblock %}
-{% block head_meta %}
-  {% firstof page_title "Softwareentwicklung – Datalization" as seo_title %}
-  {% firstof page_description "Software, die mitdenkt – Lösungen, die genau zu Ihren Prozessen passen." as seo_desc %}
-  <meta name="description" content="{{ seo_desc|truncatechars:160 }}">
-  <meta property="og:title" content="{{ seo_title }}">
-  <meta property="og:description" content="{{ seo_desc|truncatechars:200 }}">
-{% endblock %}
-
 {% block content %}
 <div class="min-h-screen bg-background text-foreground">
 

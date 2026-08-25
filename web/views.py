@@ -23,41 +23,139 @@ CONTACT_FORM_TOKEN_SALT = "web.contact_form"
 CONTACT_FORM_MIN_SECONDS = 3
 CONTACT_FORM_MAX_AGE_SECONDS = 3600
 
+# --- SEO: Titel und Beschreibung je Seite ---------------------------------
+# base.html liest page_title / page_description aus dem Kontext. Damit haben
+# alle Seiten eigene Suchergebnis-Texte und behalten gleichzeitig Canonical,
+# OpenGraph-Bild und JSON-LD aus dem Basistemplate.
+
+SEO = {
+    "home": {
+        "de": ("IT, Daten und Software für KMU | datalization Zofingen",
+               "IT-Support für Microsoft 365 und Azure, individuelle Software- und Datenprojekte sowie Monekey, unsere Dokumentenplattform – für Schweizer KMU."),
+        "en": ("IT, data and software for SMEs | datalization Zofingen",
+               "IT support for Microsoft 365 and Azure, custom software and data projects, plus Monekey, our document platform – for Swiss SMEs."),
+    },
+    "services": {
+        "de": ("Lösungen: Software, Daten & Digitalisierung | datalization",
+               "Softwareentwicklung, Datenanalyse und Business Intelligence, Digitalisierung und Data-Science-Beratung – von der Analyse über die Entwicklung bis zum Betrieb."),
+        "en": ("Solutions: software, data & digitalization | datalization",
+               "Software development, data analytics and business intelligence, digitalization and data science consulting – from analysis through development to operation."),
+    },
+    "about": {
+        "de": ("Über uns – wer hinter Datalization steht",
+               "Datalization ist ein inhabergeführtes Daten- und IT-Unternehmen aus Zofingen. Loyalität, Einfachheit und Qualität – daran messen wir uns in jedem Projekt."),
+        "en": ("About us – the people behind Datalization",
+               "Datalization is an owner-led data and IT company based in Zofingen, Switzerland. Loyalty, simplicity and quality guide every project we take on."),
+    },
+    "cases": {
+        "de": ("Projekte und Referenzen | Datalization",
+               "Projekte von Datalization: von der Ausgangslage über die Lösung bis zum messbaren Ergebnis – Software, Datenanalyse und Digitalisierung für Schweizer KMU."),
+        "en": ("Projects and references | Datalization",
+               "Projects by Datalization: from the initial situation through the solution to measurable results – software, data analytics and digitalization for Swiss SMEs."),
+    },
+    "contact": {
+        "de": ("Kontakt | Datalization, Zofingen",
+               "Schreiben Sie uns zu IT-Support, Cloud, Datenanalyse, Softwareentwicklung oder Digitalisierung. Wir melden uns persönlich – Datalization, 4800 Zofingen."),
+        "en": ("Contact | Datalization, Zofingen",
+               "Get in touch about IT support, cloud, data analytics, software development or digitalization. We reply personally – Datalization, 4800 Zofingen, Switzerland."),
+    },
+    "booking": {
+        "de": ("Kurz-Check buchen – 20 Minuten, unverbindlich | Datalization",
+               "Kostenloses 20-Minuten-Gespräch: Wir klären unverbindlich, ob unsere Leistungen zu Ihrer Situation passen – mit Einschätzung und nächsten Schritten."),
+        "en": ("Book a short check – 20 minutes | datalization",
+               "A free 20-minute conversation: we clarify whether and how our services fit your situation – with a concrete assessment and clear next steps."),
+    },
+    "match": {
+        "de": ("Was passt zu Ihnen? Der 3-Fragen-Check | Datalization",
+               "Drei kurze Fragen – danach wissen Sie, welche Lösung von Datalization zu Ihrer Ausgangslage passt. Ohne Anmeldung und unverbindlich."),
+        "en": ("Which solution fits you? The 3-question check | Datalization",
+               "Three short questions – then you know which Datalization solution fits your situation. No sign-up, no obligation."),
+    },
+    "monekey": {
+        "de": ("Monekey – Dokumentenplattform für Treuhand & Immobilien",
+               "Die digitale Dokumentenplattform für Immobilienverwaltung, Treuhand und Brokerage – mit Kundenportal, Berechtigungen und zentraler Ablage."),
+        "en": ("Monekey – Document platform for trust & real estate",
+               "The digital document platform for real estate management, trust and brokerage – with client portals, role-based permissions and central storage."),
+    },
+    "service_it_support": {
+        "de": ("IT-Support & Cloud für KMU – Datalization",
+               "Wir übernehmen Ihren IT-Betrieb: Microsoft 365, Azure, Datenmigration und laufender Support für KMU – zuverlässig, persönlich und mit festem Ansprechpartner."),
+        "en": ("IT Support & Cloud for SMEs – Datalization",
+               "We run your IT: Microsoft 365, Azure, data migration and ongoing support for SMEs – reliable, personal and with a named contact."),
+    },
+    "service_data_analytics": {
+        "de": ("Datenanalyse & Data Science – Datalization",
+               "Aus Zahlen wird Klarheit: Dashboards, KPI-Monitoring und Prognosen. Wir helfen KMU, den Überblick zu gewinnen und aus Erfahrung zu lernen – ohne Daten-Chaos."),
+        "en": ("Data Analytics & Data Science – Datalization",
+               "Turning numbers into clarity: dashboards, KPI monitoring and forecasting. We help SMEs gain an overview and learn from experience – without the data chaos."),
+    },
+    "service_software": {
+        "de": ("Softwareentwicklung – Datalization",
+               "Software, die mitdenkt: massgeschneiderte Web- und Datenapplikationen, API-Integrationen und skalierbare Architekturen – passend zu Ihren Prozessen."),
+        "en": ("Software Development – Datalization",
+               "Software that fits: custom web and data applications, API integrations and scalable architectures – built around your processes."),
+    },
+    "service_digitalisierung": {
+        "de": ("Digitalisierung & Automatisierung – Datalization",
+               "Weniger manuelle Arbeit, mehr Übersicht: Prozesse modernisieren, Systeme verbinden und Mitarbeitende befähigen – pragmatisch und in machbaren Schritten."),
+        "en": ("Digitalization & Automation – Datalization",
+               "Less manual work, more overview: modernize processes, connect systems and enable your team – pragmatic and in achievable steps."),
+    },
+    "service_beratung": {
+        "de": ("Beratung & Strategie – Datalization",
+               "Klarheit im Kopf und ein Plan, der sich lohnt: Use-Case-Scoping, Technologiebewertung und Roadmaps – Orientierung, bevor Sie investieren."),
+        "en": ("Consulting & Strategy – Datalization",
+               "Clarity and a plan worth following: use case scoping, technology assessment and roadmaps – orientation before you invest."),
+    },
+}
+
+
+def seo(key, **extra):
+    """Kontext mit Titel und Beschreibung fuer die aktuelle Sprache."""
+    from django.utils.translation import get_language
+
+    lang = (get_language() or "de").split("-")[0]
+    title, desc = SEO[key].get(lang, SEO[key]["de"])
+    ctx = {"page_title": title, "page_description": desc}
+    ctx.update(extra)
+    return ctx
+
+
 @ensure_csrf_cookie
 def home(request):
     case_studies = CaseStudy.objects.filter(published=True).order_by("-date")[:6]
-    return render(request, "home.html", {"case_studies": case_studies})
+    return render(request, "home.html", seo("home", case_studies=case_studies))
 
 
 def about(request):
-    return render(request, "about.html")
+    return render(request, "about.html", seo("about"))
 
 def services(request):
-    return render(request, "services.html")
+    return render(request, "services.html", seo("services"))
 
 
 def service_data_analytics(request):
-    return render(request, "services/data_analytics.html")
+    return render(request, "services/data_analytics.html", seo("service_data_analytics"))
 
 
 def service_software(request):
-    return render(request, "services/softwareentwicklung.html")
+    return render(request, "services/softwareentwicklung.html", seo("service_software"))
 
 
 def service_digitalisierung(request):
-    return render(request, "services/digitalisierung.html")
+    return render(request, "services/digitalisierung.html", seo("service_digitalisierung"))
 
 
 def service_beratung(request):
-    return render(request, "services/beratung_strategie.html")
+    return render(request, "services/beratung_strategie.html", seo("service_beratung"))
 
 
 def service_it_support(request):
-    return render(request, "services/it_support.html")
+    return render(request, "services/it_support.html", seo("service_it_support"))
 
 
 def monekey(request):
-    return render(request, "monekey.html")
+    return render(request, "monekey.html", seo("monekey"))
 
 
 def start(request):
@@ -65,11 +163,11 @@ def start(request):
     return redirect("web:booking")
 
 def booking(request):
-    return render(request, "booking.html", {"form": StartForm(initial={"language": request.LANGUAGE_CODE})})
+    return render(request, "booking.html", seo("booking", form=StartForm(initial={"language": request.LANGUAGE_CODE})))
 
 
 def match(request):
-    return render(request, "match.html")
+    return render(request, "match.html", seo("match"))
 
 
 @require_http_methods(["POST"])
@@ -117,7 +215,7 @@ def start_submit(request):
 
 def case_list(request):
     qs = CaseStudy.objects.filter(published=True).order_by("-date")[:4]
-    return render(request, "cases_list.html", {"cases": qs})
+    return render(request, "cases_list.html", seo("cases", cases=qs))
 
 
 from django.shortcuts import render, get_object_or_404
@@ -291,12 +389,13 @@ def _validate_turnstile(request):
 
 
 def _contact_context(request, form):
-    return {
-        "form": form,
-        "contact_form_token": _make_contact_form_token(request),
-        "turnstile_enabled": getattr(settings, "TURNSTILE_ENABLED", False),
-        "turnstile_site_key": getattr(settings, "TURNSTILE_SITE_KEY", ""),
-    }
+    return seo(
+        "contact",
+        form=form,
+        contact_form_token=_make_contact_form_token(request),
+        turnstile_enabled=getattr(settings, "TURNSTILE_ENABLED", False),
+        turnstile_site_key=getattr(settings, "TURNSTILE_SITE_KEY", ""),
+    )
 
 
 @require_http_methods(["GET", "POST"])

@@ -2,21 +2,6 @@
 {% load i18n static %}
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block title %}{% if LANGUAGE_CODE == 'de' %}IT-Support &amp; Cloud für KMU – Datalization{% else %}IT Support &amp; Cloud for SMEs – Datalization{% endif %}{% endblock %}
-
-{% block head_meta %}
-  {% if LANGUAGE_CODE == 'de' %}
-    {% firstof page_title "IT-Support & Cloud für KMU – Datalization" as seo_title %}
-    {% firstof page_description "Wir übernehmen Ihren IT-Betrieb: Microsoft 365, Azure, Datenmigration und laufender Support für KMU – zuverlässig und persönlich." as seo_desc %}
-  {% else %}
-    {% firstof page_title "IT Support & Cloud for SMEs – Datalization" as seo_title %}
-    {% firstof page_description "We run your IT: Microsoft 365, Azure, data migration and ongoing support for SMEs – reliable and personal." as seo_desc %}
-  {% endif %}
-  <meta name="description" content="{{ seo_desc|truncatechars:160 }}">
-  <meta property="og:title" content="{{ seo_title }}">
-  <meta property="og:description" content="{{ seo_desc|truncatechars:200 }}">
-{% endblock %}
-
 {% block content %}
 <div class="min-h-screen bg-background text-foreground">
 

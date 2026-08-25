@@ -32,8 +32,13 @@ from web.sitemaps import StaticViewSitemap, CaseSitemap
 sitemaps = {"static": StaticViewSitemap, "cases": CaseSitemap}
 ICON_DIR = Path(__file__).resolve().parent.parent / "web" / "static" / "img"
 
-def robots_txt(_):
-    return HttpResponse("User-agent: *\nAllow: /\nSitemap: /sitemap.xml", content_type="text/plain")
+def robots_txt(request):
+    # Die Sitemap-Zeile muss laut Spezifikation eine absolute URL sein.
+    sitemap_url = request.build_absolute_uri("/sitemap.xml")
+    return HttpResponse(
+        f"User-agent: *\nAllow: /\nSitemap: {sitemap_url}\n",
+        content_type="text/plain",
+    )
 
 
 def serve_icon(filename, content_type):
@@ -75,8 +80,8 @@ def site_webmanifest(_):
         "start_url": "/de/",
         "scope": "/",
         "display": "standalone",
-        "background_color": "#0a0a0a",
-        "theme_color": "#0a0a0a",
+        "background_color": "#ffffff",
+        "theme_color": "#ffffff",
         "icons": [
             {
                 "src": "/icon-192.png",

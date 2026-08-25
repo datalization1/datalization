@@ -2,21 +2,6 @@
 {% load i18n static %}
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block title %}Monekey – {% if LANGUAGE_CODE == 'de' %}Dokumentenprozesse einfach digital{% else %}Document processes made simple{% endif %}{% endblock %}
-
-{% block head_meta %}
-  {% if LANGUAGE_CODE == 'de' %}
-    {% firstof page_title "Monekey – Digitale Dokumentenplattform für Immobilien, Treuhand und Brokerage" as seo_title %}
-    {% firstof page_description "Monekey ist die digitale Dokumentenplattform für Immobilienverwaltung, Treuhand und Brokerage – mit Kundenportal, rollenbasierten Berechtigungen und zentraler Ablage." as seo_desc %}
-  {% else %}
-    {% firstof page_title "Monekey – Digital document platform for real estate, trust and brokerage" as seo_title %}
-    {% firstof page_description "Monekey is the digital document platform for real estate management, trust and brokerage – with client portals, role-based permissions and central storage." as seo_desc %}
-  {% endif %}
-  <meta name="description" content="{{ seo_desc|truncatechars:160 }}">
-  <meta property="og:title" content="{{ seo_title }}">
-  <meta property="og:description" content="{{ seo_desc|truncatechars:200 }}">
-{% endblock %}
-
 {% block content %}
 <div class="min-h-screen bg-background text-foreground">
 

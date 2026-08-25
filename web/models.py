@@ -42,6 +42,11 @@ class CaseStudy(models.Model):
             self.slug = slugify(self.title)[:50]
         super().save(*args, **kwargs)
 
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse("web:case_detail", kwargs={"slug": self.slug})
+
+
     def _pick(self, de_value, en_value):
         lang = (get_language() or "").split("-")[0]
         if lang == "en" and en_value:
