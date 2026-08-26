@@ -7,17 +7,17 @@
   <!-- Hero -->
   <section class="cases-hero scroll-mt-20">
     <div class="container mx-auto px-4 text-center">
-      <h1>Case Studies</h1>
+      <h1>{% if LANGUAGE_CODE == 'de' %}Projekte{% else %}Projects{% endif %}</h1>
       <p class="cases-subtext">
         {% if LANGUAGE_CODE == 'de' %}
-          Erfolgsgeschichten unserer Kunden – von der Herausforderung zur Lösung
+          Was wir gebaut haben – von der Ausgangslage über die Lösung zum Ergebnis
         {% else %}
-          Success stories of our clients – from challenge to solution
+          What we have built – from the initial situation through the solution to the result
         {% endif %}
       </p>
       <p class="cases-subtext-muted">
         {% if LANGUAGE_CODE == 'de' %}
-          Erfahren Sie, wie wir Unternehmen bei ihrer digitalen Transformation unterstützen und messbare Erfolge erzielen.
+          Einblick in unsere Arbeit: welche Aufgabe zu lösen war, wie wir vorgegangen sind und was dabei herauskam.
         {% else %}
           See how we support companies in their digital transformation and achieve measurable results.
         {% endif %}
@@ -99,7 +99,7 @@
         {% empty %}
           <p class="text-muted text-center py-10">
             {% if LANGUAGE_CODE == 'de' %}
-              Noch keine Case Studies veröffentlicht.
+              Noch keine Projekte veröffentlicht.
             {% else %}
               No case studies published yet.
             {% endif %}
@@ -109,7 +109,7 @@
     </div>
   </section>
 
-  <!-- Monekey-Hinweis: Case Study ist inzwischen eigenständiges Produkt -->
+  <!-- Monekey-Hinweis: aus dem Projekt wurde ein eigenstaendiges Produkt -->
   <section class="monekey-highlight-wrap">
     <div class="container mx-auto px-4">
       <a href="{% url 'web:monekey' %}" class="monekey-highlight fade-in-on-scroll">
@@ -117,9 +117,9 @@
         <div class="monekey-highlight__body">
           <h3>
             {% if LANGUAGE_CODE == 'de' %}
-              Aus der Case Study „Digitale Dokumentenplattform“ wurde ein Produkt
+              Aus dem Projekt „Digitale Dokumentenplattform“ wurde ein eigenes Produkt
             {% else %}
-              Our "Digital document platform" case study has become a product
+              Our "Digital document platform" project has become a product of its own
             {% endif %}
           </h3>
           <p>
@@ -144,14 +144,14 @@
     <div class="container case-cta-inner fade-in-on-scroll">
       <h2 class="case-cta-title">
         {% if LANGUAGE_CODE == 'de' %}
-          Bereit fuer Ihre Erfolgsgeschichte?
+          Haben Sie ein Projekt im Kopf?
         {% else %}
-          Ready for your success story?
+          Do you have a project in mind?
         {% endif %}
       </h2>
       <p class="case-cta-text">
         {% if LANGUAGE_CODE == 'de' %}
-          Lassen Sie uns gemeinsam Ihr naechstes Projekt zum Erfolg fuehren.
+          Erzählen Sie uns davon – im Erstgespräch klären wir in 20 Minuten, ob wir passen.
         {% else %}
           Let's turn your next project into a measurable success together.
         {% endif %}

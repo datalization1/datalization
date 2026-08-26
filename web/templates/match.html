@@ -7,8 +7,8 @@
 
   <section class="match-hero scroll-mt-20">
     <div class="container mx-auto px-4 text-center">
-      <h1 class="match-hero-title">Was passt zu dir?</h1>
-      <p class="match-subline">Drei kurze Fragen – und du weisst, wie wir dir helfen können.</p>
+      <h1 class="match-hero-title">Was passt zu Ihnen?</h1>
+      <p class="match-subline">Drei kurze Fragen – danach wissen Sie, wie wir Ihnen helfen können.</p>
     </div>
   </section>
 
@@ -37,7 +37,7 @@
               </svg>
             </div>
             <p class="match-result-kicker">Ergebnis</p>
-            <h3 class="section-title match-result-title">Basierend auf deinen Antworten scheint Folgendes gut zu passen:</h3>
+            <h3 class="section-title match-result-title">Basierend auf Ihren Antworten scheint Folgendes gut zu passen:</h3>
             <p class="text-muted match-result-subline">Im Gespräch schauen wir gemeinsam, was davon wirklich Sinn macht – und was nicht.</p>
             <div id="match-recos" class="match-reco-list"></div>
             <div class="match-cta-row">
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function(){
   // Question defs (texts)
   const Q1 = {
     id:"q1",
-    headline:"Was ist aktuell dein wichtigstes Ziel?",
+    headline:"Was ist aktuell Ihr wichtigstes Ziel?",
     title:"Wähle eine Option.",
     subtitle:"So können wir direkt die passende Richtung bestimmen.",
     type:"single",
@@ -90,9 +90,9 @@ document.addEventListener("DOMContentLoaded", function(){
 
   const Q2_MAP = {
     data: {
-      headline:"Was macht dir im Alltag am meisten Mühe?",
-      subtitle:"Was kostet dich aktuell am meisten Energie?",
-      title:"Was macht dir im Alltag dabei am meisten Mühe?",
+      headline:"Was macht Ihnen im Alltag am meisten Mühe?",
+      subtitle:"Was kostet Sie aktuell am meisten Energie?",
+      title:"Was macht Ihnen im Alltag dabei am meisten Mühe?",
       type:"multi",
       max:2,
       options:[
@@ -104,9 +104,9 @@ document.addEventListener("DOMContentLoaded", function(){
       ]
     },
     digital: {
-      headline:"Was macht dir im Alltag am meisten Mühe?",
-      subtitle:"Was kostet dich aktuell am meisten Energie?",
-      title:"Was kostet dich dabei am meisten Zeit oder Nerven?",
+      headline:"Was macht Ihnen im Alltag am meisten Mühe?",
+      subtitle:"Was kostet Sie aktuell am meisten Energie?",
+      title:"Was kostet Sie dabei am meisten Zeit oder Nerven?",
       type:"multi", max:2,
       options:[
         {v:"g1", label:"Daten mehrfach erfassen", s:{digital:2,software:1}},
@@ -117,9 +117,9 @@ document.addEventListener("DOMContentLoaded", function(){
       ]
     },
     software: {
-      headline:"Was macht dir im Alltag am meisten Mühe?",
-      subtitle:"Was kostet dich aktuell am meisten Energie?",
-      title:"Wo merkst du das am stärksten?",
+      headline:"Was macht Ihnen im Alltag am meisten Mühe?",
+      subtitle:"Was kostet Sie aktuell am meisten Energie?",
+      title:"Wo merken Sie das am stärksten?",
       type:"multi", max:2,
       options:[
         {v:"s1", label:"Daten müssen von Hand übertragen werden", s:{software:2,digital:1}},
@@ -130,8 +130,8 @@ document.addEventListener("DOMContentLoaded", function(){
       ]
     },
     strategy: { // also planning
-      headline:"Was macht dir im Alltag am meisten Mühe?",
-      subtitle:"Was kostet dich aktuell am meisten Energie?",
+      headline:"Was macht Ihnen im Alltag am meisten Mühe?",
+      subtitle:"Was kostet Sie aktuell am meisten Energie?",
       title:"Was trifft am ehesten zu?",
       type:"multi", max:2,
       options:[
@@ -143,8 +143,8 @@ document.addEventListener("DOMContentLoaded", function(){
       ]
     },
     planning: { // shares mapping with strategy in Q1 A4
-      headline:"Was macht dir im Alltag am meisten Mühe?",
-      subtitle:"Was kostet dich aktuell am meisten Energie?",
+      headline:"Was macht Ihnen im Alltag am meisten Mühe?",
+      subtitle:"Was kostet Sie aktuell am meisten Energie?",
       title:"Warum fühlt sich das aktuell so an?",
       type:"multi", max:2,
       options:[
@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
   const Q3_START = {
     id:"q3",
-    headline:"Wie möchtest du starten?",
+    headline:"Wie möchten Sie starten?",
     subtitle:"So wählen wir den sinnvollsten nächsten Schritt – ohne Overengineering.",
     title:"Wähle eine Option.",
     type:"single",
@@ -197,7 +197,7 @@ document.addEventListener("DOMContentLoaded", function(){
     let def;
     if (step === 1) {
       def = Q1;
-      if (helper) helper.textContent = "Bitte wähle eine Option.";
+      if (helper) helper.textContent = "Bitte wählen Sie eine Option.";
     } else if (step === 2) {
       const path = determinePath();
       def = Q2_MAP[path] || Q2_MAP.strategy;
@@ -205,7 +205,7 @@ document.addEventListener("DOMContentLoaded", function(){
     } else {
       const path = determinePath();
       def = Q3_MAP[path] || Q3_MAP.strategy;
-      if (helper) helper.textContent = "Bitte wähle eine Option.";
+      if (helper) helper.textContent = "Bitte wählen Sie eine Option.";
     }
 
     const card = document.createElement("div");
@@ -376,15 +376,15 @@ document.addEventListener("DOMContentLoaded", function(){
     const texts = {
       data:{
         title:"Datenanalyse & Data Science",
-        body:"Du brauchst keine neuen Zahlen – sondern Klarheit. Wir machen Zusammenhänge sichtbar und helfen dir, ruhiger zu planen statt nur zu reagieren."
+        body:"Sie brauchen keine neuen Zahlen – sondern Klarheit. Wir machen Zusammenhänge sichtbar und helfen Ihnen, ruhiger zu planen statt nur zu reagieren."
       },
       digital:{
         title:"Digitalisierung",
-        body:"Du gewinnst Zeit zurück, indem wir manuelle Schritte vereinfachen oder automatisieren. Ziel: weniger Aufwand, weniger Fehler, mehr Fokus."
+        body:"Sie gewinnen Zeit zurück, indem wir manuelle Schritte vereinfachen oder automatisieren. Ziel: weniger Aufwand, weniger Fehler, mehr Fokus."
       },
       software:{
         title:"Softwareentwicklung",
-        body:"Wenn Standardtools nicht passen, bauen wir eine Lösung, die deine Abläufe wirklich unterstützt – und Systeme sauber verbindet."
+        body:"Wenn Standardtools nicht passen, bauen wir eine Lösung, die Ihre Abläufe wirklich unterstützt – und Systeme sauber verbindet."
       },
       strategy:{
         title:"Beratung & Strategie",
@@ -480,7 +480,7 @@ document.addEventListener("DOMContentLoaded", function(){
       computeReco();
       resultBox.hidden = false;
       qs.innerHTML = "";
-      helper.textContent = "Das ist deine Einschätzung. Du kannst deine Antworten anpassen.";
+      helper.textContent = "Das ist Ihre Einschätzung. Sie können Ihre Antworten jederzeit anpassen.";
       backBtn.disabled = true;
       backBtn.style.display = "none";
       nextBtn.disabled = true;

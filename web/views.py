@@ -48,10 +48,10 @@ SEO = {
                "Datalization is an owner-led data and IT company based in Zofingen, Switzerland. Loyalty, simplicity and quality guide every project we take on."),
     },
     "cases": {
-        "de": ("Projekte und Referenzen | Datalization",
-               "Projekte von Datalization: von der Ausgangslage über die Lösung bis zum messbaren Ergebnis – Software, Datenanalyse und Digitalisierung für Schweizer KMU."),
-        "en": ("Projects and references | Datalization",
-               "Projects by Datalization: from the initial situation through the solution to measurable results – software, data analytics and digitalization for Swiss SMEs."),
+        "de": ("Projekte | Datalization",
+               "Einblick in unsere Arbeit: Ausgangslage, Lösung und Ergebnis – Software, Datenanalyse und Digitalisierung für Schweizer KMU."),
+        "en": ("Projects | Datalization",
+               "A look at our work: initial situation, solution and result – software, data analytics and digitalization for Swiss SMEs."),
     },
     "contact": {
         "de": ("Kontakt | Datalization, Zofingen",
