@@ -8,6 +8,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}{% firstof page_title "datalization – Einfachheit trifft Innovation" %}{% endblock %}</title>
 
+  {% if google_site_verification %}
+    <meta name="google-site-verification" content="{{ google_site_verification }}">
+  {% endif %}
+
   {# SEO / OpenGraph #}
   {% block head_meta %}
     {% comment %}
@@ -49,14 +53,56 @@
     <meta name="twitter:description" content="{{ seo_desc|truncatechars:200 }}">
     <meta name="twitter:image" content="https://www.datalization.ch/icon-512.png">
 
-    {# Optional: Organisation Structured Data (JSON-LD) #}
+    {% comment %}Strukturierte Daten: ProfessionalService statt Organization,
+    damit Google das Unternehmen als lokalen Dienstleister mit Sitz in Zofingen
+    und Einsatzgebiet Schweiz erkennt. Die Angaben decken sich bewusst wortgleich
+    mit Impressum und Handelsregister - nur dann verknuepft Google Website,
+    Unternehmensprofil und Registereintrag zur selben Firma.{% endcomment %}
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "datalization",
+      "@type": "ProfessionalService",
+      "@id": "https://www.datalization.ch/#organisation",
+      "name": "Datalization",
+      "legalName": "Datalization, Inh. Danesic",
       "url": "https://www.datalization.ch",
       "logo": "https://www.datalization.ch/icon-512.png",
+      "image": "https://www.datalization.ch/icon-512.png",
+      "description": {% if LANGUAGE_CODE == 'en' %}"IT support, data analytics, software development and digitalization for Swiss SMEs."{% else %}"IT-Support, Datenanalyse, Softwareentwicklung und Digitalisierung für Schweizer KMU."{% endif %},
+      "email": "info@datalization.ch",
+      "telephone": "+41 76 563 06 08",
+      "founder": {
+        "@type": "Person",
+        "name": "Tihomir Danesic"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Bärengasse 3",
+        "postalCode": "4800",
+        "addressLocality": "Zofingen",
+        "addressRegion": "AG",
+        "addressCountry": "CH"
+      },
+      "areaServed": [
+        {"@type": "Country", "name": "Schweiz"},
+        {"@type": "AdministrativeArea", "name": "Kanton Aargau"}
+      ],
+      "identifier": {
+        "@type": "PropertyValue",
+        "name": "UID",
+        "value": "CHE-169.329.947"
+      },
+      "knowsAbout": [
+        "IT-Support",
+        "Microsoft 365",
+        "Microsoft Azure",
+        "Datenanalyse",
+        "Business Intelligence",
+        "Softwareentwicklung",
+        "Digitalisierung",
+        "Data Science"
+      ],
+      "availableLanguage": ["de", "en"],
       "sameAs": [
         "https://www.linkedin.com/company/datalization1/"
       ]

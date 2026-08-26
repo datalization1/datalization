@@ -20,6 +20,10 @@ class StaticViewSitemap(Sitemap):
         "web:services": 0.9,
         "web:service_it_support": 0.9,
         "web:monekey": 0.9,
+        # Rechtstexte gehoeren in den Index - sie belegen, dass hinter der
+        # Website eine reale Firma steht -, brauchen aber kein Gewicht.
+        "web:impressum": 0.3,
+        "web:privacy": 0.3,
     }
 
     def items(self):
@@ -36,6 +40,8 @@ class StaticViewSitemap(Sitemap):
             "web:about",
             "web:contact",
             "web:booking",
+            "web:impressum",
+            "web:privacy",
         ]
 
     def location(self, item):

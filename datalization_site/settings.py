@@ -96,6 +96,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "web.context_processors.hreflang",
+                "web.context_processors.site_verification",
             ],
         },
     },
@@ -211,6 +212,11 @@ CONTACT_RECEIVER_EMAIL = os.getenv(
     "CONTACT_RECEIVER_EMAIL",
     "info@datalization.ch"
 )
+
+# Bestaetigungscode aus der Google Search Console. Solange leer, wird kein
+# Meta-Tag ausgegeben; die Bestaetigung kann alternativ per DNS-Eintrag
+# erfolgen. Wert ist nur der Token, nicht das ganze Meta-Tag.
+GOOGLE_SITE_VERIFICATION = os.getenv("GOOGLE_SITE_VERIFICATION", "")
 
 TURNSTILE_SITE_KEY = os.getenv("TURNSTILE_SITE_KEY", "")
 TURNSTILE_SECRET_KEY = os.getenv("TURNSTILE_SECRET_KEY", "")

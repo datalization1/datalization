@@ -34,3 +34,9 @@ def hreflang(request):
         "hreflang_alternates": alternates,
         "hreflang_x_default": request.build_absolute_uri(neutral),
     }
+
+
+def site_verification(request):
+    """Bestaetigungscode der Google Search Console fuer den Seitenkopf."""
+    token = getattr(settings, "GOOGLE_SITE_VERIFICATION", "")
+    return {"google_site_verification": token} if token else {}
