@@ -1,0 +1,149 @@
+{% load static i18n v2_extras %}
+{% get_current_language as LANGUAGE_CODE %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {# --- Pro Seite individuell (Child-Templates setzen title + meta_description) --- #}
+  <title>{% block title %}Datalization{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}{% endblock %}">
+
+  {# --- WICHTIG: Solange die Seiten unter /v2/ laufen, nicht indexieren lassen. --- #}
+  {# Beim späteren Umschalten auf die Haupt-URLs diese Zeile entfernen (siehe Umschalt-Checkliste). #}
+  <meta name="robots" content="noindex">
+
+  {# --- Canonical --- #}
+  {% if request %}<link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">{% endif %}
+
+  {# --- hreflang DE / EN / x-default --- #}
+  {% if request %}
+    <link rel="alternate" hreflang="de" href="{{ request.scheme }}://{{ request.get_host }}{% alt_url 'de' %}">
+    <link rel="alternate" hreflang="en" href="{{ request.scheme }}://{{ request.get_host }}{% alt_url 'en' %}">
+    <link rel="alternate" hreflang="x-default" href="{{ request.scheme }}://{{ request.get_host }}{% alt_url 'de' %}">
+  {% endif %}
+
+  {# --- Open Graph (dezent) --- #}
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Datalization">
+  <meta property="og:title" content="{% block og_title %}Datalization{% endblock %}">
+  <meta property="og:url" content="{{ request.build_absolute_uri|default:'' }}">
+  <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'v2/brand/icon-512.png' %}">
+
+  {# LocalBusiness / ProfessionalService JSON-LD #}
+  {# PLATZHALTER: Adresse und Telefon unten direkt eintragen (streetAddress, postalCode, telephone). #}
+  {% with company_name="Datalization" street="Bärengasse 3" postal="4800" city="Zofingen" region="Aargau" country="CH" vat_id="CHE-169.329.947" email="info@datalization.ch" %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "{{ company_name }}",
+    "description": "Geschäftssoftware (Odoo), Digitalisierung, Datenübernahme und Automatisierung für kleine Betriebe in der Region Zofingen und im Aargau.",
+    "url": "{{ request.scheme }}://{{ request.get_host }}/{{ LANGUAGE_CODE }}/v2/",
+    "image": "{{ request.scheme }}://{{ request.get_host }}{% static 'v2/brand/icon-512.png' %}",
+    "logo": "{{ request.scheme }}://{{ request.get_host }}{% static 'v2/brand/icon-512.png' %}",
+    "email": "{{ email }}",
+    "vatID": "{{ vat_id }}",
+    "founder": { "@type": "Person", "name": "Tihomir Danesic" },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{ street }}",
+      "postalCode": "{{ postal }}",
+      "addressLocality": "{{ city }}",
+      "addressRegion": "{{ region }}",
+      "addressCountry": "{{ country }}"
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Zofingen" },
+      { "@type": "City", "name": "Olten" },
+      { "@type": "AdministrativeArea", "name": "Wiggertal" },
+      { "@type": "AdministrativeArea", "name": "Aargau" }
+    ],
+    "knowsAbout": ["Odoo", "ERP", "CRM", "Datenmigration", "Automatisierung", "Dokumentenportal"],
+    "sameAs": ["https://www.linkedin.com/company/datalization1/"]
+  }
+  </script>
+  {% endwith %}
+
+  {# --- Favicons (neues Logo-Set v2) --- #}
+  <link rel="icon" type="image/svg+xml" href="{% static 'v2/brand/icon.svg' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'v2/brand/icon-32.png' %}">
+  <link rel="shortcut icon" href="{% static 'v2/brand/favicon.ico' %}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'v2/brand/apple-touch-icon.png' %}">
+  <meta name="theme-color" content="#0A0A0A">
+
+  {# --- Schrift: Inter lokal (kein CDN); Variable-woff2 vorladen --- #}
+  <link rel="preload" as="font" type="font/woff2" href="{% static 'v2/fonts/inter-latin.woff2' %}" crossorigin>
+
+  {# --- Eigenständiges v2-Stylesheet, kein Bestands-styles.css --- #}
+  <link rel="stylesheet" href="{% static 'css/v2.css' %}">
+  {% block extra_css %}{% endblock %}
+
+  <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+</head>
+
+<body>
+  <a class="skip-link" href="#content">{% trans "Zum Inhalt springen" %}</a>
+
+  <div class="dl" id="top">
+    {% include 'v2/partials/nav.html' %}
+
+    <main id="content">
+      {% block content %}{% endblock %}
+    </main>
+
+    {% include 'v2/partials/footer.html' %}
+  </div>
+
+  {# --- Seiten-Loader (nur beim Klick auf einen Erstgespräch-CTA) --- #}
+  <div class="v2-loader" id="v2Loader" aria-hidden="true">
+    <img src="{% static 'v2/brand/loader-dark.svg' %}" alt="" width="96" height="96">
+  </div>
+
+  {# --- Minimales v2-JS: Mobile-Menü, Scroll-Reveal, Loader, Jahr. Kein Theme-Toggle. --- #}
+  <script>
+    (function () {
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Mobile-Menü
+      var nav = document.querySelector('.nav');
+      var toggle = nav && nav.querySelector('.menu-btn');
+      if (toggle) {
+        toggle.addEventListener('click', function () {
+          var open = nav.classList.toggle('is-open');
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+      }
+
+      // Scroll-Reveal: einmal pro Element
+      if (!reduce && 'IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+          });
+        }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+      } else {
+        document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+      }
+
+      // Jahr im Footer
+      var yearEl = document.getElementById('current-year');
+      if (yearEl) { yearEl.textContent = new Date().getFullYear(); }
+
+      // Loader beim Klick auf einen Erstgespräch-CTA (erst nach 300 ms, nie bei reduce)
+      var loader = document.getElementById('v2Loader');
+      if (loader && !reduce) {
+        document.querySelectorAll('[data-loader]').forEach(function (link) {
+          link.addEventListener('click', function () {
+            setTimeout(function () { loader.classList.add('is-visible'); }, 300);
+          });
+        });
+        window.addEventListener('pageshow', function () { loader.classList.remove('is-visible'); });
+      }
+    })();
+  </script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

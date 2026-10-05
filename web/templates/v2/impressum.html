@@ -1,0 +1,75 @@
+{% extends "v2/base_v2.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}{% if LANGUAGE_CODE == 'de' %}Impressum – Datalization{% else %}Legal Notice – Datalization{% endif %}{% endblock %}
+{% block meta_description %}{% if LANGUAGE_CODE == 'de' %}Rechtliche Angaben zum Anbieter, Haftung und Urheberrecht.{% else %}Legal information on provider, liability and intellectual property.{% endif %}{% endblock %}
+{% block og_title %}{% if LANGUAGE_CODE == 'de' %}Impressum{% else %}Legal Notice{% endif %} – Datalization{% endblock %}
+
+{% block content %}
+<section class="hero hero--sub hero--text">
+  <div class="wrap">
+    <div>
+      <div class="crumb"><span class="dot" aria-hidden="true"></span><a href="{% url 'v2:home' %}">{% trans "Startseite" %}</a><span aria-hidden="true">/</span><span>{% if LANGUAGE_CODE == 'de' %}Impressum{% else %}Legal Notice{% endif %}</span></div>
+      <h1>{% if LANGUAGE_CODE == 'de' %}Impressum{% else %}Legal Notice{% endif %}</h1>
+      <p>{% if LANGUAGE_CODE == 'de' %}Rechtliche Angaben zum Anbieter, Haftung und Urheberrecht.{% else %}Legal information on provider, liability and intellectual property.{% endif %}</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="legal">
+      {% if LANGUAGE_CODE == 'de' %}
+        <h2>Verantwortlich für den Inhalt</h2>
+        <p>Die nachstehenden Angaben beziehen sich auf den Betreiber dieser Website gemäss geltendem Schweizer Recht.</p>
+        <p>
+          <strong>Unternehmen:</strong> Datalization, Inh. Danesic<br>
+          <strong>Rechtsform:</strong> Einzelunternehmung<br>
+          <strong>Vertretungsberechtigte Person:</strong> Tihomir Danesic<br>
+          <strong>Adresse:</strong> Bärengasse 3, 4800 Zofingen<br>
+          <strong>E-Mail:</strong> info@datalization.ch<br>
+          <strong>Website:</strong> https://www.datalization.ch<br>
+          <strong>UID / Unternehmens-Identifikationsnummer:</strong> CHE-169.329.947<br>
+        </p>
+
+        <h2>Haftungsausschluss</h2>
+        <p>Datalization übernimmt keine Gewähr für die Richtigkeit, Vollständigkeit und Aktualität der auf dieser Website bereitgestellten Informationen. Haftungsansprüche gegen Datalization wegen Schäden materieller oder immaterieller Art, die aus dem Zugriff oder der Nutzung bzw. Nichtnutzung der veröffentlichten Informationen, durch Missbrauch der Verbindung oder durch technische Störungen entstehen, werden – soweit gesetzlich zulässig – ausgeschlossen.</p>
+
+        <h2>Haftung für Links</h2>
+        <p>Diese Website kann Verweise und Links auf Webseiten Dritter enthalten. Für den Inhalt dieser externen Seiten sind ausschliesslich deren Betreiber verantwortlich. Datalization hat keinen Einfluss auf deren Inhalte und übernimmt hierfür keine Haftung. Zum Zeitpunkt der Verlinkung waren keine rechtswidrigen Inhalte erkennbar.</p>
+
+        <h2>Urheberrecht</h2>
+        <p>Die auf dieser Website veröffentlichten Inhalte (Texte, Bilder, Grafiken, Layout, Codefragmente etc.) unterliegen dem schweizerischen Urheberrecht, soweit nicht anders gekennzeichnet. Jede Vervielfältigung, Bearbeitung, Verbreitung oder sonstige Verwertung bedarf der vorherigen schriftlichen Zustimmung von Datalization oder der jeweils berechtigten Person.</p>
+
+        <h2>Anwendbares Recht und Gerichtsstand</h2>
+        <p>Es findet ausschliesslich Schweizer Recht Anwendung, unter Ausschluss kollisionsrechtlicher Bestimmungen. Soweit keine zwingenden gesetzlichen Gerichtsstände entgegenstehen, ist Gerichtsstand Zofingen.</p>
+      {% else %}
+        <h2>Responsible Entity</h2>
+        <p>The following information applies to the operator of this website in accordance with applicable Swiss law.</p>
+        <p>
+          <strong>Company:</strong> Datalization, Inh. Danesic<br>
+          <strong>Legal form:</strong> Sole proprietorship<br>
+          <strong>Authorized representative:</strong> Tihomir Danesic<br>
+          <strong>Registered address:</strong> Bärengasse 3, 4800 Zofingen<br>
+          <strong>Email:</strong> info@datalization.ch<br>
+          <strong>Website:</strong> https://www.datalization.ch<br>
+          <strong>UID / Company ID:</strong> CHE-169.329.947<br>
+        </p>
+
+        <h2>Disclaimer</h2>
+        <p>Datalization does not assume any liability for the accuracy, completeness or timeliness of the information provided on this website. Any liability claims against Datalization for material or immaterial damages resulting from access to, use or non-use of the information published, misuse of the connection or technical disruptions are excluded to the extent permitted by law.</p>
+
+        <h2>Liability for External Links</h2>
+        <p>This website may contain links to external third-party websites. Datalization has no influence over the content of such websites and assumes no liability for them. The operators of the linked pages are solely responsible for their content. At the time the links were created, no illegal content was apparent.</p>
+
+        <h2>Copyright</h2>
+        <p>All content on this website (texts, images, graphics, layout, code excerpts, etc.) is protected by Swiss copyright law unless otherwise stated. Any reproduction, modification, distribution or other use requires the prior written consent of Datalization or the respective rights holder.</p>
+
+        <h2>Applicable Law and Jurisdiction</h2>
+        <p>This website and its use are governed exclusively by Swiss law, excluding conflict-of-law rules. Unless mandatory legal provisions provide otherwise, the place of jurisdiction shall be Zofingen.</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

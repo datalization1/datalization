@@ -1,0 +1,63 @@
+{% extends "v2/base_v2.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}{% trans "Odoo im Vergleich: Excel, grosses ERP oder Eigenentwicklung? | Datalization" %}{% endblock %}
+{% block meta_description %}{% trans "Odoo neben Excel-Insellösungen, grossen Standard-ERPs und Eigenentwicklung: wo jede Variante an Grenzen stösst – und warum Odoo für Kleinbetriebe der Mittelweg ist." %}{% endblock %}
+{% block og_title %}{% trans "Odoo im Vergleich" %}{% endblock %}
+
+{% block content %}
+<section class="hero hero--sub hero--text">
+  <div class="wrap">
+    <div>
+      <div class="crumb"><span class="dot" aria-hidden="true"></span><a href="{% url 'v2:home' %}">{% trans "Startseite" %}</a><span aria-hidden="true">/</span><a href="{% url 'v2:odoo' %}">Odoo</a><span aria-hidden="true">/</span><span>{% trans "Im Vergleich" %}</span></div>
+      <h1>{% trans "Odoo im Vergleich" %}</h1>
+      <p>{% blocktrans trimmed %}Für einen Kleinbetrieb gibt es grob drei Wege, Abläufe zu digitalisieren. Jeder hat seine Berechtigung – und seine Grenzen. Hier der ehrliche Überblick.{% endblocktrans %}</p>
+      {% include 'v2/partials/odoo_subnav.html' %}
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2>{% trans "Drei Alternativen – und wo sie anstossen" %}</h2></div>
+    <div class="cards">
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="2"></rect><path d="M3.5 9h17M9 3.5v17"></path></svg></div>
+        <h3>{% trans "Excel & Insellösungen" %}</h3>
+        <p>{% blocktrans trimmed %}Günstig im Start und schnell zur Hand. Aber: Jede Information wird mehrfach erfasst, nichts stimmt ganz überein, und ein Gesamtüberblick entsteht nur von Hand. Mit dem Betrieb wächst das Chaos mit.{% endblocktrans %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"></path><path d="M3 21h18M9 21v-6h6v6"></path></svg></div>
+        <h3>{% trans "Grosse Standard-ERPs" %}</h3>
+        <p>{% blocktrans trimmed %}Mächtig und für Konzerne gemacht. Aber: teuer, überdimensioniert für einen Kleinbetrieb, mit langer Einführung und Beraterheeren. Sie zahlen für Funktionen, die Sie nie brauchen.{% endblocktrans %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-4 5 4 5M16 7l4 5-4 5M13 4l-2 16"></path></svg></div>
+        <h3>{% trans "Eigenentwicklung" %}</h3>
+        <p>{% blocktrans trimmed %}Passt genau auf Ihren Betrieb. Aber: teuer und langwierig, und Sie sind komplett vom Entwickler abhängig – inklusive Wartung, Updates und allem, was später noch kommt.{% endblocktrans %}</p>
+      </article>
+    </div>
+
+    <div class="verdict reveal">
+      <span class="vmark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+      <div>
+        <h3>{% trans "Odoo: der Mittelweg" %}</h3>
+        <p>{% blocktrans trimmed %}Ein bewährter Standard, der zu Ihrem Betrieb passt – bezahlbar, in Wochen statt Monaten eingeführt, modular erweiterbar und ohne Abhängigkeit von einem einzelnen Produkt oder Entwickler. Für kleine Betriebe meist die beste Balance aus Kosten, Aufwand und Flexibilität.{% endblocktrans %}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="box reveal">
+      <div class="box-text">
+        <span class="seal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+        <span>{% blocktrans trimmed %}Welcher Weg für Sie der richtige ist, schauen wir gemeinsam an – ehrlich, auch wenn Odoo einmal nicht die Antwort ist.{% endblocktrans %}</span>
+      </div>
+      <a class="btn" href="{% url 'v2:booking' %}" data-loader>{% trans "Kostenloses Erstgespräch buchen" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+  </div>
+</section>
+{% endblock %}

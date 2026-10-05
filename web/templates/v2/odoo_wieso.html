@@ -1,0 +1,67 @@
+{% extends "v2/base_v2.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}{% trans "Wieso Odoo? ERP-Vorteile für Kleinbetriebe | Datalization" %}{% endblock %}
+{% block meta_description %}{% trans "Warum Odoo die richtige Geschäftssoftware für kleine Betriebe ist: ein System statt fünf, modular erweiterbar, weltweit bewährt – und persönlich betreut aus der Region." %}{% endblock %}
+{% block og_title %}{% trans "Wieso Odoo?" %}{% endblock %}
+
+{% block content %}
+<section class="hero hero--sub hero--text">
+  <div class="wrap">
+    <div>
+      <div class="crumb"><span class="dot" aria-hidden="true"></span><a href="{% url 'v2:home' %}">{% trans "Startseite" %}</a><span aria-hidden="true">/</span><a href="{% url 'v2:odoo' %}">Odoo</a><span aria-hidden="true">/</span><span>{% trans "Wieso Odoo?" %}</span></div>
+      <h1>{% trans "Wieso Odoo?" %}</h1>
+      <p>{% blocktrans trimmed %}Odoo ist eine Geschäftssoftware, die alles verbindet, was ein Betrieb täglich braucht – von der Offerte bis zur Buchhaltung. Statt fünf Programme nebeneinander führen Sie Ihren Betrieb in einem System.{% endblocktrans %}</p>
+      {% include 'v2/partials/odoo_subnav.html' %}
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap split reveal">
+    <h2>{% trans "Ein System statt fünf" %}</h2>
+    <p>{% blocktrans trimmed %}Viele Kleinbetriebe tippen dieselbe Information mehrfach: einmal in die Offerten-Software, einmal in die Buchhaltung, einmal in eine Excel-Liste. Jede Doppelerfassung kostet Zeit und erzeugt Fehler. In Odoo hängt alles zusammen – was Sie einmal erfassen, ist überall verfügbar.{% endblocktrans %}</p>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2>{% trans "Was für Odoo spricht" %}</h2></div>
+    <div class="cards">
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.8"></rect><rect x="13.5" y="3.5" width="7" height="7" rx="1.8"></rect><rect x="3.5" y="13.5" width="7" height="7" rx="1.8"></rect><rect x="13.5" y="13.5" width="7" height="7" rx="1.8"></rect></svg></div>
+        <h3>{% trans "Ein System für alles" %}</h3>
+        <p>{% blocktrans trimmed %}Verkauf, Einkauf, Lager, Projekte, Rechnungen und Buchhaltung greifen ineinander. Ein Datenstand, auf den sich alle verlassen können.{% endblocktrans %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"></path><path d="M7.5 7.5h.01M16.5 7.5h.01M7.5 16.5h.01M16.5 16.5h.01"></path></svg></div>
+        <h3>{% trans "Wächst mit Ihnen" %}</h3>
+        <p>{% blocktrans trimmed %}Sie starten mit den Modulen, die Sie heute brauchen, und schalten später dazu, was dazukommt. Kein Neukauf, kein Systemwechsel.{% endblocktrans %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18z"></path></svg></div>
+        <h3>{% trans "Weltweit bewährt, keine Sackgasse" %}</h3>
+        <p>{% blocktrans trimmed %}Millionen von Betrieben arbeiten mit Odoo. Sie setzen auf einen etablierten Standard – nicht auf ein Nischenprodukt, das morgen verschwindet.{% endblocktrans %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-4.35-9-8.5C1.5 10 2 6.5 5 5.2 7 4.3 9.2 5 10.3 6.7 11 7.8 12 9 12 9s1-1.2 1.7-2.3C14.8 5 17 4.3 19 5.2c3 1.3 3.5 4.8 2 7.3C18 16.65 12 21 12 21z"></path></svg></div>
+        <h3>{% trans "Betreut aus der Region" %}</h3>
+        <p>{% blocktrans trimmed %}Sie sprechen mit der Person, die Odoo bei Ihnen einführt – erreichbar, in der Nähe, auch nach dem Go-Live.{% endblocktrans %}</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="box reveal">
+      <div class="box-text">
+        <span class="seal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+        <span>{% blocktrans trimmed %}Ob Odoo zu Ihrem Betrieb passt, finden wir im kostenlosen Erstgespräch heraus – ehrlich und unverbindlich.{% endblocktrans %}</span>
+      </div>
+      <a class="btn" href="{% url 'v2:booking' %}" data-loader>{% trans "Kostenloses Erstgespräch buchen" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+  </div>
+</section>
+{% endblock %}

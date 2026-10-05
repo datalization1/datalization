@@ -1,0 +1,143 @@
+{% extends "v2/base_v2.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}{% trans "ERP & CRM für Kleinbetriebe | Odoo Partner Zofingen – Datalization" %}{% endblock %}
+{% block meta_description %}{% trans "Geschäftssoftware, Automatisierung und saubere Daten für kleine Betriebe. Odoo-Einführung mit Festpreisofferte. Kostenloses Erstgespräch in der Region Zofingen." %}{% endblock %}
+{% block og_title %}{% trans "Ihr Betrieb in einem System – statt in fünf Programmen." %}{% endblock %}
+
+{% block content %}
+
+{# ============================ HERO ============================ #}
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>{% blocktrans trimmed %}Ihr Betrieb in einem System – <em>statt in fünf Programmen.</em>{% endblocktrans %}</h1>
+      <p>{% blocktrans trimmed %}Datalization macht kleine Betriebe digital effizient: Geschäftssoftware, Automatisierung und saubere Daten, alles aus einer Hand. Für Betriebe ohne eigene IT-Abteilung – in der Region Zofingen und darüber hinaus.{% endblocktrans %}</p>
+      <a class="btn" href="{% url 'v2:booking' %}" data-loader>{% trans "Kostenloses Erstgespräch buchen" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+
+    <svg class="viz" viewBox="0 0 560 440" aria-hidden="true">
+      <defs>
+        <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#F48B2D" stop-opacity="0.28"></stop><stop offset="100%" stop-color="#F48B2D" stop-opacity="0"></stop></radialGradient>
+      </defs>
+      <path class="ln" d="M150 44 C 290 44, 300 212, 392 212"></path>
+      <path class="ln" d="M150 128 C 280 128, 300 212, 392 212"></path>
+      <path class="ln" d="M150 212 L 392 212"></path>
+      <path class="ln" d="M150 296 C 280 296, 300 212, 392 212"></path>
+      <path class="ln" d="M150 380 C 290 380, 300 212, 392 212"></path>
+      <path class="fl" style="animation-delay: .15s, 1.9s" d="M150 44 C 290 44, 300 212, 392 212"></path>
+      <path class="fl" style="animation-delay: .3s, 1.9s" d="M150 128 C 280 128, 300 212, 392 212"></path>
+      <path class="fl" style="animation-delay: .45s, 1.9s" d="M150 212 L 392 212"></path>
+      <path class="fl" style="animation-delay: .6s, 1.9s" d="M150 296 C 280 296, 300 212, 392 212"></path>
+      <path class="fl" style="animation-delay: .75s, 1.9s" d="M150 380 C 290 380, 300 212, 392 212"></path>
+      <g class="chip"><rect x="0.5" y="22.5" width="149" height="43" rx="12"></rect><text x="20" y="49">{% trans "Offerten" %}</text></g>
+      <g class="chip"><rect x="0.5" y="106.5" width="149" height="43" rx="12"></rect><text x="20" y="133">{% trans "Rechnungen" %}</text></g>
+      <g class="chip"><rect x="0.5" y="190.5" width="149" height="43" rx="12"></rect><text x="20" y="217">{% trans "Lager" %}</text></g>
+      <g class="chip"><rect x="0.5" y="274.5" width="149" height="43" rx="12"></rect><text x="20" y="301">{% trans "Buchhaltung" %}</text></g>
+      <g class="chip"><rect x="0.5" y="358.5" width="149" height="43" rx="12"></rect><text x="20" y="385">{% trans "Excel-Listen" %}</text></g>
+      <circle class="halo" cx="458" cy="212" r="120" fill="url(#glow)"></circle>
+      <g class="hub">
+        <g transform="translate(392,146) scale(0.2578)">
+          <rect x="4" y="4" width="504" height="504" rx="108" fill="#161616" stroke="#F48B2D" stroke-opacity="0.55" stroke-width="8"></rect>
+          <path fill="#FFFFFF" fill-rule="evenodd" d="M 269.5 118.5 A 30.5 30.5 0 0 1 330.5 118.5 L 330.5 322.5 A 38 38 0 0 0 368.5 360.5 L 393.5 360.5 A 30.5 30.5 0 0 1 393.5 421.5 L 202 421.5 A 120 120 0 0 1 202 181.5 L 251.5 181.5 A 18 18 0 0 0 269.5 163.5 Z M 253.5 242.5 A 16 16 0 0 1 269.5 258.5 L 269.5 344.5 A 16 16 0 0 1 253.5 360.5 L 202 360.5 A 59 59 0 0 1 202 242.5 Z"></path>
+          <circle class="pop" cx="393.5" cy="208" r="34" fill="#F48B2D"></circle>
+        </g>
+      </g>
+    </svg>
+  </div>
+</section>
+
+{# ==================== DIE DREI ANGEBOTE ==================== #}
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>{% trans "Womit ich Ihnen helfe" %}</h2>
+      <span class="idx" aria-hidden="true">01 — 03</span>
+    </div>
+    <div class="cards">
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.8"></rect><rect x="13.5" y="3.5" width="7" height="7" rx="1.8"></rect><rect x="3.5" y="13.5" width="7" height="7" rx="1.8"></rect><rect x="13.5" y="13.5" width="7" height="7" rx="1.8"></rect></svg></div>
+        <h3>{% trans "Ihr Betrieb in einem System" %}</h3>
+        <p>{% blocktrans trimmed %}Offerten, Rechnungen, Lager, Projekte und Buchhaltung an einem Ort – statt in fünf Programmen und zwanzig Excel-Listen.{% endblocktrans %}</p>
+        <a class="more" href="{% url 'v2:odoo' %}">{% trans "Mehr zur Geschäftssoftware" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h11M11 3l4 4-4 4"></path><path d="M20 17H9M13 13l-4 4 4 4"></path></svg></div>
+        <h3>{% trans "Digitalisieren ohne Datenverlust" %}</h3>
+        <p>{% blocktrans trimmed %}Ich hole Ihre Daten sauber aus den alten Systemen, automatisiere das Wiederkehrende und baue, was fehlt.{% endblocktrans %}</p>
+        <a class="more" href="{% url 'v2:digitalisierung' %}">{% trans "Mehr zu Digitalisierung & Entwicklung" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3.5H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8.5z"></path><path d="M14 3.5v5h5M9 13h6M9 17h4"></path></svg></div>
+        <h3>{% trans "Dokumente teilen, ohne E-Mail-Chaos" %}</h3>
+        <p>{% blocktrans trimmed %}Ein Portal, in dem Ihre Kunden ihre Unterlagen finden – statt Anhängen in zehn Mail-Verläufen.{% endblocktrans %}</p>
+        <a class="more" href="{% url 'v2:monekey' %}">{% trans "Mehr zu Monekey" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+{# ==================== SO LÄUFT ES AB ==================== #}
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>{% trans "Vier Schritte – ohne Überraschungen" %}</h2>
+      <span class="idx" aria-hidden="true">01 — 04</span>
+    </div>
+    <ol class="steps reveal">
+      <li class="track" aria-hidden="true"><span></span></li>
+      <li class="step"><span class="node"></span><span class="idx">01</span><h3>{% trans "Erstgespräch (kostenlos)." %}</h3><p>{% blocktrans trimmed %}Wir schauen in 60 Minuten, ob es passt. Unverbindlich.{% endblocktrans %}</p></li>
+      <li class="step"><span class="node"></span><span class="idx">02</span><h3>{% trans "Digitalisierungs-Check." %}</h3><p>{% blocktrans trimmed %}Ich analysiere Ihre heutigen Abläufe und zeige konkret, was sich lohnt – inklusive Festpreisofferte.{% endblocktrans %}</p></li>
+      <li class="step"><span class="node"></span><span class="idx">03</span><h3>{% trans "Umsetzung." %}</h3><p>{% blocktrans trimmed %}Einführung, Datenübernahme, Schulung – zum vereinbarten Festpreis.{% endblocktrans %}</p></li>
+      <li class="step"><span class="node last"></span><span class="idx">04</span><h3>{% trans "Betreuung." %}</h3><p>{% blocktrans trimmed %}Nach dem Go-Live lasse ich Sie nicht allein: Support, Updates und Weiterentwicklung gehören dazu.{% endblocktrans %}</p></li>
+    </ol>
+    <div class="promise reveal">
+      <span class="seal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+      <p style="margin:0"><strong>{% trans "Sie wissen vorher, was es kostet." %}</strong> {% blocktrans trimmed %}Jedes Projekt startet mit einer Pauschale und einem klar umrissenen Umfang. Mehraufwand gibt es nur, wenn Sie ihm vorher zustimmen – keine Überraschungen.{% endblocktrans %}</p>
+    </div>
+  </div>
+</section>
+
+{# ==================== VERTRAUEN ==================== #}
+<section class="sec">
+  <div class="wrap">
+    <div class="trust{% if show_foto %} has-photo{% endif %} reveal">
+      {% if show_foto %}
+        <div class="ph photo">{% trans "[Foto Tihomir Danesic]" %}</div>
+      {% endif %}
+      <div>
+        <h2>{% trans "Mit wem Sie arbeiten" %}</h2>
+        <p class="lead"><strong>{% trans "Bei mir sprechen Sie immer mit der Person, die Ihre Lösung auch baut." %}</strong> {% blocktrans trimmed %}Ich bin Tihomir Danesic, Gründer von Datalization – Betriebsökonom und Data Scientist, zuhause in Software, Daten und den Abläufen kleiner Betriebe.{% endblocktrans %}</p>
+        <p class="sub">{% blocktrans trimmed %}Und falls Ihr Unternehmen eine Nummer zu gross für mich ist, sage ich Ihnen das im Erstgespräch offen – und gerne auch, wer dann die bessere Wahl ist.{% endblocktrans %}</p>
+        <a class="more" style="border-top:0;padding-top:24px" href="{% url 'v2:ueber_datalization' %}">{% if LANGUAGE_CODE == 'de' %}Über Datalization{% else %}About Datalization{% endif %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        {% if show_badge or show_referenz %}
+        <div class="proof">
+          {% if show_badge %}
+            <div class="ph badge">{% trans "[Odoo-Partner-Badge]" %}</div>
+          {% endif %}
+          {% if show_referenz %}
+            <div class="ref">
+              <div><b>{% trans "Vorher" %}</b>[…]</div>
+              <div><b>{% trans "Nachher" %}</b>[…]</div>
+              <div class="ph-note">{% trans "[Platzhalter ab Projekt 1: Referenzgeschichte mit Zahlen]" %}</div>
+            </div>
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ==================== ABSCHLUSS-CTA ==================== #}
+<section class="cta" id="termin">
+  <div class="wrap">
+    <svg class="cta-mark" viewBox="0 0 512 512" aria-hidden="true"><rect x="6" y="6" width="500" height="500" rx="104" fill="#161616" stroke="#2E2E2E" stroke-width="8"></rect><path fill="#FFFFFF" fill-rule="evenodd" d="M 269.5 118.5 A 30.5 30.5 0 0 1 330.5 118.5 L 330.5 322.5 A 38 38 0 0 0 368.5 360.5 L 393.5 360.5 A 30.5 30.5 0 0 1 393.5 421.5 L 202 421.5 A 120 120 0 0 1 202 181.5 L 251.5 181.5 A 18 18 0 0 0 269.5 163.5 Z M 253.5 242.5 A 16 16 0 0 1 269.5 258.5 L 269.5 344.5 A 16 16 0 0 1 253.5 360.5 L 202 360.5 A 59 59 0 0 1 202 242.5 Z"></path><circle cx="393.5" cy="208" r="34" fill="#F48B2D"></circle></svg>
+    <h2>{% trans "Reden wir über Ihren Betrieb." %}</h2>
+    <p>{% blocktrans trimmed %}60 Minuten, kostenlos, unverbindlich – danach wissen Sie, ob und wie sich Digitalisierung für Sie lohnt.{% endblocktrans %}</p>
+    <a class="btn" href="{% url 'v2:booking' %}" data-loader>{% trans "Termin wählen" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+  </div>
+</section>
+
+{% endblock %}

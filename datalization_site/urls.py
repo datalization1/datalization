@@ -115,6 +115,7 @@ urlpatterns = [
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += i18n_patterns(
+    path("v2/", include(("web.urls_v2", "v2"), namespace="v2")),  # <— Website v2.0 (Neugestaltung, Vorschau unter /v2/)
     path("", include(("web.urls", "web"), namespace="web")),     # <— Namespace sauber
     path("admin/", admin.site.urls),
 )

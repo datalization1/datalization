@@ -1,0 +1,68 @@
+{% extends "v2/base_v2.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}{% trans "Odoo Partner Region Zofingen & Aargau | Datalization" %}{% endblock %}
+{% block meta_description %}{% trans "Odoo-Einführung, Datenübernahme und Betreuung für kleine Betriebe in der Region Zofingen, Olten und im Aargau. Persönlich, mit Festpreisofferte." %}{% endblock %}
+{% block og_title %}{% trans "Ihr Odoo-Partner in der Region Zofingen" %}{% endblock %}
+
+{% block content %}
+<section class="hero hero--sub hero--text">
+  <div class="wrap">
+    <div>
+      <div class="crumb"><span class="dot" aria-hidden="true"></span><a href="{% url 'v2:home' %}">{% trans "Startseite" %}</a><span aria-hidden="true">/</span><span>{% if LANGUAGE_CODE == 'de' %}Region Zofingen{% else %}Zofingen region{% endif %}</span></div>
+      <h1>{% trans "Ihr Odoo-Partner in der Region Zofingen" %}</h1>
+      <p>{% blocktrans trimmed %}Geschäftssoftware einführen heisst zusammenarbeiten – und das geht am besten in der Nähe. Datalization begleitet kleine Betriebe in Zofingen, Olten, Sursee, Langenthal und im ganzen Aargau bei der Einführung und Betreuung von Odoo: vor Ort bei Ihnen, nicht nur per Videocall.{% endblocktrans %}</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="wrap">
+    <h2 class="reveal">{% trans "Warum ein regionaler Partner?" %}</h2>
+    <div class="region reveal">
+      <span class="region-place" style="top:22px;left:28px" aria-hidden="true">Zofingen</span>
+      <span class="region-place" style="top:30px;right:32px" aria-hidden="true">Olten</span>
+      <span class="region-place" style="bottom:24px;left:40px" aria-hidden="true">Sursee</span>
+      <span class="region-place" style="bottom:30px;right:36px" aria-hidden="true">Langenthal</span>
+      <div class="route">
+        <div class="rstop">
+          <span class="rpin" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2C7.9 2 4.5 5.4 4.5 9.5c0 5 7.5 12 7.5 12s7.5-7 7.5-12C19.5 5.4 16.1 2 12 2z" fill="#F48B2D"/><circle cx="12" cy="9.3" r="2.6" fill="#0A0A0A"/></svg></span>
+          <p>{% blocktrans trimmed %}Erstgespräch und Prozessaufnahme bei Ihnen im Betrieb – ich sehe, wie Sie wirklich arbeiten{% endblocktrans %}</p>
+        </div>
+        <div class="rstop">
+          <span class="rpin" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2C7.9 2 4.5 5.4 4.5 9.5c0 5 7.5 12 7.5 12s7.5-7 7.5-12C19.5 5.4 16.1 2 12 2z" fill="#F48B2D"/><circle cx="12" cy="9.3" r="2.6" fill="#0A0A0A"/></svg></span>
+          <p>{% blocktrans trimmed %}Schulung vor Ort, mit Ihren echten Daten{% endblocktrans %}</p>
+        </div>
+        <div class="rstop">
+          <span class="rpin" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2C7.9 2 4.5 5.4 4.5 9.5c0 5 7.5 12 7.5 12s7.5-7 7.5-12C19.5 5.4 16.1 2 12 2z" fill="#F48B2D"/><circle cx="12" cy="9.3" r="2.6" fill="#0A0A0A"/></svg></span>
+          <p>{% blocktrans trimmed %}Kurze Wege, wenn es klemmt{% endblocktrans %}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="split reveal">
+      <h2>{% trans "Was ich anbiete" %}</h2>
+      <div>
+        <p>{% blocktrans trimmed %}Odoo-Einführung mit Datenübernahme und Schulung, Automatisierung Ihrer Abläufe, individuelle Erweiterungen und laufende Betreuung – alles mit Festpreisofferte vor Projektstart.{% endblocktrans %}</p>
+        <div class="inlinelinks">
+          <a href="{% url 'v2:odoo' %}">Odoo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          <a href="{% url 'v2:digitalisierung' %}">{% if LANGUAGE_CODE == 'de' %}Digitalisierung &amp; Entwicklung{% else %}Digitalization &amp; Development{% endif %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          <a href="{% url 'v2:monekey' %}">Monekey <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="box reveal">
+      <div class="box-text">
+        <span class="seal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+        <span>{% blocktrans trimmed %}Vor jedem Projekt erhalten Sie eine Festpreisofferte. Was sie kostet und enthält, besprechen wir im kostenlosen Erstgespräch.{% endblocktrans %}</span>
+      </div>
+      <a class="btn" href="{% url 'v2:booking' %}" data-loader>{% trans "Kostenloses Erstgespräch in Ihrer Nähe buchen" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+  </div>
+</section>
+{% endblock %}

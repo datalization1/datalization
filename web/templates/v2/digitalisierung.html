@@ -1,0 +1,58 @@
+{% extends "v2/base_v2.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}{% trans "Datenmigration & Automatisierung für KMU | Datalization Zofingen" %}{% endblock %}
+{% block meta_description %}{% trans "Daten sauber aus Altsystemen übernehmen, Abläufe automatisieren, fehlende Software bauen. Digitalisierung für kleine Betriebe – ohne Datenverlust, mit Festpreis." %}{% endblock %}
+{% block og_title %}{% trans "Digitalisieren, ohne dass Daten verloren gehen." %}{% endblock %}
+
+{% block content %}
+<section class="hero hero--sub hero--text">
+  <div class="wrap">
+    <div>
+      <div class="crumb"><span class="dot" aria-hidden="true"></span><a href="{% url 'v2:home' %}">{% trans "Startseite" %}</a><span aria-hidden="true">/</span><span>{% if LANGUAGE_CODE == 'de' %}Digitalisierung &amp; Entwicklung{% else %}Digitalization &amp; Development{% endif %}</span></div>
+      <h1>{% trans "Digitalisieren, ohne dass Daten verloren gehen." %}</h1>
+      <p>{% blocktrans trimmed %}Der heikelste Moment jeder Digitalisierung ist der Umzug: Kundendaten, Artikel, Belege und Historie stecken im alten System – und sollen vollständig und korrekt im neuen ankommen. Genau das ist meine Kernkompetenz.{% endblocktrans %}</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="wrap">
+    <h2 class="reveal">{% trans "Was ich für Sie tue" %}</h2>
+    <div class="pipe reveal">
+      <div class="pipe-line" aria-hidden="true"></div>
+      <span class="packet" aria-hidden="true" style="animation-delay:0s"></span>
+      <span class="packet" aria-hidden="true" style="animation-delay:1.15s"></span>
+      <span class="packet" aria-hidden="true" style="animation-delay:2.3s"></span>
+      <ol class="ptrack">
+        <li class="pstop"><span class="pnode" aria-hidden="true"></span><div class="pcard"><h3>{% trans "Datenübernahme bei Systemwechseln." %}</h3><p>{% blocktrans trimmed %}Ich hole Ihre Daten aus dem Altsystem, bereinige sie und bringe sie strukturiert ins neue – nachvollziehbar und geprüft.{% endblocktrans %}</p></div></li>
+        <li class="pstop"><span class="pnode" aria-hidden="true"></span><div class="pcard"><h3>{% trans "Automatisierung wiederkehrender Abläufe." %}</h3><p>{% blocktrans trimmed %}Rechnungen, Mahnungen, Berichte, Dateiablage: Was sich wiederholt, kann der Computer übernehmen.{% endblocktrans %}</p></div></li>
+        <li class="pstop"><span class="pnode" aria-hidden="true"></span><div class="pcard"><h3>{% trans "Individuelle Entwicklung." %}</h3><p>{% blocktrans trimmed %}Wo Standardsoftware aufhört, baue ich das fehlende Stück: Schnittstellen, kleine Anwendungen, Erweiterungen.{% endblocktrans %}</p></div></li>
+        <li class="pstop"><span class="pnode pnode--end" aria-hidden="true"></span><div class="pcard"><h3>{% trans "IT-Support und Betrieb." %}</h3><p>{% blocktrans trimmed %}Ich betreue bestehende Anwendungen und halte sie am Laufen – zuverlässig und erreichbar.{% endblocktrans %}</p></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="split reveal">
+      <h2>{% trans "So gehen wir vor" %}</h2>
+      <div>
+        <p>{% blocktrans trimmed %}Am Anfang steht der Digitalisierungs-Check: Ich schaue mir Ihre heutigen Abläufe an und zeige Ihnen, wo Digitalisierung wirklich etwas bringt – und wo nicht. Sie erhalten einen konkreten Vorschlag mit Festpreisofferte. Erst dann entscheiden Sie.{% endblocktrans %}</p>
+        <div class="inlinelinks">
+          <a href="{% url 'v2:data_analytics' %}">{% if LANGUAGE_CODE == 'de' %}Zahlen &amp; Auswertungen: Data &amp; Analytics{% else %}Numbers &amp; reporting: Data &amp; Analytics{% endif %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="box reveal">
+      <div class="box-text">
+        <span class="seal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+        <span>{% blocktrans trimmed %}Vor jedem Projekt erhalten Sie eine Festpreisofferte. Was sie kostet und enthält, besprechen wir im kostenlosen Erstgespräch.{% endblocktrans %}</span>
+      </div>
+      <a class="btn" href="{% url 'v2:booking' %}" data-loader>{% trans "Kostenloses Erstgespräch buchen" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+  </div>
+</section>
+{% endblock %}

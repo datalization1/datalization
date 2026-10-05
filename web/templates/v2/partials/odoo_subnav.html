@@ -1,0 +1,7 @@
+{% load i18n %}
+<nav class="subnav" aria-label="Odoo">
+  <a {% if odoo_sub == 'overview' %}class="on"{% endif %} href="{% url 'v2:odoo' %}">{% trans "Übersicht" %}</a>
+  <a {% if odoo_sub == 'wieso' %}class="on"{% endif %} href="{% url 'v2:odoo_wieso' %}">{% trans "Wieso Odoo?" %}</a>
+  <a {% if odoo_sub == 'einfuehrung' %}class="on"{% endif %} href="{% url 'v2:odoo_einfuehrung' %}">{% trans "Odoo einführen" %}</a>
+  <a {% if odoo_sub == 'vergleich' %}class="on"{% endif %} href="{% url 'v2:odoo_vergleich' %}">{% trans "Im Vergleich" %}</a>
+</nav>

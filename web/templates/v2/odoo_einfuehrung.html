@@ -1,0 +1,56 @@
+{% extends "v2/base_v2.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}{% trans "Odoo einführen – Ablauf, Datenübernahme & Schulung | Datalization" %}{% endblock %}
+{% block meta_description %}{% trans "Wie eine Odoo-Einführung für kleine Betriebe abläuft: vom Digitalisierungs-Check über Datenübernahme und Schulung bis zur Betreuung – zum Festpreis." %}{% endblock %}
+{% block og_title %}{% trans "Odoo einführen" %}{% endblock %}
+
+{% block content %}
+<section class="hero hero--sub hero--text">
+  <div class="wrap">
+    <div>
+      <div class="crumb"><span class="dot" aria-hidden="true"></span><a href="{% url 'v2:home' %}">{% trans "Startseite" %}</a><span aria-hidden="true">/</span><a href="{% url 'v2:odoo' %}">Odoo</a><span aria-hidden="true">/</span><span>{% trans "Odoo einführen" %}</span></div>
+      <h1>{% trans "Eine Einführung ohne Überraschungen." %}</h1>
+      <p>{% blocktrans trimmed %}Am Anfang steht der Digitalisierungs-Check: Ich schaue mir Ihre heutigen Abläufe an und zeige Ihnen, wo sich Odoo lohnt – und wo nicht. Sie erhalten einen konkreten Vorschlag mit Festpreisofferte. Erst dann entscheiden Sie.{% endblocktrans %}</p>
+      {% include 'v2/partials/odoo_subnav.html' %}
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="wrap">
+    <h2 class="reveal">{% trans "Was Sie bekommen" %}</h2>
+    <div class="journey reveal">
+      <div class="journey-cap">
+        <span class="jchip jchip--start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path></svg>{% trans "Projektstart" %}</span>
+      </div>
+      <ol class="jtrack">
+        <li class="jstop"><span class="jpin">01</span><div class="jcard"><h3>{% trans "Einrichtung, die zu Ihrem Betrieb passt." %}</h3><p>{% blocktrans trimmed %}Kein Riesensystem mit hundert Funktionen, die Sie nie brauchen – sondern genau die Module, mit denen Sie arbeiten.{% endblocktrans %}</p></div></li>
+        <li class="jstop"><span class="jpin">02</span><div class="jcard"><h3>{% trans "Ihre Daten ziehen mit." %}</h3><p>{% blocktrans trimmed %}Kunden, Artikel, offene Posten, Historie: Ich übernehme Ihre bestehenden Daten sauber ins neue System. Nichts geht verloren.{% endblocktrans %}</p></div></li>
+        <li class="jstop"><span class="jpin">03</span><div class="jcard"><h3>{% trans "Schulung, bis es sitzt." %}</h3><p>{% blocktrans trimmed %}Ihr Team arbeitet selbständig – das ist das Ziel, nicht die Abhängigkeit vom Dienstleister.{% endblocktrans %}</p></div></li>
+        <li class="jstop"><span class="jpin jpin--flag" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4M5 4l9 2.5L5 9"></path><path d="M5 4h11l-2 4 2 4H5"></path></svg></span><div class="jcard"><h3>{% trans "Betreuung danach." %}</h3><p>{% blocktrans trimmed %}Support, Updates und kleine Anpassungen, damit die Lösung im Alltag trägt.{% endblocktrans %}</p></div></li>
+      </ol>
+      <div class="journey-cap">
+        <span class="jchip jchip--end"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>{% trans "Im Alltag angekommen" %}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="split reveal">
+      <h2>{% trans "Lieber selber machen – mit Begleitung?" %}</h2>
+      <p>{% blocktrans trimmed %}Für sehr kleine Budgets gibt es den begleiteten Weg: Sie richten Odoo selbst ein, ich coache Sie stundenweise durch die Entscheidungen und Stolpersteine. Sie lernen Ihr System von Grund auf kennen – und zahlen nur die Begleitung.{% endblocktrans %}</p>
+    </div>
+    <div class="box reveal">
+      <div class="box-text">
+        <span class="seal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+        <span>{% blocktrans trimmed %}Vor jedem Projekt erhalten Sie eine Festpreisofferte. Was sie kostet und enthält, besprechen wir im kostenlosen Erstgespräch.{% endblocktrans %}</span>
+      </div>
+      <a class="btn" href="{% url 'v2:booking' %}" data-loader>{% trans "Kostenloses Erstgespräch buchen" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+  </div>
+</section>
+{% endblock %}

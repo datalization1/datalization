@@ -1,0 +1,133 @@
+{% extends "v2/base_v2.html" %}
+{% load i18n static %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}{% trans "Monekey – Dokumentenportal für Verwaltungen & Treuhänder | Datalization" %}{% endblock %}
+{% block meta_description %}{% trans "Ein Portal, in dem Ihre Kunden ihre Unterlagen finden – statt in E-Mail-Anhängen. Monekey, das schlanke Dokumentenportal für Immobilienverwaltungen, Treuhänder und Broker." %}{% endblock %}
+{% block og_title %}{% trans "Dokumente teilen, ohne E-Mail-Chaos." %}{% endblock %}
+
+{% block content %}
+{# ============================ HERO ============================ #}
+<section class="hero hero--sub">
+  <div class="wrap">
+    <div>
+      <div class="crumb"><span class="dot" aria-hidden="true"></span><a href="{% url 'v2:home' %}">{% trans "Startseite" %}</a><span aria-hidden="true">/</span><span>Monekey</span></div>
+      <h1>{% trans "Dokumente teilen, ohne E-Mail-Chaos." %}</h1>
+      <p>{% blocktrans trimmed %}Abrechnungen, Verträge, Protokolle: Wer Immobilien verwaltet, Mandate betreut oder Kunden berät, verschickt täglich Dokumente – und sucht sie morgen in zehn Mail-Verläufen wieder.{% endblocktrans %}</p>
+    </div>
+    <div class="hero-media">
+      <img src="{% static 'img/monekey-hero.gif' %}" width="1100" height="660" loading="eager"
+           alt="{% trans 'Monekey – Dokumente wandern in die zentrale Ablage und werden sicher ins Kundenportal freigegeben' %}">
+    </div>
+  </div>
+</section>
+
+{# ==================== VERGLEICH (Entwurf) ==================== #}
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2>{% trans "Das kennen Sie?" %}</h2></div>
+    <div class="compare reveal">
+      <div class="compare-col problem">
+        <h3>{% trans "Heute" %}</h3>
+        <ul class="clist">
+          <li><span class="cmark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></span>{% trans "Dokumente verteilt über E-Mail, Netzlaufwerk und Cloud-Ordner." %}</li>
+          <li><span class="cmark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></span>{% trans "Endlose Mail-Ketten mit Anhängen – unklar, welche Version gilt." %}</li>
+          <li><span class="cmark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></span>{% trans "Kunden fragen dieselben Unterlagen immer wieder an." %}</li>
+          <li><span class="cmark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></span>{% trans "Sensible Daten gehen ungeschützt per Mail hin und her." %}</li>
+        </ul>
+      </div>
+      <div class="compare-col solution">
+        <h3>{% trans "Mit Monekey" %}</h3>
+        <ul class="clist">
+          <li><span class="cmark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>{% trans "Eine zentrale, mandantenfähige Ablage für alle Dokumente." %}</li>
+          <li><span class="cmark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>{% trans "Ein sicheres Kundenportal, in dem sich Kunden selbst bedienen." %}</li>
+          <li><span class="cmark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>{% trans "Rollen und Berechtigungen bis auf einzelne Dokumente." %}</li>
+          <li><span class="cmark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>{% trans "Nachvollziehbare Ablage mit Versionen und Protokoll." %}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ==================== EIN PORTAL FÜR IHRE KUNDEN (Dokument) + Portal-Punkte (Entwurf) ==================== #}
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="split reveal">
+      <h2>{% trans "Ein Portal für Ihre Kunden" %}</h2>
+      <p>{% blocktrans trimmed %}Monekey ist das Dokumentenportal von Datalization: Ihre Kunden melden sich an und finden ihre Unterlagen – aktuell, vollständig, am richtigen Ort. Sie laden einmal hoch, statt dreimal zu mailen.{% endblocktrans %}</p>
+    </div>
+    <div class="docgrid reveal">
+      <div class="doccard">
+        <span class="dic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"></circle><path d="M5.5 20a6.5 6.5 0 0 1 13 0"></path></svg></span>
+        <h3>{% trans "Selbstbedienung" %}</h3>
+        <p>{% blocktrans trimmed %}Ihre Kunden finden und laden ihre Unterlagen selbst – rund um die Uhr, am richtigen Ort.{% endblocktrans %}</p>
+      </div>
+      <div class="doccard">
+        <span class="dic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"></path><path d="M9.5 12l1.8 1.8 3.5-3.6"></path></svg></span>
+        <h3>{% trans "Sichere Freigabe" %}</h3>
+        <p>{% blocktrans trimmed %}Sie geben gezielt frei, verschlüsselt und rollenbasiert – statt Anhänge zu verschicken.{% endblocktrans %}</p>
+      </div>
+      <div class="doccard">
+        <span class="dic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></svg></span>
+        <h3>{% trans "Nachvollziehbar" %}</h3>
+        <p>{% blocktrans trimmed %}Versionen und Zugriffsprotokoll zeigen, wer wann worauf zugegriffen hat.{% endblocktrans %}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ==================== FÜR WEN MONEKEY GEMACHT IST (Entwurf) ==================== #}
+<section class="sec">
+  <div class="wrap">
+    <h2 class="reveal">{% trans "Für wen Monekey gemacht ist" %}</h2>
+    <div class="personas reveal">
+      <div class="persona">
+        <span class="persona-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V9l6-4 6 4v12"></path><path d="M4 21h16"></path><path d="M9 21v-5h2v5M14 10h.01M14 13.5h.01"></path></svg></span>
+        <div><h3>{% trans "Immobilienverwaltung" %}</h3><p>{% blocktrans trimmed %}Mietverträge, Grundbuchauszüge, Abrechnungen und Protokolle – je Liegenschaft geordnet, mit gezieltem Zugriff für Eigentümer und Mieter.{% endblocktrans %}</p></div>
+      </div>
+      <div class="persona">
+        <span class="persona-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"></rect><path d="M8 7h8M8 11h8M8 15h5"></path></svg></span>
+        <div><h3>{% trans "Treuhand" %}</h3><p>{% blocktrans trimmed %}Steuerunterlagen, Buchhaltung und Belege je Mandant gesichert – das Portal ersetzt den Mail-Anhang.{% endblocktrans %}</p></div>
+      </div>
+      <div class="persona">
+        <span class="persona-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"></path><path d="M4 15l4-4 3 3 5-6"></path><path d="M16 8h3v3"></path></svg></span>
+        <div><h3>{% trans "Brokerage" %}</h3><p>{% blocktrans trimmed %}Portfolio-Auszüge, KYC-Unterlagen und Reports – strukturiert, mit Versionen und klaren Zugriffsrechten.{% endblocktrans %}</p></div>
+      </div>
+      <div class="persona">
+        <span class="persona-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"></circle><path d="M3.5 19a5.5 5.5 0 0 1 11 0"></path><path d="M16 7.5l2 2 3.5-3.5"></path></svg></span>
+        <div><h3>{% trans "Aktienregister" %}</h3><p>{% blocktrans trimmed %}Aktionärsdaten, Übertragungen und Registerauszüge – transparent, mit Protokoll und rollenbasierten Rechten.{% endblocktrans %}</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ==================== BEWUSST SCHLANK / SCHWEIZER LÖSUNG (Dokument) ==================== #}
+<section class="sec sec-alt">
+  <div class="wrap">
+    <h2 class="reveal">{% trans "Bewusst schlank – und eine Schweizer Lösung" %}</h2>
+    <div class="notes reveal">
+      <div class="note">
+        <span class="ni" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+        <div><h3>{% trans "Bewusst schlank" %}</h3><p>{% blocktrans trimmed %}Monekey macht eine Sache richtig, statt hundert Dinge halb. Keine wochenlange Einführung, kein Schulungsmarathon.{% endblocktrans %}</p></div>
+      </div>
+      <div class="note">
+        <span class="ni" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.5 5 5.5.8-4 3.9 1 5.5-5-2.6-5 2.6 1-5.5-4-3.9 5.5-.8z"></path></svg></span>
+        <div><h3>{% trans "Schweizer Lösung" %}</h3><p>{% blocktrans trimmed %}Entwickelt und betreut in der Schweiz, direkter Draht zum Entwickler.{% endblocktrans %}</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ==================== FESTPREIS-KASTEN + CTA ==================== #}
+<section class="sec">
+  <div class="wrap">
+    <div class="box reveal">
+      <div class="box-text">
+        <span class="seal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+        <span>{% blocktrans trimmed %}Vor jedem Projekt erhalten Sie eine Festpreisofferte. Was sie kostet und enthält, besprechen wir im kostenlosen Erstgespräch.{% endblocktrans %}</span>
+      </div>
+      <a class="btn" href="{% url 'v2:booking' %}" data-loader>{% trans "Monekey ansehen / Demo vereinbaren" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+  </div>
+</section>
+{% endblock %}

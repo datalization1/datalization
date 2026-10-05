@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="200" height="200">
+  
+  <g>
+    <path d="M 300 118.5 L 300 391 L 393.5 391" fill="none" stroke="#0A0A0A"
+          stroke-width="61" stroke-linecap="round" stroke-linejoin="round"
+          stroke-dasharray="368" stroke-dashoffset="368">
+      <animate attributeName="stroke-dashoffset" values="368;0;0" keyTimes="0;0.26;1" dur="5s" repeatCount="indefinite"/>
+    </path>
+    <path d="M 300 212 L 202 212 A 89.5 89.5 0 0 0 202 391 L 300 391" fill="none" stroke="#0A0A0A"
+          stroke-width="61" stroke-linecap="round" stroke-linejoin="round"
+          stroke-dasharray="480" stroke-dashoffset="480">
+      <animate attributeName="stroke-dashoffset" values="480;480;0;0" keyTimes="0;0.32;0.66;1" dur="5s" repeatCount="indefinite"/>
+    </path>
+    <circle r="28" fill="#F48B2D">
+      <animateMotion dur="5s" repeatCount="indefinite" calcMode="linear"
+        keyTimes="0;0.26;0.32;0.66;0.76;1" keyPoints="0;0.2875;0.4564;0.8311;1;1"
+        path="M 300 118.5 L 300 391 L 393.5 391 Q 390 230 300 212 L 202 212 A 89.5 89.5 0 0 0 202 391 L 300 391 Q 390 340 393.5 208"/>
+      <animate attributeName="r" values="28;28;28;42;34;34" keyTimes="0;0.76;0.78;0.82;0.86;1" dur="5s" repeatCount="indefinite"/>
+    </circle>
+    <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.9;0.96;1" dur="5s" repeatCount="indefinite"/>
+  </g>
+</svg>
