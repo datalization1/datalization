@@ -57,6 +57,7 @@
   <div class="wrap">
     <h2 class="reveal">{% trans "Was Sie bekommen" %}</h2>
     <div class="journey reveal">
+      <svg class="jsnake" aria-hidden="true"><path d=""></path></svg>
       <div class="journey-cap">
         <span class="jchip jchip--start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path></svg>{% trans "Projektstart" %}</span>
       </div>
@@ -152,4 +153,71 @@
     </div>
   </div>
 </section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  (function () {
+    var journey = document.querySelector('.journey');
+    if (!journey) return;
+    var svg = journey.querySelector('.jsnake');
+    var path = svg && svg.querySelector('path');
+    if (!path) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var drawn = false;
+
+    function smooth(pts) {
+      var d = 'M' + pts[0][0].toFixed(1) + ' ' + pts[0][1].toFixed(1);
+      for (var i = 0; i < pts.length - 1; i++) {
+        var p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || pts[i + 1];
+        var c1x = p1[0] + (p2[0] - p0[0]) / 6, c1y = p1[1] + (p2[1] - p0[1]) / 6;
+        var c2x = p2[0] - (p3[0] - p1[0]) / 6, c2y = p2[1] - (p3[1] - p1[1]) / 6;
+        d += ' C' + c1x.toFixed(1) + ' ' + c1y.toFixed(1) + ' ' + c2x.toFixed(1) + ' ' + c2y.toFixed(1) + ' ' + p2[0].toFixed(1) + ' ' + p2[1].toFixed(1);
+      }
+      return d;
+    }
+
+    function build() {
+      var jr = journey.getBoundingClientRect();
+      var pins = [].slice.call(journey.querySelectorAll('.jpin'));
+      if (!pins.length || !jr.width) return;
+      var pinPts = pins.map(function (p) {
+        var r = p.getBoundingClientRect();
+        return [r.left + r.width / 2 - jr.left, r.top + r.height / 2 - jr.top];
+      });
+      var mobile = jr.width <= 768;
+      var pts = [[mobile ? pinPts[0][0] : jr.width / 2, 0]].concat(pinPts);
+      pts.push([mobile ? pinPts[pinPts.length - 1][0] : jr.width / 2, jr.height]);
+      path.setAttribute('d', smooth(pts));
+      svg.setAttribute('viewBox', '0 0 ' + jr.width + ' ' + jr.height);
+      var len = path.getTotalLength();
+      path.style.strokeDasharray = len;
+      path.style.strokeDashoffset = drawn ? 0 : len;
+      journey.classList.add('snake-ready');
+    }
+
+    build();
+    window.addEventListener('load', build);
+    var rt;
+    window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(build, 150); });
+    journey.querySelectorAll('details.jcard').forEach(function (d) {
+      d.addEventListener('toggle', function () { setTimeout(build, 10); });
+    });
+
+    if (reduce || !('IntersectionObserver' in window)) {
+      drawn = true; path.style.strokeDashoffset = 0; journey.classList.add('drawn');
+    } else {
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.isIntersecting) {
+            drawn = true;
+            requestAnimationFrame(function () { path.style.strokeDashoffset = 0; journey.classList.add('drawn'); });
+            io.disconnect();
+          }
+        });
+      }, { threshold: 0.15 });
+      io.observe(journey);
+    }
+  })();
+</script>
 {% endblock %}

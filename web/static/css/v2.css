@@ -270,13 +270,17 @@ a:hover { color: #0A0A0A; }
 .jchip svg { width: 15px; height: 15px; color: #F48B2D; }
 .jchip--start { margin-bottom: 30px; }
 .jchip--end { margin-top: 30px; color: #0A0A0A; border-color: #F48B2D; }
-.jtrack { list-style: none; margin: 0; padding: 0; display: grid; gap: 34px; }
-.jstop { position: relative; width: calc(50% - 46px); }
+.jtrack { list-style: none; margin: 0; padding: 0; display: grid; gap: 34px; position: relative; z-index: 1; }
+.jstop { position: relative; width: calc(50% - 72px); }
 .jstop:nth-child(odd) { justify-self: start; }
 .jstop:nth-child(even) { justify-self: end; }
 .jpin { position: absolute; top: 20px; width: 42px; height: 42px; border-radius: 50%; background: #FFFFFF; border: 2px solid #F48B2D; color: #0A0A0A; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; font-variant-numeric: tabular-nums; z-index: 2; box-shadow: 0 0 0 6px var(--sec-bg, #F5F5F2); }
-.jstop:nth-child(odd) .jpin { right: -67px; }
-.jstop:nth-child(even) .jpin { left: -67px; }
+.jstop:nth-child(odd) .jpin { right: -48px; }
+.jstop:nth-child(even) .jpin { left: -48px; }
+/* Schlängel-Linie (SVG, per JS gezeichnet) */
+.jsnake { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: visible; }
+.jsnake path { fill: none; stroke: #F48B2D; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.journey.snake-ready::before { display: none; }
 .jpin--flag { background: #F48B2D; border-color: #F48B2D; }
 .jpin--flag svg { width: 18px; height: 18px; }
 .jcard { background: #FFFFFF; border: 1px solid #E4E4E0; border-radius: 20px; padding: 26px 28px; transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
@@ -303,7 +307,23 @@ a:hover { color: #0A0A0A; }
   .jstop { width: auto; margin-left: 58px; }
   .jstop:nth-child(odd) .jpin, .jstop:nth-child(even) .jpin { left: -58px; right: auto; }
 }
-@media (prefers-reduced-motion: reduce) { .jcard, .jtoggle { transition: none; } .jcard:hover { transform: none; } .js .jcard[open] .jdetail { animation: none; } }
+/* Schlängel-Linie zeichnet sich beim Scrollen + Stationen poppen nacheinander (nur mit JS) */
+.js .jsnake path { transition: stroke-dashoffset 1.2s cubic-bezier(.6, 0, .2, 1); }
+.js .journey .jpin { opacity: 0; }
+.js .journey.drawn .jpin { animation: jpop .5s cubic-bezier(.3, 1.4, .5, 1) forwards; }
+.js .journey.drawn .jstop:nth-child(1) .jpin { animation-delay: .25s; }
+.js .journey.drawn .jstop:nth-child(2) .jpin { animation-delay: .5s; }
+.js .journey.drawn .jstop:nth-child(3) .jpin { animation-delay: .75s; }
+.js .journey.drawn .jstop:nth-child(4) .jpin { animation-delay: 1s; }
+@keyframes jpop { from { opacity: 0; transform: scale(.4); } to { opacity: 1; transform: scale(1); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .jcard, .jtoggle { transition: none; }
+  .jcard:hover { transform: none; }
+  .js .jcard[open] .jdetail { animation: none; }
+  .js .jsnake path { transition: none; }
+  .js .journey .jpin { animation: none; opacity: 1; }
+}
 
 /* ---------- "Was Sie bekommen" (Unterseiten) ---------- */
 .gets { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 56px; }
