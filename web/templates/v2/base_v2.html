@@ -39,7 +39,7 @@
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "{{ company_name }}",
-    "description": "Geschäftssoftware (Odoo), Digitalisierung, Datenübernahme und Automatisierung für kleine Betriebe in der Region Zofingen und im Aargau.",
+    "description": "{% if LANGUAGE_CODE == 'de' %}Geschäftssoftware (Odoo), Digitalisierung, Datenübernahme und Automatisierung für kleine Betriebe in der Region Zofingen und im Aargau.{% else %}Business software (Odoo), digitalization, data migration and automation for small businesses in the Zofingen region and across Aargau.{% endif %}",
     "url": "{{ request.scheme }}://{{ request.get_host }}/{{ LANGUAGE_CODE }}/v2/",
     "image": "{{ request.scheme }}://{{ request.get_host }}{% static 'v2/brand/icon-512.png' %}",
     "logo": "{{ request.scheme }}://{{ request.get_host }}{% static 'v2/brand/icon-512.png' %}",

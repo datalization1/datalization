@@ -8,98 +8,2225 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-06 13:22+0100\n"
+"POT-Creation-Date: 2026-10-06 20:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: web/forms.py:7
-msgid "Name"
+#: web/admin.py:23 web/models.py:16 web/templates/case_detail.html:39
+msgid "Client"
 msgstr ""
 
-#: web/forms.py:8
-msgid "Your name"
+#: web/admin.py:26
+msgid "Deutsche Version"
+msgstr ""
+
+#: web/admin.py:28
+msgid "Beim Result jeweils eine Aussage pro Zeile."
+msgstr ""
+
+#: web/admin.py:30
+msgid "English Version"
+msgstr ""
+
+#: web/admin.py:32
+msgid "Optional. Falls leer, wird auf die deutsche Version zurückgegriffen."
+msgstr ""
+
+#: web/admin.py:34
+msgid "KPIs & Tech"
 msgstr ""
 
 #: web/forms.py:11
-msgid "Email"
+msgid "Vorname"
+msgstr ""
+
+#: web/forms.py:12
+msgid "Nachname"
+msgstr ""
+
+#: web/forms.py:13
+msgid "Firma (optional)"
+msgstr ""
+
+#: web/forms.py:14
+msgid "Ihre E-Mail"
+msgstr ""
+
+#: web/forms.py:15
+msgid "Telefon (optional)"
 msgstr ""
 
 #: web/forms.py:16
-msgid "Message"
+msgid "Ihre Nachricht…"
 msgstr ""
 
-#: web/forms.py:17
-msgid "How can we help?"
+#: web/models.py:10
+msgid "Solution (DE)"
 msgstr ""
 
-#: web/templates/base.html:7
-msgid "Einfachheit trifft Innovation"
+#: web/models.py:11
+msgid "Deutsche Version des Lösungstexts."
 msgstr ""
 
-#: web/templates/contact.html:3 web/templates/contact.html:9
-#: web/templates/partials_nav.html:14
-msgid "Kontakt"
+#: web/models.py:12
+msgid "Solution (EN)"
 msgstr ""
 
-#: web/templates/contact.html:10
-msgid "Wir antworten schnell und konkret."
+#: web/models.py:13
+msgid "English version of the solution text."
 msgstr ""
 
-#: web/templates/contact.html:20
-msgid "Senden"
+#: web/models.py:17
+msgid "Kurzbeschreibung des Kunden (keine Namen)."
 msgstr ""
 
-#: web/templates/partials_footer.html:6
-msgid "Simple. Loyal. Digital."
+#: web/models.py:18
+msgid "Problem (DE)"
 msgstr ""
 
-#: web/templates/partials_footer.html:9
+#: web/models.py:19
+msgid "Deutsche Version: Welches Problem/Engpass bestand?"
+msgstr ""
+
+#: web/models.py:20
+msgid "Problem (EN)"
+msgstr ""
+
+#: web/models.py:21
+msgid "English version of the challenge description."
+msgstr ""
+
+#: web/models.py:22
+msgid "Result Bullet points (DE)"
+msgstr ""
+
+#: web/models.py:23
+msgid "Deutsche Aufzählung, je Zeile ein Punkt."
+msgstr ""
+
+#: web/models.py:24
+msgid "Result Bullet points (EN)"
+msgstr ""
+
+#: web/models.py:25
+msgid "English bullet points, one per line."
+msgstr ""
+
+#: web/models.py:31
+msgid "Aktiv"
+msgstr ""
+
+#: web/models.py:33
+msgid "Steuert, ob diese Case Study auf der Website angezeigt wird."
+msgstr ""
+
+#: web/models.py:95 web/models.py:118
+msgid "First name"
+msgstr ""
+
+#: web/models.py:96 web/models.py:119
+msgid "Last name"
+msgstr ""
+
+#: web/models.py:97 web/models.py:120
 msgid "Company"
 msgstr ""
 
-#: web/templates/partials_footer.html:11
-msgid "Who we are"
+#: web/models.py:99 web/models.py:121
+msgid "Email"
 msgstr ""
 
-#: web/templates/partials_footer.html:12
-msgid "Services"
+#: web/models.py:100 web/models.py:122
+msgid "Phone"
 msgstr ""
 
-#: web/templates/partials_footer.html:13
-msgid "Case Studies"
+#: web/models.py:101
+msgid "Message"
 msgstr ""
 
-#: web/templates/partials_footer.html:17
-msgid "Contact"
-msgstr ""
-
-#: web/templates/partials_nav.html:11
-msgid "Lösungen"
-msgstr ""
-
-#: web/templates/partials_nav.html:13
-msgid "Über uns"
-msgstr ""
-
-#: web/templates/partials_nav.html:22
+#: web/models.py:102 web/models.py:127
 msgid "Language"
 msgstr ""
 
-#: web/views.py:39
+#: web/models.py:104 web/models.py:129
+msgid "Processed"
+msgstr ""
+
+#: web/models.py:108
+msgid "Contact message"
+msgstr ""
+
+#: web/models.py:109
+msgid "Contact messages"
+msgstr ""
+
+#: web/models.py:123
+msgid "Branches"
+msgstr ""
+
+#: web/models.py:124
+msgid "Challenges"
+msgstr ""
+
+#: web/models.py:125
+msgid "Start mode"
+msgstr ""
+
+#: web/models.py:126
+msgid "Notes"
+msgstr ""
+
+#: web/models.py:133
+msgid "Start request"
+msgstr ""
+
+#: web/models.py:134
+msgid "Start requests"
+msgstr ""
+
+#: web/templates/about.html:2
+msgid "Über uns"
+msgstr ""
+
+#: web/templates/base.html:11
+msgid "Einfachheit trifft Innovation"
+msgstr ""
+
+#: web/templates/base.html:94
+msgid "Skip to content"
+msgstr ""
+
+#: web/templates/case_detail.html:12 web/templates/case_detail.html:123
+msgid "Zur Übersicht"
+msgstr ""
+
+#: web/templates/case_detail.html:44
+msgid "Problem"
+msgstr ""
+
+#: web/templates/case_detail.html:49
+msgid "Result"
+msgstr ""
+
+#: web/templates/case_detail.html:64
+msgid "Technology Stack"
+msgstr ""
+
+#: web/templates/cases_list.html:5 web/templates/custom_admin.html:20
+#: web/templates/custom_admin.html:39 web/templates/custom_admin.html:99
+msgid "Case Studies"
+msgstr ""
+
+#: web/templates/custom_admin.html:18 web/templates/custom_admin.html:31
+msgid "Dashboard"
+msgstr ""
+
+#: web/templates/custom_admin.html:19 web/templates/custom_admin.html:44
+#: web/templates/custom_admin.html:58
+msgid "Kontaktanfragen"
+msgstr ""
+
+#: web/templates/custom_admin.html:21 web/templates/custom_admin.html:49
+msgid "Kurz-Check Leads"
+msgstr ""
+
+#: web/templates/custom_admin.html:24
+msgid "Abmelden"
+msgstr ""
+
+#: web/templates/custom_admin.html:32
+msgid "Willkommen zurück! Hier ist deine Übersicht."
+msgstr ""
+
+#: web/templates/custom_admin.html:34
+msgid "Logout"
+msgstr ""
+
+#: web/templates/custom_admin.html:41
+msgid "aktiv"
+msgstr ""
+
+#: web/templates/custom_admin.html:41
+msgid "verborgen"
+msgstr ""
+
+#: web/templates/custom_admin.html:46 web/templates/custom_admin.html:51
+msgid "offen"
+msgstr ""
+
+#: web/templates/custom_admin.html:46 web/templates/custom_admin.html:51
+msgid "erledigt"
+msgstr ""
+
+#: web/templates/custom_admin.html:59
+msgid "Verwalte eingehende Anfragen"
+msgstr ""
+
+#: web/templates/custom_admin.html:62
+msgid "Suche nach Name oder E-Mail"
+msgstr ""
+
+#: web/templates/custom_admin.html:63
+msgid "Alle Status"
+msgstr ""
+
+#: web/templates/custom_admin.html:68
+msgid "Neu"
+msgstr ""
+
+#: web/templates/custom_admin.html:69
+msgid "Abgeschlossen"
+msgstr ""
+
+#: web/templates/custom_admin.html:82
+msgid "Erledigt,Neu"
+msgstr ""
+
+#: web/templates/custom_admin.html:87
+msgid "Keine Einträge."
+msgstr ""
+
+#: web/templates/custom_admin.html:91
+msgid "Wähle eine Anfrage aus, um Details anzuzeigen."
+msgstr ""
+
+#: web/templates/custom_admin.html:100
+msgid "Projekte verwalten"
+msgstr ""
+
+#: web/templates/custom_admin.html:103
+msgid "Suche nach Titel oder Kunde"
+msgstr ""
+
+#: web/templates/custom_admin.html:104
+msgid "Neue Case Study"
+msgstr ""
+
+#: web/templates/custom_admin.html:119
+msgid "Veröffentlicht"
+msgstr ""
+
+#: web/templates/custom_admin.html:119
+msgid "Entwurf"
+msgstr ""
+
+#: web/templates/custom_admin.html:134
+msgid "Verstecken"
+msgstr ""
+
+#: web/templates/custom_admin.html:134
+msgid "Veröffentlichen"
+msgstr ""
+
+#: web/templates/custom_admin.html:140
+msgid "Keine Case Studies gefunden."
+msgstr ""
+
+#: web/templates/custom_admin.html:149
+msgid "Kunden"
+msgstr ""
+
+#: web/templates/custom_admin.html:150
+msgid "Verwalte Kundendaten"
+msgstr ""
+
+#: web/templates/custom_admin.html:152
+msgid "Neuer Kunde"
+msgstr ""
+
+#: web/templates/custom_admin.html:154
+msgid ""
+"Keine Kundendaten hinterlegt. Dies ist ein Platzhalter – bitte anpassen, "
+"sobald ein Kundenmodell existiert."
+msgstr ""
+
+#: web/templates/custom_admin.html:160
+msgid "Inhalte"
+msgstr ""
+
+#: web/templates/custom_admin.html:161
+msgid "Texte verwalten"
+msgstr ""
+
+#: web/templates/custom_admin.html:164
+msgid "DE"
+msgstr ""
+
+#: web/templates/custom_admin.html:165
+msgid "EN"
+msgstr ""
+
+#: web/templates/custom_admin.html:168
+msgid ""
+"Content-Editing noch nicht angebunden. Sobald ein CMS/Modelle vorhanden "
+"sind, können hier Felder erscheinen."
+msgstr ""
+
+#: web/templates/custom_admin_login.html:13
+msgid "Admin Login"
+msgstr ""
+
+#: web/templates/custom_admin_login.html:14
+msgid "Bitte Passwort eingeben, um das interne Admin-Panel zu öffnen."
+msgstr ""
+
+#: web/templates/custom_admin_login.html:17
+msgid "Passwort"
+msgstr ""
+
+#: web/templates/custom_admin_login.html:19
+msgid "Anmelden"
+msgstr ""
+
+#: web/templates/partials_footer.html:54
+msgid "Kontakt"
+msgstr ""
+
+#: web/templates/partials_nav.html:9 web/templates/v2/partials/nav.html:24
+msgid "Menü öffnen"
+msgstr "Open menu"
+
+#: web/templates/services.html:5
+msgid "Lösungen"
+msgstr ""
+
+#: web/templates/v2/base_v2.html:87
+msgid "Zum Inhalt springen"
+msgstr "Skip to content"
+
+#: web/templates/v2/booking.html:13 web/templates/v2/data_analytics.html:13
+#: web/templates/v2/datenschutz.html:13
+#: web/templates/v2/digitalisierung.html:13 web/templates/v2/impressum.html:13
+#: web/templates/v2/kontakt.html:13 web/templates/v2/monekey.html:14
+#: web/templates/v2/odoo.html:13 web/templates/v2/odoo_einfuehrung.html:13
+#: web/templates/v2/odoo_partner_zofingen.html:13
+#: web/templates/v2/odoo_vergleich.html:13 web/templates/v2/odoo_wieso.html:13
+#: web/templates/v2/partials/footer.html:5
+#: web/templates/v2/partials/nav.html:5
+#: web/templates/v2/ueber_datalization.html:14
+msgid "Startseite"
+msgstr "Home"
+
+#: web/templates/v2/data_analytics.html:5
+msgid "Dashboards & Reporting für KMU – Zahlen auf einen Blick | Datalization"
+msgstr ""
+"Dashboards & reporting for small businesses – your numbers at a glance | "
+"Datalization"
+
+#: web/templates/v2/data_analytics.html:6
+msgid ""
+"Auswertungen und Dashboards für kleine Betriebe: Ihre wichtigsten Kennzahlen"
+" auf einen Blick, automatisch statt von Hand. Auf moderner Microsoft-"
+"Technologie (Power BI, Microsoft Fabric)."
+msgstr ""
+"Reports and dashboards for small businesses: your key figures at a glance, "
+"automatically instead of by hand. Built on modern Microsoft technology "
+"(Power BI, Microsoft Fabric)."
+
+#: web/templates/v2/data_analytics.html:7
+#: web/templates/v2/data_analytics.html:14
+msgid "Ihre Zahlen auf einen Blick."
+msgstr "Your numbers at a glance."
+
+#: web/templates/v2/data_analytics.html:15
+msgid ""
+"Die wichtigsten Kennzahlen Ihres Betriebs sind da – nur verteilt über Odoo, "
+"Excel und ein paar Vorsysteme. Ich bringe sie zusammen und mache sichtbar, "
+"wie Ihr Betrieb wirklich läuft. Ohne Excel-Bastelei am Wochenende."
+msgstr ""
+"Your most important figures already exist – just scattered across Odoo, "
+"Excel and a few other systems. I bring them together and make it clear how "
+"your business is really doing. Without Excel tinkering on the weekend."
+
+#: web/templates/v2/data_analytics.html:22
+#: web/templates/v2/digitalisierung.html:22
+msgid "Was ich für Sie tue"
+msgstr "What I do for you"
+
+#: web/templates/v2/data_analytics.html:26
+msgid "Saubere Datengrundlage"
+msgstr "A clean data foundation"
+
+#: web/templates/v2/data_analytics.html:27
+msgid ""
+"Ich hole Ihre Zahlen aus Odoo, Excel und Vorsystemen zusammen, bereinige sie"
+" und bringe sie an einen Ort, dem Sie vertrauen können."
+msgstr ""
+"I pull your figures together from Odoo, Excel and other systems, clean them "
+"up and bring them to one place you can trust."
+
+#: web/templates/v2/data_analytics.html:31
+msgid "Dashboards, die Sie verstehen"
+msgstr "Dashboards you understand"
+
+#: web/templates/v2/data_analytics.html:32
+msgid ""
+"Umsatz, offene Posten, Auslastung: die Kennzahlen, die für Sie zählen – "
+"aktuell, verständlich und ohne Fachchinesisch."
+msgstr ""
+"Revenue, open items, capacity: the figures that matter to you – up to date, "
+"clear and without the jargon."
+
+#: web/templates/v2/data_analytics.html:36
+msgid "Schluss mit Excel-Bastelei"
+msgstr "No more Excel tinkering"
+
+#: web/templates/v2/data_analytics.html:37
+msgid ""
+"Ihre Auswertungen aktualisieren sich automatisch, statt dass Sie sie am "
+"Sonntagabend von Hand zusammenklicken."
+msgstr ""
+"Your reports update automatically, instead of you piecing them together by "
+"hand on a Sunday evening."
+
+#: web/templates/v2/data_analytics.html:41
+msgid "Wächst mit Ihrem Betrieb"
+msgstr "Grows with your business"
+
+#: web/templates/v2/data_analytics.html:42
+msgid ""
+"Vom einfachen Report bis zur Datenplattform – wenn Ihr Betrieb mehr braucht,"
+" skaliert die Lösung mit, ohne neu anzufangen."
+msgstr ""
+"From a simple report to a full data platform – when your business needs "
+"more, the solution scales with you, without starting over."
+
+#: web/templates/v2/data_analytics.html:50
+msgid "Auf solider Technik gebaut"
+msgstr "Built on solid technology"
+
+#: web/templates/v2/data_analytics.html:52
+msgid ""
+"Ich arbeite mit Werkzeugen, die auch grosse Unternehmen einsetzen – richtig "
+"dimensioniert für einen Kleinbetrieb. So bekommen Sie professionelle "
+"Auswertungen, ohne ein eigenes Daten-Team zu brauchen."
+msgstr ""
+"I work with tools that large companies use too – sized right for a small "
+"business. So you get professional reporting without needing your own data "
+"team."
+
+#: web/templates/v2/data_analytics.html:67
+msgid ""
+"Im kostenlosen Erstgespräch schauen wir, welche Zahlen Ihnen heute fehlen – "
+"und wie wir sie sichtbar machen."
+msgstr ""
+"In a free first call we look at which figures you're missing today – and how"
+" we make them visible."
+
+#: web/templates/v2/data_analytics.html:69
+#: web/templates/v2/digitalisierung.html:54 web/templates/v2/home.html:18
+#: web/templates/v2/odoo.html:112 web/templates/v2/odoo_einfuehrung.html:203
+#: web/templates/v2/odoo_vergleich.html:115
+#: web/templates/v2/odoo_wieso.html:194
+msgid "Kostenloses Erstgespräch buchen"
+msgstr "Book a free call"
+
+#: web/templates/v2/digitalisierung.html:5
+msgid "Datenmigration & Automatisierung für KMU | Datalization Zofingen"
+msgstr ""
+"Data migration & automation for small businesses | Datalization Zofingen"
+
+#: web/templates/v2/digitalisierung.html:6
+msgid ""
+"Daten sauber aus Altsystemen übernehmen, Abläufe automatisieren, fehlende "
+"Software bauen. Digitalisierung für kleine Betriebe – ohne Datenverlust, mit"
+" Festpreis."
+msgstr ""
+"Migrate data cleanly from legacy systems, automate processes, build the "
+"missing software. Digitalization for small businesses – without data loss, "
+"at a fixed price."
+
+#: web/templates/v2/digitalisierung.html:7
+#: web/templates/v2/digitalisierung.html:14
+msgid "Digitalisieren, ohne dass Daten verloren gehen."
+msgstr "Digitalize without losing data."
+
+#: web/templates/v2/digitalisierung.html:15
+msgid ""
+"Der heikelste Moment jeder Digitalisierung ist der Umzug: Kundendaten, "
+"Artikel, Belege und Historie stecken im alten System – und sollen "
+"vollständig und korrekt im neuen ankommen. Genau das ist meine "
+"Kernkompetenz."
+msgstr ""
+"The trickiest moment of any digitalization is the move: customer data, "
+"products, receipts and history are stuck in the old system – and need to "
+"arrive complete and correct in the new one. That's exactly my core "
+"expertise."
+
+#: web/templates/v2/digitalisierung.html:29
+msgid "Datenübernahme bei Systemwechseln."
+msgstr "Data migration when switching systems."
+
+#: web/templates/v2/digitalisierung.html:29
+msgid ""
+"Ich hole Ihre Daten aus dem Altsystem, bereinige sie und bringe sie "
+"strukturiert ins neue – nachvollziehbar und geprüft."
+msgstr ""
+"I pull your data from the old system, clean it up and bring it into the new "
+"one in a structured way – traceable and verified."
+
+#: web/templates/v2/digitalisierung.html:30
+msgid "Automatisierung wiederkehrender Abläufe."
+msgstr "Automation of recurring processes."
+
+#: web/templates/v2/digitalisierung.html:30
+msgid ""
+"Rechnungen, Mahnungen, Berichte, Dateiablage: Was sich wiederholt, kann der "
+"Computer übernehmen."
+msgstr ""
+"Invoices, reminders, reports, file storage: whatever repeats, the computer "
+"can take over."
+
+#: web/templates/v2/digitalisierung.html:31
+msgid "Individuelle Entwicklung."
+msgstr "Custom development."
+
+#: web/templates/v2/digitalisierung.html:31
+msgid ""
+"Wo Standardsoftware aufhört, baue ich das fehlende Stück: Schnittstellen, "
+"kleine Anwendungen, Erweiterungen."
+msgstr ""
+"Where standard software ends, I build the missing piece: interfaces, small "
+"apps, extensions."
+
+#: web/templates/v2/digitalisierung.html:32
+msgid "IT-Support und Betrieb."
+msgstr "IT support and operations."
+
+#: web/templates/v2/digitalisierung.html:32
+msgid ""
+"Ich betreue bestehende Anwendungen und halte sie am Laufen – zuverlässig und"
+" erreichbar."
+msgstr ""
+"I look after existing applications and keep them running – reliably and "
+"reachable."
+
+#: web/templates/v2/digitalisierung.html:41
+msgid "So gehen wir vor"
+msgstr "How we proceed"
+
+#: web/templates/v2/digitalisierung.html:43
+msgid ""
+"Am Anfang steht der Digitalisierungs-Check: Ich schaue mir Ihre heutigen "
+"Abläufe an und zeige Ihnen, wo Digitalisierung wirklich etwas bringt – und "
+"wo nicht. Sie erhalten einen konkreten Vorschlag mit Festpreisofferte. Erst "
+"dann entscheiden Sie."
+msgstr ""
+"It starts with the digitalization check: I look at your current processes "
+"and show you where digitalization really pays off – and where it doesn't. "
+"You get a concrete proposal with a fixed-price quote. Only then do you "
+"decide."
+
+#: web/templates/v2/digitalisierung.html:52 web/templates/v2/monekey.html:127
+#: web/templates/v2/odoo.html:110 web/templates/v2/odoo_einfuehrung.html:201
+#: web/templates/v2/odoo_partner_zofingen.html:63
+msgid ""
+"Vor jedem Projekt erhalten Sie eine Festpreisofferte. Was sie kostet und "
+"enthält, besprechen wir im kostenlosen Erstgespräch."
+msgstr ""
+"Before every project you receive a fixed-price quote. What it costs and "
+"includes, we discuss in a free first call."
+
+#: web/templates/v2/home.html:5
+msgid "ERP & CRM für Kleinbetriebe | Odoo Partner Zofingen – Datalization"
+msgstr "ERP & CRM for small businesses | Odoo Partner Zofingen – Datalization"
+
+#: web/templates/v2/home.html:6
+msgid ""
+"Geschäftssoftware, Automatisierung und saubere Daten für kleine Betriebe. "
+"Odoo-Einführung mit Festpreisofferte. Kostenloses Erstgespräch in der Region"
+" Zofingen."
+msgstr ""
+"Business software, automation and clean data for small businesses. Odoo "
+"implementation with a fixed-price quote. Free first call in the Zofingen "
+"region."
+
+#: web/templates/v2/home.html:7
+msgid "Ihr Betrieb in einem System – statt in fünf Programmen."
+msgstr "Your business in one system – instead of five programs."
+
+#: web/templates/v2/home.html:16
+msgid "Ihr Betrieb in einem System – <em>statt in fünf Programmen.</em>"
+msgstr "Your business in one system – <em>instead of five programs.</em>"
+
+#: web/templates/v2/home.html:17
+msgid ""
+"Datalization macht kleine Betriebe digital effizient: Geschäftssoftware, "
+"Automatisierung und saubere Daten, alles aus einer Hand. Für Betriebe ohne "
+"eigene IT-Abteilung – in der Region Zofingen und darüber hinaus."
+msgstr ""
+"Datalization makes small businesses digitally efficient: business software, "
+"automation and clean data, all from one source. For businesses without their"
+" own IT department – in the Zofingen region and beyond."
+
+#: web/templates/v2/home.html:35
+msgid "Offerten"
+msgstr "Quotes"
+
+#: web/templates/v2/home.html:36 web/templates/v2/odoo.html:24
+msgid "Rechnungen"
+msgstr "Invoices"
+
+#: web/templates/v2/home.html:37 web/templates/v2/odoo.html:22
+#: web/templates/v2/odoo.html:55
+msgid "Lager"
+msgstr "Inventory"
+
+#: web/templates/v2/home.html:38 web/templates/v2/odoo.html:25
+msgid "Buchhaltung"
+msgstr "Accounting"
+
+#: web/templates/v2/home.html:39
+msgid "Excel-Listen"
+msgstr "Excel lists"
+
+#: web/templates/v2/home.html:56
+msgid "Womit ich Ihnen helfe"
+msgstr "How I can help you"
+
+#: web/templates/v2/home.html:62
+msgid "Ihr Betrieb in einem System"
+msgstr "Your business in one system"
+
+#: web/templates/v2/home.html:63
+msgid ""
+"Offerten, Rechnungen, Lager, Projekte und Buchhaltung an einem Ort – statt "
+"in fünf Programmen und zwanzig Excel-Listen."
+msgstr ""
+"Quotes, invoices, inventory, projects and accounting in one place – instead "
+"of five programs and twenty Excel lists."
+
+#: web/templates/v2/home.html:64
+msgid "Mehr zur Geschäftssoftware"
+msgstr "More on business software"
+
+#: web/templates/v2/home.html:68
+msgid "Digitalisieren ohne Datenverlust"
+msgstr "Digitalize without data loss"
+
+#: web/templates/v2/home.html:69
+msgid ""
+"Ich hole Ihre Daten sauber aus den alten Systemen, automatisiere das "
+"Wiederkehrende und baue, was fehlt."
+msgstr ""
+"I pull your data cleanly out of the old systems, automate the recurring work"
+" and build what's missing."
+
+#: web/templates/v2/home.html:70
+msgid "Mehr zu Digitalisierung & Entwicklung"
+msgstr "More on digitalization & development"
+
+#: web/templates/v2/home.html:74
+msgid "Dokumente teilen, ohne E-Mail-Chaos"
+msgstr "Share documents without the email chaos"
+
+#: web/templates/v2/home.html:75
+msgid ""
+"Ein Portal, in dem Ihre Kunden ihre Unterlagen finden – statt Anhängen in "
+"zehn Mail-Verläufen."
+msgstr ""
+"A portal where your clients find their documents – instead of attachments in"
+" ten email threads."
+
+#: web/templates/v2/home.html:76
+msgid "Mehr zu Monekey"
+msgstr "More on Monekey"
+
+#: web/templates/v2/home.html:86
+msgid "Vier Schritte – ohne Überraschungen"
+msgstr "Four steps – no surprises"
+
+#: web/templates/v2/home.html:91
+msgid "Erstgespräch (kostenlos)."
+msgstr "First call (free)."
+
+#: web/templates/v2/home.html:91
+msgid "Wir schauen in 60 Minuten, ob es passt. Unverbindlich."
+msgstr "In 60 minutes we see whether it's a fit. No obligation."
+
+#: web/templates/v2/home.html:92
+msgid "Digitalisierungs-Check."
+msgstr "Digitalization check."
+
+#: web/templates/v2/home.html:92
+msgid ""
+"Ich analysiere Ihre heutigen Abläufe und zeige konkret, was sich lohnt – "
+"inklusive Festpreisofferte."
+msgstr ""
+"I analyze your current processes and show concretely what's worthwhile – "
+"including a fixed-price quote."
+
+#: web/templates/v2/home.html:93
+msgid "Umsetzung."
+msgstr "Implementation."
+
+#: web/templates/v2/home.html:93
+msgid "Einführung, Datenübernahme, Schulung – zum vereinbarten Festpreis."
+msgstr "Setup, data migration, training – at the agreed fixed price."
+
+#: web/templates/v2/home.html:94
+msgid "Betreuung."
+msgstr "Ongoing support."
+
+#: web/templates/v2/home.html:94
+msgid ""
+"Nach dem Go-Live lasse ich Sie nicht allein: Support, Updates und "
+"Weiterentwicklung gehören dazu."
+msgstr ""
+"After go-live I don't leave you on your own: support, updates and further "
+"development are all part of it."
+
+#: web/templates/v2/home.html:98
+msgid "Sie wissen vorher, was es kostet."
+msgstr "You know what it costs upfront."
+
+#: web/templates/v2/home.html:98
+msgid ""
+"Jedes Projekt startet mit einer Pauschale und einem klar umrissenen Umfang. "
+"Mehraufwand gibt es nur, wenn Sie ihm vorher zustimmen – keine "
+"Überraschungen."
+msgstr ""
+"Every project starts with a fixed fee and a clearly defined scope. Extra "
+"work only happens if you agree to it in advance – no surprises."
+
+#: web/templates/v2/home.html:108
+msgid "[Foto Tihomir Danesic]"
+msgstr "[Photo Tihomir Danesic]"
+
+#: web/templates/v2/home.html:111
+msgid "Mit wem Sie arbeiten"
+msgstr "Who you work with"
+
+#: web/templates/v2/home.html:112
+msgid "Bei mir sprechen Sie immer mit der Person, die Ihre Lösung auch baut."
+msgstr ""
+"With me you always talk to the person who actually builds your solution."
+
+#: web/templates/v2/home.html:112
+msgid ""
+"Ich bin Tihomir Danesic, Gründer von Datalization – Betriebsökonom und Data "
+"Scientist, zuhause in Software, Daten und den Abläufen kleiner Betriebe."
+msgstr ""
+"I'm Tihomir Danesic, founder of Datalization – a business economist and data"
+" scientist, at home in software, data and the workings of small businesses."
+
+#: web/templates/v2/home.html:113
+msgid ""
+"Und falls Ihr Unternehmen eine Nummer zu gross für mich ist, sage ich Ihnen "
+"das im Erstgespräch offen – und gerne auch, wer dann die bessere Wahl ist."
+msgstr ""
+"And if your company is a size too big for me, I'll tell you so openly in the"
+" first call – and gladly point you to who'd be the better choice."
+
+#: web/templates/v2/home.html:125
+msgid "Vorher"
+msgstr "Before"
+
+#: web/templates/v2/home.html:126
+msgid "Nachher"
+msgstr "After"
+
+#: web/templates/v2/home.html:127
+msgid "[Platzhalter ab Projekt 1: Referenzgeschichte mit Zahlen]"
+msgstr "[Placeholder from project 1: reference story with figures]"
+
+#: web/templates/v2/home.html:140
+msgid "Reden wir über Ihren Betrieb."
+msgstr "Let's talk about your business."
+
+#: web/templates/v2/home.html:141
+msgid ""
+"60 Minuten, kostenlos, unverbindlich – danach wissen Sie, ob und wie sich "
+"Digitalisierung für Sie lohnt."
+msgstr ""
+"60 minutes, free, no obligation – afterwards you'll know whether and how "
+"digitalization pays off for you."
+
+#: web/templates/v2/home.html:142
+msgid "Termin wählen"
+msgstr "Pick a time"
+
+#: web/templates/v2/monekey.html:5
+msgid ""
+"Monekey – Dokumentenportal für Verwaltungen & Treuhänder | Datalization"
+msgstr ""
+"Monekey – document portal for property managers & fiduciaries | Datalization"
+
+#: web/templates/v2/monekey.html:6
+msgid ""
+"Ein Portal, in dem Ihre Kunden ihre Unterlagen finden – statt in E-Mail-"
+"Anhängen. Monekey, das schlanke Dokumentenportal für Immobilienverwaltungen,"
+" Treuhänder und Broker."
+msgstr ""
+"A portal where your clients find their documents – instead of in email "
+"attachments. Monekey, the lean document portal for property managers, "
+"fiduciaries and brokers."
+
+#: web/templates/v2/monekey.html:7 web/templates/v2/monekey.html:15
+msgid "Dokumente teilen, ohne E-Mail-Chaos."
+msgstr "Share documents without the email chaos."
+
+#: web/templates/v2/monekey.html:16
+msgid ""
+"Abrechnungen, Verträge, Protokolle: Wer Immobilien verwaltet, Mandate "
+"betreut oder Kunden berät, verschickt täglich Dokumente – und sucht sie "
+"morgen in zehn Mail-Verläufen wieder."
+msgstr ""
+"Statements, contracts, minutes: anyone managing properties, handling "
+"mandates or advising clients sends documents every day – and hunts for them "
+"the next day across ten email threads."
+
+#: web/templates/v2/monekey.html:20
+msgid ""
+"Monekey – Dokumente wandern in die zentrale Ablage und werden sicher ins "
+"Kundenportal freigegeben"
+msgstr ""
+"Monekey – documents move into central storage and are securely released to "
+"the client portal"
+
+#: web/templates/v2/monekey.html:28
+msgid "Das kennen Sie?"
+msgstr "Sound familiar?"
+
+#: web/templates/v2/monekey.html:31
+msgid "Heute"
+msgstr "Today"
+
+#: web/templates/v2/monekey.html:33
+msgid "Dokumente verteilt über E-Mail, Netzlaufwerk und Cloud-Ordner."
+msgstr "Documents scattered across email, network drives and cloud folders."
+
+#: web/templates/v2/monekey.html:34
+msgid "Endlose Mail-Ketten mit Anhängen – unklar, welche Version gilt."
+msgstr ""
+"Endless email chains with attachments – unclear which version is current."
+
+#: web/templates/v2/monekey.html:35
+msgid "Kunden fragen dieselben Unterlagen immer wieder an."
+msgstr "Clients keep asking for the same documents again and again."
+
+#: web/templates/v2/monekey.html:36
+msgid "Sensible Daten gehen ungeschützt per Mail hin und her."
+msgstr "Sensitive data goes back and forth unprotected by email."
+
+#: web/templates/v2/monekey.html:40
+msgid "Mit Monekey"
+msgstr "With Monekey"
+
+#: web/templates/v2/monekey.html:42
+msgid "Eine zentrale, mandantenfähige Ablage für alle Dokumente."
+msgstr "One central, multi-client repository for all documents."
+
+#: web/templates/v2/monekey.html:43
+msgid "Ein sicheres Kundenportal, in dem sich Kunden selbst bedienen."
+msgstr "A secure client portal where clients serve themselves."
+
+#: web/templates/v2/monekey.html:44
+msgid "Rollen und Berechtigungen bis auf einzelne Dokumente."
+msgstr "Roles and permissions down to individual documents."
+
+#: web/templates/v2/monekey.html:45
+msgid "Nachvollziehbare Ablage mit Versionen und Protokoll."
+msgstr "Traceable storage with versions and an audit log."
+
+#: web/templates/v2/monekey.html:56
+msgid "Ein Portal für Ihre Kunden"
+msgstr "A portal for your clients"
+
+#: web/templates/v2/monekey.html:57
+msgid ""
+"Monekey ist das Dokumentenportal von Datalization: Ihre Kunden melden sich "
+"an und finden ihre Unterlagen – aktuell, vollständig, am richtigen Ort. Sie "
+"laden einmal hoch, statt dreimal zu mailen."
+msgstr ""
+"Monekey is Datalization's document portal: your clients log in and find "
+"their documents – up to date, complete, in the right place. You upload once "
+"instead of emailing three times."
+
+#: web/templates/v2/monekey.html:62
+msgid "Selbstbedienung"
+msgstr "Self-service"
+
+#: web/templates/v2/monekey.html:63
+msgid ""
+"Ihre Kunden finden und laden ihre Unterlagen selbst – rund um die Uhr, am "
+"richtigen Ort."
+msgstr ""
+"Your clients find and upload their documents themselves – around the clock, "
+"in the right place."
+
+#: web/templates/v2/monekey.html:67
+msgid "Sichere Freigabe"
+msgstr "Secure sharing"
+
+#: web/templates/v2/monekey.html:68
+msgid ""
+"Sie geben gezielt frei, verschlüsselt und rollenbasiert – statt Anhänge zu "
+"verschicken."
+msgstr ""
+"You share selectively, encrypted and role-based – instead of sending "
+"attachments."
+
+#: web/templates/v2/monekey.html:72
+msgid "Nachvollziehbar"
+msgstr "Traceable"
+
+#: web/templates/v2/monekey.html:73
+msgid ""
+"Versionen und Zugriffsprotokoll zeigen, wer wann worauf zugegriffen hat."
+msgstr "Versions and an access log show who accessed what and when."
+
+#: web/templates/v2/monekey.html:82
+msgid "Für wen Monekey gemacht ist"
+msgstr "Who Monekey is made for"
+
+#: web/templates/v2/monekey.html:86
+msgid "Immobilienverwaltung"
+msgstr "Property management"
+
+#: web/templates/v2/monekey.html:86
+msgid ""
+"Mietverträge, Grundbuchauszüge, Abrechnungen und Protokolle – je "
+"Liegenschaft geordnet, mit gezieltem Zugriff für Eigentümer und Mieter."
+msgstr ""
+"Lease agreements, land register extracts, statements and minutes – organized"
+" per property, with targeted access for owners and tenants."
+
+#: web/templates/v2/monekey.html:90
+msgid "Treuhand"
+msgstr "Fiduciary services"
+
+#: web/templates/v2/monekey.html:90
+msgid ""
+"Steuerunterlagen, Buchhaltung und Belege je Mandant gesichert – das Portal "
+"ersetzt den Mail-Anhang."
+msgstr ""
+"Tax documents, accounting and receipts secured per client – the portal "
+"replaces the email attachment."
+
+#: web/templates/v2/monekey.html:94
+msgid "Brokerage"
+msgstr "Brokerage"
+
+#: web/templates/v2/monekey.html:94
+msgid ""
+"Portfolio-Auszüge, KYC-Unterlagen und Reports – strukturiert, mit Versionen "
+"und klaren Zugriffsrechten."
+msgstr ""
+"Portfolio statements, KYC documents and reports – structured, with versions "
+"and clear access rights."
+
+#: web/templates/v2/monekey.html:98
+msgid "Aktienregister"
+msgstr "Share register"
+
+#: web/templates/v2/monekey.html:98
+msgid ""
+"Aktionärsdaten, Übertragungen und Registerauszüge – transparent, mit "
+"Protokoll und rollenbasierten Rechten."
+msgstr ""
+"Shareholder data, transfers and register extracts – transparent, with an "
+"audit log and role-based rights."
+
+#: web/templates/v2/monekey.html:107
+msgid "Bewusst schlank – und eine Schweizer Lösung"
+msgstr "Deliberately lean – and a Swiss solution"
+
+#: web/templates/v2/monekey.html:111
+msgid "Bewusst schlank"
+msgstr "Deliberately lean"
+
+#: web/templates/v2/monekey.html:111
+msgid ""
+"Monekey macht eine Sache richtig, statt hundert Dinge halb. Keine "
+"wochenlange Einführung, kein Schulungsmarathon."
+msgstr ""
+"Monekey does one thing right instead of a hundred things halfway. No weeks-"
+"long rollout, no training marathon."
+
+#: web/templates/v2/monekey.html:115
+msgid "Schweizer Lösung"
+msgstr "Swiss solution"
+
+#: web/templates/v2/monekey.html:115
+msgid "Entwickelt und betreut in der Schweiz, direkter Draht zum Entwickler."
+msgstr ""
+"Developed and supported in Switzerland, a direct line to the developer."
+
+#: web/templates/v2/monekey.html:129
+msgid "Monekey ansehen / Demo vereinbaren"
+msgstr "See Monekey / book a demo"
+
+#: web/templates/v2/odoo.html:5
+msgid ""
+"Odoo für Kleinbetriebe – Geschäftssoftware aus einer Hand | Datalization"
+msgstr ""
+"Odoo for small businesses – business software from one source | Datalization"
+
+#: web/templates/v2/odoo.html:6
+msgid ""
+"Offerten, Rechnungen, Lager und Buchhaltung in einem System. Odoo-Einführung"
+" für kleine Betriebe – mit Datenübernahme, Schulung und Festpreisofferte."
+msgstr ""
+"Quotes, invoices, inventory and accounting in one system. Odoo "
+"implementation for small businesses – with data migration, training and a "
+"fixed-price quote."
+
+#: web/templates/v2/odoo.html:7 web/templates/v2/odoo.html:15
+msgid "Offerten, Rechnungen, Lager und Buchhaltung – endlich an einem Ort."
+msgstr "Quotes, invoices, inventory and accounting – finally in one place."
+
+#: web/templates/v2/odoo.html:16
+msgid ""
+"Viele Kleinbetriebe arbeiten mit einem Programm für Offerten, einem für die "
+"Buchhaltung, Excel fürs Lager und dem Mail-Postfach als Gedächtnis. Jede "
+"Information wird mehrfach erfasst, nichts stimmt ganz überein, und der "
+"Überblick entsteht am Sonntagabend von Hand."
+msgstr ""
+"Many small businesses use one program for quotes, one for accounting, Excel "
+"for inventory and the inbox as their memory. Every piece of information is "
+"entered several times, nothing quite matches, and the overview is pieced "
+"together by hand on a Sunday evening."
+
+#: web/templates/v2/odoo.html:20
+msgid "Verkauf"
+msgstr "Sales"
+
+#: web/templates/v2/odoo.html:21 web/templates/v2/odoo.html:50
+msgid "Einkauf"
+msgstr "Purchasing"
+
+#: web/templates/v2/odoo.html:23 web/templates/v2/odoo.html:60
+msgid "Projekte"
+msgstr "Projects"
+
+#: web/templates/v2/odoo.html:26
+msgid "einmal erfassen, überall verfügbar"
+msgstr "enter once, available everywhere"
+
+#: web/templates/v2/odoo.html:33
+msgid "Ein System für den ganzen Betrieb"
+msgstr "One system for the whole business"
+
+#: web/templates/v2/odoo.html:34
+msgid ""
+"Ich führe bei Ihnen Odoo ein – die Geschäftssoftware, mit der weltweit "
+"Millionen von Betrieben arbeiten, vom Zweipersonen-Atelier bis zum "
+"Produktionsbetrieb. Verkauf, Einkauf, Lager, Projekte, Rechnungen und "
+"Buchhaltung greifen ineinander: einmal erfassen, überall verfügbar."
+msgstr ""
+"I implement Odoo for you – the business software used by millions of "
+"companies worldwide, from a two-person studio to a manufacturing operation. "
+"Sales, purchasing, inventory, projects, invoices and accounting all work "
+"together: enter once, available everywhere."
+
+#: web/templates/v2/odoo.html:41
+msgid "Was Sie in Odoo abbilden"
+msgstr "What you can run in Odoo"
+
+#: web/templates/v2/odoo.html:45
+msgid "Verkauf & CRM"
+msgstr "Sales & CRM"
+
+#: web/templates/v2/odoo.html:46
+msgid "Leads, Offerten und Aufträge – vom Erstkontakt bis zum Abschluss."
+msgstr "Leads, quotes and orders – from first contact to close."
+
+#: web/templates/v2/odoo.html:51
+msgid "Bestellungen, Lieferanten und Nachbestellung an einem Ort."
+msgstr "Purchase orders, suppliers and reordering in one place."
+
+#: web/templates/v2/odoo.html:56
+msgid "Bestände sowie Ein- und Ausgänge – immer aktuell."
+msgstr "Stock levels plus incoming and outgoing goods – always up to date."
+
+#: web/templates/v2/odoo.html:61
+msgid "Aufgaben, Zeiterfassung und Fortschritt im Blick."
+msgstr "Tasks, time tracking and progress at a glance."
+
+#: web/templates/v2/odoo.html:65
+msgid "Rechnungen & Buchhaltung"
+msgstr "Invoicing & accounting"
+
+#: web/templates/v2/odoo.html:66
+msgid "Rechnungen stellen, Zahlungen verfolgen – bis zur MwSt-Abrechnung."
+msgstr "Issue invoices, track payments – all the way to the VAT return."
+
+#: web/templates/v2/odoo.html:70
+msgid "Website & Shop"
+msgstr "Website & shop"
+
+#: web/templates/v2/odoo.html:71
+msgid ""
+"Onlineauftritt und Verkauf – direkt mit Lager und Buchhaltung verbunden."
+msgstr ""
+"Online presence and sales – connected directly to inventory and accounting."
+
+#: web/templates/v2/odoo.html:74
+msgid ""
+"… und viele weitere Module. Sie schalten nur frei, was Sie heute brauchen – "
+"und ergänzen später, was dazukommt."
+msgstr ""
+"… and many more modules. You only switch on what you need today – and add "
+"more later as it comes."
+
+#: web/templates/v2/odoo.html:81
+msgid "Mehr zu Odoo"
+msgstr "More on Odoo"
+
+#: web/templates/v2/odoo.html:85 web/templates/v2/odoo.html:87
+#: web/templates/v2/odoo_wieso.html:7 web/templates/v2/odoo_wieso.html:13
+#: web/templates/v2/odoo_wieso.html:14
+#: web/templates/v2/partials/odoo_subnav.html:4
+msgid "Wieso Odoo?"
+msgstr "Why Odoo?"
+
+#: web/templates/v2/odoo.html:86
+msgid ""
+"Warum Odoo die richtige Basis für Ihren Betrieb ist – und was es von "
+"Insellösungen und Excel unterscheidet."
+msgstr ""
+"Why Odoo is the right foundation for your business – and what sets it apart "
+"from standalone tools and Excel."
+
+#: web/templates/v2/odoo.html:91 web/templates/v2/odoo_einfuehrung.html:7
+#: web/templates/v2/odoo_einfuehrung.html:13
+#: web/templates/v2/partials/odoo_subnav.html:5
+msgid "Odoo einführen"
+msgstr "Implementing Odoo"
+
+#: web/templates/v2/odoo.html:92
+msgid ""
+"Vom Digitalisierungs-Check bis zum Go-Live: wie eine Einführung bei Ihnen "
+"abläuft – und was Sie bekommen."
+msgstr ""
+"From the digitalization check to go-live: how an implementation works for "
+"you – and what you get."
+
+#: web/templates/v2/odoo.html:93
+msgid "So läuft es ab"
+msgstr "How it works"
+
+#: web/templates/v2/odoo.html:97 web/templates/v2/odoo_vergleich.html:7
+#: web/templates/v2/odoo_vergleich.html:14
+msgid "Odoo im Vergleich"
+msgstr "Odoo compared"
+
+#: web/templates/v2/odoo.html:98
+msgid ""
+"Odoo neben Excel-Insellösungen, grossen Standard-ERPs und Eigenentwicklung –"
+" wo der Mittelweg liegt."
+msgstr ""
+"Odoo next to Excel and standalone tools, large standard ERPs and custom "
+"development – where the middle ground lies."
+
+#: web/templates/v2/odoo.html:99
+msgid "Zum Vergleich"
+msgstr "See the comparison"
+
+#: web/templates/v2/odoo_einfuehrung.html:5
+msgid "Odoo einführen – Ablauf, Datenübernahme & Schulung | Datalization"
+msgstr "Implementing Odoo – process, data migration & training | Datalization"
+
+#: web/templates/v2/odoo_einfuehrung.html:6
+msgid ""
+"Wie eine Odoo-Einführung für kleine Betriebe abläuft: vom Digitalisierungs-"
+"Check über Datenübernahme und Schulung bis zur Betreuung – zum Festpreis."
+msgstr ""
+"How an Odoo implementation for small businesses works: from the "
+"digitalization check through data migration and training to ongoing support "
+"– at a fixed price."
+
+#: web/templates/v2/odoo_einfuehrung.html:14
+msgid "Eine Einführung ohne Überraschungen."
+msgstr "An implementation without surprises."
+
+#: web/templates/v2/odoo_einfuehrung.html:15
+msgid ""
+"Am Anfang steht der Digitalisierungs-Check: Ich schaue mir Ihre heutigen "
+"Abläufe an und zeige Ihnen, wo sich Odoo lohnt – und wo nicht. Sie erhalten "
+"einen konkreten Vorschlag mit Festpreisofferte. Erst dann entscheiden Sie."
+msgstr ""
+"It starts with the digitalization check: I look at your current processes "
+"and show you where Odoo pays off – and where it doesn't. You get a concrete "
+"proposal with a fixed-price quote. Only then do you decide."
+
+#: web/templates/v2/odoo_einfuehrung.html:23
+msgid "Der Digitalisierungs-Check im Detail"
+msgstr "The digitalization check in detail"
+
+#: web/templates/v2/odoo_einfuehrung.html:27
+msgid "Abläufe aufnehmen"
+msgstr "Mapping your processes"
+
+#: web/templates/v2/odoo_einfuehrung.html:28
+msgid ""
+"Ich schaue mir an, wie Sie heute wirklich arbeiten – vom Angebot bis zur "
+"Rechnung."
+msgstr "I look at how you really work today – from quote to invoice."
+
+#: web/templates/v2/odoo_einfuehrung.html:32
+msgid "Module festlegen"
+msgstr "Choosing the modules"
+
+#: web/templates/v2/odoo_einfuehrung.html:33
+msgid ""
+"Wir bestimmen, welche Odoo-Module Sie wirklich brauchen – und welche nicht."
+msgstr ""
+"We determine which Odoo modules you really need – and which you don't."
+
+#: web/templates/v2/odoo_einfuehrung.html:37
+msgid "Datenquellen sichten"
+msgstr "Reviewing data sources"
+
+#: web/templates/v2/odoo_einfuehrung.html:38
+msgid "Wir schauen, welche Daten aus Altsystemen und Excel sauber mitkommen."
+msgstr ""
+"We look at which data from legacy systems and Excel can come across cleanly."
+
+#: web/templates/v2/odoo_einfuehrung.html:42
+msgid "Festpreisofferte"
+msgstr "Fixed-price quote"
+
+#: web/templates/v2/odoo_einfuehrung.html:43
+msgid ""
+"Sie erhalten einen konkreten Vorschlag mit Festpreis. Erst dann entscheiden "
+"Sie."
+msgstr ""
+"You get a concrete proposal at a fixed price. Only then do you decide."
+
+#: web/templates/v2/odoo_einfuehrung.html:49
+msgid "Typischer Zeitrahmen"
+msgstr "Typical timeframe"
+
+#: web/templates/v2/odoo_einfuehrung.html:50
+msgid ""
+"Eine Einführung dauert bei kleinen Betrieben meist Wochen, nicht Monate – "
+"abhängig vom Umfang. Den genauen Rahmen halten wir in der Offerte fest."
+msgstr ""
+"For small businesses an implementation usually takes weeks, not months – "
+"depending on the scope. We set out the exact timeframe in the quote."
+
+#: web/templates/v2/odoo_einfuehrung.html:58
+msgid "Was Sie bekommen"
+msgstr "What you get"
+
+#: web/templates/v2/odoo_einfuehrung.html:62
+msgid "Projektstart"
+msgstr "Project start"
+
+#: web/templates/v2/odoo_einfuehrung.html:70
+msgid "Einrichtung, die zu Ihrem Betrieb passt."
+msgstr "Setup that fits your business."
+
+#: web/templates/v2/odoo_einfuehrung.html:71
+msgid ""
+"Kein Riesensystem mit hundert Funktionen, die Sie nie brauchen – sondern "
+"genau die Module, mit denen Sie arbeiten."
+msgstr ""
+"No giant system with a hundred features you'll never use – just the modules "
+"you actually work with."
+
+#: web/templates/v2/odoo_einfuehrung.html:76
+#: web/templates/v2/odoo_einfuehrung.html:93
+#: web/templates/v2/odoo_einfuehrung.html:110
+#: web/templates/v2/odoo_einfuehrung.html:127
+#: web/templates/v2/odoo_einfuehrung.html:144
+#: web/templates/v2/odoo_einfuehrung.html:161
+#: web/templates/v2/odoo_einfuehrung.html:178
+msgid "Was passiert"
+msgstr "What happens"
+
+#: web/templates/v2/odoo_einfuehrung.html:76
+msgid ""
+"Wir richten genau die Module ein, die Sie brauchen, und passen Odoo an Ihre "
+"Abläufe an."
+msgstr ""
+"We set up exactly the modules you need and adapt Odoo to your processes."
+
+#: web/templates/v2/odoo_einfuehrung.html:77
+#: web/templates/v2/odoo_einfuehrung.html:94
+#: web/templates/v2/odoo_einfuehrung.html:111
+#: web/templates/v2/odoo_einfuehrung.html:128
+#: web/templates/v2/odoo_einfuehrung.html:145
+#: web/templates/v2/odoo_einfuehrung.html:162
+#: web/templates/v2/odoo_einfuehrung.html:179
+msgid "Ihr Part"
+msgstr "Your part"
+
+#: web/templates/v2/odoo_einfuehrung.html:77
+msgid "Einmal zeigen, wie Sie heute arbeiten – den Rest übernehme ich."
+msgstr "Show me once how you work today – I take care of the rest."
+
+#: web/templates/v2/odoo_einfuehrung.html:78
+#: web/templates/v2/odoo_einfuehrung.html:95
+#: web/templates/v2/odoo_einfuehrung.html:112
+#: web/templates/v2/odoo_einfuehrung.html:129
+#: web/templates/v2/odoo_einfuehrung.html:146
+#: web/templates/v2/odoo_einfuehrung.html:163
+#: web/templates/v2/odoo_einfuehrung.html:180
+msgid "Ergebnis"
+msgstr "Result"
+
+#: web/templates/v2/odoo_einfuehrung.html:78
+msgid "Ein System, das sich anfühlt wie für Ihren Betrieb gemacht."
+msgstr "A system that feels made for your business."
+
+#: web/templates/v2/odoo_einfuehrung.html:87
+msgid "Ihre Daten ziehen mit."
+msgstr "Your data comes along."
+
+#: web/templates/v2/odoo_einfuehrung.html:88
+msgid ""
+"Kunden, Artikel, offene Posten, Historie: Ich übernehme Ihre bestehenden "
+"Daten sauber ins neue System. Nichts geht verloren."
+msgstr ""
+"Customers, products, open items, history: I migrate your existing data "
+"cleanly into the new system. Nothing gets lost."
+
+#: web/templates/v2/odoo_einfuehrung.html:93
+msgid ""
+"Ich hole Ihre Daten aus dem Altsystem, bereinige sie und bringe sie "
+"strukturiert ins neue."
+msgstr ""
+"I pull your data from the old system, clean it up and bring it into the new "
+"one in a structured way."
+
+#: web/templates/v2/odoo_einfuehrung.html:94
+msgid "Zugang zu Ihren bestehenden Daten – als Export oder Systemzugriff."
+msgstr "Access to your existing data – as an export or system access."
+
+#: web/templates/v2/odoo_einfuehrung.html:95
+msgid "Alle Daten im neuen System – nachvollziehbar und geprüft."
+msgstr "All data in the new system – traceable and verified."
+
+#: web/templates/v2/odoo_einfuehrung.html:104
+msgid "Automatisierung einrichten."
+msgstr "Setting up automation."
+
+#: web/templates/v2/odoo_einfuehrung.html:105
+msgid ""
+"Wiederkehrendes übernimmt das System – Rechnungen, Mahnungen, Berichte."
+msgstr ""
+"The system takes over the recurring work – invoices, reminders, reports."
+
+#: web/templates/v2/odoo_einfuehrung.html:110
+msgid ""
+"Ich richte in Odoo ein, was sich bei Ihnen wiederholt: Rechnungsläufe, "
+"Mahnungen, Berichte, Dateiablage."
+msgstr ""
+"In Odoo I set up whatever repeats for you: invoice runs, reminders, reports,"
+" file storage."
+
+#: web/templates/v2/odoo_einfuehrung.html:111
+msgid "Mir zeigen, welche Routine-Aufgaben am meisten Zeit fressen."
+msgstr "Show me which routine tasks eat up the most time."
+
+#: web/templates/v2/odoo_einfuehrung.html:112
+msgid "Weniger Handarbeit, weniger Fehler – mehr Zeit fürs Wesentliche."
+msgstr "Less manual work, fewer errors – more time for what matters."
+
+#: web/templates/v2/odoo_einfuehrung.html:121
+msgid "Testen &amp; Feinschliff."
+msgstr "Testing &amp; fine-tuning."
+
+#: web/templates/v2/odoo_einfuehrung.html:122
+msgid "Sie prüfen das System an echten Fällen, ich passe an, bis es sitzt."
+msgstr "You test the system on real cases, I adjust until it fits."
+
+#: web/templates/v2/odoo_einfuehrung.html:127
+msgid "Wir gehen Ihre echten Abläufe durch; was hakt, justiere ich nach."
+msgstr "We go through your real processes; whatever snags, I fine-tune."
+
+#: web/templates/v2/odoo_einfuehrung.html:128
+msgid "Das System an Ihren eigenen Fällen ausprobieren und Rückmeldung geben."
+msgstr "Try the system out on your own cases and give feedback."
+
+#: web/templates/v2/odoo_einfuehrung.html:129
+msgid ""
+"Ein System, das im Alltag wirklich funktioniert – ohne böse Überraschungen "
+"beim Start."
+msgstr ""
+"A system that really works day to day – with no nasty surprises at launch."
+
+#: web/templates/v2/odoo_einfuehrung.html:138
+msgid "Schulung, bis es sitzt."
+msgstr "Training until it sticks."
+
+#: web/templates/v2/odoo_einfuehrung.html:139
+msgid ""
+"Ihr Team arbeitet selbständig – das ist das Ziel, nicht die Abhängigkeit vom"
+" Dienstleister."
+msgstr ""
+"Your team works independently – that's the goal, not dependence on a service"
+" provider."
+
+#: web/templates/v2/odoo_einfuehrung.html:144
+msgid ""
+"Ich zeige Ihrem Team die tägliche Arbeit – an Ihren echten Daten, nicht an "
+"Demo-Beispielen."
+msgstr ""
+"I show your team the daily work – on your real data, not on demo examples."
+
+#: web/templates/v2/odoo_einfuehrung.html:145
+msgid "Ein paar Stunden Zeit Ihres Teams."
+msgstr "A few hours of your team's time."
+
+#: web/templates/v2/odoo_einfuehrung.html:146
+msgid "Ihr Team arbeitet selbständig – ohne Abhängigkeit vom Dienstleister."
+msgstr ""
+"Your team works independently – without depending on a service provider."
+
+#: web/templates/v2/odoo_einfuehrung.html:155
+msgid "Go-Live."
+msgstr "Go-live."
+
+#: web/templates/v2/odoo_einfuehrung.html:156
+msgid "Der kontrollierte Umstieg auf den produktiven Betrieb – ich bin dabei."
+msgstr "The controlled switch to live operation – I'm there with you."
+
+#: web/templates/v2/odoo_einfuehrung.html:161
+msgid ""
+"Wir schalten geplant auf Odoo um; am Go-Live-Tag bin ich für Sie erreichbar."
+msgstr ""
+"We switch to Odoo on a planned date; on go-live day I'm reachable for you."
+
+#: web/templates/v2/odoo_einfuehrung.html:162
+msgid "Den vereinbarten Umstiegstermin im Team freihalten."
+msgstr "Keep the agreed switch-over date free in the team."
+
+#: web/templates/v2/odoo_einfuehrung.html:163
+msgid "Sie arbeiten produktiv mit Odoo – begleitet, nicht allein gelassen."
+msgstr "You work productively with Odoo – supported, not left alone."
+
+#: web/templates/v2/odoo_einfuehrung.html:172
+msgid "Betreuung danach."
+msgstr "Support afterwards."
+
+#: web/templates/v2/odoo_einfuehrung.html:173
+msgid ""
+"Support, Updates und kleine Anpassungen, damit die Lösung im Alltag trägt."
+msgstr ""
+"Support, updates and small adjustments so the solution holds up day to day."
+
+#: web/templates/v2/odoo_einfuehrung.html:178
+msgid "Support, Updates und kleine Anpassungen nach dem Go-Live."
+msgstr "Support, updates and small adjustments after go-live."
+
+#: web/templates/v2/odoo_einfuehrung.html:179
+msgid "Melden, wenn etwas klemmt oder dazukommt."
+msgstr "Get in touch when something snags or comes up."
+
+#: web/templates/v2/odoo_einfuehrung.html:180
+msgid "Die Lösung trägt im Alltag – auch nächstes Jahr noch."
+msgstr "The solution holds up day to day – next year too."
+
+#: web/templates/v2/odoo_einfuehrung.html:186
+msgid "Im Alltag angekommen"
+msgstr "Arrived in daily operation"
+
+#: web/templates/v2/odoo_einfuehrung.html:195
+msgid "Lieber selber machen – mit Begleitung?"
+msgstr "Prefer to do it yourself – with guidance?"
+
+#: web/templates/v2/odoo_einfuehrung.html:196
+msgid ""
+"Für sehr kleine Budgets gibt es den begleiteten Weg: Sie richten Odoo selbst"
+" ein, ich coache Sie stundenweise durch die Entscheidungen und "
+"Stolpersteine. Sie lernen Ihr System von Grund auf kennen – und zahlen nur "
+"die Begleitung."
+msgstr ""
+"For very small budgets there's the guided route: you set up Odoo yourself "
+"and I coach you by the hour through the decisions and pitfalls. You get to "
+"know your system inside out – and only pay for the guidance."
+
+#: web/templates/v2/odoo_partner_zofingen.html:5
+msgid "Odoo Partner Region Zofingen & Aargau | Datalization"
+msgstr "Odoo Partner Zofingen region & Aargau | Datalization"
+
+#: web/templates/v2/odoo_partner_zofingen.html:6
+msgid ""
+"Odoo-Einführung, Datenübernahme und Betreuung für kleine Betriebe in der "
+"Region Zofingen, Olten und im Aargau. Persönlich, mit Festpreisofferte."
+msgstr ""
+"Odoo implementation, data migration and support for small businesses in the "
+"Zofingen region, Olten and across Aargau. Personal, with a fixed-price "
+"quote."
+
+#: web/templates/v2/odoo_partner_zofingen.html:7
+#: web/templates/v2/odoo_partner_zofingen.html:15
+msgid "Ihr Odoo-Partner in der Region Zofingen"
+msgstr "Your Odoo partner in the Zofingen region"
+
+#: web/templates/v2/odoo_partner_zofingen.html:16
+msgid ""
+"Geschäftssoftware einführen heisst zusammenarbeiten – und das geht am besten"
+" in der Nähe. Datalization begleitet kleine Betriebe in Zofingen, Olten, "
+"Sursee, Langenthal und im ganzen Aargau bei der Einführung und Betreuung von"
+" Odoo: vor Ort bei Ihnen, nicht nur per Videocall."
+msgstr ""
+"Introducing business software means working together – and that works best "
+"nearby. Datalization supports small businesses in Zofingen, Olten, Sursee, "
+"Langenthal and across Aargau with implementing and supporting Odoo: on site "
+"with you, not just by video call."
+
+#: web/templates/v2/odoo_partner_zofingen.html:23
+msgid "Warum ein regionaler Partner?"
+msgstr "Why a regional partner?"
+
+#: web/templates/v2/odoo_partner_zofingen.html:32
+msgid ""
+"Erstgespräch und Prozessaufnahme bei Ihnen im Betrieb – ich sehe, wie Sie "
+"wirklich arbeiten"
+msgstr ""
+"First call and process mapping right at your business – I see how you really"
+" work"
+
+#: web/templates/v2/odoo_partner_zofingen.html:36
+msgid "Schulung vor Ort, mit Ihren echten Daten"
+msgstr "On-site training, with your real data"
+
+#: web/templates/v2/odoo_partner_zofingen.html:40
+msgid "Kurze Wege, wenn es klemmt"
+msgstr "Short distances when something snags"
+
+#: web/templates/v2/odoo_partner_zofingen.html:50
+msgid "Was ich anbiete"
+msgstr "What I offer"
+
+#: web/templates/v2/odoo_partner_zofingen.html:52
+msgid ""
+"Odoo-Einführung mit Datenübernahme und Schulung, Automatisierung Ihrer "
+"Abläufe, individuelle Erweiterungen und laufende Betreuung – alles mit "
+"Festpreisofferte vor Projektstart."
+msgstr ""
+"Odoo implementation with data migration and training, automation of your "
+"processes, custom extensions and ongoing support – all with a fixed-price "
+"quote before the project starts."
+
+#: web/templates/v2/odoo_partner_zofingen.html:65
+msgid "Kostenloses Erstgespräch in Ihrer Nähe buchen"
+msgstr "Book a free call near you"
+
+#: web/templates/v2/odoo_vergleich.html:5
+msgid ""
+"Odoo im Vergleich: Excel, grosses ERP oder Eigenentwicklung? | Datalization"
+msgstr ""
+"Odoo compared: Excel, a large ERP or custom development? | Datalization"
+
+#: web/templates/v2/odoo_vergleich.html:6
+msgid ""
+"Odoo neben Excel-Insellösungen, grossen Standard-ERPs und Eigenentwicklung: "
+"wo jede Variante an Grenzen stösst – und warum Odoo für Kleinbetriebe der "
+"Mittelweg ist."
+msgstr ""
+"Odoo next to Excel and standalone tools, large standard ERPs and custom "
+"development: where each option hits its limits – and why Odoo is the middle "
+"ground for small businesses."
+
+#: web/templates/v2/odoo_vergleich.html:13
+#: web/templates/v2/partials/odoo_subnav.html:6
+msgid "Im Vergleich"
+msgstr "Compared"
+
+#: web/templates/v2/odoo_vergleich.html:15
+msgid ""
+"Für einen Kleinbetrieb gibt es grob drei Wege, Abläufe zu digitalisieren. "
+"Jeder hat seine Berechtigung – und seine Grenzen. Hier der ehrliche "
+"Überblick."
+msgstr ""
+"For a small business there are roughly three ways to digitalize processes. "
+"Each has its place – and its limits. Here's the honest overview."
+
+#: web/templates/v2/odoo_vergleich.html:23
+msgid "Drei Alternativen – und wo sie anstossen"
+msgstr "Three alternatives – and where they fall short"
+
+#: web/templates/v2/odoo_vergleich.html:27
+#: web/templates/v2/odoo_vergleich.html:60
+msgid "Excel & Insellösungen"
+msgstr "Excel & standalone tools"
+
+#: web/templates/v2/odoo_vergleich.html:28
+msgid ""
+"Günstig im Start und schnell zur Hand. Aber: Jede Information wird mehrfach "
+"erfasst, nichts stimmt ganz überein, und ein Gesamtüberblick entsteht nur "
+"von Hand. Mit dem Betrieb wächst das Chaos mit."
+msgstr ""
+"Cheap to start and quick to hand. But: every piece of information is entered"
+" several times, nothing quite matches, and an overview only comes together "
+"by hand. As the business grows, so does the chaos."
+
+#: web/templates/v2/odoo_vergleich.html:32
+msgid "Grosse Standard-ERPs"
+msgstr "Large standard ERPs"
+
+#: web/templates/v2/odoo_vergleich.html:33
+msgid ""
+"Mächtig und für Konzerne gemacht. Aber: teuer, überdimensioniert für einen "
+"Kleinbetrieb, mit langer Einführung und Beraterheeren. Sie zahlen für "
+"Funktionen, die Sie nie brauchen."
+msgstr ""
+"Powerful and built for large corporations. But: expensive, oversized for a "
+"small business, with a long rollout and armies of consultants. You pay for "
+"features you'll never use."
+
+#: web/templates/v2/odoo_vergleich.html:37
+#: web/templates/v2/odoo_vergleich.html:62
+msgid "Eigenentwicklung"
+msgstr "Custom development"
+
+#: web/templates/v2/odoo_vergleich.html:38
+msgid ""
+"Passt genau auf Ihren Betrieb. Aber: teuer und langwierig, und Sie sind "
+"komplett vom Entwickler abhängig – inklusive Wartung, Updates und allem, was"
+" später noch kommt."
+msgstr ""
+"Fits your business exactly. But: expensive and slow, and you're completely "
+"dependent on the developer – including maintenance, updates and everything "
+"that comes later."
+
+#: web/templates/v2/odoo_vergleich.html:45
+msgid "Odoo: der Mittelweg"
+msgstr "Odoo: the middle ground"
+
+#: web/templates/v2/odoo_vergleich.html:46
+msgid ""
+"Ein bewährter Standard, der zu Ihrem Betrieb passt – bezahlbar, in Wochen "
+"statt Monaten eingeführt, modular erweiterbar und ohne Abhängigkeit von "
+"einem einzelnen Produkt oder Entwickler. Für kleine Betriebe meist die beste"
+" Balance aus Kosten, Aufwand und Flexibilität."
+msgstr ""
+"A proven standard that fits your business – affordable, implemented in weeks"
+" rather than months, modular and without dependence on a single product or "
+"developer. For small businesses usually the best balance of cost, effort and"
+" flexibility."
+
+#: web/templates/v2/odoo_vergleich.html:54
+msgid "Im direkten Vergleich"
+msgstr "Side by side"
+
+#: web/templates/v2/odoo_vergleich.html:59
+msgid "Kriterium"
+msgstr "Criterion"
+
+#: web/templates/v2/odoo_vergleich.html:61
+msgid "Grosses ERP"
+msgstr "Large ERP"
+
+#: web/templates/v2/odoo_vergleich.html:68
+msgid "Kosten"
+msgstr "Cost"
+
+#: web/templates/v2/odoo_vergleich.html:69
+msgid "Niedrig im Start"
+msgstr "Low to start"
+
+#: web/templates/v2/odoo_vergleich.html:70
+#: web/templates/v2/odoo_vergleich.html:71
+msgid "Hoch"
+msgstr "High"
+
+#: web/templates/v2/odoo_vergleich.html:72
+msgid "Fair, nach Modulen"
+msgstr "Fair, by module"
+
+#: web/templates/v2/odoo_vergleich.html:75
+msgid "Einführung"
+msgstr "Rollout"
+
+#: web/templates/v2/odoo_vergleich.html:76
+msgid "Sofort, aber unstrukturiert"
+msgstr "Immediate, but unstructured"
+
+#: web/templates/v2/odoo_vergleich.html:77
+msgid "Monate"
+msgstr "Months"
+
+#: web/templates/v2/odoo_vergleich.html:78
+msgid "Langwierig"
+msgstr "Slow"
+
+#: web/templates/v2/odoo_vergleich.html:79
+msgid "Wochen"
+msgstr "Weeks"
+
+#: web/templates/v2/odoo_vergleich.html:82
+msgid "Flexibilität"
+msgstr "Flexibility"
+
+#: web/templates/v2/odoo_vergleich.html:83
+msgid "Gering"
+msgstr "Low"
+
+#: web/templates/v2/odoo_vergleich.html:84
+msgid "Hoch, aber komplex"
+msgstr "High, but complex"
+
+#: web/templates/v2/odoo_vergleich.html:85
+msgid "Maximal"
+msgstr "Maximum"
+
+#: web/templates/v2/odoo_vergleich.html:86
+msgid "Hoch, modular"
+msgstr "High, modular"
+
+#: web/templates/v2/odoo_vergleich.html:89
+msgid "Abhängigkeit"
+msgstr "Dependence"
+
+#: web/templates/v2/odoo_vergleich.html:90
+msgid "Insellösungen, kein Überblick"
+msgstr "Standalone tools, no overview"
+
+#: web/templates/v2/odoo_vergleich.html:91
+msgid "Vom Anbieter"
+msgstr "On the vendor"
+
+#: web/templates/v2/odoo_vergleich.html:92
+msgid "Vom Entwickler"
+msgstr "On the developer"
+
+#: web/templates/v2/odoo_vergleich.html:93
+msgid "Gering – offener Standard"
+msgstr "Low – open standard"
+
+#: web/templates/v2/odoo_vergleich.html:96
+msgid "Passt für"
+msgstr "Best for"
+
+#: web/templates/v2/odoo_vergleich.html:97
+msgid "Den allerersten Start"
+msgstr "The very first start"
+
+#: web/templates/v2/odoo_vergleich.html:98
+msgid "Konzerne"
+msgstr "Large corporations"
+
+#: web/templates/v2/odoo_vergleich.html:99
+msgid "Spezialfälle"
+msgstr "Special cases"
+
+#: web/templates/v2/odoo_vergleich.html:100
+msgid "Kleinbetriebe"
+msgstr "Small businesses"
+
+#: web/templates/v2/odoo_vergleich.html:113
+msgid ""
+"Welcher Weg für Sie der richtige ist, schauen wir gemeinsam an – ehrlich, "
+"auch wenn Odoo einmal nicht die Antwort ist."
+msgstr ""
+"We'll look together at which route is right for you – honestly, even when "
+"Odoo isn't the answer."
+
+#: web/templates/v2/odoo_wieso.html:5
+msgid "Wieso Odoo? ERP-Vorteile für Kleinbetriebe | Datalization"
+msgstr "Why Odoo? ERP benefits for small businesses | Datalization"
+
+#: web/templates/v2/odoo_wieso.html:6
+msgid ""
+"Warum Odoo die richtige Geschäftssoftware für kleine Betriebe ist: ein "
+"System statt fünf, modular erweiterbar, weltweit bewährt – und persönlich "
+"betreut aus der Region."
+msgstr ""
+"Why Odoo is the right business software for small businesses: one system "
+"instead of five, modular, proven worldwide – and supported personally from "
+"the region."
+
+#: web/templates/v2/odoo_wieso.html:15
+msgid ""
+"Odoo ist eine Geschäftssoftware, die alles verbindet, was ein Betrieb "
+"täglich braucht – von der Offerte bis zur Buchhaltung. Statt fünf Programme "
+"nebeneinander führen Sie Ihren Betrieb in einem System."
+msgstr ""
+"Odoo is business software that connects everything a business needs day to "
+"day – from the quote to the accounting. Instead of five programs side by "
+"side, you run your business in one system."
+
+#: web/templates/v2/odoo_wieso.html:23
+msgid "Ein System statt fünf"
+msgstr "One system instead of five"
+
+#: web/templates/v2/odoo_wieso.html:24
+msgid ""
+"Viele Kleinbetriebe tippen dieselbe Information mehrfach: einmal in die "
+"Offerten-Software, einmal in die Buchhaltung, einmal in eine Excel-Liste. "
+"Jede Doppelerfassung kostet Zeit und erzeugt Fehler. In Odoo hängt alles "
+"zusammen – was Sie einmal erfassen, ist überall verfügbar."
+msgstr ""
+"Many small businesses type the same information several times: once into the"
+" quoting software, once into the accounting, once into an Excel list. Every "
+"duplicate entry costs time and creates errors. In Odoo everything is "
+"connected – what you enter once is available everywhere."
+
+#: web/templates/v2/odoo_wieso.html:30 web/templates/v2/odoo_wieso.html:32
+msgid "Was für Odoo spricht"
+msgstr "What speaks for Odoo"
+
+#: web/templates/v2/odoo_wieso.html:34 web/templates/v2/odoo_wieso.html:74
+msgid "Ein System für alles"
+msgstr "One system for everything"
+
+#: web/templates/v2/odoo_wieso.html:35
+msgid "Verkauf bis Buchhaltung"
+msgstr "Sales to accounting"
+
+#: web/templates/v2/odoo_wieso.html:38 web/templates/v2/odoo_wieso.html:100
+msgid "Wächst mit Ihnen"
+msgstr "Grows with you"
+
+#: web/templates/v2/odoo_wieso.html:39
+msgid "Modular, Schritt für Schritt"
+msgstr "Modular, step by step"
+
+#: web/templates/v2/odoo_wieso.html:42
+msgid "Weltweit bewährt"
+msgstr "Proven worldwide"
+
+#: web/templates/v2/odoo_wieso.html:43
+msgid "Etablierter Standard"
+msgstr "An established standard"
+
+#: web/templates/v2/odoo_wieso.html:46
+msgid "Aus der Region"
+msgstr "From the region"
+
+#: web/templates/v2/odoo_wieso.html:47
+msgid "Persönlich betreut"
+msgstr "Personally supported"
+
+#: web/templates/v2/odoo_wieso.html:75
+msgid ""
+"Verkauf, Einkauf, Lager, Projekte, Rechnungen und Buchhaltung greifen "
+"ineinander. Ein Datenstand, auf den sich alle verlassen können."
+msgstr ""
+"Sales, purchasing, inventory, projects, invoices and accounting all work "
+"together. One set of data everyone can rely on."
+
+#: web/templates/v2/odoo_wieso.html:101
+msgid ""
+"Sie starten mit den Modulen, die Sie heute brauchen, und schalten später "
+"dazu, was dazukommt. Kein Neukauf, kein Systemwechsel."
+msgstr ""
+"You start with the modules you need today and switch on more later as it "
+"comes. No new purchase, no system change."
+
+#: web/templates/v2/odoo_wieso.html:125
+msgid "Weltweit bewährt, keine Sackgasse"
+msgstr "Proven worldwide, no dead end"
+
+#: web/templates/v2/odoo_wieso.html:126
+msgid ""
+"Millionen von Betrieben arbeiten mit Odoo. Sie setzen auf einen etablierten "
+"Standard – nicht auf ein Nischenprodukt, das morgen verschwindet."
+msgstr ""
+"Millions of companies work with Odoo. You're betting on an established "
+"standard – not a niche product that disappears tomorrow."
+
+#: web/templates/v2/odoo_wieso.html:148
+msgid "Betreut aus der Region"
+msgstr "Supported from the region"
+
+#: web/templates/v2/odoo_wieso.html:149
+msgid ""
+"Sie sprechen mit der Person, die Odoo bei Ihnen einführt – erreichbar, in "
+"der Nähe, auch nach dem Go-Live."
+msgstr ""
+"You talk to the person who implements Odoo for you – reachable, nearby, even"
+" after go-live."
+
+#: web/templates/v2/odoo_wieso.html:160
+msgid "Häufige Fragen"
+msgstr "Frequently asked questions"
+
+#: web/templates/v2/odoo_wieso.html:162
+msgid "Muss ich alle Odoo-Module auf einmal einführen?"
+msgstr "Do I have to roll out all Odoo modules at once?"
+
+#: web/templates/v2/odoo_wieso.html:162
+msgid ""
+"Nein. Wir starten mit den Modulen, die Sie heute brauchen, und schalten "
+"später dazu, was dazukommt – ohne Systemwechsel."
+msgstr ""
+"No. We start with the modules you need today and switch on more later as it "
+"comes – without changing systems."
+
+#: web/templates/v2/odoo_wieso.html:163
+msgid "Bin ich danach von Ihnen abhängig?"
+msgstr "Will I be dependent on you afterwards?"
+
+#: web/templates/v2/odoo_wieso.html:163
+msgid ""
+"Nein. Das Ziel ist, dass Ihr Team selbständig arbeitet. Und weil Odoo ein "
+"verbreiteter Standard ist, sind Sie nicht an eine einzelne Person gebunden."
+msgstr ""
+"No. The goal is for your team to work independently. And because Odoo is a "
+"widely used standard, you're not tied to a single person."
+
+#: web/templates/v2/odoo_wieso.html:164
+msgid "Läuft Odoo in der Cloud oder bei mir im Haus?"
+msgstr "Does Odoo run in the cloud or on my premises?"
+
+#: web/templates/v2/odoo_wieso.html:164
+msgid ""
+"Beides ist möglich. Wir wählen gemeinsam, was zu Ihrem Betrieb und Ihren "
+"Datenschutz-Anforderungen passt."
+msgstr ""
+"Both are possible. We choose together what fits your business and your data "
+"protection requirements."
+
+#: web/templates/v2/odoo_wieso.html:165
+msgid "Was passiert mit meinen bestehenden Daten?"
+msgstr "What happens to my existing data?"
+
+#: web/templates/v2/odoo_wieso.html:165
+msgid ""
+"Ich übernehme Kunden, Artikel, offene Posten und Historie sauber ins neue "
+"System. Nichts geht verloren – nachvollziehbar und geprüft."
+msgstr ""
+"I migrate customers, products, open items and history cleanly into the new "
+"system. Nothing gets lost – traceable and verified."
+
+#: web/templates/v2/odoo_wieso.html:166
+msgid "Was kostet Odoo?"
+msgstr "What does Odoo cost?"
+
+#: web/templates/v2/odoo_wieso.html:166
+msgid ""
+"Die Lizenz richtet sich nach den genutzten Modulen und Nutzern, die "
+"Einführung erhalten Sie als Festpreisofferte. Konkrete Zahlen besprechen wir"
+" im kostenlosen Erstgespräch."
+msgstr ""
+"The license depends on the modules and users you use; the implementation "
+"comes as a fixed-price quote. We discuss concrete figures in a free first "
+"call."
+
+#: web/templates/v2/odoo_wieso.html:167
+msgid "Ist Odoo auch für kleine Betriebe sinnvoll?"
+msgstr "Does Odoo make sense for small businesses too?"
+
+#: web/templates/v2/odoo_wieso.html:167
+msgid ""
+"Gerade dann. Sie zahlen nicht für ein Konzern-System, sondern für genau die "
+"Module, die Sie nutzen – und wachsen Schritt für Schritt."
+msgstr ""
+"Especially then. You don't pay for a corporate system, but for exactly the "
+"modules you use – and grow step by step."
+
+#: web/templates/v2/odoo_wieso.html:192
+msgid ""
+"Ob Odoo zu Ihrem Betrieb passt, finden wir im kostenlosen Erstgespräch "
+"heraus – ehrlich und unverbindlich."
+msgstr ""
+"Whether Odoo fits your business, we find out in a free first call – honestly"
+" and with no obligation."
+
+#: web/templates/v2/partials/footer.html:10
+msgid "Rechtliches"
+msgstr "Legal"
+
+#: web/templates/v2/partials/nav.html:9
+msgid "Hauptnavigation"
+msgstr "Main navigation"
+
+#: web/templates/v2/partials/odoo_subnav.html:3
+msgid "Übersicht"
+msgstr "Overview"
+
+#: web/templates/v2/ueber_datalization.html:5
+msgid "Über Datalization – Tihomir Danesic | Datalization"
+msgstr "About Datalization – Tihomir Danesic | Datalization"
+
+#: web/templates/v2/ueber_datalization.html:6
+msgid ""
+"Hinter Datalization steht eine Person: Tihomir Danesic, Betriebsökonom und "
+"Data Scientist. Loyal, neugierig, auf einfache Lösungen fokussiert – für "
+"kleine Betriebe in der Region Zofingen."
+msgstr ""
+"Behind Datalization is one person: Tihomir Danesic, a business economist and"
+" data scientist. Loyal, curious, focused on simple solutions – for small "
+"businesses in the Zofingen region."
+
+#: web/templates/v2/ueber_datalization.html:7
+#: web/templates/v2/ueber_datalization.html:31
+msgid "Über Datalization"
+msgstr "About Datalization"
+
+#: web/templates/v2/ueber_datalization.html:16
+msgid "Ich bin da – auch nächstes Jahr."
+msgstr "I'm here – next year too."
+
+#: web/templates/v2/ueber_datalization.html:17
+msgid ""
+"Hinter Datalization steht eine Person: Tihomir Danesic. Betriebsökonom, Data"
+" Scientist – und Ihr Ansprechpartner, der die Lösung baut und auch danach "
+"erreichbar bleibt."
+msgstr ""
+"Behind Datalization is one person: Tihomir Danesic. Business economist, data"
+" scientist – and your point of contact, who builds the solution and stays "
+"reachable afterwards."
+
+#: web/templates/v2/ueber_datalization.html:21
+msgid "[Grosses Foto Tihomir Danesic]"
+msgstr "[Large photo Tihomir Danesic]"
+
+#: web/templates/v2/ueber_datalization.html:33
+msgid ""
+"Datalization ist das Unternehmen von Tihomir Danesic – Betriebsökonom (BSc "
+"FHNW) und Data Scientist (MSc HSLU) mit Jahren Erfahrung in Datenmanagement,"
+" Produktentwicklung und Software. 2025 gegründet, mit einem klaren Fokus: "
+"kleine Betriebe digital so aufzustellen, dass der Alltag leichter wird – "
+"nicht komplizierter."
+msgstr ""
+"Datalization is the company of Tihomir Danesic – a business economist (BSc "
+"FHNW) and data scientist (MSc HSLU) with years of experience in data "
+"management, product development and software. Founded in 2025 with a clear "
+"focus: setting small businesses up digitally so that everyday work gets "
+"easier – not more complicated."
+
+#: web/templates/v2/ueber_datalization.html:34
+msgid ""
+"Was mich unterscheidet: Ich verbinde das Betriebswirtschaftliche (Abläufe, "
+"Zahlen, Kosten-Nutzen) mit dem Technischen (Software, Daten, "
+"Schnittstellen). Sie bekommen keine Theoriefolien, sondern eine Lösung, die "
+"läuft – und eine Person, die auch nächstes Jahr noch erreichbar ist, wenn "
+"Sie eine Frage haben."
+msgstr ""
+"What sets me apart: I combine the business side (processes, numbers, cost-"
+"benefit) with the technical side (software, data, interfaces). You don't get"
+" theory slides, but a solution that works – and a person who's still "
+"reachable next year when you have a question."
+
+#: web/templates/v2/ueber_datalization.html:43
+msgid "Woran Sie mich messen können"
+msgstr "What you can measure me by"
+
+#: web/templates/v2/ueber_datalization.html:47
+msgid "Loyal leben"
+msgstr "Living loyalty"
+
+#: web/templates/v2/ueber_datalization.html:48
+msgid "„Ich bin da, auch nächstes Jahr.“"
+msgstr "\"I'm here, next year too.\""
+
+#: web/templates/v2/ueber_datalization.html:49
+msgid ""
+"Ich baue keine Lösung, um dann zu verschwinden. Wer mit mir arbeitet, hat "
+"auch in einem Jahr noch dieselbe Ansprechperson – die das System kennt, weil"
+" sie es gebaut hat. Lieber eine langfristige Partnerschaft als der schnelle "
+"Abschluss."
+msgstr ""
+"I don't build a solution only to disappear. Anyone who works with me still "
+"has the same contact a year later – one who knows the system because they "
+"built it. I'd rather have a long-term partnership than a quick deal."
+
+#: web/templates/v2/ueber_datalization.html:53
+msgid "Eigenständig lernen"
+msgstr "Learning independently"
+
+#: web/templates/v2/ueber_datalization.html:54
+msgid "„Neugier statt Besserwisserei.“"
+msgstr "\"Curiosity over know-it-all.\""
+
+#: web/templates/v2/ueber_datalization.html:55
+msgid ""
+"Ich komme nicht mit der fertigen Meinung, sondern mit Fragen. Zuerst "
+"verstehe ich, wie Sie wirklich arbeiten – dann baue ich. Und ich zeige es "
+"Ihrem Team so, dass Sie am Ende selbständig sind, nicht abhängig von mir."
+msgstr ""
+"I don't come with a ready-made opinion, but with questions. First I "
+"understand how you really work – then I build. And I show your team in a way"
+" that leaves you independent in the end, not dependent on me."
+
+#: web/templates/v2/ueber_datalization.html:59
+msgid "Einfach Lösungen schaffen"
+msgstr "Creating simple solutions"
+
+#: web/templates/v2/ueber_datalization.html:60
+msgid "„Ruhe nach dem Chaos.“"
+msgstr "\"Calm after the chaos.\""
+
+#: web/templates/v2/ueber_datalization.html:61
+msgid ""
+"Gute Digitalisierung macht den Alltag leichter, nicht komplizierter. Ich "
+"reduziere, statt Funktionen anzuhäufen: klare Abläufe, saubere Daten, ein "
+"System statt fünf. Das Ziel ist Ruhe – nicht noch ein Tool mehr."
+msgstr ""
+"Good digitalization makes everyday work easier, not more complicated. I "
+"reduce instead of piling on features: clear processes, clean data, one "
+"system instead of five. The goal is calm – not yet another tool."
+
+#: web/templates/v2/ueber_datalization.html:72
+msgid "[Foto draussen – unterwegs / Zug / Region]"
+msgstr "[Outdoor photo – on the move / train / region]"
+
+#: web/templates/v2/ueber_datalization.html:73
+msgid "[Foto draussen – Zofingen / Wiggertal]"
+msgstr "[Outdoor photo – Zofingen / Wiggertal]"
+
+#: web/templates/v2/ueber_datalization.html:83
+msgid "Lernen wir uns kennen."
+msgstr "Let's get to know each other."
+
+#: web/templates/v2/ueber_datalization.html:84
+msgid ""
+"60 Minuten, kostenlos, unverbindlich – danach wissen Sie, ob wir zueinander "
+"passen."
+msgstr ""
+"60 minutes, free, no obligation – afterwards you'll know whether we're a "
+"fit."
+
+#: web/templates/v2/ueber_datalization.html:85
+msgid "Erstgespräch buchen"
+msgstr "Book a call"
+
+#: web/views.py:111
+msgid "Danke! Wir melden uns in Kürze."
+msgstr ""
+
+#: web/views.py:114
+msgid "Bitte prüfe deine Eingaben."
+msgstr ""
+
+#: web/views.py:155
+msgid "Erfolgreich angemeldet."
+msgstr ""
+
+#: web/views.py:157
+msgid "Falsches Passwort."
+msgstr ""
+
+#: web/views.py:170
 #, python-format
-msgid "[Datalization] Neue Kontaktanfrage von %(name)s"
+msgid "Status geändert für %(title)s"
 msgstr ""
 
-#: web/views.py:53 web/views.py:56
-msgid "Danke – wir haben Ihre Nachricht erhalten."
+#: web/views.py:176
+msgid "Kontakt markiert als erledigt."
 msgstr ""
 
-#: web/views.py:60
-msgid "Bitte überprüfen Sie Ihre Eingaben."
+#: web/views.py:182
+msgid "Start-Anfrage markiert als erledigt."
+msgstr ""
+
+#: web/views.py:310
+msgid "Spam detection triggered."
+msgstr ""
+
+#: web/views.py:315
+msgid "Bitte senden Sie das Formular erneut ab."
+msgstr ""
+
+#: web/views.py:324
+msgid "Bitte bestätigen Sie, dass Sie ein Mensch sind."
+msgstr ""
+
+#: web/views.py:400
+msgid "Ihre Nachricht wurde erfolgreich gesendet."
 msgstr ""
