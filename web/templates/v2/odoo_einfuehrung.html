@@ -18,6 +18,41 @@
   </div>
 </section>
 
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2>{% trans "Der Digitalisierungs-Check im Detail" %}</h2></div>
+    <div class="cards">
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg></div>
+        <h3>{% trans "Abläufe aufnehmen" %}</h3>
+        <p>{% blocktrans trimmed %}Ich schaue mir an, wie Sie heute wirklich arbeiten – vom Angebot bis zur Rechnung.{% endblocktrans %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.8"></rect><rect x="13.5" y="3.5" width="7" height="7" rx="1.8"></rect><rect x="3.5" y="13.5" width="7" height="7" rx="1.8"></rect><path d="M14 17h6M17 14v6"></path></svg></div>
+        <h3>{% trans "Module festlegen" %}</h3>
+        <p>{% blocktrans trimmed %}Wir bestimmen, welche Odoo-Module Sie wirklich brauchen – und welche nicht.{% endblocktrans %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="7" ry="3"></ellipse><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6"></path><path d="M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"></path></svg></div>
+        <h3>{% trans "Datenquellen sichten" %}</h3>
+        <p>{% blocktrans trimmed %}Wir schauen, welche Daten aus Altsystemen und Excel sauber mitkommen.{% endblocktrans %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l3 3v15H6z"></path><path d="M9 12.5l1.8 1.8 3.7-3.8"></path></svg></div>
+        <h3>{% trans "Festpreisofferte" %}</h3>
+        <p>{% blocktrans trimmed %}Sie erhalten einen konkreten Vorschlag mit Festpreis. Erst dann entscheiden Sie.{% endblocktrans %}</p>
+      </article>
+    </div>
+    <div class="timenote reveal">
+      <span class="tn-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5V12l3 2"></path></svg></span>
+      <div>
+        <h3>{% trans "Typischer Zeitrahmen" %}</h3>
+        <p>{% blocktrans trimmed %}Eine Einführung dauert bei kleinen Betrieben meist Wochen, nicht Monate – abhängig vom Umfang. Den genauen Rahmen halten wir in der Offerte fest.{% endblocktrans %}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="sec sec-alt">
   <div class="wrap">
     <h2 class="reveal">{% trans "Was Sie bekommen" %}</h2>
@@ -26,10 +61,74 @@
         <span class="jchip jchip--start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path></svg>{% trans "Projektstart" %}</span>
       </div>
       <ol class="jtrack">
-        <li class="jstop"><span class="jpin">01</span><div class="jcard"><h3>{% trans "Einrichtung, die zu Ihrem Betrieb passt." %}</h3><p>{% blocktrans trimmed %}Kein Riesensystem mit hundert Funktionen, die Sie nie brauchen – sondern genau die Module, mit denen Sie arbeiten.{% endblocktrans %}</p></div></li>
-        <li class="jstop"><span class="jpin">02</span><div class="jcard"><h3>{% trans "Ihre Daten ziehen mit." %}</h3><p>{% blocktrans trimmed %}Kunden, Artikel, offene Posten, Historie: Ich übernehme Ihre bestehenden Daten sauber ins neue System. Nichts geht verloren.{% endblocktrans %}</p></div></li>
-        <li class="jstop"><span class="jpin">03</span><div class="jcard"><h3>{% trans "Schulung, bis es sitzt." %}</h3><p>{% blocktrans trimmed %}Ihr Team arbeitet selbständig – das ist das Ziel, nicht die Abhängigkeit vom Dienstleister.{% endblocktrans %}</p></div></li>
-        <li class="jstop"><span class="jpin jpin--flag" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4M5 4l9 2.5L5 9"></path><path d="M5 4h11l-2 4 2 4H5"></path></svg></span><div class="jcard"><h3>{% trans "Betreuung danach." %}</h3><p>{% blocktrans trimmed %}Support, Updates und kleine Anpassungen, damit die Lösung im Alltag trägt.{% endblocktrans %}</p></div></li>
+        <li class="jstop">
+          <span class="jpin">01</span>
+          <details class="jcard" open>
+            <summary>
+              <div>
+                <h3>{% trans "Einrichtung, die zu Ihrem Betrieb passt." %}</h3>
+                <p>{% blocktrans trimmed %}Kein Riesensystem mit hundert Funktionen, die Sie nie brauchen – sondern genau die Module, mit denen Sie arbeiten.{% endblocktrans %}</p>
+              </div>
+              <span class="jtoggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span>
+            </summary>
+            <div class="jdetail">
+              <div class="jd-row"><span class="jd-label">{% trans "Was passiert" %}</span><p>{% blocktrans trimmed %}Wir richten genau die Module ein, die Sie brauchen, und passen Odoo an Ihre Abläufe an.{% endblocktrans %}</p></div>
+              <div class="jd-row"><span class="jd-label">{% trans "Ihr Part" %}</span><p>{% blocktrans trimmed %}Einmal zeigen, wie Sie heute arbeiten – den Rest übernehme ich.{% endblocktrans %}</p></div>
+              <div class="jd-row"><span class="jd-label">{% trans "Ergebnis" %}</span><p>{% blocktrans trimmed %}Ein System, das sich anfühlt wie für Ihren Betrieb gemacht.{% endblocktrans %}</p></div>
+            </div>
+          </details>
+        </li>
+        <li class="jstop">
+          <span class="jpin">02</span>
+          <details class="jcard">
+            <summary>
+              <div>
+                <h3>{% trans "Ihre Daten ziehen mit." %}</h3>
+                <p>{% blocktrans trimmed %}Kunden, Artikel, offene Posten, Historie: Ich übernehme Ihre bestehenden Daten sauber ins neue System. Nichts geht verloren.{% endblocktrans %}</p>
+              </div>
+              <span class="jtoggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span>
+            </summary>
+            <div class="jdetail">
+              <div class="jd-row"><span class="jd-label">{% trans "Was passiert" %}</span><p>{% blocktrans trimmed %}Ich hole Ihre Daten aus dem Altsystem, bereinige sie und bringe sie strukturiert ins neue.{% endblocktrans %}</p></div>
+              <div class="jd-row"><span class="jd-label">{% trans "Ihr Part" %}</span><p>{% blocktrans trimmed %}Zugang zu Ihren bestehenden Daten – als Export oder Systemzugriff.{% endblocktrans %}</p></div>
+              <div class="jd-row"><span class="jd-label">{% trans "Ergebnis" %}</span><p>{% blocktrans trimmed %}Alle Daten im neuen System – nachvollziehbar und geprüft.{% endblocktrans %}</p></div>
+            </div>
+          </details>
+        </li>
+        <li class="jstop">
+          <span class="jpin">03</span>
+          <details class="jcard">
+            <summary>
+              <div>
+                <h3>{% trans "Schulung, bis es sitzt." %}</h3>
+                <p>{% blocktrans trimmed %}Ihr Team arbeitet selbständig – das ist das Ziel, nicht die Abhängigkeit vom Dienstleister.{% endblocktrans %}</p>
+              </div>
+              <span class="jtoggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span>
+            </summary>
+            <div class="jdetail">
+              <div class="jd-row"><span class="jd-label">{% trans "Was passiert" %}</span><p>{% blocktrans trimmed %}Ich zeige Ihrem Team die tägliche Arbeit – an Ihren echten Daten, nicht an Demo-Beispielen.{% endblocktrans %}</p></div>
+              <div class="jd-row"><span class="jd-label">{% trans "Ihr Part" %}</span><p>{% blocktrans trimmed %}Ein paar Stunden Zeit Ihres Teams.{% endblocktrans %}</p></div>
+              <div class="jd-row"><span class="jd-label">{% trans "Ergebnis" %}</span><p>{% blocktrans trimmed %}Ihr Team arbeitet selbständig – ohne Abhängigkeit vom Dienstleister.{% endblocktrans %}</p></div>
+            </div>
+          </details>
+        </li>
+        <li class="jstop">
+          <span class="jpin jpin--flag" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4M5 4l9 2.5L5 9"></path><path d="M5 4h11l-2 4 2 4H5"></path></svg></span>
+          <details class="jcard">
+            <summary>
+              <div>
+                <h3>{% trans "Betreuung danach." %}</h3>
+                <p>{% blocktrans trimmed %}Support, Updates und kleine Anpassungen, damit die Lösung im Alltag trägt.{% endblocktrans %}</p>
+              </div>
+              <span class="jtoggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span>
+            </summary>
+            <div class="jdetail">
+              <div class="jd-row"><span class="jd-label">{% trans "Was passiert" %}</span><p>{% blocktrans trimmed %}Support, Updates und kleine Anpassungen nach dem Go-Live.{% endblocktrans %}</p></div>
+              <div class="jd-row"><span class="jd-label">{% trans "Ihr Part" %}</span><p>{% blocktrans trimmed %}Melden, wenn etwas klemmt oder dazukommt.{% endblocktrans %}</p></div>
+              <div class="jd-row"><span class="jd-label">{% trans "Ergebnis" %}</span><p>{% blocktrans trimmed %}Die Lösung trägt im Alltag – auch nächstes Jahr noch.{% endblocktrans %}</p></div>
+            </div>
+          </details>
+        </li>
       </ol>
       <div class="journey-cap">
         <span class="jchip jchip--end"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>{% trans "Im Alltag angekommen" %}</span>

@@ -114,6 +114,76 @@ a:hover { color: #0A0A0A; }
 .techchip { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: #4F4F4F; background: #FFFFFF; border: 1px solid #E4E4E0; border-radius: 999px; padding: 8px 15px; }
 .techchip .dot { width: 8px; height: 8px; border-radius: 50%; background: #F48B2D; }
 
+/* Modul-Raster (Odoo-Übersicht: "Was Sie in Odoo abbilden") */
+.modgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 12px; }
+.modcard { border: 1px solid #E4E4E0; border-radius: 14px; background: #FFFFFF; padding: 22px; transition: border-color .2s ease, transform .2s ease; }
+.modcard:hover { border-color: #0A0A0A; transform: translateY(-2px); }
+.modcard .mc-ico { width: 36px; height: 36px; border-radius: 10px; background: rgba(244, 139, 45, .12); color: #D9741A; display: flex; align-items: center; justify-content: center; margin-bottom: 13px; }
+.modcard .mc-ico svg { width: 19px; height: 19px; }
+.modcard h3 { font-size: 16px; margin-bottom: 4px; }
+.modcard p { color: #4F4F4F; font-size: 14px; margin: 0; }
+@media (max-width: 768px) { .modgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .modgrid { grid-template-columns: minmax(0, 1fr); } }
+
+/* Interaktiver Tabs-Showcase (Wieso Odoo: "Was für Odoo spricht") */
+.showcase { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 24px; margin-top: 12px; align-items: start; }
+.sc-tabs { display: flex; flex-direction: column; gap: 10px; }
+.sc-tab { text-align: left; background: #FFFFFF; border: 1px solid #E4E4E0; border-radius: 14px; padding: 17px 20px; cursor: pointer; font: inherit; color: #0A0A0A; display: flex; flex-direction: column; gap: 3px; transition: border-color .2s ease, background .2s ease, color .2s ease; }
+.sc-tab:hover { border-color: #0A0A0A; }
+.sc-tab .sc-tab-title { font-family: var(--head); font-weight: 600; font-size: 16px; }
+.sc-tab .sc-tab-sub { font-size: 13px; color: #6B6B6B; }
+.sc-tab.is-active { background: #0A0A0A; border-color: #0A0A0A; color: #FFFFFF; }
+.sc-tab.is-active .sc-tab-sub { color: #BDBDBD; }
+.sc-tab:focus-visible { outline: 2px solid #F48B2D; outline-offset: 2px; }
+.sc-panel { display: none; }
+.sc-panel.is-active { display: block; }
+.js .sc-panel.is-active { animation: scin .35s cubic-bezier(.2, .7, .2, 1); }
+@keyframes scin { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.sc-card { border: 1px solid #E4E4E0; border-radius: 20px; background: #FFFFFF; overflow: hidden; }
+.sc-viz { background-color: #FFFFFF; background-image: radial-gradient(rgba(10, 10, 10, .05) 1px, transparent 1.6px); background-size: 18px 18px; border-bottom: 1px solid #EDEDEA; padding: 28px; display: flex; align-items: center; justify-content: center; min-height: 200px; }
+.sc-viz svg { width: 100%; max-width: 330px; height: auto; display: block; }
+.sc-text { padding: 26px 28px; }
+.sc-text h3 { font-size: 20px; margin-bottom: 8px; }
+.sc-text p { color: #4F4F4F; margin: 0; font-size: 15.5px; }
+@media (max-width: 768px) {
+  .showcase { grid-template-columns: minmax(0, 1fr); }
+  .sc-tabs { flex-direction: row; overflow-x: auto; gap: 8px; padding-bottom: 4px; }
+  .sc-tab { flex: 0 0 auto; }
+  .sc-tab .sc-tab-sub { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .js .sc-panel.is-active { animation: none; } .sc-tab { transition: none; } }
+
+/* FAQ-Akkordeon */
+.faq { max-width: 780px; margin-top: 10px; display: grid; gap: 12px; }
+.faq-item { border: 1px solid #E4E4E0; border-radius: 14px; background: #FFFFFF; padding: 0 24px; }
+.faq-item summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 20px 0; font-family: var(--head); font-weight: 600; font-size: 17px; color: #0A0A0A; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item .fq-plus { flex: none; width: 22px; height: 22px; position: relative; }
+.faq-item .fq-plus::before, .faq-item .fq-plus::after { content: ""; position: absolute; background: #F48B2D; border-radius: 2px; }
+.faq-item .fq-plus::before { left: 3px; right: 3px; top: 10px; height: 2px; }
+.faq-item .fq-plus::after { top: 3px; bottom: 3px; left: 10px; width: 2px; transition: transform .2s ease, opacity .2s ease; }
+.faq-item[open] .fq-plus::after { transform: scaleY(0); opacity: 0; }
+.faq-item .fq-a { color: #4F4F4F; font-size: 15.5px; line-height: 1.6; padding: 0 0 22px; margin: 0; max-width: 66ch; }
+
+/* Vergleichstabelle */
+.cmpwrap { margin-top: 14px; overflow-x: auto; border: 1px solid #E4E4E0; border-radius: 16px; }
+.cmptable { width: 100%; min-width: 680px; border-collapse: collapse; font-size: 15px; }
+.cmptable th, .cmptable td { text-align: left; padding: 16px 20px; border-bottom: 1px solid #EDEDEA; vertical-align: top; color: #4F4F4F; }
+.cmptable tr:last-child th, .cmptable tr:last-child td { border-bottom: 0; }
+.cmptable thead th { font-family: var(--head); font-weight: 700; color: #0A0A0A; font-size: 14px; }
+.cmptable tbody th { font-weight: 600; color: #0A0A0A; white-space: nowrap; }
+.cmptable .col-odoo { background: rgba(244, 139, 45, .07); color: #0A0A0A; }
+.cmptable thead .col-odoo { display: table-cell; }
+.cmptable thead .col-odoo span { display: inline-flex; align-items: center; gap: 7px; }
+.cmptable thead .col-odoo .cdot { width: 8px; height: 8px; border-radius: 50%; background: #F48B2D; }
+
+/* Zeitrahmen-Hinweis */
+.timenote { margin-top: 28px; display: flex; gap: 16px; align-items: flex-start; padding: 22px 26px; border: 1px solid #E4E4E0; border-radius: 16px; background: #FFFFFF; }
+.timenote .tn-ico { flex: none; width: 42px; height: 42px; border-radius: 12px; background: rgba(244, 139, 45, .12); color: #D9741A; display: flex; align-items: center; justify-content: center; }
+.timenote .tn-ico svg { width: 22px; height: 22px; }
+.timenote h3 { font-size: 17px; margin-bottom: 4px; }
+.timenote p { color: #4F4F4F; font-size: 15px; margin: 0; }
+
 /* Vergleich: Odoo-Verdikt-Box (hell, hervorgehoben) */
 .verdict { margin-top: 24px; display: flex; gap: 20px; align-items: flex-start; padding: 28px 30px; border-radius: 20px; border: 1px solid #F48B2D; background: rgba(244, 139, 45, .06); }
 .verdict .vmark { flex: none; width: 46px; height: 46px; border-radius: 13px; background: #0A0A0A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; }
@@ -213,6 +283,19 @@ a:hover { color: #0A0A0A; }
 .jcard:hover { transform: translateY(-3px); border-color: #0A0A0A; box-shadow: 0 22px 44px -30px rgba(10, 10, 10, .4); }
 .jcard h3 { font-size: 20px; line-height: 1.25; margin-bottom: 8px; }
 .jcard p { color: #4F4F4F; font-size: 15px; margin: 0; }
+/* Aufklappbare Stationen (details/summary) */
+.jcard > summary { list-style: none; cursor: pointer; display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
+.jcard > summary::-webkit-details-marker { display: none; }
+.jtoggle { flex: none; width: 26px; height: 26px; border-radius: 8px; border: 1px solid #E4E4E0; display: flex; align-items: center; justify-content: center; color: #0A0A0A; margin-top: 2px; transition: transform .2s ease, background .2s ease, border-color .2s ease; }
+.jtoggle svg { width: 14px; height: 14px; }
+.jcard[open] .jtoggle { transform: rotate(90deg); background: #F48B2D; border-color: #F48B2D; }
+.jcard[open] { border-color: #0A0A0A; }
+.jdetail { margin-top: 16px; padding-top: 16px; border-top: 1px solid #EDEDEA; display: grid; gap: 12px; }
+.js .jcard[open] .jdetail { animation: scin .3s cubic-bezier(.2, .7, .2, 1); }
+.jd-row { display: grid; grid-template-columns: 112px 1fr; gap: 12px; align-items: baseline; }
+.jd-label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #D9741A; }
+.jd-row p { color: #4F4F4F; font-size: 14.5px; margin: 0; }
+@media (max-width: 480px) { .jd-row { grid-template-columns: 1fr; gap: 2px; } }
 @media (max-width: 768px) {
   .journey::before { left: 21px; }
   .journey-cap { justify-content: flex-start; padding-left: 2px; }
@@ -220,7 +303,7 @@ a:hover { color: #0A0A0A; }
   .jstop { width: auto; margin-left: 58px; }
   .jstop:nth-child(odd) .jpin, .jstop:nth-child(even) .jpin { left: -58px; right: auto; }
 }
-@media (prefers-reduced-motion: reduce) { .jcard { transition: none; } .jcard:hover { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .jcard, .jtoggle { transition: none; } .jcard:hover { transform: none; } .js .jcard[open] .jdetail { animation: none; } }
 
 /* ---------- "Was Sie bekommen" (Unterseiten) ---------- */
 .gets { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 56px; }
@@ -314,6 +397,16 @@ a:hover { color: #0A0A0A; }
 .box-text { position: relative; display: flex; align-items: center; gap: 24px; font-size: 21px; line-height: 1.45; color: #D6D6D6; max-width: 720px; }
 .box .btn { position: relative; }
 
+/* ---------- Odoo-Partner-Hervorhebung ---------- */
+.partner-chip { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: #FFFFFF; background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .18); border-radius: 999px; padding: 7px 15px 7px 9px; margin-bottom: 22px; }
+.partner-chip .pc-ico { flex: none; width: 22px; height: 22px; border-radius: 50%; background: #F48B2D; color: #0A0A0A; display: flex; align-items: center; justify-content: center; }
+.partner-chip .pc-ico svg { width: 13px; height: 13px; }
+.partner-badge { display: inline-flex; align-items: center; gap: 14px; padding: 16px 22px; border: 1px solid #E4E4E0; border-radius: 16px; background: #FFFFFF; }
+.partner-badge .pb-ico { flex: none; width: 44px; height: 44px; border-radius: 12px; background: #0A0A0A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; }
+.partner-badge .pb-ico svg { width: 24px; height: 24px; }
+.partner-badge .pb-sub { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #6B6B6B; margin-bottom: 2px; }
+.partner-badge .pb-main { font-family: var(--head); font-weight: 700; font-size: 16px; color: #0A0A0A; letter-spacing: -0.01em; }
+
 /* ---------- Vertrauen ---------- */
 .trust { display: grid; grid-template-columns: minmax(0, 1fr); gap: 72px; align-items: start; }
 .trust.has-photo { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
@@ -383,6 +476,7 @@ a:hover { color: #0A0A0A; }
 .form-input::placeholder, .form-textarea::placeholder { color: #9A9A95; }
 .btn--full { width: 100%; justify-content: center; }
 .form-agree { color: #6B6B6B; font-size: 13px; margin: 0; }
+.form-hint { font-size: 13px; color: #6B6B6B; margin-top: 2px; }
 .form-messages { display: grid; gap: 10px; margin-bottom: 20px; }
 .form-message { padding: 12px 16px; border-radius: 12px; font-size: 14px; }
 .form-message-success, .form-message.success { background: rgba(244, 139, 45, .1); border: 1px solid rgba(244, 139, 45, .4); color: #0A0A0A; }

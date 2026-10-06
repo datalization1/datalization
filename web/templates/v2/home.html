@@ -12,6 +12,7 @@
 <section class="hero">
   <div class="wrap">
     <div>
+      <span class="partner-chip"><span class="pc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>{% if LANGUAGE_CODE == 'de' %}Offizieller Odoo-Partner{% else %}Official Odoo Partner{% endif %}</span>
       <h1>{% blocktrans trimmed %}Ihr Betrieb in einem System – <em>statt in fünf Programmen.</em>{% endblocktrans %}</h1>
       <p>{% blocktrans trimmed %}Datalization macht kleine Betriebe digital effizient: Geschäftssoftware, Automatisierung und saubere Daten, alles aus einer Hand. Für Betriebe ohne eigene IT-Abteilung – in der Region Zofingen und darüber hinaus.{% endblocktrans %}</p>
       <a class="btn" href="{% url 'v2:booking' %}" data-loader>{% trans "Kostenloses Erstgespräch buchen" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
@@ -111,11 +112,14 @@
         <p class="lead"><strong>{% trans "Bei mir sprechen Sie immer mit der Person, die Ihre Lösung auch baut." %}</strong> {% blocktrans trimmed %}Ich bin Tihomir Danesic, Gründer von Datalization – Betriebsökonom und Data Scientist, zuhause in Software, Daten und den Abläufen kleiner Betriebe.{% endblocktrans %}</p>
         <p class="sub">{% blocktrans trimmed %}Und falls Ihr Unternehmen eine Nummer zu gross für mich ist, sage ich Ihnen das im Erstgespräch offen – und gerne auch, wer dann die bessere Wahl ist.{% endblocktrans %}</p>
         <a class="more" style="border-top:0;padding-top:24px" href="{% url 'v2:ueber_datalization' %}">{% if LANGUAGE_CODE == 'de' %}Über Datalization{% else %}About Datalization{% endif %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-        {% if show_badge or show_referenz %}
         <div class="proof">
-          {% if show_badge %}
-            <div class="ph badge">{% trans "[Odoo-Partner-Badge]" %}</div>
-          {% endif %}
+          <div class="partner-badge">
+            <span class="pb-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"></path><path d="M9.5 12l1.8 1.8 3.5-3.6"></path></svg></span>
+            <div>
+              <div class="pb-sub">Odoo</div>
+              <div class="pb-main">{% if LANGUAGE_CODE == 'de' %}Offizieller Odoo-Partner{% else %}Official Odoo Partner{% endif %}</div>
+            </div>
+          </div>
           {% if show_referenz %}
             <div class="ref">
               <div><b>{% trans "Vorher" %}</b>[…]</div>
@@ -124,7 +128,6 @@
             </div>
           {% endif %}
         </div>
-        {% endif %}
       </div>
     </div>
   </div>

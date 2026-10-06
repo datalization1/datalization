@@ -11,6 +11,7 @@
   <div class="wrap">
     <div>
       <div class="crumb"><span class="dot" aria-hidden="true"></span><a href="{% url 'v2:home' %}">{% trans "Startseite" %}</a><span aria-hidden="true">/</span><span>Odoo</span></div>
+      <span class="partner-chip"><span class="pc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>{% if LANGUAGE_CODE == 'de' %}Offizieller Odoo-Partner{% else %}Official Odoo Partner{% endif %}</span>
       <h1>{% trans "Offerten, Rechnungen, Lager und Buchhaltung – endlich an einem Ort." %}</h1>
       <p>{% blocktrans trimmed %}Viele Kleinbetriebe arbeiten mit einem Programm für Offerten, einem für die Buchhaltung, Excel fürs Lager und dem Mail-Postfach als Gedächtnis. Jede Information wird mehrfach erfasst, nichts stimmt ganz überein, und der Überblick entsteht am Sonntagabend von Hand.{% endblocktrans %}</p>
       {% include 'v2/partials/odoo_subnav.html' %}
@@ -34,8 +35,48 @@
   </div>
 </section>
 
-{# ==================== DREI WEGE, MEHR ZU ERFAHREN ==================== #}
+{# ==================== WAS SIE IN ODOO ABBILDEN (Entwurf) ==================== #}
 <section class="sec sec-alt">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2>{% trans "Was Sie in Odoo abbilden" %}</h2></div>
+    <div class="modgrid reveal">
+      <div class="modcard">
+        <span class="mc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l2-5h14l2 5"></path><path d="M4 10v9h16v-9"></path><path d="M9 14h6"></path></svg></span>
+        <h3>{% trans "Verkauf & CRM" %}</h3>
+        <p>{% blocktrans trimmed %}Leads, Offerten und Aufträge – vom Erstkontakt bis zum Abschluss.{% endblocktrans %}</p>
+      </div>
+      <div class="modcard">
+        <span class="mc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16l-1.5 9H6.5z"></path><circle cx="9" cy="20" r="1.4"></circle><circle cx="17" cy="20" r="1.4"></circle></svg></span>
+        <h3>{% trans "Einkauf" %}</h3>
+        <p>{% blocktrans trimmed %}Bestellungen, Lieferanten und Nachbestellung an einem Ort.{% endblocktrans %}</p>
+      </div>
+      <div class="modcard">
+        <span class="mc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4z"></path><path d="M3 7v10l9 4 9-4V7"></path><path d="M12 11v10"></path></svg></span>
+        <h3>{% trans "Lager" %}</h3>
+        <p>{% blocktrans trimmed %}Bestände sowie Ein- und Ausgänge – immer aktuell.{% endblocktrans %}</p>
+      </div>
+      <div class="modcard">
+        <span class="mc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11"></path><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"></path></svg></span>
+        <h3>{% trans "Projekte" %}</h3>
+        <p>{% blocktrans trimmed %}Aufgaben, Zeiterfassung und Fortschritt im Blick.{% endblocktrans %}</p>
+      </div>
+      <div class="modcard">
+        <span class="mc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l3 3v15H6z"></path><path d="M9 9h6M9 13h6M9 17h4"></path></svg></span>
+        <h3>{% trans "Rechnungen & Buchhaltung" %}</h3>
+        <p>{% blocktrans trimmed %}Rechnungen stellen, Zahlungen verfolgen – bis zur MwSt-Abrechnung.{% endblocktrans %}</p>
+      </div>
+      <div class="modcard">
+        <span class="mc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18z"></path></svg></span>
+        <h3>{% trans "Website & Shop" %}</h3>
+        <p>{% blocktrans trimmed %}Onlineauftritt und Verkauf – direkt mit Lager und Buchhaltung verbunden.{% endblocktrans %}</p>
+      </div>
+    </div>
+    <p class="reveal" style="color:#4F4F4F;margin-top:22px;max-width:60ch">{% blocktrans trimmed %}… und viele weitere Module. Sie schalten nur frei, was Sie heute brauchen – und ergänzen später, was dazukommt.{% endblocktrans %}</p>
+  </div>
+</section>
+
+{# ==================== DREI WEGE, MEHR ZU ERFAHREN ==================== #}
+<section class="sec">
   <div class="wrap">
     <div class="sec-head reveal"><h2>{% trans "Mehr zu Odoo" %}</h2></div>
     <div class="cards">
@@ -61,7 +102,7 @@
   </div>
 </section>
 
-<section class="sec">
+<section class="sec sec-alt">
   <div class="wrap">
     <div class="box reveal">
       <div class="box-text">

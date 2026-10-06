@@ -2,17 +2,17 @@
 {% load i18n static %}
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block title %}{% if LANGUAGE_CODE == 'de' %}Erstgespräch buchen{% else %}Book a call{% endif %} – Datalization{% endblock %}
-{% block meta_description %}{% if LANGUAGE_CODE == 'de' %}Buchen Sie Ihr kostenloses Erstgespräch – 60 Minuten, unverbindlich. Wir schauen gemeinsam, ob und wie Digitalisierung für Ihren Betrieb passt.{% else %}Book your free first call – 60 minutes, non-binding. We see together if and how digitalization fits your business.{% endif %}{% endblock %}
-{% block og_title %}{% if LANGUAGE_CODE == 'de' %}Erstgespräch buchen{% else %}Book a call{% endif %} – Datalization{% endblock %}
+{% block title %}{% if LANGUAGE_CODE == 'de' %}Erstgespräch anfragen{% else %}Request a call{% endif %} – Datalization{% endblock %}
+{% block meta_description %}{% if LANGUAGE_CODE == 'de' %}Fragen Sie Ihr kostenloses Erstgespräch an – 60 Minuten, unverbindlich. Wir melden uns persönlich und vereinbaren mit Ihnen einen Termin.{% else %}Request your free first call – 60 minutes, non-binding. We get back to you personally to arrange a time.{% endif %}{% endblock %}
+{% block og_title %}{% if LANGUAGE_CODE == 'de' %}Erstgespräch anfragen{% else %}Request a call{% endif %} – Datalization{% endblock %}
 
 {% block content %}
 <section class="hero hero--sub hero--text">
   <div class="wrap">
     <div>
-      <div class="crumb"><span class="dot" aria-hidden="true"></span><a href="{% url 'v2:home' %}">{% trans "Startseite" %}</a><span aria-hidden="true">/</span><span>{% if LANGUAGE_CODE == 'de' %}Erstgespräch buchen{% else %}Book a call{% endif %}</span></div>
-      <h1>{% if LANGUAGE_CODE == 'de' %}Erstgespräch buchen{% else %}Book a call{% endif %}</h1>
-      <p>{% if LANGUAGE_CODE == 'de' %}Kostenlos, 60 Minuten, unverbindlich. Wir schauen gemeinsam, ob und wie sich Digitalisierung für Ihren Betrieb lohnt.{% else %}Free, 60 minutes, non-binding. We see together if and how digitalization pays off for your business.{% endif %}</p>
+      <div class="crumb"><span class="dot" aria-hidden="true"></span><a href="{% url 'v2:home' %}">{% trans "Startseite" %}</a><span aria-hidden="true">/</span><span>{% if LANGUAGE_CODE == 'de' %}Erstgespräch{% else %}First call{% endif %}</span></div>
+      <h1>{% if LANGUAGE_CODE == 'de' %}Erstgespräch anfragen{% else %}Request a call{% endif %}</h1>
+      <p>{% if LANGUAGE_CODE == 'de' %}Kostenlos, 60 Minuten, unverbindlich. Sagen Sie kurz, worum es geht – ich melde mich persönlich und wir vereinbaren einen Termin, der Ihnen passt.{% else %}Free, 60 minutes, non-binding. Tell me briefly what it’s about – I’ll get back to you personally and we’ll arrange a time that suits you.{% endif %}</p>
     </div>
   </div>
 </section>
@@ -43,8 +43,8 @@
         <div class="panel">
           <h3>{% if LANGUAGE_CODE == 'de' %}So funktioniert's{% else %}How it works{% endif %}</h3>
           <ul class="booking-steps">
-            <li><span class="n">1</span><div><div class="step-title">{% if LANGUAGE_CODE == 'de' %}Formular ausfüllen{% else %}Fill the form{% endif %}</div><div class="step-text">{% if LANGUAGE_CODE == 'de' %}Teilen Sie uns Ihre Kontaktdaten und Ihren Wunschtermin mit.{% else %}Share your contact details and preferred date.{% endif %}</div></div></li>
-            <li><span class="n">2</span><div><div class="step-title">{% if LANGUAGE_CODE == 'de' %}Terminbestätigung{% else %}Confirm appointment{% endif %}</div><div class="step-text">{% if LANGUAGE_CODE == 'de' %}Wir melden uns innerhalb von 24 h mit Terminvorschlägen.{% else %}We reply within 24h with slots.{% endif %}</div></div></li>
+            <li><span class="n">1</span><div><div class="step-title">{% if LANGUAGE_CODE == 'de' %}Kurz anfragen{% else %}Send a short request{% endif %}</div><div class="step-text">{% if LANGUAGE_CODE == 'de' %}Sagen Sie uns, worum es geht und wann Sie ungefähr Zeit hätten.{% else %}Tell us what it’s about and roughly when you’re available.{% endif %}</div></div></li>
+            <li><span class="n">2</span><div><div class="step-title">{% if LANGUAGE_CODE == 'de' %}Persönliche Rückmeldung{% else %}Personal reply{% endif %}</div><div class="step-text">{% if LANGUAGE_CODE == 'de' %}Ich melde mich innerhalb von 24 h persönlich oder telefonisch und wir vereinbaren einen Termin.{% else %}I get back to you within 24h, in person or by phone, and we arrange a time.{% endif %}</div></div></li>
             <li><span class="n">3</span><div><div class="step-title">{% if LANGUAGE_CODE == 'de' %}60-Minuten-Gespräch{% else %}60-minute call{% endif %}</div><div class="step-text">{% if LANGUAGE_CODE == 'de' %}Gespräch per Telefon, Videocall oder vor Ort.{% else %}Call via phone, video, or onsite.{% endif %}</div></div></li>
             <li><span class="n">4</span><div><div class="step-title">{% if LANGUAGE_CODE == 'de' %}Nächste Schritte{% else %}Next steps{% endif %}</div><div class="step-text">{% if LANGUAGE_CODE == 'de' %}Sie erhalten konkrete Empfehlungen.{% else %}You receive concrete recommendations.{% endif %}</div></div></li>
           </ul>
@@ -53,7 +53,7 @@
 
       <div class="form-card">
         <h2>{% if LANGUAGE_CODE == 'de' %}Ihre Kontaktdaten{% else %}Your contact details{% endif %}</h2>
-        <p class="form-note">{% if LANGUAGE_CODE == 'de' %}Wir melden uns innerhalb von 24 Stunden bei Ihnen.{% else %}We’ll get back to you within 24 hours.{% endif %}</p>
+        <p class="form-note">{% if LANGUAGE_CODE == 'de' %}Ich melde mich innerhalb von 24 Stunden persönlich bei Ihnen.{% else %}I’ll get back to you personally within 24 hours.{% endif %}</p>
         <form method="post" action="{% url 'v2:booking_submit' %}" class="form">
           {% csrf_token %}
           <input type="hidden" name="language" value="{{ LANGUAGE_CODE }}">
@@ -88,8 +88,9 @@
             <label class="form-label" for="branches">{% if LANGUAGE_CODE == 'de' %}Worum geht es?{% else %}What is it about?{% endif %} <span class="req">*</span></label>
             <select id="branches" name="branches" class="form-select" required>
               <option value="general">{% if LANGUAGE_CODE == 'de' %}Allgemeine Beratung{% else %}General consulting{% endif %}</option>
-              <option value="geschaeftssoftware">{% if LANGUAGE_CODE == 'de' %}Geschäftssoftware (Odoo){% else %}Business software (Odoo){% endif %}</option>
+              <option value="odoo">Odoo</option>
               <option value="digitalisierung">{% if LANGUAGE_CODE == 'de' %}Digitalisierung &amp; Entwicklung{% else %}Digitalization &amp; Development{% endif %}</option>
+              <option value="data-analytics">Data &amp; Analytics</option>
               <option value="monekey">Monekey</option>
             </select>
           </div>
@@ -101,8 +102,9 @@
 
           <div class="form-row">
             <div class="form-field">
-              <label class="form-label" for="pains">{% if LANGUAGE_CODE == 'de' %}Wunschtermin (optional){% else %}Preferred date (optional){% endif %}</label>
-              <input type="date" id="pains" name="pains" class="form-input">
+              <label class="form-label" for="pains">{% if LANGUAGE_CODE == 'de' %}Ab wann hätten Sie Zeit? (optional){% else %}From when are you available? (optional){% endif %}</label>
+              <input type="date" id="pains" name="pains" class="form-input" min="{{ today }}">
+              <span class="form-hint">{% if LANGUAGE_CODE == 'de' %}Datum im Format Tag.Monat.Jahr – ab heute wählbar.{% else %}Date as day.month.year – selectable from today.{% endif %}</span>
             </div>
             <div class="form-field">
               <label class="form-label" for="start_mode">{% if LANGUAGE_CODE == 'de' %}Bevorzugte Uhrzeit{% else %}Preferred time{% endif %}</label>
@@ -114,7 +116,7 @@
             </div>
           </div>
 
-          <button type="submit" class="btn btn--full">{% if LANGUAGE_CODE == 'de' %}Erstgespräch buchen{% else %}Book a call{% endif %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+          <button type="submit" class="btn btn--full">{% if LANGUAGE_CODE == 'de' %}Erstgespräch anfragen{% else %}Request a call{% endif %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
           <p class="form-agree">{% if LANGUAGE_CODE == 'de' %}Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Daten gemäss unserer Datenschutzerklärung zu.{% else %}By submitting you agree to the processing of your data as described in our privacy policy.{% endif %}</p>
         </form>
       </div>

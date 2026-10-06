@@ -11,6 +11,7 @@
   <div class="wrap">
     <div>
       <div class="crumb"><span class="dot" aria-hidden="true"></span><a href="{% url 'v2:home' %}">{% trans "Startseite" %}</a><span aria-hidden="true">/</span><span>{% if LANGUAGE_CODE == 'de' %}Region Zofingen{% else %}Zofingen region{% endif %}</span></div>
+      <span class="partner-chip"><span class="pc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>{% if LANGUAGE_CODE == 'de' %}Offizieller Odoo-Partner{% else %}Official Odoo Partner{% endif %}</span>
       <h1>{% trans "Ihr Odoo-Partner in der Region Zofingen" %}</h1>
       <p>{% blocktrans trimmed %}Geschäftssoftware einführen heisst zusammenarbeiten – und das geht am besten in der Nähe. Datalization begleitet kleine Betriebe in Zofingen, Olten, Sursee, Langenthal und im ganzen Aargau bei der Einführung und Betreuung von Odoo: vor Ort bei Ihnen, nicht nur per Videocall.{% endblocktrans %}</p>
     </div>

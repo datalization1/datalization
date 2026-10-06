@@ -164,8 +164,15 @@ def v2_kontakt(request):
 # ---------------------------------------------------------------------------
 # Erstgespräch / Booking (gleiche Logik wie web.views.start_submit)
 # ---------------------------------------------------------------------------
+def _booking_context(request, form=None):
+    return {
+        "form": form or StartForm(initial={"language": request.LANGUAGE_CODE}),
+        "today": timezone.localdate().isoformat(),
+    }
+
+
 def v2_booking(request):
-    return render(request, "v2/booking.html", {"form": StartForm(initial={"language": request.LANGUAGE_CODE})})
+    return render(request, "v2/booking.html", _booking_context(request))
 
 
 @require_http_methods(["POST"])
@@ -207,4 +214,4 @@ def v2_booking_submit(request):
 
     messages.error(request, "Bitte prüfen Sie Ihre Eingaben." if request.LANGUAGE_CODE == "de"
                    else "Please check your input.")
-    return render(request, "v2/booking.html", {"form": form})
+    return render(request, "v2/booking.html", _booking_context(request, form))
