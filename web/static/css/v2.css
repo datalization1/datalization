@@ -271,15 +271,17 @@ a:hover { color: #0A0A0A; }
 .jchip--start { margin-bottom: 30px; }
 .jchip--end { margin-top: 30px; color: #0A0A0A; border-color: #F48B2D; }
 .jtrack { list-style: none; margin: 0; padding: 0; display: grid; gap: 34px; position: relative; z-index: 1; }
-.jstop { position: relative; width: calc(50% - 72px); }
+.jstop { position: relative; width: calc(50% - 54px); }
 .jstop:nth-child(odd) { justify-self: start; }
 .jstop:nth-child(even) { justify-self: end; }
 .jpin { position: absolute; top: 20px; width: 42px; height: 42px; border-radius: 50%; background: #FFFFFF; border: 2px solid #F48B2D; color: #0A0A0A; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; font-variant-numeric: tabular-nums; z-index: 2; box-shadow: 0 0 0 6px var(--sec-bg, #F5F5F2); }
-.jstop:nth-child(odd) .jpin { right: -48px; }
-.jstop:nth-child(even) .jpin { left: -48px; }
-/* Schlängel-Linie (SVG, per JS gezeichnet) */
+.jstop:nth-child(odd) .jpin { right: -46px; }
+.jstop:nth-child(even) .jpin { left: -46px; }
+/* Schlängel-Linie (SVG, per JS gezeichnet): Basislinie + wandernder Puls */
 .jsnake { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: visible; }
-.jsnake path { fill: none; stroke: #F48B2D; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.jsnake path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.jsnake-base { stroke: #F48B2D; stroke-width: 2.5; }
+.jsnake-pulse { stroke: #FFD9A8; stroke-width: 4; filter: drop-shadow(0 0 5px rgba(244, 139, 45, .85)); }
 .journey.snake-ready::before { display: none; }
 .jpin--flag { background: #F48B2D; border-color: #F48B2D; }
 .jpin--flag svg { width: 18px; height: 18px; }
@@ -307,22 +309,11 @@ a:hover { color: #0A0A0A; }
   .jstop { width: auto; margin-left: 58px; }
   .jstop:nth-child(odd) .jpin, .jstop:nth-child(even) .jpin { left: -58px; right: auto; }
 }
-/* Schlängel-Linie zeichnet sich beim Scrollen + Stationen poppen nacheinander (nur mit JS) */
-.js .jsnake path { transition: stroke-dashoffset 1.2s cubic-bezier(.6, 0, .2, 1); }
-.js .journey .jpin { opacity: 0; }
-.js .journey.drawn .jpin { animation: jpop .5s cubic-bezier(.3, 1.4, .5, 1) forwards; }
-.js .journey.drawn .jstop:nth-child(1) .jpin { animation-delay: .25s; }
-.js .journey.drawn .jstop:nth-child(2) .jpin { animation-delay: .5s; }
-.js .journey.drawn .jstop:nth-child(3) .jpin { animation-delay: .75s; }
-.js .journey.drawn .jstop:nth-child(4) .jpin { animation-delay: 1s; }
-@keyframes jpop { from { opacity: 0; transform: scale(.4); } to { opacity: 1; transform: scale(1); } }
-
 @media (prefers-reduced-motion: reduce) {
   .jcard, .jtoggle { transition: none; }
   .jcard:hover { transform: none; }
   .js .jcard[open] .jdetail { animation: none; }
-  .js .jsnake path { transition: none; }
-  .js .journey .jpin { animation: none; opacity: 1; }
+  .jsnake-pulse { display: none; }
 }
 
 /* ---------- "Was Sie bekommen" (Unterseiten) ---------- */
@@ -539,7 +530,7 @@ a:hover { color: #0A0A0A; }
 .foot a:hover { color: #FFFFFF; }
 
 /* ---------- Seiten-Loader ---------- */
-.v2-loader { position: fixed; inset: 0; z-index: 400; display: none; align-items: center; justify-content: center; background: rgba(10, 10, 10, .82); backdrop-filter: blur(4px); }
+.v2-loader { position: fixed; inset: 0; z-index: 400; display: none; align-items: center; justify-content: center; background: rgba(250, 249, 247, .94); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
 .v2-loader.is-visible { display: flex; }
 .v2-loader img { width: 96px; height: 96px; }
 

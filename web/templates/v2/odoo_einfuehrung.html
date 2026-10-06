@@ -57,7 +57,7 @@
   <div class="wrap">
     <h2 class="reveal">{% trans "Was Sie bekommen" %}</h2>
     <div class="journey reveal">
-      <svg class="jsnake" aria-hidden="true"><path d=""></path></svg>
+      <svg class="jsnake" aria-hidden="true"><path class="jsnake-base" d=""></path><path class="jsnake-pulse" d=""></path></svg>
       <div class="journey-cap">
         <span class="jchip jchip--start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path></svg>{% trans "Projektstart" %}</span>
       </div>
@@ -101,6 +101,40 @@
           <details class="jcard">
             <summary>
               <div>
+                <h3>{% trans "Automatisierung einrichten." %}</h3>
+                <p>{% blocktrans trimmed %}Wiederkehrendes übernimmt das System – Rechnungen, Mahnungen, Berichte.{% endblocktrans %}</p>
+              </div>
+              <span class="jtoggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span>
+            </summary>
+            <div class="jdetail">
+              <div class="jd-row"><span class="jd-label">{% trans "Was passiert" %}</span><p>{% blocktrans trimmed %}Ich richte in Odoo ein, was sich bei Ihnen wiederholt: Rechnungsläufe, Mahnungen, Berichte, Dateiablage.{% endblocktrans %}</p></div>
+              <div class="jd-row"><span class="jd-label">{% trans "Ihr Part" %}</span><p>{% blocktrans trimmed %}Mir zeigen, welche Routine-Aufgaben am meisten Zeit fressen.{% endblocktrans %}</p></div>
+              <div class="jd-row"><span class="jd-label">{% trans "Ergebnis" %}</span><p>{% blocktrans trimmed %}Weniger Handarbeit, weniger Fehler – mehr Zeit fürs Wesentliche.{% endblocktrans %}</p></div>
+            </div>
+          </details>
+        </li>
+        <li class="jstop">
+          <span class="jpin">04</span>
+          <details class="jcard">
+            <summary>
+              <div>
+                <h3>{% trans "Testen &amp; Feinschliff." %}</h3>
+                <p>{% blocktrans trimmed %}Sie prüfen das System an echten Fällen, ich passe an, bis es sitzt.{% endblocktrans %}</p>
+              </div>
+              <span class="jtoggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span>
+            </summary>
+            <div class="jdetail">
+              <div class="jd-row"><span class="jd-label">{% trans "Was passiert" %}</span><p>{% blocktrans trimmed %}Wir gehen Ihre echten Abläufe durch; was hakt, justiere ich nach.{% endblocktrans %}</p></div>
+              <div class="jd-row"><span class="jd-label">{% trans "Ihr Part" %}</span><p>{% blocktrans trimmed %}Das System an Ihren eigenen Fällen ausprobieren und Rückmeldung geben.{% endblocktrans %}</p></div>
+              <div class="jd-row"><span class="jd-label">{% trans "Ergebnis" %}</span><p>{% blocktrans trimmed %}Ein System, das im Alltag wirklich funktioniert – ohne böse Überraschungen beim Start.{% endblocktrans %}</p></div>
+            </div>
+          </details>
+        </li>
+        <li class="jstop">
+          <span class="jpin">05</span>
+          <details class="jcard">
+            <summary>
+              <div>
                 <h3>{% trans "Schulung, bis es sitzt." %}</h3>
                 <p>{% blocktrans trimmed %}Ihr Team arbeitet selbständig – das ist das Ziel, nicht die Abhängigkeit vom Dienstleister.{% endblocktrans %}</p>
               </div>
@@ -110,6 +144,23 @@
               <div class="jd-row"><span class="jd-label">{% trans "Was passiert" %}</span><p>{% blocktrans trimmed %}Ich zeige Ihrem Team die tägliche Arbeit – an Ihren echten Daten, nicht an Demo-Beispielen.{% endblocktrans %}</p></div>
               <div class="jd-row"><span class="jd-label">{% trans "Ihr Part" %}</span><p>{% blocktrans trimmed %}Ein paar Stunden Zeit Ihres Teams.{% endblocktrans %}</p></div>
               <div class="jd-row"><span class="jd-label">{% trans "Ergebnis" %}</span><p>{% blocktrans trimmed %}Ihr Team arbeitet selbständig – ohne Abhängigkeit vom Dienstleister.{% endblocktrans %}</p></div>
+            </div>
+          </details>
+        </li>
+        <li class="jstop">
+          <span class="jpin">06</span>
+          <details class="jcard">
+            <summary>
+              <div>
+                <h3>{% trans "Go-Live." %}</h3>
+                <p>{% blocktrans trimmed %}Der kontrollierte Umstieg auf den produktiven Betrieb – ich bin dabei.{% endblocktrans %}</p>
+              </div>
+              <span class="jtoggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span>
+            </summary>
+            <div class="jdetail">
+              <div class="jd-row"><span class="jd-label">{% trans "Was passiert" %}</span><p>{% blocktrans trimmed %}Wir schalten geplant auf Odoo um; am Go-Live-Tag bin ich für Sie erreichbar.{% endblocktrans %}</p></div>
+              <div class="jd-row"><span class="jd-label">{% trans "Ihr Part" %}</span><p>{% blocktrans trimmed %}Den vereinbarten Umstiegstermin im Team freihalten.{% endblocktrans %}</p></div>
+              <div class="jd-row"><span class="jd-label">{% trans "Ergebnis" %}</span><p>{% blocktrans trimmed %}Sie arbeiten produktiv mit Odoo – begleitet, nicht allein gelassen.{% endblocktrans %}</p></div>
             </div>
           </details>
         </li>
@@ -161,10 +212,11 @@
     var journey = document.querySelector('.journey');
     if (!journey) return;
     var svg = journey.querySelector('.jsnake');
-    var path = svg && svg.querySelector('path');
-    if (!path) return;
+    var base = svg && svg.querySelector('.jsnake-base');
+    var pulse = svg && svg.querySelector('.jsnake-pulse');
+    if (!base || !pulse) return;
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var drawn = false;
+    var pulseAnim = null;
 
     function smooth(pts) {
       var d = 'M' + pts[0][0].toFixed(1) + ' ' + pts[0][1].toFixed(1);
@@ -175,6 +227,17 @@
         d += ' C' + c1x.toFixed(1) + ' ' + c1y.toFixed(1) + ' ' + c2x.toFixed(1) + ' ' + c2y.toFixed(1) + ' ' + p2[0].toFixed(1) + ' ' + p2[1].toFixed(1);
       }
       return d;
+    }
+
+    function startPulse(len) {
+      if (reduce || !pulse.animate || !len) { pulse.style.display = 'none'; return; }
+      var dash = 80;
+      pulse.style.strokeDasharray = dash + ' ' + len;
+      if (pulseAnim) pulseAnim.cancel();
+      pulseAnim = pulse.animate(
+        [{ strokeDashoffset: 0 }, { strokeDashoffset: -(len + dash) }],
+        { duration: Math.max(7000, Math.round(len * 7)), iterations: Infinity, easing: 'linear' }
+      );
     }
 
     function build() {
@@ -188,12 +251,12 @@
       var mobile = jr.width <= 768;
       var pts = [[mobile ? pinPts[0][0] : jr.width / 2, 0]].concat(pinPts);
       pts.push([mobile ? pinPts[pinPts.length - 1][0] : jr.width / 2, jr.height]);
-      path.setAttribute('d', smooth(pts));
+      var d = smooth(pts);
+      base.setAttribute('d', d);
+      pulse.setAttribute('d', d);
       svg.setAttribute('viewBox', '0 0 ' + jr.width + ' ' + jr.height);
-      var len = path.getTotalLength();
-      path.style.strokeDasharray = len;
-      path.style.strokeDashoffset = drawn ? 0 : len;
       journey.classList.add('snake-ready');
+      startPulse(base.getTotalLength());
     }
 
     build();
@@ -203,21 +266,6 @@
     journey.querySelectorAll('details.jcard').forEach(function (d) {
       d.addEventListener('toggle', function () { setTimeout(build, 10); });
     });
-
-    if (reduce || !('IntersectionObserver' in window)) {
-      drawn = true; path.style.strokeDashoffset = 0; journey.classList.add('drawn');
-    } else {
-      var io = new IntersectionObserver(function (es) {
-        es.forEach(function (e) {
-          if (e.isIntersecting) {
-            drawn = true;
-            requestAnimationFrame(function () { path.style.strokeDashoffset = 0; journey.classList.add('drawn'); });
-            io.disconnect();
-          }
-        });
-      }, { threshold: 0.15 });
-      io.observe(journey);
-    }
   })();
 </script>
 {% endblock %}

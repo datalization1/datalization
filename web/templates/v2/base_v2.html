@@ -132,15 +132,27 @@
       var yearEl = document.getElementById('current-year');
       if (yearEl) { yearEl.textContent = new Date().getFullYear(); }
 
-      // Loader beim Klick auf einen Erstgespräch-CTA (erst nach 300 ms, nie bei reduce)
+      // Loader bei jeder internen Navigation / jedem Seitenwechsel
       var loader = document.getElementById('v2Loader');
-      if (loader && !reduce) {
-        document.querySelectorAll('[data-loader]').forEach(function (link) {
-          link.addEventListener('click', function () {
-            setTimeout(function () { loader.classList.add('is-visible'); }, 300);
-          });
+      if (loader) {
+        var showLoader = function () { loader.classList.add('is-visible'); loader.setAttribute('aria-hidden', 'false'); };
+        var hideLoader = function () { loader.classList.remove('is-visible'); loader.setAttribute('aria-hidden', 'true'); };
+        document.addEventListener('click', function (e) {
+          var a = e.target.closest ? e.target.closest('a') : null;
+          if (!a) return;
+          if (a.target === '_blank' || a.hasAttribute('download')) return;
+          if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+          var href = a.getAttribute('href') || '';
+          if (!href || /^(#|mailto:|tel:|javascript:)/i.test(href)) return;
+          var url;
+          try { url = new URL(a.href, location.href); } catch (err) { return; }
+          if (url.origin !== location.origin) return;
+          if (url.pathname === location.pathname && url.hash) return; // reiner Anker auf gleicher Seite
+          showLoader();
         });
-        window.addEventListener('pageshow', function () { loader.classList.remove('is-visible'); });
+        document.addEventListener('submit', showLoader);
+        window.addEventListener('beforeunload', showLoader);
+        window.addEventListener('pageshow', hideLoader);
       }
     })();
   </script>
