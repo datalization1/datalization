@@ -1,0 +1,88 @@
+{% extends "v2/base_v2.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}{% trans "Software für Treuhänder & Treuhandbüros | Odoo & Monekey – Datalization" %}{% endblock %}
+{% block meta_description %}{% trans "Digitale Lösungen für Treuhandbüros: Mandanten, Belege und Abläufe im Griff. Odoo-Einführung und das Dokumentenportal Monekey – persönlich, mit Festpreisofferte, in der Region Zofingen." %}{% endblock %}
+{% block og_title %}{% trans "Software für Treuhänder, die den Alltag erleichtert" %}{% endblock %}
+
+{% block content %}
+<section class="hero hero--sub hero--text">
+  <div class="wrap">
+    <div>
+      <div class="crumb"><span class="dot" aria-hidden="true"></span><a href="{% url 'v2:home' %}">{% trans "Startseite" %}</a><span aria-hidden="true">/</span><span>{% trans "Für Treuhänder" %}</span></div>
+      <h1>{% trans "Software für Treuhänder, die den Alltag wirklich erleichtert." %}</h1>
+      <p>{% blocktrans trimmed %}Mandate betreuen heisst: Belege einsammeln, Unterlagen austauschen, Fristen im Blick behalten – oft über unzählige E-Mail-Anhänge. Mit den richtigen Werkzeugen läuft das ruhiger: ein sicheres Portal für Ihre Mandanten und eine Geschäftssoftware, die Wiederkehrendes übernimmt.{% endblocktrans %}</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2>{% trans "Was ein Treuhandbüro digital braucht" %}</h2></div>
+    <div class="cards">
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"></rect><path d="M8 7h8M8 11h8M8 15h5"></path></svg></div>
+        <h3>{% trans "Mandanten & Belege im Griff" %}</h3>
+        <p>{% blocktrans trimmed %}Steuerunterlagen, Buchhaltung und Belege je Mandant sauber abgelegt – statt in zehn Mail-Verläufen zu suchen.{% endblocktrans %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"></path><path d="M9.5 12l1.8 1.8 3.5-3.6"></path></svg></div>
+        <h3>{% trans "Dokumente sicher teilen" %}</h3>
+        <p>{% blocktrans trimmed %}Ein geschütztes Portal, in dem Mandanten ihre Unterlagen selbst hochladen und abrufen – verschlüsselt und nachvollziehbar.{% endblocktrans %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"></path><path d="M21 4v5h-5"></path></svg></div>
+        <h3>{% trans "Wiederkehrendes automatisieren" %}</h3>
+        <p>{% blocktrans trimmed %}Rechnungen, Mahnungen und Berichte laufen automatisch – weniger Handarbeit in der Routine.{% endblocktrans %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V4"></path><path d="M4 20h16"></path><rect x="8" y="11" width="3" height="6"></rect><rect x="13" y="7" width="3" height="10"></rect></svg></div>
+        <h3>{% trans "Zahlen jederzeit sichtbar" %}</h3>
+        <p>{% blocktrans trimmed %}Offene Posten, Fristen und Auslastung auf einen Blick – statt am Monatsende mühsam zusammengesucht.{% endblocktrans %}</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="split reveal">
+      <h2>{% trans "Monekey: das Portal für Ihre Mandanten" %}</h2>
+      <div>
+        <p>{% blocktrans trimmed %}Monekey ist das Dokumentenportal von Datalization – gebaut für Treuhänder, Immobilienverwaltungen und Broker. Ihre Mandanten melden sich an und finden ihre Unterlagen: aktuell, vollständig, am richtigen Ort. Mit Rollen und Berechtigungen bis auf einzelne Dokumente und einem Zugriffsprotokoll, das zeigt, wer wann worauf zugegriffen hat.{% endblocktrans %}</p>
+        <div class="inlinelinks">
+          <a href="{% url 'v2:monekey' %}">{% trans "Mehr zu Monekey" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="split reveal">
+      <h2>{% trans "Odoo: Abläufe automatisieren" %}</h2>
+      <div>
+        <p>{% blocktrans trimmed %}Dazu kommt bei Bedarf Odoo als Geschäftssoftware: Rechnungen, Buchhaltung und wiederkehrende Abläufe an einem Ort, modular auf Ihr Büro zugeschnitten. Ich führe es persönlich ein, übernehme Ihre bestehenden Daten sauber und schule Ihr Team – zum Festpreis.{% endblocktrans %}</p>
+        <div class="inlinelinks">
+          <a href="{% url 'v2:odoo' %}">{% trans "Mehr zu Odoo" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          <a href="{% url 'v2:digitalisierung' %}">{% if LANGUAGE_CODE == 'de' %}Digitalisierung &amp; Entwicklung{% else %}Digitalization &amp; Development{% endif %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="box reveal">
+      <div class="box-text">
+        <span class="seal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+        <span>{% blocktrans trimmed %}Im kostenlosen Erstgespräch schauen wir, wo Ihr Treuhandbüro am meisten Zeit verliert – und womit wir anfangen.{% endblocktrans %}</span>
+      </div>
+      <a class="btn" href="{% url 'v2:booking' %}" data-loader>{% trans "Kostenloses Erstgespräch buchen" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+  </div>
+</section>
+{% endblock %}

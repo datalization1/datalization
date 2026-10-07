@@ -60,6 +60,22 @@ def v2_data_analytics(request):
     return render(request, "v2/data_analytics.html", {"active": "data_analytics"})
 
 
+# ---------------------------------------------------------------------------
+# SEO-Landingpages (lokal / Keyword / Branche). Aus der Nav heraus, via Footer
+# und kontextuell verlinkt. Vorerst noindex wie der Rest von v2.
+# ---------------------------------------------------------------------------
+def v2_seo_erp_kmu(request):
+    return render(request, "v2/seo_erp_kmu.html")
+
+
+def v2_seo_treuhand(request):
+    return render(request, "v2/seo_treuhand.html")
+
+
+def v2_seo_olten(request):
+    return render(request, "v2/seo_olten.html")
+
+
 def v2_digitalisierung(request):
     return render(request, "v2/digitalisierung.html", {"active": "digitalisierung"})
 

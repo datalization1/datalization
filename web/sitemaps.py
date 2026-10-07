@@ -25,3 +25,5 @@ class CaseSitemap(Sitemap):
         return CaseStudy.objects.filter(published=True)
     def lastmod(self, obj):
         return obj.date
+    def location(self, obj):
+        return reverse("web:case_detail", kwargs={"slug": obj.slug})

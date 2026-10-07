@@ -1,0 +1,80 @@
+{% extends "v2/base_v2.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}{% trans "Geschäftssoftware & ERP für KMU in der Schweiz | Datalization" %}{% endblock %}
+{% block meta_description %}{% trans "Die passende Geschäftssoftware für kleine Betriebe: Offerten, Rechnungen, Lager und Buchhaltung in einem System statt fünf Programme. ERP-Einführung mit Festpreisofferte – persönlich in der Region Zofingen." %}{% endblock %}
+{% block og_title %}{% trans "Geschäftssoftware für KMU – ein System statt fünf Programme" %}{% endblock %}
+
+{% block content %}
+<section class="hero hero--sub hero--text">
+  <div class="wrap">
+    <div>
+      <div class="crumb"><span class="dot" aria-hidden="true"></span><a href="{% url 'v2:home' %}">{% trans "Startseite" %}</a><span aria-hidden="true">/</span><span>{% trans "Geschäftssoftware für KMU" %}</span></div>
+      <h1>{% trans "Geschäftssoftware für KMU – ein System statt fünf Programme." %}</h1>
+      <p>{% blocktrans trimmed %}Ein Programm für Offerten, eines für die Buchhaltung, Excel fürs Lager: Viele kleine Betriebe jonglieren mehrere Werkzeuge, die nicht zusammenpassen. Eine gute Geschäftssoftware bringt alles in ein System – weniger Doppelarbeit, weniger Fehler, mehr Überblick.{% endblocktrans %}</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2>{% trans "Was eine Geschäftssoftware für kleine Betriebe können muss" %}</h2></div>
+    <div class="cards">
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.8"></rect><rect x="13.5" y="3.5" width="7" height="7" rx="1.8"></rect><rect x="3.5" y="13.5" width="7" height="7" rx="1.8"></rect><rect x="13.5" y="13.5" width="7" height="7" rx="1.8"></rect></svg></div>
+        <h3>{% trans "Alles in einem System" %}</h3>
+        <p>{% blocktrans trimmed %}Offerten, Aufträge, Rechnungen, Lager und Buchhaltung greifen ineinander – einmal erfasst, überall verfügbar.{% endblocktrans %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"></path><path d="M7.5 7.5h.01M16.5 7.5h.01M7.5 16.5h.01M16.5 16.5h.01"></path></svg></div>
+        <h3>{% trans "Wächst mit dem Betrieb" %}</h3>
+        <p>{% blocktrans trimmed %}Klein starten und später erweitern, statt in ein starres System gezwängt zu werden – ohne Neukauf.{% endblocktrans %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-4.35-9-8.5C1.5 10 2 6.5 5 5.2 7 4.3 9.2 5 10.3 6.7 11 7.8 12 9 12 9s1-1.2 1.7-2.3C14.8 5 17 4.3 19 5.2c3 1.3 3.5 4.8 2 7.3C18 16.65 12 21 12 21z"></path></svg></div>
+        <h3>{% trans "Ohne eigene IT-Abteilung" %}</h3>
+        <p>{% blocktrans trimmed %}Eingeführt, geschult und betreut von einer Person, die erreichbar bleibt – kein Projekt, das Sie allein stemmen müssen.{% endblocktrans %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg></div>
+        <h3>{% trans "Saubere Daten" %}</h3>
+        <p>{% blocktrans trimmed %}Ihre bestehenden Daten ziehen sauber ins neue System – Kunden, Artikel, offene Posten, Historie. Nichts geht verloren.{% endblocktrans %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l3 3v15H6z"></path><path d="M9 12.5l1.8 1.8 3.7-3.8"></path></svg></div>
+        <h3>{% trans "Bezahlbar, mit Festpreis" %}</h3>
+        <p>{% blocktrans trimmed %}Vor jedem Projekt eine Festpreisofferte – kein Konzern-ERP mit Funktionen und Kosten, die ein Kleinbetrieb nie braucht.{% endblocktrans %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V4"></path><path d="M4 20h16"></path><rect x="8" y="11" width="3" height="6"></rect><rect x="13" y="7" width="3" height="10"></rect></svg></div>
+        <h3>{% trans "Zahlen auf einen Blick" %}</h3>
+        <p>{% blocktrans trimmed %}Umsatz, offene Posten und Auslastung jederzeit sichtbar – statt Excel-Bastelei am Wochenende.{% endblocktrans %}</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="split reveal">
+      <h2>{% trans "Meine Lösung: Odoo" %}</h2>
+      <div>
+        <p>{% blocktrans trimmed %}Als Geschäftssoftware setze ich auf Odoo – ein etablierter Standard, mit dem weltweit Millionen von Betrieben arbeiten, richtig dimensioniert für einen Kleinbetrieb. Verkauf, Einkauf, Lager, Projekte, Rechnungen und Buchhaltung in einem System, modular erweiterbar und ohne Abhängigkeit von einem einzelnen Produkt. Die Einführung begleite ich persönlich – von der Datenübernahme bis zur Schulung.{% endblocktrans %}</p>
+        <div class="inlinelinks">
+          <a href="{% url 'v2:odoo' %}">{% trans "Mehr zu Odoo" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          <a href="{% url 'v2:odoo_vergleich' %}">{% trans "Odoo im Vergleich" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          <a href="{% url 'v2:data_analytics' %}">Data &amp; Analytics <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="box reveal">
+      <div class="box-text">
+        <span class="seal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+        <span>{% blocktrans trimmed %}Welche Geschäftssoftware zu Ihrem Betrieb passt, finden wir im kostenlosen Erstgespräch heraus – mit Festpreisofferte, bevor Sie sich entscheiden.{% endblocktrans %}</span>
+      </div>
+      <a class="btn" href="{% url 'v2:booking' %}" data-loader>{% trans "Kostenloses Erstgespräch buchen" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "v2/base_v2.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}{% trans "Odoo Partner Olten – Geschäftssoftware für Betriebe in Olten | Datalization" %}{% endblock %}
+{% block meta_description %}{% trans "Ihr Odoo-Partner in Olten: ERP-Einführung, Datenübernahme und Betreuung für kleine Betriebe in Olten und Umgebung. Persönlich, vor Ort, mit Festpreisofferte." %}{% endblock %}
+{% block og_title %}{% trans "Ihr Odoo-Partner in Olten" %}{% endblock %}
+
+{% block content %}
+<section class="hero hero--sub hero--text">
+  <div class="wrap">
+    <div>
+      <div class="crumb"><span class="dot" aria-hidden="true"></span><a href="{% url 'v2:home' %}">{% trans "Startseite" %}</a><span aria-hidden="true">/</span><span>Olten</span></div>
+      <h1>{% trans "Ihr Odoo-Partner in Olten." %}</h1>
+      <p>{% blocktrans trimmed %}Olten liegt mitten im Mittelland – und genau hier begleite ich kleine Betriebe bei der Einführung von Odoo. Statt anonymem Support aus der Ferne arbeite ich vor Ort mit Ihnen: Ich sehe, wie Ihr Betrieb wirklich läuft, und baue die Lösung, die dazu passt.{% endblocktrans %}</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2>{% trans "Warum ein Partner aus der Nähe" %}</h2></div>
+    <div class="cards">
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></div>
+        <h3>{% trans "Vor Ort statt nur Videocall" %}</h3>
+        <p>{% blocktrans trimmed %}Erstgespräch und Prozessaufnahme bei Ihnen im Betrieb in Olten – ich sehe Ihre Abläufe mit eigenen Augen.{% endblocktrans %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg></div>
+        <h3>{% trans "Kurze Wege im Mittelland" %}</h3>
+        <p>{% blocktrans trimmed %}Olten, Aarburg, Trimbach, Hägendorf und das ganze Niederamt sind schnell erreichbar – auch per Zug.{% endblocktrans %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"></circle><path d="M5.5 20a6.5 6.5 0 0 1 13 0"></path></svg></div>
+        <h3>{% trans "Dieselbe Ansprechperson" %}</h3>
+        <p>{% blocktrans trimmed %}Sie sprechen immer mit der Person, die Odoo bei Ihnen einführt – erreichbar, auch nach dem Go-Live.{% endblocktrans %}</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="split reveal">
+      <h2>{% trans "Was ich für Betriebe in Olten tue" %}</h2>
+      <div>
+        <p>{% blocktrans trimmed %}Odoo-Einführung mit Datenübernahme und Schulung, Automatisierung Ihrer Abläufe, individuelle Erweiterungen und laufende Betreuung – alles mit Festpreisofferte vor Projektstart. Offerten, Rechnungen, Lager und Buchhaltung landen in einem System, zugeschnitten auf Ihren Betrieb in Olten.{% endblocktrans %}</p>
+        <div class="inlinelinks">
+          <a href="{% url 'v2:odoo' %}">{% trans "Mehr zu Odoo" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          <a href="{% url 'v2:odoo_einfuehrung' %}">{% trans "So läuft eine Einführung ab" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          <a href="{% url 'v2:odoo_partner' %}">{% trans "Region Zofingen & Aargau" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="box reveal">
+      <div class="box-text">
+        <span class="seal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+        <span>{% blocktrans trimmed %}Treffen wir uns in Olten: Im kostenlosen Erstgespräch schauen wir, ob und wie sich Odoo für Ihren Betrieb lohnt.{% endblocktrans %}</span>
+      </div>
+      <a class="btn" href="{% url 'v2:booking' %}" data-loader>{% trans "Kostenloses Erstgespräch buchen" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+  </div>
+</section>
+{% endblock %}
