@@ -2797,3 +2797,27 @@ msgstr ""
 
 msgid "Odoo testen"
 msgstr "Try Odoo"
+
+msgid "Wofür Datalization steht"
+msgstr "What Datalization stands for"
+
+msgid "Ein System, ein Ansprechpartner, ein klarer Preis."
+msgstr "One system, one contact, one clear price."
+
+msgid ""
+"Datalization bringt die Software kleiner Betriebe in Ordnung – persönlich "
+"umgesetzt von der Person, die Ihre Lösung auch baut, zum Festpreis statt mit"
+" Überraschungen."
+msgstr ""
+"Datalization puts the software of small companies in order – implemented "
+"personally by the person who also builds your solution, at a fixed price "
+"instead of surprises."
+
+msgid ""
+"Technik, die zum Betrieb passt – nicht umgekehrt. Und wenn ein Projekt nicht"
+" zu Datalization passt, erfahren Sie das im Erstgespräch offen – samt "
+"Hinweis, wer dann die bessere Wahl ist."
+msgstr ""
+"Technology that fits the business – not the other way around. And if a "
+"project isn't a fit for Datalization, you'll hear it openly in the first "
+"call – including a pointer to who would be the better choice."
