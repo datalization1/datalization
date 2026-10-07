@@ -405,9 +405,10 @@ a:hover { color: #0A0A0A; }
 /* Festpreis-Kasten auf Unterseiten (mit CTA rechts) */
 .box { margin-top: 72px; display: flex; align-items: center; justify-content: space-between; gap: 40px; padding: 44px 48px; border-radius: 24px; background: #0A0A0A; color: #FFFFFF; position: relative; overflow: hidden; }
 .box::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(255, 255, 255, .06) 1px, transparent 1.6px); background-size: 24px 24px; -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 100%); mask-image: linear-gradient(90deg, transparent 0%, #000 100%); }
-.box-text { position: relative; display: flex; align-items: center; gap: 24px; font-size: 21px; line-height: 1.45; color: #D6D6D6; max-width: 720px; }
+.box-text { position: relative; display: flex; align-items: center; gap: 24px; font-size: 21px; line-height: 1.45; color: #D6D6D6; max-width: 500px; }
 .box .btn { position: relative; }
-.box-actions { position: relative; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.box-actions { position: relative; flex: 0 0 auto; display: flex; align-items: center; gap: 14px; flex-wrap: nowrap; justify-content: flex-end; }
+.box-actions .btn { flex: 0 0 auto; }
 .btn-ghost { background: transparent; color: #FFFFFF; border: 1.5px solid rgba(255, 255, 255, .4); }
 .btn-ghost:hover { background: rgba(255, 255, 255, .08); color: #FFFFFF; border-color: #FFFFFF; box-shadow: none; }
 
@@ -565,7 +566,7 @@ a:hover { color: #0A0A0A; }
   .promise { flex-direction: column; align-items: flex-start; padding: 32px; font-size: 19px; gap: 20px; }
   .box { flex-direction: column; align-items: flex-start; padding: 32px; }
   .box-text { flex-direction: column; align-items: flex-start; font-size: 19px; }
-  .box-actions { width: 100%; }
+  .box-actions { width: 100%; flex-wrap: wrap; }
   .trust.has-photo { grid-template-columns: minmax(0, 1fr); gap: 40px; }
   .photo { aspect-ratio: 1/1; }
   .cta h2 { font-size: 38px; }
