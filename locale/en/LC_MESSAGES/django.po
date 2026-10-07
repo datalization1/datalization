@@ -2909,3 +2909,10 @@ msgstr "A Mittelland town by the river, nestled in green hills"
 
 msgid "Tihomir Danesic, Gründer von Datalization"
 msgstr "Tihomir Danesic, founder of Datalization"
+
+msgid "Laptop und Kaffee auf einem Holztisch im warmen Licht"
+msgstr "A laptop and coffee on a wooden table in warm light"
+
+msgid ""
+"Aufgeräumter Arbeitsplatz mit Laptop, Notizbuch und Kaffee im Morgenlicht"
+msgstr "A tidy workspace with laptop, notebook and coffee in morning light"
