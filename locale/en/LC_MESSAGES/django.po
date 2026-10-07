@@ -2900,3 +2900,12 @@ msgstr ""
 "Good digitalization makes daily work easier, not more complicated. "
 "Datalization reduces instead of piling up features: clear processes, clean "
 "data, one system instead of five. The goal is calm – not one more tool."
+
+msgid "Kleines Schweizer Städtchen am bewaldeten Hang – typisches Mittelland"
+msgstr "A small Swiss town on a wooded hillside – typical Mittelland"
+
+msgid "Mittelland-Stadt am Fluss, eingebettet in grüne Hügel"
+msgstr "A Mittelland town by the river, nestled in green hills"
+
+msgid "Tihomir Danesic, Gründer von Datalization"
+msgstr "Tihomir Danesic, founder of Datalization"

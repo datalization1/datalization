@@ -17,8 +17,9 @@
       <p>{% blocktrans trimmed %}Datalization stellt kleine Betriebe digital so auf, dass der Alltag leichter wird – nicht komplizierter. Ein System statt fünf, ein Ansprechpartner, ein klarer Preis. Dahinter steht eine Person, die Ihre Lösung baut und auch danach erreichbar bleibt.{% endblocktrans %}</p>
     </div>
     {% if show_foto %}
-    <div class="hero-media" style="border:0;background:transparent;box-shadow:none">
-      <div class="ph ph--dark photo" style="aspect-ratio:4/5">{% trans "[Grosses Foto Tihomir Danesic]" %}</div>
+    {% comment %}Porträt-Slot: Datei unter web/static/img/ueber/portrait.jpg ablegen (Hochformat ~4:5), dann show_foto aktivieren. Kurz Person zeigen ist auf der Über-Seite ok.{% endcomment %}
+    <div class="hero-media">
+      <img src="{% static 'img/ueber/portrait.jpg' %}" width="800" height="1000" alt="{% trans 'Tihomir Danesic, Gründer von Datalization' %}">
     </div>
     {% endif %}
   </div>
@@ -64,17 +65,21 @@
   </div>
 </section>
 
-{% if show_foto %}
-{# ==================== FOTO-BAND (draussen / Region) ==================== #}
+{# ==================== BILD-BAND (Region / Mittelland) ==================== #}
+{% comment %}
+Lizenzfreie Bilder von Pexels (Pexels-Lizenz, keine Attribution nötig):
+region-mittelland.jpg = pexels.com/photo/32718122  (Städtchen am Hang)
+region-fluss.jpg      = pexels.com/photo/33712589  (Mittelland-Stadt am Fluss)
+Austauschbar gegen eigene Region-Fotos (gleiches 3:2-Format).
+{% endcomment %}
 <section class="sec">
   <div class="wrap">
     <div class="photoband reveal">
-      <div class="ph">{% trans "[Foto draussen – unterwegs / Zug / Region]" %}</div>
-      <div class="ph">{% trans "[Foto draussen – Zofingen / Wiggertal]" %}</div>
+      <figure><img src="{% static 'img/ueber/region-mittelland.jpg' %}" width="1200" height="800" loading="lazy" decoding="async" alt="{% trans 'Kleines Schweizer Städtchen am bewaldeten Hang – typisches Mittelland' %}"></figure>
+      <figure><img src="{% static 'img/ueber/region-fluss.jpg' %}" width="1200" height="800" loading="lazy" decoding="async" alt="{% trans 'Mittelland-Stadt am Fluss, eingebettet in grüne Hügel' %}"></figure>
     </div>
   </div>
 </section>
-{% endif %}
 
 {# ==================== ABSCHLUSS-CTA ==================== #}
 <section class="cta">
