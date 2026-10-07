@@ -1,5 +1,5 @@
 {% extends "v2/base_v2.html" %}
-{% load i18n %}
+{% load i18n static %}
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block title %}{% trans "Datenmigration & Automatisierung für KMU | Datalization Zofingen" %}{% endblock %}
@@ -14,6 +14,13 @@
       <h1>{% trans "Digitalisieren, ohne dass Daten verloren gehen." %}</h1>
       <p>{% blocktrans trimmed %}Der heikelste Moment jeder Digitalisierung ist der Umzug: Kundendaten, Artikel, Belege und Historie stecken im alten System – und sollen vollständig und korrekt im neuen ankommen. Genau das ist meine Kernkompetenz.{% endblocktrans %}</p>
     </div>
+  </div>
+</section>
+
+{# Atmosphärebild (lizenzfrei, Pexels): dig-atmo.jpg = pexels.com/photo/34803969 #}
+<section class="sec">
+  <div class="wrap">
+    <figure class="photostrip reveal"><img src="{% static 'img/atmo/dig-atmo.jpg' %}" width="1600" height="800" loading="lazy" decoding="async" alt="{% trans 'Laptop mit Code-Editor und Kaffee im warmen Licht' %}"></figure>
   </div>
 </section>
 

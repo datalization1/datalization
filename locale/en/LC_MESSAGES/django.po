@@ -2916,3 +2916,9 @@ msgstr "A laptop and coffee on a wooden table in warm light"
 msgid ""
 "Aufgeräumter Arbeitsplatz mit Laptop, Notizbuch und Kaffee im Morgenlicht"
 msgstr "A tidy workspace with laptop, notebook and coffee in morning light"
+
+msgid "Arbeiten am Schreibtisch mit Laptop, Notizen und Auswertungen"
+msgstr "Working at a desk with laptop, notes and reports"
+
+msgid "Laptop mit Code-Editor und Kaffee im warmen Licht"
+msgstr "A laptop with a code editor and coffee in warm light"

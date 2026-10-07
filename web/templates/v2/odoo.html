@@ -1,5 +1,5 @@
 {% extends "v2/base_v2.html" %}
-{% load i18n %}
+{% load i18n static %}
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block title %}{% trans "Odoo für Kleinbetriebe – Geschäftssoftware aus einer Hand | Datalization" %}{% endblock %}
@@ -32,6 +32,13 @@
   <div class="wrap split reveal">
     <h2>{% trans "Ein System für den ganzen Betrieb" %}</h2>
     <p>{% blocktrans trimmed %}Ich führe bei Ihnen Odoo ein – die Geschäftssoftware, mit der weltweit Millionen von Betrieben arbeiten, vom Zweipersonen-Atelier bis zum Produktionsbetrieb. Verkauf, Einkauf, Lager, Projekte, Rechnungen und Buchhaltung greifen ineinander: einmal erfassen, überall verfügbar.{% endblocktrans %}</p>
+  </div>
+</section>
+
+{# Atmosphärebild (lizenzfrei, Pexels): odoo-atmo.jpg = pexels.com/photo/7679173 #}
+<section class="sec">
+  <div class="wrap">
+    <figure class="photostrip reveal"><img src="{% static 'img/atmo/odoo-atmo.jpg' %}" width="1600" height="800" loading="lazy" decoding="async" alt="{% trans 'Arbeiten am Schreibtisch mit Laptop, Notizen und Auswertungen' %}"></figure>
   </div>
 </section>
 
