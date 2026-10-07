@@ -68,8 +68,16 @@ def v2_seo_erp_kmu(request):
     return render(request, "v2/seo_erp_kmu.html")
 
 
+def v2_seo_buchhaltung(request):
+    return render(request, "v2/seo_buchhaltung.html")
+
+
 def v2_seo_treuhand(request):
     return render(request, "v2/seo_treuhand.html")
+
+
+def v2_seo_handwerk(request):
+    return render(request, "v2/seo_handwerk.html")
 
 
 def v2_seo_olten(request):

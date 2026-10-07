@@ -1,0 +1,80 @@
+{% extends "v2/base_v2.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}{% trans "Odoo für Handwerk & Gewerbe – Software für Handwerksbetriebe | Datalization" %}{% endblock %}
+{% block meta_description %}{% trans "Software für Handwerk & Gewerbe: Offerten, Rapporte, Material und Rechnungen in einem System – vom Smartphone auf der Baustelle bis zur Buchhaltung. Odoo, persönlich eingeführt für kleine Betriebe in der Region Zofingen." %}{% endblock %}
+{% block og_title %}{% trans "Software für Handwerk & Gewerbe – vom Rapport bis zur Rechnung" %}{% endblock %}
+
+{% block content %}
+<section class="hero hero--sub hero--text">
+  <div class="wrap">
+    <div>
+      <div class="crumb"><span class="dot" aria-hidden="true"></span><a href="{% url 'v2:home' %}">{% trans "Startseite" %}</a><span aria-hidden="true">/</span><span>{% trans "Handwerk & Gewerbe" %}</span></div>
+      <h1>{% trans "Software für Handwerk & Gewerbe – vom Rapport bis zur Rechnung." %}</h1>
+      <p>{% blocktrans trimmed %}Im Handwerk passiert die Arbeit nicht am Schreibtisch, sondern auf der Baustelle und im Kundenkontakt. Die Software muss da mithalten: Offerte raus, Stunden und Material direkt erfasst, Rechnung noch am selben Abend. Mit einem System, das von der Offerte bis zur Buchhaltung alles verbindet, verlieren Sie weniger Zeit im Büro – und keine Leistung mehr unverrechnet.{% endblocktrans %}</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2>{% trans "Was ein Handwerksbetrieb von seiner Software braucht" %}</h2></div>
+    <div class="cards">
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l3 3v15H6z"></path><path d="M9 10h6M9 14h6"></path></svg></div>
+        <h3>{% trans "Offerten & Aufträge" %}</h3>
+        <p>{% blocktrans trimmed %}Offerten schnell erstellen, in Aufträge umwandeln und den Überblick behalten, was angenommen, offen oder in Arbeit ist.{% endblocktrans %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"></rect><path d="M11 18.5h2"></path></svg></div>
+        <h3>{% trans "Rapporte & Stunden mobil" %}</h3>
+        <p>{% blocktrans trimmed %}Arbeitsrapporte und Stunden direkt vom Smartphone auf der Baustelle erfassen – nichts geht auf dem Weg ins Büro verloren.{% endblocktrans %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"></path><path d="M4 7.5l8 4.5 8-4.5M12 12v9"></path></svg></div>
+        <h3>{% trans "Material & Lager" %}</h3>
+        <p>{% blocktrans trimmed %}Verbrauchtes Material dem Auftrag zuordnen und Bestände im Blick behalten – damit nichts fehlt und nichts vergessen wird zu verrechnen.{% endblocktrans %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"></rect><path d="M8 9h8M8 13h5"></path><path d="M15.5 15.5l1.5 1.5 2.5-2.5"></path></svg></div>
+        <h3>{% trans "Rechnung direkt aus dem Auftrag" %}</h3>
+        <p>{% blocktrans trimmed %}Aus erfassten Stunden und Material wird mit einem Klick die Rechnung – inklusive QR-Rechnung, ohne alles noch einmal abzutippen.{% endblocktrans %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="16" rx="2"></rect><path d="M3.5 9h17M8 2.5v4M16 2.5v4M8 13h3"></path></svg></div>
+        <h3>{% trans "Planung & Termine" %}</h3>
+        <p>{% blocktrans trimmed %}Aufträge und Mitarbeiter einplanen und sehen, wer wann wo im Einsatz ist – statt Termine auf Zetteln und im Kopf.{% endblocktrans %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-4.35-9-8.5C1.5 10 2 6.5 5 5.2 7 4.3 9.2 5 10.3 6.7 11 7.8 12 9 12 9s1-1.2 1.7-2.3C14.8 5 17 4.3 19 5.2c3 1.3 3.5 4.8 2 7.3C18 16.65 12 21 12 21z"></path></svg></div>
+        <h3>{% trans "Ohne eigene IT-Abteilung" %}</h3>
+        <p>{% blocktrans trimmed %}Eingeführt, geschult und betreut von einer Person, die Ihren Betrieb kennt und erreichbar bleibt – nicht von einer anonymen Hotline.{% endblocktrans %}</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="split reveal">
+      <h2>{% trans "Ein System statt Zettel, Excel und drei Programme" %}</h2>
+      <div>
+        <p>{% blocktrans trimmed %}Als Software setze ich auf Odoo – richtig dimensioniert für einen Handwerks- oder Gewerbebetrieb. Offerte, Auftrag, Rapport, Material, Rechnung und Buchhaltung hängen zusammen: einmal erfasst, überall verfügbar. Modular aufgebaut, sodass Sie nur das nutzen, was Sie wirklich brauchen, und später erweitern können. Ich führe es persönlich ein, übernehme Ihre bestehenden Daten und schule Ihr Team – zum Festpreis.{% endblocktrans %}</p>
+        <div class="inlinelinks">
+          <a href="{% url 'v2:odoo' %}">{% trans "Mehr zu Odoo" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          <a href="{% url 'v2:odoo_einfuehrung' %}">{% trans "So läuft eine Einführung ab" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          <a href="{% url 'v2:seo_erp_kmu' %}">{% trans "Geschäftssoftware für KMU" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="box reveal">
+      <div class="box-text">
+        <span class="seal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+        <span>{% blocktrans trimmed %}Im kostenlosen Erstgespräch schauen wir, wo in Ihrem Betrieb am meisten Zeit zwischen Baustelle und Büro verloren geht – und womit wir anfangen.{% endblocktrans %}</span>
+      </div>
+      <a class="btn" href="{% url 'v2:booking' %}" data-loader>{% trans "Kostenloses Erstgespräch buchen" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+  </div>
+</section>
+{% endblock %}

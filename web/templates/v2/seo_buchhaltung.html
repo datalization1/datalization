@@ -1,0 +1,80 @@
+{% extends "v2/base_v2.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}{% trans "Buchhaltungssoftware für KMU & kleine Betriebe | Datalization" %}{% endblock %}
+{% block meta_description %}{% trans "Buchhaltungssoftware für kleine Betriebe: Rechnungen, Zahlungen, MwSt und Abschluss in einem System. Mit Bankabgleich, Mahnwesen und Zugang für Ihren Treuhänder – persönlich eingeführt in der Region Zofingen." %}{% endblock %}
+{% block og_title %}{% trans "Buchhaltungssoftware, die mit Ihrem Betrieb mitdenkt" %}{% endblock %}
+
+{% block content %}
+<section class="hero hero--sub hero--text">
+  <div class="wrap">
+    <div>
+      <div class="crumb"><span class="dot" aria-hidden="true"></span><a href="{% url 'v2:home' %}">{% trans "Startseite" %}</a><span aria-hidden="true">/</span><span>{% trans "Buchhaltungssoftware" %}</span></div>
+      <h1>{% trans "Buchhaltungssoftware, die mit Ihrem Betrieb mitdenkt." %}</h1>
+      <p>{% blocktrans trimmed %}Rechnungen schreiben, Zahlungen abgleichen, die MwSt-Abrechnung vorbereiten – Buchhaltung frisst Zeit, wenn sie in Excel und losen Belegen stattfindet. Eine gute Buchhaltungssoftware nimmt Ihnen die Routine ab und zeigt Ihnen jederzeit, wie Ihr Betrieb finanziell dasteht.{% endblocktrans %}</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2>{% trans "Was eine Buchhaltungssoftware für kleine Betriebe leisten muss" %}</h2></div>
+    <div class="cards">
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l3 3v15H6z"></path><path d="M9 9h6M9 13h6M9 17h4"></path></svg></div>
+        <h3>{% trans "Rechnungen & Zahlungen" %}</h3>
+        <p>{% blocktrans trimmed %}Rechnungen erstellen, versenden und offene Posten verfolgen – mit QR-Rechnung und automatischem Zahlungsabgleich.{% endblocktrans %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 10h18M7 15h4"></path></svg></div>
+        <h3>{% trans "Bankabgleich ohne Handarbeit" %}</h3>
+        <p>{% blocktrans trimmed %}Kontoauszüge werden eingelesen und automatisch den richtigen Buchungen zugeordnet – statt Zeile für Zeile von Hand.{% endblocktrans %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"></path><circle cx="18" cy="17" r="3"></circle></svg></div>
+        <h3>{% trans "MwSt & Abschluss vorbereitet" %}</h3>
+        <p>{% blocktrans trimmed %}Die MwSt-Abrechnung und der Jahresabschluss sind sauber vorbereitet – Ihr Treuhänder findet alles, wo es hingehört.{% endblocktrans %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 3v4h8V3"></path><path d="M9 12l2 2 4-4"></path></svg></div>
+        <h3>{% trans "Belege digital erfassen" %}</h3>
+        <p>{% blocktrans trimmed %}Belege abfotografieren oder hochladen – sie landen direkt bei der passenden Buchung, nachvollziehbar und revisionssicher abgelegt.{% endblocktrans %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></div>
+        <h3>{% trans "Offene Posten & Mahnwesen" %}</h3>
+        <p>{% blocktrans trimmed %}Sie sehen jederzeit, wer noch nicht bezahlt hat – Zahlungserinnerungen und Mahnungen laufen auf Wunsch automatisch.{% endblocktrans %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"></circle><path d="M3.5 19a5.5 5.5 0 0 1 11 0"></path><path d="M17 11l2 2 3-3.5"></path></svg></div>
+        <h3>{% trans "Zugang für Ihren Treuhänder" %}</h3>
+        <p>{% blocktrans trimmed %}Ihr Treuhandbüro arbeitet direkt im selben System mit – kein Hin- und Herschicken von Dateien mehr zum Abschluss.{% endblocktrans %}</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="split reveal">
+      <h2>{% trans "Buchhaltung als Teil Ihrer Geschäftssoftware" %}</h2>
+      <div>
+        <p>{% blocktrans trimmed %}Ich setze auf Odoo – dort ist die Buchhaltung kein Insel-Programm, sondern hängt direkt an Offerten, Aufträgen, Lager und Einkauf. Eine Rechnung entsteht aus dem Auftrag, die Buchung aus der Rechnung, der Zahlungseingang gleicht sich selbst ab. Weniger doppelt erfassen, weniger Fehler – und am Monatsende keine Excel-Bastelei. Die Einführung begleite ich persönlich, inklusive sauberer Übernahme Ihrer bestehenden Buchhaltungsdaten.{% endblocktrans %}</p>
+        <div class="inlinelinks">
+          <a href="{% url 'v2:odoo' %}">{% trans "Mehr zu Odoo" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          <a href="{% url 'v2:seo_erp_kmu' %}">{% trans "Geschäftssoftware für KMU" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          <a href="{% url 'v2:seo_treuhand' %}">{% trans "Für Treuhänder" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="box reveal">
+      <div class="box-text">
+        <span class="seal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+        <span>{% blocktrans trimmed %}Im kostenlosen Erstgespräch schauen wir, wie viel Zeit Ihre Buchhaltung heute kostet – und was sich davon automatisieren lässt.{% endblocktrans %}</span>
+      </div>
+      <a class="btn" href="{% url 'v2:booking' %}" data-loader>{% trans "Kostenloses Erstgespräch buchen" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+  </div>
+</section>
+{% endblock %}
