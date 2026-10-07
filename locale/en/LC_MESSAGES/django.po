@@ -2794,3 +2794,6 @@ msgid ""
 msgstr ""
 "In a free first call we look at where your business loses the most time "
 "between the job site and the office – and where we start."
+
+msgid "Odoo testen"
+msgstr "Try Odoo"

@@ -407,6 +407,9 @@ a:hover { color: #0A0A0A; }
 .box::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(255, 255, 255, .06) 1px, transparent 1.6px); background-size: 24px 24px; -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 100%); mask-image: linear-gradient(90deg, transparent 0%, #000 100%); }
 .box-text { position: relative; display: flex; align-items: center; gap: 24px; font-size: 21px; line-height: 1.45; color: #D6D6D6; max-width: 720px; }
 .box .btn { position: relative; }
+.box-actions { position: relative; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.btn-ghost { background: transparent; color: #FFFFFF; border: 1.5px solid rgba(255, 255, 255, .4); }
+.btn-ghost:hover { background: rgba(255, 255, 255, .08); color: #FFFFFF; border-color: #FFFFFF; box-shadow: none; }
 
 /* ---------- Odoo-Partner-Hervorhebung ---------- */
 .partner-chip { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: #FFFFFF; background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .18); border-radius: 999px; padding: 7px 15px 7px 9px; margin-bottom: 22px; }
@@ -562,6 +565,7 @@ a:hover { color: #0A0A0A; }
   .promise { flex-direction: column; align-items: flex-start; padding: 32px; font-size: 19px; gap: 20px; }
   .box { flex-direction: column; align-items: flex-start; padding: 32px; }
   .box-text { flex-direction: column; align-items: flex-start; font-size: 19px; }
+  .box-actions { width: 100%; }
   .trust.has-photo { grid-template-columns: minmax(0, 1fr); gap: 40px; }
   .photo { aspect-ratio: 1/1; }
   .cta h2 { font-size: 38px; }
