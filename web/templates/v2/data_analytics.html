@@ -1,5 +1,5 @@
 {% extends "v2/base_v2.html" %}
-{% load i18n %}
+{% load i18n static %}
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block title %}{% trans "Dashboards & Reporting für KMU – Zahlen auf einen Blick | Datalization" %}{% endblock %}
@@ -7,12 +7,15 @@
 {% block og_title %}{% trans "Ihre Zahlen auf einen Blick." %}{% endblock %}
 
 {% block content %}
-<section class="hero hero--sub hero--text">
+<section class="hero hero--sub">
   <div class="wrap">
     <div>
       <div class="crumb"><span class="dot" aria-hidden="true"></span><a href="{% url 'v2:home' %}">{% trans "Startseite" %}</a><span aria-hidden="true">/</span><span>Data &amp; Analytics</span></div>
       <h1>{% trans "Ihre Zahlen auf einen Blick." %}</h1>
       <p>{% blocktrans trimmed %}Die wichtigsten Kennzahlen Ihres Betriebs sind da – nur verteilt über Odoo, Excel und ein paar Vorsysteme. Ich bringe sie zusammen und mache sichtbar, wie Ihr Betrieb wirklich läuft. Ohne Excel-Bastelei am Wochenende.{% endblocktrans %}</p>
+    </div>
+    <div class="hero-media">
+      <img src="{% static 'img/photos/da-hero.jpg' %}" width="1200" height="800" decoding="async" alt="{% trans 'Person betrachtet Balkendiagramme auf einem Laptop' %}">
     </div>
   </div>
 </section>

@@ -7,12 +7,15 @@
 {% block og_title %}{% trans "Digitalisieren, ohne dass Daten verloren gehen." %}{% endblock %}
 
 {% block content %}
-<section class="hero hero--sub hero--text">
+<section class="hero hero--sub">
   <div class="wrap">
     <div>
       <div class="crumb"><span class="dot" aria-hidden="true"></span><a href="{% url 'v2:home' %}">{% trans "Startseite" %}</a><span aria-hidden="true">/</span><span>{% if LANGUAGE_CODE == 'de' %}Digitalisierung &amp; Entwicklung{% else %}Digitalization &amp; Development{% endif %}</span></div>
       <h1>{% trans "Digitalisieren, ohne dass Daten verloren gehen." %}</h1>
       <p>{% blocktrans trimmed %}Der heikelste Moment jeder Digitalisierung ist der Umzug: Kundendaten, Artikel, Belege und Historie stecken im alten System – und sollen vollständig und korrekt im neuen ankommen. Genau das ist meine Kernkompetenz.{% endblocktrans %}</p>
+    </div>
+    <div class="hero-media">
+      <img src="{% static 'img/photos/dig-hero.jpg' %}" width="1200" height="800" decoding="async" alt="{% trans 'Betriebsinhaber arbeitet konzentriert am Laptop in seiner Werkstatt' %}">
     </div>
   </div>
 </section>

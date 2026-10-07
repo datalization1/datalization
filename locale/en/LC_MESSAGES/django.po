@@ -2922,3 +2922,12 @@ msgstr "Working at a desk with laptop, notes and reports"
 
 msgid "Laptop mit Code-Editor und Kaffee im warmen Licht"
 msgstr "A laptop with a code editor and coffee in warm light"
+
+msgid "Handwerker arbeitet am Laptop in seiner Werkstatt"
+msgstr "A craftsman working on a laptop in his workshop"
+
+msgid "Person betrachtet Balkendiagramme auf einem Laptop"
+msgstr "A person looking at bar charts on a laptop"
+
+msgid "Betriebsinhaber arbeitet konzentriert am Laptop in seiner Werkstatt"
+msgstr "A business owner focused on a laptop in their workshop"
