@@ -50,8 +50,6 @@ a:hover { color: #0A0A0A; }
 .brand:hover { color: #FFFFFF; }
 .mark { width: 36px; height: 36px; display: block; }
 .word { font-family: var(--head); font-weight: 700; font-size: 22px; letter-spacing: -0.03em; line-height: 1; }
-.word .i { position: relative; }
-.word .i::after { content: ""; position: absolute; left: 50%; top: 0.1em; width: 0.2em; height: 0.2em; margin-left: -0.1em; border-radius: 50%; background: #F48B2D; }
 .links { display: flex; gap: 32px; list-style: none; margin: 0; padding: 0; }
 .links a { color: #BDBDBD; text-decoration: none; font-size: 15px; font-weight: 500; }
 .links a:hover, .links a.on { color: #FFFFFF; }
