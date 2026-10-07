@@ -459,6 +459,7 @@ a:hover { color: #0A0A0A; }
 .cta-mark { width: 84px; height: 84px; margin-bottom: 36px; filter: drop-shadow(0 0 36px rgba(244, 139, 45, .35)); }
 .cta h2 { font-size: 56px; line-height: 1.05; letter-spacing: -0.04em; max-width: 760px; }
 .cta p { color: #BDBDBD; font-size: 19px; max-width: 560px; margin: 22px 0 40px; }
+.cta-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px; }
 
 /* ---------- Rechts-/Prosa-Seiten ---------- */
 .legal { max-width: 760px; }
@@ -570,6 +571,7 @@ a:hover { color: #0A0A0A; }
   .trust.has-photo { grid-template-columns: minmax(0, 1fr); gap: 40px; }
   .photo { aspect-ratio: 1/1; }
   .cta h2 { font-size: 38px; }
+  .cta-actions { width: 100%; max-width: 380px; }
   .cta .wrap { padding-top: 88px; padding-bottom: 96px; }
 
   /* Mobile-Menü geöffnet */
