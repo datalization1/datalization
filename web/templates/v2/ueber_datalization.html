@@ -2,8 +2,8 @@
 {% load i18n static %}
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block title %}{% trans "Über Datalization – Tihomir Danesic | Datalization" %}{% endblock %}
-{% block meta_description %}{% trans "Hinter Datalization steht eine Person: Tihomir Danesic, Betriebsökonom und Data Scientist. Loyal, neugierig, auf einfache Lösungen fokussiert – für kleine Betriebe in der Region Zofingen." %}{% endblock %}
+{% block title %}{% trans "Über Datalization – Werte & Ansatz | Datalization" %}{% endblock %}
+{% block meta_description %}{% trans "Datalization stellt kleine Betriebe digital so auf, dass der Alltag leichter wird: ein System, ein Ansprechpartner, Festpreis. Werte, Ansatz – und die Person dahinter, für die Region Zofingen." %}{% endblock %}
 {% block og_title %}{% trans "Über Datalization" %}{% endblock %}
 
 {% block content %}
@@ -13,8 +13,8 @@
     <div>
       <div class="crumb"><span class="dot" aria-hidden="true"></span><a href="{% url 'v2:home' %}">{% trans "Startseite" %}</a><span aria-hidden="true">/</span><span>{% if LANGUAGE_CODE == 'de' %}Über Datalization{% else %}About Datalization{% endif %}</span></div>
       {# ENTWURF-H1 (Vorschlag) – finale H1 legt Tihomir fest, siehe HANDOFF.md #}
-      <h1>{% trans "Ich bin da – auch nächstes Jahr." %}</h1>
-      <p>{% blocktrans trimmed %}Hinter Datalization steht eine Person: Tihomir Danesic. Betriebsökonom, Data Scientist – und Ihr Ansprechpartner, der die Lösung baut und auch danach erreichbar bleibt.{% endblocktrans %}</p>
+      <h1>{% trans "Digitalisierung, die kleinen Betrieben wirklich hilft." %}</h1>
+      <p>{% blocktrans trimmed %}Datalization stellt kleine Betriebe digital so auf, dass der Alltag leichter wird – nicht komplizierter. Ein System statt fünf, ein Ansprechpartner, ein klarer Preis. Dahinter steht eine Person, die Ihre Lösung baut und auch danach erreichbar bleibt.{% endblocktrans %}</p>
     </div>
     {% if show_foto %}
     <div class="hero-media" style="border:0;background:transparent;box-shadow:none">
@@ -30,8 +30,8 @@
     <div class="about reveal">
       <h2>{% trans "Über Datalization" %}</h2>
       <div>
-        <p>{% blocktrans trimmed %}Datalization ist das Unternehmen von Tihomir Danesic – Betriebsökonom (BSc FHNW) und Data Scientist (MSc HSLU) mit Jahren Erfahrung in Datenmanagement, Produktentwicklung und Software. 2025 gegründet, mit einem klaren Fokus: kleine Betriebe digital so aufzustellen, dass der Alltag leichter wird – nicht komplizierter.{% endblocktrans %}</p>
-        <p>{% blocktrans trimmed %}Was mich unterscheidet: Ich verbinde das Betriebswirtschaftliche (Abläufe, Zahlen, Kosten-Nutzen) mit dem Technischen (Software, Daten, Schnittstellen). Sie bekommen keine Theoriefolien, sondern eine Lösung, die läuft – und eine Person, die auch nächstes Jahr noch erreichbar ist, wenn Sie eine Frage haben.{% endblocktrans %}</p>
+        <p>{% blocktrans trimmed %}Datalization wurde 2025 gegründet, mit einem klaren Fokus: kleine Betriebe digital so aufzustellen, dass der Alltag leichter wird. Weniger Doppelarbeit, saubere Daten, ein System statt fünf Programme – und Technik, die zum Betrieb passt, nicht umgekehrt.{% endblocktrans %}</p>
+        <p>{% blocktrans trimmed %}Dahinter steht Tihomir Danesic, Betriebsökonom (BSc FHNW) und Data Scientist (MSc HSLU). Er verbindet das Betriebswirtschaftliche – Abläufe, Zahlen, Kosten-Nutzen – mit dem Technischen: Software, Daten, Schnittstellen. So entstehen keine Theoriefolien, sondern eine Lösung, die läuft – und eine Ansprechperson, die auch nächstes Jahr noch erreichbar ist.{% endblocktrans %}</p>
       </div>
     </div>
   </div>
@@ -40,25 +40,25 @@
 {# ==================== WERTE (Entwurf) ==================== #}
 <section class="sec sec-alt">
   <div class="wrap">
-    <div class="sec-head reveal"><h2>{% trans "Woran Sie mich messen können" %}</h2></div>
+    <div class="sec-head reveal"><h2>{% trans "Wofür Datalization steht" %}</h2></div>
     <div class="cards">
       <article class="card reveal">
         <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-4.35-9-8.5C1.5 10 2 6.5 5 5.2 7 4.3 9.2 5 10.3 6.7 11 7.8 12 9 12 9s1-1.2 1.7-2.3C14.8 5 17 4.3 19 5.2c3 1.3 3.5 4.8 2 7.3-3 4.15-9 8.5-9 8.5z"></path></svg></div>
         <h3>{% trans "Loyal leben" %}</h3>
         <p class="vk-tag">{% trans "„Ich bin da, auch nächstes Jahr.“" %}</p>
-        <p>{% blocktrans trimmed %}Ich baue keine Lösung, um dann zu verschwinden. Wer mit mir arbeitet, hat auch in einem Jahr noch dieselbe Ansprechperson – die das System kennt, weil sie es gebaut hat. Lieber eine langfristige Partnerschaft als der schnelle Abschluss.{% endblocktrans %}</p>
+        <p>{% blocktrans trimmed %}Datalization baut keine Lösung, um danach zu verschwinden. Wer mit Datalization arbeitet, hat auch in einem Jahr noch dieselbe Ansprechperson – die das System kennt, weil sie es gebaut hat. Lieber eine langfristige Partnerschaft als der schnelle Abschluss.{% endblocktrans %}</p>
       </article>
       <article class="card reveal">
         <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg></div>
         <h3>{% trans "Eigenständig lernen" %}</h3>
         <p class="vk-tag">{% trans "„Neugier statt Besserwisserei.“" %}</p>
-        <p>{% blocktrans trimmed %}Ich komme nicht mit der fertigen Meinung, sondern mit Fragen. Zuerst verstehe ich, wie Sie wirklich arbeiten – dann baue ich. Und ich zeige es Ihrem Team so, dass Sie am Ende selbständig sind, nicht abhängig von mir.{% endblocktrans %}</p>
+        <p>{% blocktrans trimmed %}Bei Datalization kommt zuerst die Frage, nicht die fertige Meinung. Zuerst verstehen, wie Sie wirklich arbeiten – dann bauen. Und Ihr Team wird so eingearbeitet, dass Sie am Ende selbständig sind, nicht abhängig.{% endblocktrans %}</p>
       </article>
       <article class="card reveal">
         <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M5 7h14"></path><path d="M9 17h6"></path></svg></div>
         <h3>{% trans "Einfach Lösungen schaffen" %}</h3>
         <p class="vk-tag">{% trans "„Ruhe nach dem Chaos.“" %}</p>
-        <p>{% blocktrans trimmed %}Gute Digitalisierung macht den Alltag leichter, nicht komplizierter. Ich reduziere, statt Funktionen anzuhäufen: klare Abläufe, saubere Daten, ein System statt fünf. Das Ziel ist Ruhe – nicht noch ein Tool mehr.{% endblocktrans %}</p>
+        <p>{% blocktrans trimmed %}Gute Digitalisierung macht den Alltag leichter, nicht komplizierter. Datalization reduziert, statt Funktionen anzuhäufen: klare Abläufe, saubere Daten, ein System statt fünf. Das Ziel ist Ruhe – nicht noch ein Tool mehr.{% endblocktrans %}</p>
       </article>
     </div>
   </div>
