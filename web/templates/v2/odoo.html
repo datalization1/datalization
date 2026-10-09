@@ -36,28 +36,32 @@
       <p>{% blocktrans trimmed %}Mit Odoo arbeiten weltweit Millionen von Betrieben – vom Zweipersonen-Atelier bis zum Produktionsbetrieb. Verkauf, Einkauf, Lager, Buchhaltung und vieles mehr greifen in einem System ineinander. Sie schalten nur frei, was Sie heute brauchen, und erweitern später.{% endblocktrans %}</p>
     </div>
     <ul class="appgrid reveal">
-      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/crm.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">CRM</span></li>
-      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/sales.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Verkauf" %}</span></li>
-      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/accounting.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Buchhaltung" %}</span></li>
-      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/inventory.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Lager" %}</span></li>
-      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/purchase.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Einkauf" %}</span></li>
-      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/pos.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Kassensystem" %}</span></li>
-      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/project.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Projekte" %}</span></li>
-      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/timesheets.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Zeiterfassung" %}</span></li>
-      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/manufacturing.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Fertigung" %}</span></li>
-      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/employees.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Personal" %}</span></li>
-      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/expenses.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Spesen" %}</span></li>
-      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/website.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">Website</span></li>
-      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/ecommerce.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Webshop" %}</span></li>
-      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/email_marketing.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "E-Mail-Marketing" %}</span></li>
-      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/discuss.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">Discuss</span></li>
-      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/calendar.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Kalender" %}</span></li>
-      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/events.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Veranstaltungen" %}</span></li>
-      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/maintenance.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Wartung" %}</span></li>
-      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/repair.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Reparatur" %}</span></li>
-      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/fleet.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Fuhrpark" %}</span></li>
+      <li class="app"><button class="app-btn" type="button" aria-haspopup="dialog" aria-expanded="false" data-name="CRM" data-desc="{% trans 'Leads und Verkaufschancen vom Erstkontakt bis zum Abschluss verfolgen.' %}"><span class="app-ic"><img src="{% static 'img/odoo-apps/crm.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">CRM</span></button></li>
+      <li class="app"><button class="app-btn" type="button" aria-haspopup="dialog" aria-expanded="false" data-name="{% trans 'Verkauf' %}" data-desc="{% trans 'Offerten und Aufträge erstellen, versenden und nachverfolgen.' %}"><span class="app-ic"><img src="{% static 'img/odoo-apps/sales.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Verkauf" %}</span></button></li>
+      <li class="app"><button class="app-btn" type="button" aria-haspopup="dialog" aria-expanded="false" data-name="{% trans 'Buchhaltung' %}" data-desc="{% trans 'Rechnungen, Zahlungen und Abschluss – sauber und automatisiert.' %}"><span class="app-ic"><img src="{% static 'img/odoo-apps/accounting.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Buchhaltung" %}</span></button></li>
+      <li class="app"><button class="app-btn" type="button" aria-haspopup="dialog" aria-expanded="false" data-name="{% trans 'Lager' %}" data-desc="{% trans 'Bestände, Ein- und Ausgänge immer aktuell im Blick.' %}"><span class="app-ic"><img src="{% static 'img/odoo-apps/inventory.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Lager" %}</span></button></li>
+      <li class="app"><button class="app-btn" type="button" aria-haspopup="dialog" aria-expanded="false" data-name="{% trans 'Einkauf' %}" data-desc="{% trans 'Bestellungen, Lieferanten und Nachbestellungen an einem Ort.' %}"><span class="app-ic"><img src="{% static 'img/odoo-apps/purchase.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Einkauf" %}</span></button></li>
+      <li class="app"><button class="app-btn" type="button" aria-haspopup="dialog" aria-expanded="false" data-name="{% trans 'Kassensystem' %}" data-desc="{% trans 'Verkaufen am Tresen – direkt verbunden mit Lager und Buchhaltung.' %}"><span class="app-ic"><img src="{% static 'img/odoo-apps/pos.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Kassensystem" %}</span></button></li>
+      <li class="app"><button class="app-btn" type="button" aria-haspopup="dialog" aria-expanded="false" data-name="{% trans 'Projekte' %}" data-desc="{% trans 'Aufgaben, Zeiten und Fortschritt pro Projekt im Griff.' %}"><span class="app-ic"><img src="{% static 'img/odoo-apps/project.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Projekte" %}</span></button></li>
+      <li class="app"><button class="app-btn" type="button" aria-haspopup="dialog" aria-expanded="false" data-name="{% trans 'Zeiterfassung' %}" data-desc="{% trans 'Arbeitszeiten erfassen und direkt auf Projekte und Rechnungen buchen.' %}"><span class="app-ic"><img src="{% static 'img/odoo-apps/timesheets.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Zeiterfassung" %}</span></button></li>
+      <li class="app"><button class="app-btn" type="button" aria-haspopup="dialog" aria-expanded="false" data-name="{% trans 'Fertigung' %}" data-desc="{% trans 'Produktion, Stücklisten und Arbeitsaufträge planen und steuern.' %}"><span class="app-ic"><img src="{% static 'img/odoo-apps/manufacturing.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Fertigung" %}</span></button></li>
+      <li class="app"><button class="app-btn" type="button" aria-haspopup="dialog" aria-expanded="false" data-name="{% trans 'Personal' %}" data-desc="{% trans 'Mitarbeitende, Verträge und Abwesenheiten zentral verwalten.' %}"><span class="app-ic"><img src="{% static 'img/odoo-apps/employees.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Personal" %}</span></button></li>
+      <li class="app"><button class="app-btn" type="button" aria-haspopup="dialog" aria-expanded="false" data-name="{% trans 'Spesen' %}" data-desc="{% trans 'Auslagen erfassen, einreichen und freigeben – ohne Zettelwirtschaft.' %}"><span class="app-ic"><img src="{% static 'img/odoo-apps/expenses.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Spesen" %}</span></button></li>
+      <li class="app"><button class="app-btn" type="button" aria-haspopup="dialog" aria-expanded="false" data-name="Website" data-desc="{% trans 'Eigene Website bauen – direkt mit Shop, CRM und Lager verbunden.' %}"><span class="app-ic"><img src="{% static 'img/odoo-apps/website.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">Website</span></button></li>
+      <li class="app"><button class="app-btn" type="button" aria-haspopup="dialog" aria-expanded="false" data-name="{% trans 'Webshop' %}" data-desc="{% trans 'Online verkaufen – Bestellungen landen automatisch im System.' %}"><span class="app-ic"><img src="{% static 'img/odoo-apps/ecommerce.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Webshop" %}</span></button></li>
+      <li class="app"><button class="app-btn" type="button" aria-haspopup="dialog" aria-expanded="false" data-name="{% trans 'E-Mail-Marketing' %}" data-desc="{% trans 'Newsletter und Kampagnen gestalten, versenden und auswerten.' %}"><span class="app-ic"><img src="{% static 'img/odoo-apps/email_marketing.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "E-Mail-Marketing" %}</span></button></li>
+      <li class="app"><button class="app-btn" type="button" aria-haspopup="dialog" aria-expanded="false" data-name="Discuss" data-desc="{% trans 'Interne Kommunikation und Benachrichtigungen an einem Ort.' %}"><span class="app-ic"><img src="{% static 'img/odoo-apps/discuss.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">Discuss</span></button></li>
+      <li class="app"><button class="app-btn" type="button" aria-haspopup="dialog" aria-expanded="false" data-name="{% trans 'Kalender' %}" data-desc="{% trans 'Termine und Aktivitäten teamübergreifend planen.' %}"><span class="app-ic"><img src="{% static 'img/odoo-apps/calendar.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Kalender" %}</span></button></li>
+      <li class="app"><button class="app-btn" type="button" aria-haspopup="dialog" aria-expanded="false" data-name="{% trans 'Veranstaltungen' %}" data-desc="{% trans 'Events organisieren – von der Anmeldung bis zum Ticket.' %}"><span class="app-ic"><img src="{% static 'img/odoo-apps/events.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Veranstaltungen" %}</span></button></li>
+      <li class="app"><button class="app-btn" type="button" aria-haspopup="dialog" aria-expanded="false" data-name="{% trans 'Wartung' %}" data-desc="{% trans 'Wartungen planen und Maschinen instand halten.' %}"><span class="app-ic"><img src="{% static 'img/odoo-apps/maintenance.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Wartung" %}</span></button></li>
+      <li class="app"><button class="app-btn" type="button" aria-haspopup="dialog" aria-expanded="false" data-name="{% trans 'Reparatur' %}" data-desc="{% trans 'Reparaturaufträge erfassen und abwickeln.' %}"><span class="app-ic"><img src="{% static 'img/odoo-apps/repair.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Reparatur" %}</span></button></li>
+      <li class="app"><button class="app-btn" type="button" aria-haspopup="dialog" aria-expanded="false" data-name="{% trans 'Fuhrpark' %}" data-desc="{% trans 'Fahrzeuge, Kosten und Verträge im Überblick.' %}"><span class="app-ic"><img src="{% static 'img/odoo-apps/fleet.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Fuhrpark" %}</span></button></li>
     </ul>
     <p class="appgrid-note reveal">{% trans "… und viele weitere. Welche Apps Sie wirklich brauchen, finden wir gemeinsam heraus." %}</p>
+    <div class="app-pop" id="appPop" role="dialog" aria-live="polite" hidden>
+      <strong class="app-pop-t"></strong>
+      <p class="app-pop-d"></p>
+    </div>
   </div>
 </section>
 
@@ -142,4 +146,43 @@
     </div>
   </div>
 </section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function () {
+  var grid = document.querySelector('.appgrid');
+  var pop = document.getElementById('appPop');
+  if (!grid || !pop) return;
+  var tEl = pop.querySelector('.app-pop-t'), dEl = pop.querySelector('.app-pop-d');
+  var cur = null;
+  function hide() { if (!cur) return; pop.hidden = true; cur.setAttribute('aria-expanded', 'false'); cur = null; }
+  function show(btn) {
+    tEl.textContent = btn.getAttribute('data-name') || '';
+    dEl.textContent = btn.getAttribute('data-desc') || '';
+    pop.hidden = false;
+    var r = btn.getBoundingClientRect(), pw = pop.offsetWidth, ph = pop.offsetHeight;
+    var left = Math.max(12, Math.min(r.left + r.width / 2 - pw / 2, window.innerWidth - pw - 12));
+    var top = r.bottom + 10;
+    if (top + ph > window.innerHeight - 12) top = r.top - ph - 10;
+    pop.style.left = left + 'px';
+    pop.style.top = Math.max(12, top) + 'px';
+    if (cur) cur.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-expanded', 'true');
+    cur = btn;
+  }
+  grid.addEventListener('click', function (e) {
+    var btn = e.target.closest('.app-btn');
+    if (!btn) return;
+    if (cur === btn) { hide(); return; }
+    show(btn);
+  });
+  document.addEventListener('click', function (e) {
+    if (cur && !e.target.closest('.app-btn') && !e.target.closest('#appPop')) hide();
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') hide(); });
+  window.addEventListener('scroll', hide, true);
+  window.addEventListener('resize', hide);
+})();
+</script>
 {% endblock %}

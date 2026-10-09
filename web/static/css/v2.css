@@ -254,10 +254,17 @@ a:hover { color: #0A0A0A; }
 .textmedia .tm-photo { margin: 0; border-radius: 24px; overflow: hidden; aspect-ratio: 3 / 2; background: #F5F5F2; border: 1px solid #E8E8E4; }
 .textmedia .tm-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .appgrid { list-style: none; margin: 56px 0 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 30px 16px; }
-.appgrid li { display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; }
-.app-ic { width: 62px; height: 62px; border-radius: 15px; background: #FFFFFF; border: 1px solid #ECECE8; box-shadow: 0 6px 16px -8px rgba(0, 0, 0, .18); display: flex; align-items: center; justify-content: center; }
+.appgrid li { display: flex; }
+.app-btn { display: flex; flex-direction: column; align-items: center; gap: 12px; width: 100%; padding: 8px 4px; background: none; border: 0; border-radius: 16px; font: inherit; color: inherit; text-align: center; cursor: pointer; transition: transform .16s ease; }
+.app-btn:hover { transform: translateY(-3px); }
+.app-ic { width: 62px; height: 62px; border-radius: 15px; background: #FFFFFF; border: 1px solid #ECECE8; box-shadow: 0 6px 16px -8px rgba(0, 0, 0, .18); display: flex; align-items: center; justify-content: center; transition: box-shadow .16s ease, border-color .16s ease; }
+.app-btn:hover .app-ic, .app-btn[aria-expanded="true"] .app-ic { border-color: #F48B2D; box-shadow: 0 12px 24px -10px rgba(244, 139, 45, .5); }
 .app-ic img { width: 38px; height: 38px; display: block; }
 .app-lbl { font-size: 13px; color: #4F4F4F; font-weight: 500; line-height: 1.25; }
+.app-btn:hover .app-lbl, .app-btn[aria-expanded="true"] .app-lbl { color: #0A0A0A; }
+.app-pop { position: fixed; z-index: 200; width: 250px; max-width: calc(100vw - 24px); background: #FFFFFF; border: 1px solid #E8E8E4; border-radius: 14px; box-shadow: 0 24px 48px -18px rgba(0, 0, 0, .3); padding: 16px 18px; }
+.app-pop strong { display: block; font-family: var(--head); font-weight: 700; font-size: 16px; margin-bottom: 6px; }
+.app-pop p { margin: 0; color: #4F4F4F; font-size: 14px; line-height: 1.5; }
 @media (max-width: 768px) { .appgrid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px 12px; } }
 @media (max-width: 480px) { .appgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .appgrid-note { margin: 40px 0 0; color: #6B6B6B; font-size: 15px; }

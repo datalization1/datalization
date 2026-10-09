@@ -2991,3 +2991,63 @@ msgid ""
 msgstr ""
 "… and many more. Which apps you really need is something we work out "
 "together."
+
+msgid "Leads und Verkaufschancen vom Erstkontakt bis zum Abschluss verfolgen."
+msgstr "Track leads and opportunities from first contact to close."
+
+msgid "Offerten und Aufträge erstellen, versenden und nachverfolgen."
+msgstr "Create, send and follow up on quotes and orders."
+
+msgid "Rechnungen, Zahlungen und Abschluss – sauber und automatisiert."
+msgstr "Invoices, payments and closing – clean and automated."
+
+msgid "Bestände, Ein- und Ausgänge immer aktuell im Blick."
+msgstr "Keep stock and movements up to date at all times."
+
+msgid "Bestellungen, Lieferanten und Nachbestellungen an einem Ort."
+msgstr "Orders, suppliers and reordering in one place."
+
+msgid "Verkaufen am Tresen – direkt verbunden mit Lager und Buchhaltung."
+msgstr "Sell at the counter – linked to inventory and accounting."
+
+msgid "Aufgaben, Zeiten und Fortschritt pro Projekt im Griff."
+msgstr "Tasks, time and progress under control per project."
+
+msgid "Arbeitszeiten erfassen und direkt auf Projekte und Rechnungen buchen."
+msgstr "Log work time and bill it straight to projects and invoices."
+
+msgid "Produktion, Stücklisten und Arbeitsaufträge planen und steuern."
+msgstr "Plan and run production, bills of materials and work orders."
+
+msgid "Mitarbeitende, Verträge und Abwesenheiten zentral verwalten."
+msgstr "Manage staff, contracts and absences centrally."
+
+msgid "Auslagen erfassen, einreichen und freigeben – ohne Zettelwirtschaft."
+msgstr "Capture, submit and approve expenses – no paper chase."
+
+msgid "Eigene Website bauen – direkt mit Shop, CRM und Lager verbunden."
+msgstr "Build your own website – linked to shop, CRM and inventory."
+
+msgid "Online verkaufen – Bestellungen landen automatisch im System."
+msgstr "Sell online – orders land in the system automatically."
+
+msgid "Newsletter und Kampagnen gestalten, versenden und auswerten."
+msgstr "Design, send and measure newsletters and campaigns."
+
+msgid "Interne Kommunikation und Benachrichtigungen an einem Ort."
+msgstr "Internal communication and notifications in one place."
+
+msgid "Termine und Aktivitäten teamübergreifend planen."
+msgstr "Plan appointments and activities across the team."
+
+msgid "Events organisieren – von der Anmeldung bis zum Ticket."
+msgstr "Organize events – from registration to ticket."
+
+msgid "Wartungen planen und Maschinen instand halten."
+msgstr "Schedule maintenance and keep machines running."
+
+msgid "Reparaturaufträge erfassen und abwickeln."
+msgstr "Log and process repair orders."
+
+msgid "Fahrzeuge, Kosten und Verträge im Überblick."
+msgstr "Vehicles, costs and contracts at a glance."
