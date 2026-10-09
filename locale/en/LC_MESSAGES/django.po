@@ -2934,3 +2934,60 @@ msgstr "A business owner focused on a laptop in their workshop"
 
 msgid "Screenshot der Odoo-Oberfläche mit Projektübersicht"
 msgstr "Screenshot of the Odoo interface showing a project overview"
+
+msgid "Eine App für alle Anforderungen"
+msgstr "One app for every need"
+
+msgid ""
+"Mit Odoo arbeiten weltweit Millionen von Betrieben – vom Zweipersonen-"
+"Atelier bis zum Produktionsbetrieb. Verkauf, Einkauf, Lager, Buchhaltung und"
+" vieles mehr greifen in einem System ineinander. Sie schalten nur frei, was "
+"Sie heute brauchen, und erweitern später."
+msgstr ""
+"Millions of companies worldwide run on Odoo – from a two-person studio to a "
+"manufacturing business. Sales, purchasing, inventory, accounting and much "
+"more work together in one system. You only switch on what you need today and"
+" expand later."
+
+msgid "Kassensystem"
+msgstr "Point of Sale"
+
+msgid "Zeiterfassung"
+msgstr "Timesheets"
+
+msgid "Fertigung"
+msgstr "Manufacturing"
+
+msgid "Personal"
+msgstr "Employees"
+
+msgid "Spesen"
+msgstr "Expenses"
+
+msgid "Webshop"
+msgstr "eCommerce"
+
+msgid "E-Mail-Marketing"
+msgstr "Email Marketing"
+
+msgid "Kalender"
+msgstr "Calendar"
+
+msgid "Veranstaltungen"
+msgstr "Events"
+
+msgid "Wartung"
+msgstr "Maintenance"
+
+msgid "Reparatur"
+msgstr "Repair"
+
+msgid "Fuhrpark"
+msgstr "Fleet"
+
+msgid ""
+"… und viele weitere. Welche Apps Sie wirklich brauchen, finden wir gemeinsam"
+" heraus."
+msgstr ""
+"… and many more. Which apps you really need is something we work out "
+"together."

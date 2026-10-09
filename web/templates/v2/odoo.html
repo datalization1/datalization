@@ -28,14 +28,36 @@
   </div>
 </section>
 
-{# odoo-atmo.jpg = offizieller Odoo-Produkt-Screenshot (odoocdn.com), Nutzung als offizieller Odoo-Partner #}
+{# App-Grid: offizielle Odoo-App-Icons (github.com/odoo/odoo, static/description/icon.png), Nutzung als Odoo-Partner #}
 <section class="sec">
-  <div class="wrap textmedia reveal">
-    <div class="tm-text">
-      <h2>{% trans "Ein System für den ganzen Betrieb" %}</h2>
-      <p>{% blocktrans trimmed %}Ich führe bei Ihnen Odoo ein – die Geschäftssoftware, mit der weltweit Millionen von Betrieben arbeiten, vom Zweipersonen-Atelier bis zum Produktionsbetrieb. Verkauf, Einkauf, Lager, Projekte, Rechnungen und Buchhaltung greifen ineinander: einmal erfassen, überall verfügbar.{% endblocktrans %}</p>
+  <div class="wrap">
+    <div class="split reveal">
+      <h2>{% trans "Eine App für alle Anforderungen" %}</h2>
+      <p>{% blocktrans trimmed %}Mit Odoo arbeiten weltweit Millionen von Betrieben – vom Zweipersonen-Atelier bis zum Produktionsbetrieb. Verkauf, Einkauf, Lager, Buchhaltung und vieles mehr greifen in einem System ineinander. Sie schalten nur frei, was Sie heute brauchen, und erweitern später.{% endblocktrans %}</p>
     </div>
-    <figure class="tm-photo"><img src="{% static 'img/atmo/odoo-atmo.jpg' %}" width="1200" height="800" loading="lazy" decoding="async" alt="{% trans 'Screenshot der Odoo-Oberfläche mit Projektübersicht' %}"></figure>
+    <ul class="appgrid reveal">
+      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/crm.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">CRM</span></li>
+      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/sales.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Verkauf" %}</span></li>
+      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/accounting.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Buchhaltung" %}</span></li>
+      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/inventory.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Lager" %}</span></li>
+      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/purchase.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Einkauf" %}</span></li>
+      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/pos.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Kassensystem" %}</span></li>
+      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/project.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Projekte" %}</span></li>
+      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/timesheets.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Zeiterfassung" %}</span></li>
+      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/manufacturing.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Fertigung" %}</span></li>
+      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/employees.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Personal" %}</span></li>
+      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/expenses.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Spesen" %}</span></li>
+      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/website.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">Website</span></li>
+      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/ecommerce.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Webshop" %}</span></li>
+      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/email_marketing.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "E-Mail-Marketing" %}</span></li>
+      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/discuss.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">Discuss</span></li>
+      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/calendar.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Kalender" %}</span></li>
+      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/events.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Veranstaltungen" %}</span></li>
+      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/maintenance.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Wartung" %}</span></li>
+      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/repair.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Reparatur" %}</span></li>
+      <li><span class="app-ic"><img src="{% static 'img/odoo-apps/fleet.png' %}" width="38" height="38" loading="lazy" alt=""></span><span class="app-lbl">{% trans "Fuhrpark" %}</span></li>
+    </ul>
+    <p class="appgrid-note reveal">{% trans "… und viele weitere. Welche Apps Sie wirklich brauchen, finden wir gemeinsam heraus." %}</p>
   </div>
 </section>
 

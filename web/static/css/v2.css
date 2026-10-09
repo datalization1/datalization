@@ -253,6 +253,14 @@ a:hover { color: #0A0A0A; }
 .textmedia .tm-text p { margin: 0; color: #4F4F4F; font-size: 18px; }
 .textmedia .tm-photo { margin: 0; border-radius: 24px; overflow: hidden; aspect-ratio: 3 / 2; background: #F5F5F2; border: 1px solid #E8E8E4; }
 .textmedia .tm-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.appgrid { list-style: none; margin: 56px 0 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 30px 16px; }
+.appgrid li { display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; }
+.app-ic { width: 62px; height: 62px; border-radius: 15px; background: #FFFFFF; border: 1px solid #ECECE8; box-shadow: 0 6px 16px -8px rgba(0, 0, 0, .18); display: flex; align-items: center; justify-content: center; }
+.app-ic img { width: 38px; height: 38px; display: block; }
+.app-lbl { font-size: 13px; color: #4F4F4F; font-weight: 500; line-height: 1.25; }
+@media (max-width: 768px) { .appgrid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px 12px; } }
+@media (max-width: 480px) { .appgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.appgrid-note { margin: 40px 0 0; color: #6B6B6B; font-size: 15px; }
 .sec .split p, .sec > .wrap > p { margin: 0; color: #4F4F4F; font-size: 18px; }
 
 /* ---------- Angebots-Karten ---------- */
