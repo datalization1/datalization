@@ -2931,3 +2931,6 @@ msgstr "A person looking at bar charts on a laptop"
 
 msgid "Betriebsinhaber arbeitet konzentriert am Laptop in seiner Werkstatt"
 msgstr "A business owner focused on a laptop in their workshop"
+
+msgid "Screenshot der Odoo-Oberfläche mit Projektübersicht"
+msgstr "Screenshot of the Odoo interface showing a project overview"
