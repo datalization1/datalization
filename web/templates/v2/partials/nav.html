@@ -8,7 +8,17 @@
     </a>
     <nav aria-label="{% trans 'Hauptnavigation' %}">
       <ul class="links">
-        <li><a {% if active == 'odoo' %}class="on"{% endif %} href="{% url 'v2:odoo' %}">Odoo</a></li>
+        <li class="has-dropdown">
+          <a {% if active == 'odoo' %}class="on"{% endif %} href="{% url 'v2:odoo' %}" aria-haspopup="true">Odoo</a>
+          <div class="dropdown-wrap">
+            <ul class="dropdown">
+              <li><a href="{% url 'v2:odoo' %}">{% trans "Übersicht" %}</a></li>
+              <li><a href="{% url 'v2:odoo_wieso' %}">{% trans "Wieso Odoo?" %}</a></li>
+              <li><a href="{% url 'v2:odoo_einfuehrung' %}">{% trans "Odoo einführen" %}</a></li>
+              <li><a href="{% url 'v2:odoo_vergleich' %}">{% trans "Im Vergleich" %}</a></li>
+            </ul>
+          </div>
+        </li>
         <li><a {% if active == 'digitalisierung' %}class="on"{% endif %} href="{% url 'v2:digitalisierung' %}">{% if LANGUAGE_CODE == 'de' %}Digitalisierung &amp; Entwicklung{% else %}Digitalization &amp; Development{% endif %}</a></li>
         <li><a {% if active == 'monekey' %}class="on"{% endif %} href="{% url 'v2:monekey' %}">Monekey</a></li>
         <li><a {% if active == 'data_analytics' %}class="on"{% endif %} href="{% url 'v2:data_analytics' %}">Data &amp; Analytics</a></li>
