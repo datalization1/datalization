@@ -267,7 +267,7 @@ a:hover { color: #0A0A0A; }
 .app-pop p { margin: 0; color: #4F4F4F; font-size: 14px; line-height: 1.5; }
 @media (max-width: 768px) { .appgrid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px 12px; } }
 @media (max-width: 480px) { .appgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-.appgrid-note { margin: 40px 0 0; color: #6B6B6B; font-size: 15px; }
+.appgrid-note { margin: 72px 0 0; color: #6B6B6B; font-size: 15px; }
 .sec .split p, .sec > .wrap > p { margin: 0; color: #4F4F4F; font-size: 18px; }
 
 /* ---------- Angebots-Karten ---------- */
