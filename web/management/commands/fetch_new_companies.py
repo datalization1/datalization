@@ -26,6 +26,7 @@ from django.core.management.base import BaseCommand
 from django.utils import timezone
 from django.utils.html import escape
 
+from web import odoo_crm
 from web.models import NewCompany
 
 LIST_URL = "https://amtsblattportal.ch/api/v1/publications/xml"
@@ -78,6 +79,8 @@ class Command(BaseCommand):
                             help="Speichern, aber keinen Digest senden.")
         parser.add_argument("--limit", type=int, default=0,
                             help="Max. Anzahl geprüfter Publikationen (0 = alle).")
+        parser.add_argument("--no-odoo", action="store_true",
+                            help="Nicht nach Odoo CRM pushen (auch wenn konfiguriert).")
 
     def handle(self, *args, **opts):
         days = opts["days"]
@@ -88,6 +91,10 @@ class Command(BaseCommand):
 
         towns = {t.lower() for t in getattr(settings, "SHAB_TOWNS", set())}
         cantons = getattr(settings, "SHAB_CANTONS", ["AG"])
+
+        push_odoo = (not opts["no_odoo"] and not dry
+                     and getattr(settings, "ODOO_AUTOPUSH", False) and odoo_crm.enabled())
+        self._odoo = None
 
         self.stdout.write(f"SHAB-Abruf: Kantone {','.join(cantons)}, ab {date_from}, "
                           f"{len(towns)} Zielorte")
@@ -119,14 +126,22 @@ class Command(BaseCommand):
                 continue
             self._enrich(data)
             if not dry:
-                NewCompany.objects.create(**data)
+                obj = NewCompany.objects.create(**data)
+                if push_odoo:
+                    try:
+                        if self._odoo is None:
+                            self._odoo = odoo_crm.OdooClient()
+                        odoo_crm.push_company(obj, client=self._odoo)
+                    except Exception as e:
+                        self.stderr.write(f"  ~ Odoo-Push {obj.name}: {e}")
             added.append(data)
             self.stdout.write(self.style.SUCCESS(
                 f"  + {data['name']} – {data['zip_code']} {data['town']} "
                 f"({data['legal_form']})"
                 + (f" ☎ {data['phone']}" if data['phone'] else "")))
 
-        self.stdout.write(f"Geprüft: {checked}, neu im Einzugsgebiet: {len(added)}")
+        self.stdout.write(f"Geprüft: {checked}, neu im Einzugsgebiet: {len(added)}"
+                          + (", nach Odoo gepusht" if push_odoo else ""))
 
         if added and not dry and not no_email:
             self._send_digest(added)

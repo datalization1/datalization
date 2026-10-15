@@ -192,6 +192,10 @@ class NewCompany(models.Model):
     notes = models.TextField(_("Notizen"), blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    # Odoo-CRM-Sync
+    odoo_lead_id = models.IntegerField(_("Odoo-Lead-ID"), null=True, blank=True)
+    odoo_synced_at = models.DateTimeField(null=True, blank=True)
+
     class Meta:
         verbose_name = _("Neue Firma")
         verbose_name_plural = _("Neue Firmen")

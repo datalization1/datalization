@@ -309,3 +309,17 @@ SEARCH_CH_API_KEY = os.getenv("SEARCH_CH_API_KEY", "")
 
 # Empfänger für den täglichen Neugründungs-Digest (Default: Kontaktadresse).
 SHAB_DIGEST_EMAIL = os.getenv("SHAB_DIGEST_EMAIL", CONTACT_RECEIVER_EMAIL)
+
+# ---------------------------------------------------------------------------
+# Odoo CRM (optional): Neugründungen als Leads nach Odoo pushen.
+# Alle vier Werte setzen, um die Anbindung zu aktivieren. API-Key unter
+# Odoo → Einstellungen → Benutzer → (eigener Benutzer) → Konto-Sicherheit.
+# ---------------------------------------------------------------------------
+ODOO_URL = os.getenv("ODOO_URL", "")            # z. B. https://deinefirma.odoo.com
+ODOO_DB = os.getenv("ODOO_DB", "")              # Datenbankname
+ODOO_USERNAME = os.getenv("ODOO_USERNAME", "")  # Login-E-Mail
+ODOO_API_KEY = os.getenv("ODOO_API_KEY", "")    # API-Key (oder Passwort)
+
+# Neue Treffer automatisch nach Odoo pushen, sobald konfiguriert.
+# Auf False setzen, wenn du nur selektiv via Admin-Aktion pushen willst.
+ODOO_AUTOPUSH = os.getenv("ODOO_AUTOPUSH", "1") not in ("0", "false", "False", "")

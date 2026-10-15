@@ -79,8 +79,32 @@ GitHub-Actions-Workflow **mit** `DATABASE_URL` (Postgres) + `SEARCH_CH_API_KEY` 
 Action) funktionieren Admin-Liste und Dedupe nicht – dann würde der Digest täglich
 alles erneut senden.
 
-## Später: Odoo CRM
+## Odoo CRM (optional) – Neugründungen als Leads pushen
 
-Sobald eine Odoo-Instanz mit API-Key steht, lässt sich ein Push-Schritt ergänzen
-(`crm.lead` via XML-RPC). Das Django-Modell bleibt Speicher/Backup, der Push wird
-Sync. Benötigt: Odoo-URL, DB-Name, Login + API-Key.
+Die Anbindung ist eingebaut (via XML-RPC, `crm.lead`). Aktivieren durch Setzen
+aller vier Werte in der `.env`:
+
+```
+ODOO_URL=https://deinefirma.odoo.com
+ODOO_DB=deinedb
+ODOO_USERNAME=info@datalization.ch
+ODOO_API_KEY=dein_api_key
+# optional: ODOO_AUTOPUSH=0  → nicht automatisch pushen, nur via Admin-Aktion
+```
+
+Den **API-Key** erzeugst du in Odoo unter *Einstellungen → Benutzer →
+(dein Benutzer) → Konto-Sicherheit → Neuer API-Key*. Der Benutzer braucht das
+Recht, `crm.lead` anzulegen (CRM-App installiert). Tipp: Odoos **„One App Free"**
+deckt CRM gratis ab.
+
+**Verhalten:**
+- Ist Odoo konfiguriert und `ODOO_AUTOPUSH` aktiv (Default), werden neue Treffer
+  beim Lauf automatisch als Leads angelegt. Dedupe über `odoo_lead_id`.
+- **Selektiv pushen:** im Admin unter *Neue Firmen* Einträge markieren →
+  Aktion *„Ausgewählte als Leads nach Odoo pushen"*. Die Spalte *Odoo* zeigt,
+  was schon gepusht ist.
+- Push beim Abruf überspringen: `--no-odoo`.
+
+Feld-Mapping: Firmenname → `partner_name`, Adresse → `street/zip/city/country_id`,
+Telefon/E-Mail/Website → `phone/email_from/website`, Zweck + Rechtsform + UID +
+Sitz + Datum + SHAB-Link → `description`, `type='lead'`.
