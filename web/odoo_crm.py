@@ -55,14 +55,21 @@ class OdooClient:
         self._tags[name] = tid
         return tid
 
-    def create_broker_lead(self, company):
-        """Legt einen crm.lead aus einer RealEstateLead-Instanz an (Monekey)."""
+    def create_many(self, vals_list):
+        """Legt mehrere crm.leads in einem API-Call an, gibt die ID-Liste zurück."""
+        if not vals_list:
+            return []
+        ids = self._execute("crm.lead", "create", vals_list)
+        return ids if isinstance(ids, (list, tuple)) else [ids]
+
+    def broker_vals(self, company):
+        """crm.lead-Werte aus einer RealEstateLead-Instanz (Monekey)."""
         desc = "\n".join(x for x in [
             f"Website: {company.website}" if company.website else "",
             f"Quelle: {company.source_url}" if company.source_url else "",
             f"Marktplatz: {company.marketplace}" if company.marketplace else "",
         ] if x)
-        vals = {
+        return {
             "name": f"{company.name} – Immobilien (Monekey)",
             "type": "lead",
             "partner_name": company.name,
@@ -76,10 +83,12 @@ class OdooClient:
             "description": desc or False,
             "tag_ids": [(6, 0, [self.tag_id("Monekey")])],
         }
-        return self._execute("crm.lead", "create", vals)
 
-    def create_acquisition_lead(self, company):
-        """Legt einen crm.lead aus einer AcquisitionLead-Instanz an.
+    def create_broker_lead(self, company):
+        return self._execute("crm.lead", "create", self.broker_vals(company))
+
+    def acq_vals(self, company):
+        """crm.lead-Werte aus einer AcquisitionLead-Instanz.
 
         Tag richtet sich nach der Prio (A/B/C → Datalization, sonst
         Monekey/Partner). Odoo-Priorität wird aus A/B/C abgeleitet.
@@ -96,7 +105,7 @@ class OdooClient:
             f"Gesprächseinstieg: {company.approach}" if company.approach else "",
             f"Notizen: {company.notes}" if company.notes else "",
         ] if x)
-        vals = {
+        return {
             "name": f"{company.name} – {company.city}".strip(" –"),
             "type": "lead",
             "partner_name": company.name,
@@ -108,7 +117,9 @@ class OdooClient:
             "description": desc or False,
             "tag_ids": [(6, 0, [self.tag_id(tag)])],
         }
-        return self._execute("crm.lead", "create", vals)
+
+    def create_acquisition_lead(self, company):
+        return self._execute("crm.lead", "create", self.acq_vals(company))
 
     def create_lead(self, company):
         """Legt einen crm.lead aus einer NewCompany-Instanz an, gibt die ID zurück."""
