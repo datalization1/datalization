@@ -37,6 +37,6 @@ Status pflegbar (neu/kontaktiert/kein Interesse/Kunde).
 ## Nach Odoo pushen (selektiv)
 
 Einträge markieren → Aktion **„Ausgewählte als Leads nach Odoo pushen (Monekey)"**.
-Die Leads bekommen in Odoo den **Tag „Monekey – Immobilien"** (zur Abgrenzung von
+Die Leads bekommen in Odoo den **Tag „Monekey"** (zur Abgrenzung von
 den SHAB-Leads) und `type=lead`. Dedupe über `odoo_lead_id`. Setzt die
 Odoo-Konfiguration in der `.env` voraus (siehe `docs/shab-monitor.md`).

@@ -74,7 +74,7 @@ class OdooClient:
             "email_from": company.email or False,
             "website": company.website or False,
             "description": desc or False,
-            "tag_ids": [(6, 0, [self.tag_id("Monekey – Immobilien")])],
+            "tag_ids": [(6, 0, [self.tag_id("Monekey")])],
         }
         return self._execute("crm.lead", "create", vals)
 
@@ -101,6 +101,7 @@ class OdooClient:
             "email_from": company.email or False,
             "website": company.website or False,
             "description": desc or False,
+            "tag_ids": [(6, 0, [self.tag_id("Datalization")])],
         }
         return self._execute("crm.lead", "create", vals)
 
