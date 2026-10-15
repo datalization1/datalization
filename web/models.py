@@ -192,6 +192,11 @@ class NewCompany(models.Model):
     notes = models.TextField(_("Notizen"), blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    # Zefix-Anreicherung (Handelsregister-Index)
+    zefix_status = models.CharField(_("Register-Status"), max_length=20, blank=True)
+    zefix_url = models.URLField(_("Zefix-Link"), max_length=400, blank=True)
+    zefix_excerpt_url = models.URLField(_("HR-Auszug"), max_length=400, blank=True)
+
     # Odoo-CRM-Sync
     odoo_lead_id = models.IntegerField(_("Odoo-Lead-ID"), null=True, blank=True)
     odoo_synced_at = models.DateTimeField(null=True, blank=True)

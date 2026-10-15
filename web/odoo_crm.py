@@ -128,8 +128,11 @@ class OdooClient:
             f"Rechtsform: {company.legal_form}" if company.legal_form else "",
             f"UID: {company.uid}" if company.uid else "",
             f"Sitz: {company.seat} ({company.canton})" if company.seat else "",
-            f"Gegründet / publiziert: {company.publication_date}" if company.publication_date else "",
+            f"Gründungsdatum: {company.publication_date:%d.%m.%Y}" if company.publication_date else "",
             f"Zweck: {company.purpose}" if company.purpose else "",
+            f"Register-Status: {company.zefix_status}" if getattr(company, "zefix_status", "") else "",
+            f"Zefix: {company.zefix_url}" if getattr(company, "zefix_url", "") else "",
+            f"HR-Auszug: {company.zefix_excerpt_url}" if getattr(company, "zefix_excerpt_url", "") else "",
             f"SHAB: {company.shab_url}" if company.shab_url else "",
         ] if x)
         vals = {

@@ -63,9 +63,9 @@ from .models import NewCompany
 
 @admin.register(NewCompany)
 class NewCompanyAdmin(admin.ModelAdmin):
-    list_display = ("name", "town", "canton", "legal_form",
+    list_display = ("name", "town", "canton", "legal_form", "zefix_status",
                     "publication_date", "phone", "email", "status", "in_odoo")
-    list_filter = ("status", "canton", "publication_date", "legal_form", "town")
+    list_filter = ("status", "zefix_status", "canton", "publication_date", "legal_form", "town")
     search_fields = ("name", "town", "zip_code", "uid", "purpose", "phone", "email")
     list_editable = ("status",)
     date_hierarchy = "publication_date"
@@ -75,11 +75,13 @@ class NewCompanyAdmin(admin.ModelAdmin):
     readonly_fields = ("shab_id", "publication_number", "publication_date", "shab_url",
                        "name", "uid", "legal_form", "seat", "canton",
                        "street", "house_number", "zip_code", "town", "purpose",
+                       "zefix_status", "zefix_url", "zefix_excerpt_url",
                        "created_at", "odoo_lead_id", "odoo_synced_at")
     fieldsets = (
         (_("Firma"), {"fields": ("name", "legal_form", "uid", ("zip_code", "town"),
                                   ("street", "house_number"), "seat", "canton", "purpose")}),
         (_("Kontakt (angereichert via search.ch)"), {"fields": ("phone", "email", "website")}),
+        (_("Zefix (Handelsregister)"), {"fields": ("zefix_status", "zefix_url", "zefix_excerpt_url")}),
         (_("Lead"), {"fields": ("status", "notes")}),
         (_("Odoo CRM"), {"fields": ("odoo_lead_id", "odoo_synced_at")}),
         (_("Quelle"), {"fields": ("publication_date", "publication_number", "shab_url", "shab_id", "created_at"),

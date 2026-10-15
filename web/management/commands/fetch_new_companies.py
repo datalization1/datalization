@@ -26,7 +26,7 @@ from django.core.management.base import BaseCommand
 from django.utils import timezone
 from django.utils.html import escape
 
-from web import odoo_crm
+from web import odoo_crm, zefix
 from web.models import NewCompany
 
 LIST_URL = "https://amtsblattportal.ch/api/v1/publications/xml"
@@ -81,6 +81,10 @@ class Command(BaseCommand):
                             help="Max. Anzahl geprüfter Publikationen (0 = alle).")
         parser.add_argument("--no-odoo", action="store_true",
                             help="Nicht nach Odoo CRM pushen (auch wenn konfiguriert).")
+        parser.add_argument("--towns", default="",
+                            help="Komma-Liste von Orten (überschreibt SHAB_TOWNS für diesen Lauf).")
+        parser.add_argument("--cantons", default="",
+                            help="Komma-Liste von Kantonen (überschreibt SHAB_CANTONS).")
 
     def handle(self, *args, **opts):
         days = opts["days"]
@@ -89,8 +93,14 @@ class Command(BaseCommand):
         limit = opts["limit"]
         date_from = (timezone.localdate() - timedelta(days=days)).isoformat()
 
-        towns = {t.lower() for t in getattr(settings, "SHAB_TOWNS", set())}
-        cantons = getattr(settings, "SHAB_CANTONS", ["AG"])
+        if opts["towns"]:
+            towns = {t.strip().lower() for t in opts["towns"].split(",") if t.strip()}
+        else:
+            towns = {t.lower() for t in getattr(settings, "SHAB_TOWNS", set())}
+        if opts["cantons"]:
+            cantons = [c.strip().upper() for c in opts["cantons"].split(",") if c.strip()]
+        else:
+            cantons = getattr(settings, "SHAB_CANTONS", ["AG"])
 
         push_odoo = (not opts["no_odoo"] and not dry
                      and getattr(settings, "ODOO_AUTOPUSH", False) and odoo_crm.enabled())
@@ -125,6 +135,7 @@ class Command(BaseCommand):
             if re.search(r"in liquidation|in liq\.", data["name"], re.I):
                 continue
             self._enrich(data)
+            self._enrich_zefix(data)
             if not dry:
                 obj = NewCompany.objects.create(**data)
                 if push_odoo:
@@ -269,6 +280,22 @@ class Command(BaseCommand):
                 data["website"] = _text(entry, "website")
         except Exception as e:
             self.stderr.write(f"  ~ search.ch {data['name']}: {e}")
+
+    # ---- Anreicherung (Zefix) --------------------------------------------
+    def _enrich_zefix(self, data):
+        data.setdefault("zefix_status", "")
+        data.setdefault("zefix_url", "")
+        data.setdefault("zefix_excerpt_url", "")
+        if not zefix.enabled() or not data.get("uid"):
+            return
+        info = zefix.by_uid(data["uid"])
+        if not info:
+            return
+        data["zefix_status"] = info.get("status", "")
+        data["zefix_url"] = info.get("zefix_url", "")
+        data["zefix_excerpt_url"] = info.get("excerpt_url", "")
+        if info.get("canton") and not data.get("canton"):
+            data["canton"] = info["canton"]
 
     # ---- Digest-Mail ------------------------------------------------------
     def _send_digest(self, items):

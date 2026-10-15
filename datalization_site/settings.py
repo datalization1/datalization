@@ -323,3 +323,9 @@ ODOO_API_KEY = os.getenv("ODOO_API_KEY", "")    # API-Key (oder Passwort)
 # Neue Treffer automatisch nach Odoo pushen, sobald konfiguriert.
 # Auf False setzen, wenn du nur selektiv via Admin-Aktion pushen willst.
 ODOO_AUTOPUSH = os.getenv("ODOO_AUTOPUSH", "1") not in ("0", "false", "False", "")
+
+# ---------------------------------------------------------------------------
+# Zefix REST API (Handelsregister-Index) – Anreicherung der Neugründungen.
+# ---------------------------------------------------------------------------
+ZEFIX_USERNAME = os.getenv("ZEFIX_USERNAME", "")
+ZEFIX_PASSWORD = os.getenv("ZEFIX_PASSWORD", "")
