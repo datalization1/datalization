@@ -28,9 +28,8 @@ class Command(BaseCommand):
             return
         self.stdout.write(self.style.SUCCESS(f"Auth OK – uid={c.uid}  ({c.url}, db={c.db})"))
         try:
-            can = c._execute("crm.lead", "check_access_rights", "create",
-                             raise_exception=False)
-            self.stdout.write(f"crm.lead anlegen erlaubt: {can}")
+            n = c._execute("crm.lead", "search_count", [])
+            self.stdout.write(f"crm.lead lesbar – aktuell {n} Einträge.")
         except Exception as e:
             self.stderr.write(self.style.WARNING(f"crm.lead-Zugriff unklar: {e}"))
         self.stdout.write(f"Land CH (country_id): {c.country_ch_id()}")
