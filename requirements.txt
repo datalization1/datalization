@@ -30,3 +30,4 @@ starkbank-ecdsa==2.2.0
 typing_extensions==4.15.0
 urllib3==1.26.20
 whitenoise==6.11.0
+odfpy==1.4.1

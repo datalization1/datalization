@@ -120,3 +120,67 @@ class NewCompanyAdmin(admin.ModelAdmin):
             _("Odoo: %(p)d gepusht, %(s)d bereits vorhanden, %(f)d fehlgeschlagen.")
             % {"p": pushed, "s": skipped, "f": failed},
             level=messages.SUCCESS if not failed else messages.WARNING)
+
+
+# ---------------------------------------------------------------------------
+# Immobilienfirmen (Monekey-Leads) – importierte Maklerliste
+# ---------------------------------------------------------------------------
+from .models import RealEstateLead
+
+
+@admin.register(RealEstateLead)
+class RealEstateLeadAdmin(admin.ModelAdmin):
+    list_display = ("name", "zip_code", "city", "phone", "website",
+                    "marketplace", "status", "in_odoo")
+    list_filter = ("status", "marketplace", "city")
+    search_fields = ("name", "city", "zip_code", "phone", "email", "website")
+    list_editable = ("status",)
+    ordering = ("name",)
+    list_per_page = 50
+    actions = ("push_to_odoo",)
+    readonly_fields = ("external_id", "name", "zip_code", "city", "street",
+                       "full_address", "website", "phone", "email", "source_url",
+                       "marketplace", "created_at", "odoo_lead_id", "odoo_synced_at")
+    fieldsets = (
+        (_("Firma"), {"fields": ("name", ("zip_code", "city"), "street", "full_address")}),
+        (_("Kontakt"), {"fields": ("phone", "email", "website")}),
+        (_("Lead"), {"fields": ("status", "notes")}),
+        (_("Odoo CRM"), {"fields": ("odoo_lead_id", "odoo_synced_at")}),
+        (_("Quelle"), {"fields": ("marketplace", "source_url", "external_id", "created_at"),
+                       "classes": ("collapse",)}),
+    )
+
+    @admin.display(description="Odoo", boolean=True)
+    def in_odoo(self, obj):
+        return bool(obj.odoo_lead_id)
+
+    @admin.action(description=_("Ausgewählte als Leads nach Odoo pushen (Monekey)"))
+    def push_to_odoo(self, request, queryset):
+        from django.contrib import messages
+        from web import odoo_crm
+        if not odoo_crm.enabled():
+            self.message_user(request, _("Odoo ist nicht konfiguriert."),
+                              level=messages.ERROR)
+            return
+        try:
+            client = odoo_crm.OdooClient()
+        except Exception as e:
+            self.message_user(request, f"Odoo-Verbindung fehlgeschlagen: {e}",
+                              level=messages.ERROR)
+            return
+        pushed = skipped = failed = 0
+        for obj in queryset:
+            if obj.odoo_lead_id:
+                skipped += 1
+                continue
+            try:
+                odoo_crm.push_broker(obj, client=client)
+                pushed += 1
+            except Exception as e:
+                failed += 1
+                self.message_user(request, f"{obj.name}: {e}", level=messages.WARNING)
+        self.message_user(
+            request,
+            _("Odoo: %(p)d gepusht, %(s)d bereits vorhanden, %(f)d fehlgeschlagen.")
+            % {"p": pushed, "s": skipped, "f": failed},
+            level=messages.SUCCESS if not failed else messages.WARNING)

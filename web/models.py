@@ -209,3 +209,40 @@ class NewCompany(models.Model):
         parts = [p for p in [f"{self.street} {self.house_number}".strip(),
                              f"{self.zip_code} {self.town}".strip()] if p]
         return ", ".join(parts)
+
+
+class RealEstateLead(models.Model):
+    """Immobilien-/Maklerfirma als Monekey-Lead (importiert aus Maklerliste).
+
+    Eigener Lead-Strom (Zielgruppe Monekey), getrennt von den SHAB-
+    Neugründungen. Enthält i. d. R. bereits Telefon und Website.
+    """
+
+    STATUS_CHOICES = NewCompany.STATUS_CHOICES  # gleiche Status-Logik
+
+    external_id = models.CharField(max_length=40, unique=True)  # z. B. immoscout-ID
+    name = models.CharField(max_length=255)
+    zip_code = models.CharField("PLZ", max_length=10, blank=True)
+    city = models.CharField(_("Ort"), max_length=120, blank=True)
+    street = models.CharField(_("Strasse"), max_length=200, blank=True)
+    full_address = models.CharField(_("Adresse"), max_length=300, blank=True)
+    website = models.CharField(_("Website"), max_length=300, blank=True)
+    phone = models.CharField(_("Telefon"), max_length=60, blank=True)
+    email = models.CharField(_("E-Mail"), max_length=200, blank=True)
+    source_url = models.URLField(_("Quelle"), max_length=400, blank=True)
+    marketplace = models.CharField(_("Marktplatz"), max_length=40, blank=True)
+
+    status = models.CharField(_("Status"), max_length=20, choices=STATUS_CHOICES, default="new")
+    notes = models.TextField(_("Notizen"), blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    odoo_lead_id = models.IntegerField(_("Odoo-Lead-ID"), null=True, blank=True)
+    odoo_synced_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        verbose_name = _("Immobilienfirma (Monekey)")
+        verbose_name_plural = _("Immobilienfirmen (Monekey)")
+        ordering = ("name",)
+
+    def __str__(self):
+        return f"{self.name} ({self.city})"
