@@ -139,6 +139,7 @@ class OdooClient:
         desc = "\n".join(x for x in [
             f"Rechtsform: {company.legal_form}" if company.legal_form else "",
             f"UID: {company.uid}" if company.uid else "",
+            f"Kontaktperson: {company.contact_person}" if getattr(company, "contact_person", "") else "",
             f"Sitz: {company.seat} ({company.canton})" if company.seat else "",
             f"Gründungsdatum: {self._fmt_date(company.publication_date)}" if company.publication_date else "",
             f"Zweck: {company.purpose}" if company.purpose else "",

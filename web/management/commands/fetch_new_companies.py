@@ -67,6 +67,36 @@ def _text(elem, name):
     return (e.text or "").strip() if e is not None and e.text else ""
 
 
+_ROLES = ["Vorsitzende", "Geschäftsführer", "Präsident", "Direktor", "Inhaber",
+          "Verwaltungsrat", "Gesellschafter", "Liquidator", "Prokurist", "Mitglied"]
+
+
+def _parse_contact_persons(text, maxp=2):
+    """Natürliche Personen (Inhaber/Geschäftsführer) aus dem SHAB-Text ziehen.
+
+    Gibt z. B. 'Matthias Keller (Geschäftsführer)' zurück oder ''.
+    """
+    i = text.find("Eingetragene Personen")
+    if i < 0:
+        return ""
+    seg = re.sub(r"^Eingetragene Personen[^:]*:\s*", "", text[i:])
+    out = []
+    for entry in (e.strip() for e in seg.split(";") if e.strip()):
+        if "(CHE" in entry or re.search(r"\(\d{5,}\)", entry):
+            continue  # juristische Person (Firma) überspringen
+        m = re.match(r"^([^,]+),\s*([^,]+)", entry)
+        if not m:
+            continue
+        last, first = m.group(1).strip(), m.group(2).strip()
+        if not first or not last or any(ch.isdigit() for ch in first + last):
+            continue
+        func = next((r for r in _ROLES if r.lower() in entry.lower()), "")
+        out.append(f"{first} {last} ({func})" if func else f"{first} {last}")
+        if len(out) >= maxp:
+            break
+    return "; ".join(out)
+
+
 class Command(BaseCommand):
     help = "Neue Firmengründungen (SHAB HR01) holen, speichern und als Digest mailen."
 
@@ -220,11 +250,11 @@ class Command(BaseCommand):
             return None
         address = _find(company, "address")
 
+        pub_text = _text(content, "publicationText")
         code = _text(company, "legalForm")
         legal = LEGAL_FORMS.get(code, "")
         if not legal:
-            txt = _text(content, "publicationText")
-            m = re.search(r",\s*([^,]+?)\s*\(Neueintragung\)", txt)
+            m = re.search(r",\s*([^,]+?)\s*\(Neueintragung\)", pub_text)
             legal = m.group(1).strip() if m else code
 
         return {
@@ -242,6 +272,7 @@ class Command(BaseCommand):
             "zip_code": _text(address, "swissZipCode"),
             "town": _text(address, "town"),
             "purpose": _text(commons, "purpose"),
+            "contact_person": _parse_contact_persons(pub_text),
             "phone": "",
             "email": "",
             "website": "",

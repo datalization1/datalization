@@ -186,6 +186,7 @@ class NewCompany(models.Model):
     phone = models.CharField(_("Telefon"), max_length=40, blank=True)
     email = models.EmailField(_("E-Mail"), blank=True)
     website = models.URLField(_("Website"), blank=True)
+    contact_person = models.CharField(_("Kontaktperson"), max_length=255, blank=True)
 
     # Lead-Pflege
     status = models.CharField(_("Status"), max_length=20, choices=STATUS_CHOICES, default=STATUS_NEW)
