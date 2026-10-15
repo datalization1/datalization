@@ -53,3 +53,33 @@ class ContactMessageAdmin(admin.ModelAdmin):
     @admin.action(description="Mark selected messages as processed")
     def mark_as_handled(self, request, queryset):
         queryset.update(handled=True)
+
+
+# ---------------------------------------------------------------------------
+# Neue Firmen (SHAB-Handelsregister-Monitor) – Lead-Liste
+# ---------------------------------------------------------------------------
+from .models import NewCompany
+
+
+@admin.register(NewCompany)
+class NewCompanyAdmin(admin.ModelAdmin):
+    list_display = ("name", "town", "canton", "legal_form",
+                    "publication_date", "phone", "email", "status")
+    list_filter = ("status", "canton", "publication_date", "legal_form", "town")
+    search_fields = ("name", "town", "zip_code", "uid", "purpose", "phone", "email")
+    list_editable = ("status",)
+    date_hierarchy = "publication_date"
+    ordering = ("-publication_date", "-created_at")
+    list_per_page = 50
+    readonly_fields = ("shab_id", "publication_number", "publication_date", "shab_url",
+                       "name", "uid", "legal_form", "seat", "canton",
+                       "street", "house_number", "zip_code", "town", "purpose",
+                       "created_at")
+    fieldsets = (
+        (_("Firma"), {"fields": ("name", "legal_form", "uid", ("zip_code", "town"),
+                                  ("street", "house_number"), "seat", "canton", "purpose")}),
+        (_("Kontakt (angereichert via search.ch)"), {"fields": ("phone", "email", "website")}),
+        (_("Lead"), {"fields": ("status", "notes")}),
+        (_("Quelle"), {"fields": ("publication_date", "publication_number", "shab_url", "shab_id", "created_at"),
+                       "classes": ("collapse",)}),
+    )

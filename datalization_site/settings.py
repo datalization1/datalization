@@ -261,3 +261,51 @@ if ON_HEROKU and not DEBUG:
     SECURE_REFERRER_POLICY = "strict-origin"
     SECURE_CONTENT_TYPE_NOSNIFF = True
     X_FRAME_OPTIONS = "DENY"
+
+# ---------------------------------------------------------------------------
+# SHAB-Monitor: neue Firmengründungen (Handelsregister-Neueintragungen)
+# Abgefragt via amtsblattportal.ch/api/v1 (öffentlich, kein Key nötig).
+# ---------------------------------------------------------------------------
+SHAB_CANTONS = ["AG", "BE", "LU", "SO"]
+
+# Orte im Einzugsgebiet (Zofingen–Langenthal–Sursee–Baden–Aarau, inkl. Olten).
+# Kleingeschrieben; wird gegen den Sitz-Ort der Neueintragung gematcht.
+# Nach Bedarf erweitern/kürzen.
+SHAB_TOWNS = {
+    # AG – Bezirk Zofingen (alle 17 Gemeinden)
+    "aarburg", "bottenwil", "brittnau", "kirchleerau", "kölliken", "moosleerau",
+    "murgenthal", "oftringen", "reitnau", "rothrist", "safenwil", "staffelbach",
+    "strengelbach", "uerkheim", "vordemwald", "wiliberg", "zofingen",
+    # AG – Region Aarau / Lenzburg
+    "aarau", "suhr", "buchs", "oberentfelden", "unterentfelden", "gränichen",
+    "schöftland", "muhen", "hirschthal", "küttigen", "erlinsbach", "biberstein",
+    "rupperswil", "hunzenschwil", "lenzburg", "niederlenz", "staufen",
+    "schafisheim", "seon", "egliswil", "rohr", "densbüren",
+    # AG – Region Baden
+    "baden", "wettingen", "ennetbaden", "neuenhof", "obersiggenthal",
+    "untersiggenthal", "turgi", "fislisbach", "birmenstorf", "gebenstorf",
+    "würenlos", "killwangen", "spreitenbach", "mellingen", "mägenwil",
+    # BE – Oberaargau / Langenthal
+    "langenthal", "roggwil", "lotzwil", "madiswil", "aarwangen", "bannwil",
+    "bleienbach", "thunstetten", "ursenbach", "melchnau", "huttwil",
+    "wangen an der aare", "herzogenbuchsee", "niederbipp", "oberbipp",
+    "wiedlisbach",
+    # LU – Region Sursee
+    "sursee", "oberkirch", "schenkon", "nottwil", "sempach", "eich",
+    "neuenkirch", "büron", "triengen", "geuensee", "knutwil", "mauensee",
+    "rickenbach", "beromünster", "schötz", "dagmersellen", "reiden", "wikon",
+    "nebikon", "altishofen", "zell", "willisau", "ettiswil", "grosswangen",
+    # SO – Region Olten / Gäu / Niederamt
+    "olten", "trimbach", "hägendorf", "wangen bei olten", "dulliken",
+    "däniken", "gretzenbach", "schönenwerd", "niedergösgen", "obergösgen",
+    "lostorf", "starrkirch-wil", "boningen", "egerkingen", "oberbuchsiten",
+    "oensingen", "kestenholz", "härkingen", "neuendorf", "fulenbach",
+    "gunzgen", "kappel", "wolfwil",
+}
+
+# search.ch Telefonbuch-API (optional) für Telefon/E-Mail/Website-Anreicherung.
+# Gratis-Key via https://tel.search.ch/api/ (1000 Abfragen/Monat).
+SEARCH_CH_API_KEY = os.getenv("SEARCH_CH_API_KEY", "")
+
+# Empfänger für den täglichen Neugründungs-Digest (Default: Kontaktadresse).
+SHAB_DIGEST_EMAIL = os.getenv("SHAB_DIGEST_EMAIL", CONTACT_RECEIVER_EMAIL)

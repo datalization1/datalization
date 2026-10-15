@@ -143,3 +143,65 @@ class Page(models.Model):
     title_en = models.CharField(max_length=160)
     body_de  = models.TextField(blank=True)
     body_en  = models.TextField(blank=True)
+
+
+class NewCompany(models.Model):
+    """Neu gegründete Firma aus dem SHAB (Handelsregister-Neueintragung HR01).
+
+    Wird vom Management-Command `fetch_new_companies` befüllt und im Admin
+    als Lead-Liste gepflegt. Telefon/E-Mail/Website werden – wenn möglich –
+    über die search.ch-Telefonbuch-API angereichert (nicht im HR enthalten).
+    """
+
+    STATUS_NEW = "new"
+    STATUS_CONTACTED = "contacted"
+    STATUS_NO_INTEREST = "no_interest"
+    STATUS_CUSTOMER = "customer"
+    STATUS_CHOICES = [
+        (STATUS_NEW, _("Neu")),
+        (STATUS_CONTACTED, _("Kontaktiert")),
+        (STATUS_NO_INTEREST, _("Kein Interesse")),
+        (STATUS_CUSTOMER, _("Kunde")),
+    ]
+
+    # SHAB-Herkunft (Dedupe über shab_id)
+    shab_id = models.CharField(max_length=64, unique=True)
+    publication_number = models.CharField(max_length=40, blank=True)
+    publication_date = models.DateField(null=True, blank=True)
+    shab_url = models.URLField(blank=True)
+
+    # Firmendaten aus dem Handelsregister
+    name = models.CharField(max_length=255)
+    uid = models.CharField("UID", max_length=20, blank=True)
+    legal_form = models.CharField(_("Rechtsform"), max_length=80, blank=True)
+    seat = models.CharField(_("Sitz"), max_length=120, blank=True)
+    canton = models.CharField(_("Kanton"), max_length=2, blank=True)
+    street = models.CharField(_("Strasse"), max_length=160, blank=True)
+    house_number = models.CharField(max_length=20, blank=True)
+    zip_code = models.CharField("PLZ", max_length=10, blank=True)
+    town = models.CharField(_("Ort"), max_length=120, blank=True)
+    purpose = models.TextField(_("Zweck"), blank=True)
+
+    # Angereichert (search.ch) – nicht im Handelsregister enthalten
+    phone = models.CharField(_("Telefon"), max_length=40, blank=True)
+    email = models.EmailField(_("E-Mail"), blank=True)
+    website = models.URLField(_("Website"), blank=True)
+
+    # Lead-Pflege
+    status = models.CharField(_("Status"), max_length=20, choices=STATUS_CHOICES, default=STATUS_NEW)
+    notes = models.TextField(_("Notizen"), blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = _("Neue Firma")
+        verbose_name_plural = _("Neue Firmen")
+        ordering = ("-publication_date", "-created_at")
+
+    def __str__(self):
+        return f"{self.name} ({self.town})"
+
+    @property
+    def address_line(self):
+        parts = [p for p in [f"{self.street} {self.house_number}".strip(),
+                             f"{self.zip_code} {self.town}".strip()] if p]
+        return ", ".join(parts)
