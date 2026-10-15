@@ -246,3 +246,42 @@ class RealEstateLead(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.city})"
+
+
+class AcquisitionLead(models.Model):
+    """Kurierter Akquise-Lead (Kleinbetrieb) aus der Region – für Datalization.
+
+    Importiert aus einer gepflegten Excel-Liste (Blatt 'Leads'). Enthält
+    Segment, Priorität, Grössen-Einschätzung und einen passenden
+    Gesprächseinstieg. Prio kann auch 'Monekey'/'Partner' sein – danach
+    richtet sich der Odoo-Tag beim Push.
+    """
+
+    STATUS_CHOICES = NewCompany.STATUS_CHOICES
+
+    ext_key = models.CharField(max_length=200, unique=True)  # name+ort normalisiert
+    name = models.CharField(max_length=255)
+    segment = models.CharField(_("Segment"), max_length=160, blank=True)
+    city = models.CharField(_("Ort"), max_length=120, blank=True)
+    address = models.CharField(_("Adresse"), max_length=300, blank=True)
+    phone = models.CharField(_("Telefon"), max_length=60, blank=True)
+    priority = models.CharField(_("Prio"), max_length=20, blank=True)  # A/B/C/Monekey/Partner
+    size_note = models.CharField(_("Grösse"), max_length=200, blank=True)
+    employees = models.CharField(_("Mitarbeitende"), max_length=80, blank=True)
+    size_source = models.CharField(_("Quelle Grösse"), max_length=200, blank=True)
+    approach = models.TextField(_("Gesprächseinstieg"), blank=True)
+
+    status = models.CharField(_("Status"), max_length=20, choices=STATUS_CHOICES, default="new")
+    notes = models.TextField(_("Notizen"), blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    odoo_lead_id = models.IntegerField(_("Odoo-Lead-ID"), null=True, blank=True)
+    odoo_synced_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        verbose_name = _("Akquise-Lead (Datalization)")
+        verbose_name_plural = _("Akquise-Leads (Datalization)")
+        ordering = ("priority", "name")
+
+    def __str__(self):
+        return f"{self.name} ({self.city})"

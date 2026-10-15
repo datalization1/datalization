@@ -78,6 +78,38 @@ class OdooClient:
         }
         return self._execute("crm.lead", "create", vals)
 
+    def create_acquisition_lead(self, company):
+        """Legt einen crm.lead aus einer AcquisitionLead-Instanz an.
+
+        Tag richtet sich nach der Prio (A/B/C → Datalization, sonst
+        Monekey/Partner). Odoo-Priorität wird aus A/B/C abgeleitet.
+        """
+        prio = (company.priority or "").strip().lower()
+        tag = {"monekey": "Monekey", "partner": "Partner"}.get(prio, "Datalization")
+        odoo_prio = {"a": "3", "b": "2", "c": "1"}.get(prio, "0")
+        street = company.address.rsplit(",", 1)[0].strip() if company.address else ""
+        desc = "\n".join(x for x in [
+            f"Segment: {company.segment}" if company.segment else "",
+            f"Grösse: {company.size_note}" if company.size_note else "",
+            f"Mitarbeitende: {company.employees}" if company.employees else "",
+            f"Priorität: {company.priority}" if company.priority else "",
+            f"Gesprächseinstieg: {company.approach}" if company.approach else "",
+            f"Notizen: {company.notes}" if company.notes else "",
+        ] if x)
+        vals = {
+            "name": f"{company.name} – {company.city}".strip(" –"),
+            "type": "lead",
+            "partner_name": company.name,
+            "street": (street or company.address) or False,
+            "city": company.city or False,
+            "country_id": self.country_ch_id() or False,
+            "phone": company.phone or False,
+            "priority": odoo_prio,
+            "description": desc or False,
+            "tag_ids": [(6, 0, [self.tag_id(tag)])],
+        }
+        return self._execute("crm.lead", "create", vals)
+
     def create_lead(self, company):
         """Legt einen crm.lead aus einer NewCompany-Instanz an, gibt die ID zurück."""
         street = " ".join(x for x in [company.street, company.house_number] if x).strip()
@@ -128,6 +160,18 @@ def push_broker(company, client=None):
         return company.odoo_lead_id
     client = client or OdooClient()
     lead_id = client.create_broker_lead(company)
+    company.odoo_lead_id = lead_id
+    company.odoo_synced_at = timezone.now()
+    company.save(update_fields=["odoo_lead_id", "odoo_synced_at"])
+    return lead_id
+
+
+def push_acquisition(company, client=None):
+    """Pusht einen AcquisitionLead nach Odoo, sofern noch nicht gepusht."""
+    if company.odoo_lead_id:
+        return company.odoo_lead_id
+    client = client or OdooClient()
+    lead_id = client.create_acquisition_lead(company)
     company.odoo_lead_id = lead_id
     company.odoo_synced_at = timezone.now()
     company.save(update_fields=["odoo_lead_id", "odoo_synced_at"])
