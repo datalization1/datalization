@@ -49,10 +49,11 @@ python manage.py fetch_new_companies --days 2 --no-email # speichern, ohne Mail
 
 Treffer danach im Admin unter **Neue Firmen** ansehen/pflegen.
 
-## Täglich automatisch
+## Wöchentlich automatisch (Mittwoch)
 
 Die Daten liegen in der **Datenbank** (für Admin + Dedupe) → der Job muss dort
-laufen, wo die DB liegt.
+laufen, wo die DB liegt. Routine: **jeden Mittwoch**, Rückblick **8 Tage**
+(`SHAB_DAYS=8`, deckt die ganze Woche + Puffer ab).
 
 ### Jetzt (lokal, vor Go-live): macOS launchd
 Lege `~/Library/LaunchAgents/ch.datalization.shab.plist` an:
@@ -64,13 +65,20 @@ Lege `~/Library/LaunchAgents/ch.datalization.shab.plist` an:
   <key>Label</key><string>ch.datalization.shab</string>
   <key>ProgramArguments</key>
   <array><string>/Users/ticodanes/Projects/datalization/scripts/fetch_new_companies.sh</string></array>
-  <key>StartCalendarInterval</key><dict><key>Hour</key><integer>8</integer><key>Minute</key><integer>0</integer></dict>
+  <key>EnvironmentVariables</key><dict><key>SHAB_DAYS</key><string>8</string></dict>
+  <key>StartCalendarInterval</key>
+  <dict><key>Weekday</key><integer>3</integer><key>Hour</key><integer>8</integer><key>Minute</key><integer>0</integer></dict>
   <key>StandardOutPath</key><string>/tmp/shab-monitor.log</string>
   <key>StandardErrorPath</key><string>/tmp/shab-monitor.err</string>
 </dict></plist>
 ```
-Aktivieren: `launchctl load ~/Library/LaunchAgents/ch.datalization.shab.plist`
-(`--days 2` fängt einen verpassten Tag ab, falls der Mac mal aus war.)
+`Weekday 3` = Mittwoch. Aktivieren:
+`launchctl load ~/Library/LaunchAgents/ch.datalization.shab.plist`
+
+### Oder manuell jeden Mittwoch
+```bash
+SHAB_DAYS=8 scripts/fetch_new_companies.sh
+```
 
 ### Später (Server/Produktion mit Postgres)
 Entweder ein Cron auf dem Server (`scripts/fetch_new_companies.sh`) oder ein
