@@ -121,21 +121,33 @@ class OdooClient:
     def create_acquisition_lead(self, company):
         return self._execute("crm.lead", "create", self.acq_vals(company))
 
-    def create_lead(self, company):
-        """Legt einen crm.lead aus einer NewCompany-Instanz an, gibt die ID zurück."""
+    @staticmethod
+    def _fmt_date(d):
+        """Datum als TT.MM.JJJJ – akzeptiert date-Objekt oder ISO-String."""
+        if not d:
+            return ""
+        try:
+            return d.strftime("%d.%m.%Y")
+        except AttributeError:
+            s = str(d)
+            parts = s.split("-")
+            return f"{parts[2]}.{parts[1]}.{parts[0]}" if len(parts) == 3 else s
+
+    def shab_vals(self, company):
+        """crm.lead-Werte aus einer NewCompany-Instanz (SHAB-Neugründung)."""
         street = " ".join(x for x in [company.street, company.house_number] if x).strip()
         desc = "\n".join(x for x in [
             f"Rechtsform: {company.legal_form}" if company.legal_form else "",
             f"UID: {company.uid}" if company.uid else "",
             f"Sitz: {company.seat} ({company.canton})" if company.seat else "",
-            f"Gründungsdatum: {company.publication_date:%d.%m.%Y}" if company.publication_date else "",
+            f"Gründungsdatum: {self._fmt_date(company.publication_date)}" if company.publication_date else "",
             f"Zweck: {company.purpose}" if company.purpose else "",
             f"Register-Status: {company.zefix_status}" if getattr(company, "zefix_status", "") else "",
             f"Zefix: {company.zefix_url}" if getattr(company, "zefix_url", "") else "",
             f"HR-Auszug: {company.zefix_excerpt_url}" if getattr(company, "zefix_excerpt_url", "") else "",
             f"SHAB: {company.shab_url}" if company.shab_url else "",
         ] if x)
-        vals = {
+        return {
             "name": f"{company.name} – Neugründung {company.town}".strip(),
             "type": "lead",
             "partner_name": company.name,
@@ -149,7 +161,9 @@ class OdooClient:
             "description": desc or False,
             "tag_ids": [(6, 0, [self.tag_id("Datalization")])],
         }
-        return self._execute("crm.lead", "create", vals)
+
+    def create_lead(self, company):
+        return self._execute("crm.lead", "create", self.shab_vals(company))
 
 
 def push_company(company, client=None):

@@ -8,14 +8,14 @@ from django.core.management.base import BaseCommand, CommandError
 from django.utils import timezone
 
 from web import odoo_crm
-from web.models import AcquisitionLead, RealEstateLead
+from web.models import AcquisitionLead, NewCompany, RealEstateLead
 
 
 class Command(BaseCommand):
     help = "Pusht AcquisitionLead/RealEstateLead gebündelt nach Odoo CRM."
 
     def add_arguments(self, parser):
-        parser.add_argument("--model", choices=["acquisition", "realestate", "all"],
+        parser.add_argument("--model", choices=["acquisition", "realestate", "shab", "all"],
                             default="all")
         parser.add_argument("--chunk", type=int, default=80,
                             help="Datensätze pro API-Call (Default 80).")
@@ -29,6 +29,8 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS(f"Odoo verbunden (uid={client.uid})."))
 
         targets = []
+        if opts["model"] in ("shab", "all"):
+            targets.append(("Neugründungen", NewCompany, client.shab_vals))
         if opts["model"] in ("acquisition", "all"):
             targets.append(("Akquise", AcquisitionLead, client.acq_vals))
         if opts["model"] in ("realestate", "all"):
