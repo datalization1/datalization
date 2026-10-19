@@ -13,10 +13,16 @@ Status pflegbar).
 ## Was kommt rein, was nicht
 
 Aus dem Handelsregister: **Firmenname, Adresse, Sitz, Kanton, Rechtsform, UID,
-Zweck, Datum, SHAB-Link**. **Telefon/E-Mail stehen NICHT im Handelsregister** –
-sie werden, wenn verfügbar, über die **search.ch**-Telefonbuch-API angereichert
-(frische Firmen sind dort manchmal noch nicht gelistet → dann leer).
-Firmen „in Liquidation" werden übersprungen.
+Zweck, Datum, SHAB-Link** sowie die **Kontaktperson** (Inhaber/Geschäftsführer,
+aus dem SHAB-Text). Firmen „in Liquidation" werden übersprungen.
+
+Anreicherung (automatisch, pro Lauf):
+- **Zefix** (per UID): Register-Status (ACTIVE/CANCELLED), Zefix-Link, HR-Auszug.
+- **Google Places** (per Name+Adresse, Ort-Match): **Telefon + Website**.
+- **E-Mail**: von der (via Google gefundenen) Website gescrapt (Impressum/Kontakt).
+
+Nötige Keys in der `.env`: `GOOGLE_PLACES_API_KEY` (Places API New, ~10.000
+Abfragen/Monat gratis), `ZEFIX_USERNAME`/`ZEFIX_PASSWORD`.
 
 ## Einzugsgebiet anpassen
 
