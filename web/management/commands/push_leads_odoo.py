@@ -38,6 +38,8 @@ class Command(BaseCommand):
 
         for label, Model, builder in targets:
             qs = Model.objects.filter(odoo_lead_id__isnull=True).order_by("pk")
+            if Model is NewCompany:  # gelöschte/in Löschung sind keine Leads
+                qs = qs.exclude(zefix_status__in=["CANCELLED", "BEING_CANCELLED"])
             if opts["limit"]:
                 qs = qs[:opts["limit"]]
             records = list(qs)

@@ -26,7 +26,7 @@ from django.core.management.base import BaseCommand
 from django.utils import timezone
 from django.utils.html import escape
 
-from web import odoo_crm, zefix
+from web import odoo_crm, zefix, google_places
 from web.models import NewCompany
 
 LIST_URL = "https://amtsblattportal.ch/api/v1/publications/xml"
@@ -166,6 +166,7 @@ class Command(BaseCommand):
                 continue
             self._enrich(data)
             self._enrich_zefix(data)
+            self._enrich_google(data)
             if not dry:
                 obj = NewCompany.objects.create(**data)
                 if push_odoo:
@@ -327,6 +328,23 @@ class Command(BaseCommand):
         data["zefix_excerpt_url"] = info.get("excerpt_url", "")
         if info.get("canton") and not data.get("canton"):
             data["canton"] = info["canton"]
+
+    # ---- Anreicherung (Google Places) ------------------------------------
+    def _enrich_google(self, data):
+        if not google_places.enabled() or data.get("phone"):
+            return
+        query = ", ".join(x for x in [
+            data["name"],
+            " ".join(y for y in [data.get("street", ""), data.get("house_number", "")] if y),
+            f"{data.get('zip_code','')} {data.get('town','')}".strip()] if x)
+        res = google_places.lookup(query)
+        if not res or res.get("error"):
+            return
+        addr = res.get("address", "").lower()
+        if res.get("phone") and (not data.get("town") or data["town"].lower() in addr):
+            data["phone"] = res["phone"][:40]
+            if res.get("website") and not data.get("website"):
+                data["website"] = res["website"][:200]
 
     # ---- Digest-Mail ------------------------------------------------------
     def _send_digest(self, items):
