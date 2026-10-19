@@ -71,7 +71,7 @@ class NewCompanyAdmin(admin.ModelAdmin):
     date_hierarchy = "publication_date"
     ordering = ("-publication_date", "-created_at")
     list_per_page = 50
-    actions = ("push_to_odoo",)
+    actions = ("push_to_odoo", "export_csv")
     readonly_fields = ("shab_id", "publication_number", "publication_date", "shab_url",
                        "name", "uid", "legal_form", "seat", "canton",
                        "street", "house_number", "zip_code", "town", "purpose",
@@ -91,6 +91,25 @@ class NewCompanyAdmin(admin.ModelAdmin):
     @admin.display(description="Odoo", boolean=True)
     def in_odoo(self, obj):
         return bool(obj.odoo_lead_id)
+
+    @admin.action(description=_("Als CSV exportieren (Excel)"))
+    def export_csv(self, request, queryset):
+        import csv
+        from django.http import HttpResponse
+        resp = HttpResponse(content_type="text/csv; charset=utf-8")
+        resp["Content-Disposition"] = "attachment; filename=shab_neugruendungen.csv"
+        resp.write("﻿")  # BOM, damit Excel Umlaute korrekt zeigt
+        w = csv.writer(resp, delimiter=";")
+        w.writerow(["Firma", "Rechtsform", "PLZ", "Ort", "Kanton", "Gründungsdatum",
+                    "Kontaktperson", "UID", "Register-Status", "Telefon", "E-Mail",
+                    "Zweck", "Zefix-Link", "SHAB-Link", "In Odoo"])
+        for o in queryset:
+            pd = o.publication_date.strftime("%d.%m.%Y") if o.publication_date else ""
+            w.writerow([o.name, o.legal_form, o.zip_code, o.town, o.canton, pd,
+                        o.contact_person, o.uid, o.zefix_status, o.phone, o.email,
+                        (o.purpose or "")[:300], o.zefix_url, o.shab_url,
+                        "ja" if o.odoo_lead_id else ""])
+        return resp
 
     @admin.action(description=_("Ausgewählte als Leads nach Odoo pushen"))
     def push_to_odoo(self, request, queryset):
