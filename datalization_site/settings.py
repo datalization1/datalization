@@ -329,3 +329,9 @@ ODOO_AUTOPUSH = os.getenv("ODOO_AUTOPUSH", "1") not in ("0", "false", "False", "
 # ---------------------------------------------------------------------------
 ZEFIX_USERNAME = os.getenv("ZEFIX_USERNAME", "")
 ZEFIX_PASSWORD = os.getenv("ZEFIX_PASSWORD", "")
+
+# ---------------------------------------------------------------------------
+# Google Places API (Telefon/Website-Anreicherung von Leads).
+# Key: Google Cloud Console → "Places API (New)" aktivieren → API-Key erstellen.
+# ---------------------------------------------------------------------------
+GOOGLE_PLACES_API_KEY = os.getenv("GOOGLE_PLACES_API_KEY", "")
