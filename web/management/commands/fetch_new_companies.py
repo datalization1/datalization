@@ -228,6 +228,10 @@ class Command(BaseCommand):
                 if pubdate and pubdate < date_from:
                     stop = True
                     continue
+                # Der subRubrics-Parameter der API wird ignoriert → im Code filtern.
+                # Nur HR01 = Neueintragung (nicht HR02 Mutation / HR03 Löschung).
+                if _text(p, "subRubric") != "HR01":
+                    continue
                 out.append((m.group(1), ref))
             if stop or len(pubs) < 100:
                 break
