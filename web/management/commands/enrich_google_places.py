@@ -24,6 +24,8 @@ class Command(BaseCommand):
                             help="Nur Firmen mit Register-Status ACTIVE.")
         parser.add_argument("--all", action="store_true",
                             help="Auch Firmen anreichern, die schon ein Telefon haben.")
+        parser.add_argument("--days", type=int, default=0,
+                            help="Nur Firmen mit Gründungsdatum der letzten N Tage (0 = alle).")
         parser.add_argument("--update-odoo", action="store_true",
                             help="Gefundene Telefone/Websites auch in Odoo aktualisieren.")
         parser.add_argument("--limit", type=int, default=0)
@@ -38,6 +40,11 @@ class Command(BaseCommand):
             qs = qs.filter(town__in=[t.strip() for t in opts["towns"].split(",") if t.strip()])
         if opts["active_only"]:
             qs = qs.filter(zefix_status="ACTIVE")
+        if opts["days"]:
+            from datetime import timedelta
+            from django.utils import timezone
+            cutoff = (timezone.now() - timedelta(days=opts["days"])).date()
+            qs = qs.filter(publication_date__gte=cutoff)
         if not opts["all"]:
             qs = qs.filter(phone="")
         qs = qs.order_by("town", "name")

@@ -1,4 +1,5 @@
 """Gemeinsame E-Mail-Scrape-Logik (Impressum/Kontakt einer Firmen-Website)."""
+import html
 import re
 import requests
 
@@ -23,11 +24,13 @@ def clean_url(url):
     return url.rstrip("/")
 
 
-def _emails_from(html):
+def _emails_from(page):
+    # HTML-Entities dekodieren (Impressum-Verschleierung: &#x7a;&#111;… = zofingen@…)
+    page = html.unescape(page)
     found = set()
-    for m in MAILTO_RE.findall(html):
+    for m in MAILTO_RE.findall(page):
         found.add(m.split("?")[0].strip().lower())
-    for m in EMAIL_RE.findall(html):
+    for m in EMAIL_RE.findall(page):
         found.add(m.strip().lower())
     return {e for e in found if e and not any(b in e for b in BAD)
             and not e.endswith((".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg"))}

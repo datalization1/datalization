@@ -158,6 +158,9 @@ class Command(BaseCommand):
             data = self._fetch_parse(shab_id, ref)
             if not data:
                 continue
+            # UID-Dedupe: schon im Bestand (z. B. Zefix-Baseline)? → nicht doppeln.
+            if data.get("uid") and NewCompany.objects.filter(uid=data["uid"]).exists():
+                continue
             place = (data["town"] or data["seat"]).lower()
             if towns and place not in towns:
                 continue
