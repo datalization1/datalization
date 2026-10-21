@@ -23,8 +23,11 @@ python manage.py fetch_new_companies --days "$DAYS" --no-odoo --no-email
 python manage.py enrich_google_places --active-only --days "$REENRICH_DAYS"
 python manage.py scrape_newcompany_emails --active-only --days "$REENRICH_DAYS"
 
-# 3) Neue Treffer als Leads nach Odoo
+# 3) Neue Treffer als Leads nach Odoo (Bestand/zefix: wird ausgeschlossen)
 python manage.py push_leads_odoo --model shab
 
-# 4) Nachgereichte Kontaktdaten in bestehende Odoo-Leads schreiben
+# 4) Bezirk-Zofingen-Neugründungen zusätzlich für FC Oftringen taggen
+python manage.py tag_fc_oftringen
+
+# 5) Nachgereichte Kontaktdaten in bestehende Odoo-Leads schreiben
 python manage.py sync_odoo_contacts --active-only --days "$REENRICH_DAYS"

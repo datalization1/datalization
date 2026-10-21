@@ -40,6 +40,9 @@ class Command(BaseCommand):
             qs = Model.objects.filter(odoo_lead_id__isnull=True).order_by("pk")
             if Model is NewCompany:  # gelöschte/in Löschung sind keine Leads
                 qs = qs.exclude(zefix_status__in=["CANCELLED", "BEING_CANCELLED"])
+                # Zefix-Ist-Bestand bleibt nur Liste – NICHT ins CRM pushen
+                # (nur echte SHAB-Neugründungen werden Leads).
+                qs = qs.exclude(shab_id__startswith="zefix:")
             if opts["limit"]:
                 qs = qs[:opts["limit"]]
             records = list(qs)
