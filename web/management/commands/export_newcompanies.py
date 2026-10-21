@@ -16,7 +16,33 @@ BEZIRK_ZOFINGEN = [
     "Strengelbach", "Uerkheim", "Vordemwald", "Wiliberg", "Zofingen",
 ]
 
+# Generische Firmen-Postfächer (keine natürliche Person erkennbar)
+GENERIC_PREFIXES = (
+    "info@", "kontakt@", "contact@", "office@", "mail@", "admin@", "hello@",
+    "welcome@", "sales@", "support@", "mailbox@", "empfang@", "sekretariat@",
+    "buchhaltung@", "praxis@", "team@", "post@", "verkauf@", "anfrage@",
+)
+
+
+def contact_risk(r):
+    """Kontakt-Risiko für Massenmail (UWG/revDSG).
+
+    🔴 Person        – Einzelunternehmen ODER persönliche Adresse → kein Massenmail
+    🟡 Firma generisch – AG/GmbH mit info@/kontakt@ → Grauzone, nur personalisiert
+    ⚪ keine E-Mail   – nur Telefon/Brief möglich
+    """
+    email = (r.email or "").lower().strip()
+    if not email:
+        return "⚪ keine E-Mail"
+    is_einzel = "einzel" in (r.legal_form or "").lower()
+    is_generic = email.startswith(GENERIC_PREFIXES)
+    if is_einzel or not is_generic:
+        return "🔴 Person"
+    return "🟡 Firma generisch"
+
+
 COLUMNS = [
+    ("Kontakt-Risiko", contact_risk),
     ("Firma", "name"),
     ("Rechtsform", "legal_form"),
     ("Strasse", lambda r: " ".join(x for x in [r.street, r.house_number] if x)),
@@ -45,6 +71,11 @@ class Command(BaseCommand):
                             help="Nur die 17 Gemeinden des Bezirks Zofingen.")
         parser.add_argument("--active-only", action="store_true",
                             help="Nur Register-Status ACTIVE.")
+        parser.add_argument("--risk", choices=["person", "firma", "nomail", "mailbar"],
+                            default="",
+                            help="Filter nach Kontakt-Risiko: person (🔴), "
+                                 "firma (🟡 generisch), nomail (⚪), "
+                                 "mailbar (nur 🟡 generische Firmenadressen).")
 
     def handle(self, *args, **opts):
         from openpyxl import Workbook
@@ -62,6 +93,12 @@ class Command(BaseCommand):
             qs = qs.filter(zefix_status="ACTIVE")
         qs = qs.order_by("town", "name")
 
+        # Risiko-Filter (in Python, da zusammengesetzte Logik)
+        risk = opts["risk"]
+        want = {"person": "🔴 Person", "firma": "🟡 Firma generisch",
+                "mailbar": "🟡 Firma generisch", "nomail": "⚪ keine E-Mail"}.get(risk)
+        records = [r for r in qs if (not want or contact_risk(r) == want)]
+
         wb = Workbook()
         ws = wb.active
         ws.title = "Neugründungen"
@@ -71,7 +108,7 @@ class Command(BaseCommand):
         ws.freeze_panes = "A2"
 
         n = 0
-        for r in qs:
+        for r in records:
             row = []
             for _, accessor in COLUMNS:
                 val = accessor(r) if callable(accessor) else getattr(r, accessor, "")
