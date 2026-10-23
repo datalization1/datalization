@@ -57,6 +57,10 @@
         <form method="post" action="{% url 'v2:booking_submit' %}" class="form">
           {% csrf_token %}
           <input type="hidden" name="language" value="{{ LANGUAGE_CODE }}">
+          <div style="position:absolute;left:-9999px;opacity:0;pointer-events:none;" aria-hidden="true">
+            <label for="website">Website</label>
+            <input type="text" id="website" name="website" value="" tabindex="-1" autocomplete="off">
+          </div>
           <div class="form-row">
             <div class="form-field">
               <label class="form-label" for="first_name">{% if LANGUAGE_CODE == 'de' %}Vorname{% else %}First name{% endif %} <span class="req">*</span></label>
@@ -116,6 +120,13 @@
             </div>
           </div>
 
+          {% if turnstile_enabled %}
+            <div class="form-field">
+              <label class="form-label">{% if LANGUAGE_CODE == 'de' %}Bestätigung{% else %}Verification{% endif %}</label>
+              <div id="turnstile-widget" class="cf-turnstile" data-sitekey="{{ turnstile_site_key }}" data-theme="light" data-size="flexible" data-action="booking"></div>
+            </div>
+          {% endif %}
+
           <button type="submit" class="btn btn--full">{% if LANGUAGE_CODE == 'de' %}Erstgespräch anfragen{% else %}Request a call{% endif %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
           <p class="form-agree">{% if LANGUAGE_CODE == 'de' %}Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Daten gemäss unserer Datenschutzerklärung zu.{% else %}By submitting you agree to the processing of your data as described in our privacy policy.{% endif %}</p>
         </form>
@@ -123,4 +134,10 @@
     </div>
   </div>
 </section>
+{% endblock %}
+
+{% block extra_js %}
+  {% if turnstile_enabled %}
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  {% endif %}
 {% endblock %}

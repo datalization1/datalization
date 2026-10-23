@@ -11,7 +11,7 @@
   <div class="wrap">
     <div>
       <div class="crumb"><span class="dot" aria-hidden="true"></span><a href="{% url 'v2:home' %}">{% trans "Startseite" %}</a><span aria-hidden="true">/</span><span>Odoo</span></div>
-      <span class="partner-chip"><span class="pc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>{% if LANGUAGE_CODE == 'de' %}Offizieller Odoo-Partner{% else %}Official Odoo Partner{% endif %}</span>
+      <span class="partner-chip"><span class="pc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>{% if LANGUAGE_CODE == 'de' %}Odoo Learning-Partner{% else %}Odoo Learning Partner{% endif %}</span>
       <h1>{% trans "Offerten, Rechnungen, Lager und Buchhaltung – endlich an einem Ort." %}</h1>
       <p>{% blocktrans trimmed %}Viele Kleinbetriebe arbeiten mit einem Programm für Offerten, einem für die Buchhaltung, Excel fürs Lager und dem Mail-Postfach als Gedächtnis. Jede Information wird mehrfach erfasst, nichts stimmt ganz überein, und der Überblick entsteht am Sonntagabend von Hand.{% endblocktrans %}</p>
       {% include 'v2/partials/odoo_subnav.html' %}

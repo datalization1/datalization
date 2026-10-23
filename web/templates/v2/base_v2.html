@@ -10,9 +10,7 @@
   <title>{% block title %}Datalization{% endblock %}</title>
   <meta name="description" content="{% block meta_description %}{% endblock %}">
 
-  {# --- WICHTIG: Solange die Seiten unter /v2/ laufen, nicht indexieren lassen. --- #}
-  {# Beim späteren Umschalten auf die Haupt-URLs diese Zeile entfernen (siehe Umschalt-Checkliste). #}
-  <meta name="robots" content="noindex">
+  {# v2 ist seit dem Go-live die produktive Seite am Root und wird regulär indexiert. #}
 
   {# --- Canonical --- #}
   {% if request %}<link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">{% endif %}
@@ -40,7 +38,7 @@
     "@type": "ProfessionalService",
     "name": "{{ company_name }}",
     "description": "{% if LANGUAGE_CODE == 'de' %}Geschäftssoftware (Odoo), Digitalisierung, Datenübernahme und Automatisierung für kleine Betriebe in der Region Zofingen und im Aargau.{% else %}Business software (Odoo), digitalization, data migration and automation for small businesses in the Zofingen region and across Aargau.{% endif %}",
-    "url": "{{ request.scheme }}://{{ request.get_host }}/{{ LANGUAGE_CODE }}/v2/",
+    "url": "{{ request.scheme }}://{{ request.get_host }}/{{ LANGUAGE_CODE }}/",
     "image": "{{ request.scheme }}://{{ request.get_host }}{% static 'v2/brand/icon-512.png' %}",
     "logo": "{{ request.scheme }}://{{ request.get_host }}{% static 'v2/brand/icon-512.png' %}",
     "email": "{{ email }}",

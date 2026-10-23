@@ -192,6 +192,8 @@ def _booking_context(request, form=None):
     return {
         "form": form or StartForm(initial={"language": request.LANGUAGE_CODE}),
         "today": timezone.localdate().isoformat(),
+        "turnstile_enabled": getattr(settings, "TURNSTILE_ENABLED", False),
+        "turnstile_site_key": getattr(settings, "TURNSTILE_SITE_KEY", ""),
     }
 
 
@@ -203,7 +205,12 @@ def v2_booking(request):
 @ensure_csrf_cookie
 def v2_booking_submit(request):
     form = StartForm(request.POST)
-    if form.is_valid():
+
+    # Spam-Schutz wie beim Kontaktformular: Honeypot + Cloudflare Turnstile.
+    # Beide bauen graceful ab (Honeypot immer aktiv; Turnstile nur wenn Keys gesetzt).
+    spam = bool(request.POST.get("website")) or not web_views._validate_turnstile(request)
+
+    if form.is_valid() and not spam:
         req = form.save()
 
         try:

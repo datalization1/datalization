@@ -26,10 +26,11 @@ from django.contrib.sitemaps.views import sitemap
 from django.http import FileResponse, Http404, HttpResponse
 from django.shortcuts import redirect
 from django.utils.translation import get_language
+from django.views.generic import RedirectView
 
-from web.sitemaps import StaticViewSitemap, CaseSitemap
+from web.sitemaps import StaticViewSitemap
 
-sitemaps = {"static": StaticViewSitemap, "cases": CaseSitemap}
+sitemaps = {"static": StaticViewSitemap}
 ICON_DIR = Path(__file__).resolve().parent.parent / "web" / "static" / "img"
 
 def robots_txt(_):
@@ -100,6 +101,13 @@ def redirect_to_lang_root(request):
     lang = get_language() or "de"
     return redirect(f"/{lang}/", permanent=False)
 
+
+# Alte /v2/-Vorschaulinks dauerhaft auf den neuen Root (v2:home) umleiten.
+# Eigene Funktion statt RedirectView, damit der gefangene Rest-Pfad nicht an
+# reverse('v2:home') weitergereicht wird (das würde NoReverseMatch auslösen).
+def redirect_v2_legacy(request, rest=None):
+    return redirect("v2:home", permanent=True)
+
 urlpatterns = [
     path("", redirect_to_lang_root, name="root"),                 # <— Fix für 404 auf /
     path("robots.txt", robots_txt),
@@ -115,7 +123,30 @@ urlpatterns = [
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += i18n_patterns(
-    path("v2/", include(("web.urls_v2", "v2"), namespace="v2")),  # <— Website v2.0 (Neugestaltung, Vorschau unter /v2/)
-    path("", include(("web.urls", "web"), namespace="web")),     # <— Namespace sauber
+    # Website v2.0 ist seit dem Go-live die produktive Seite am Root.
+    path("", include(("web.urls_v2", "v2"), namespace="v2")),
+
+    # 301-Weiterleitungen der abgelösten v1-Seiten auf das passende v2-Pendant.
+    path("about/", RedirectView.as_view(pattern_name="v2:ueber_datalization", permanent=True)),
+    path("contact/", RedirectView.as_view(pattern_name="v2:kontakt", permanent=True)),
+    path("services/", RedirectView.as_view(pattern_name="v2:home", permanent=True)),
+    path("services/it-support/", RedirectView.as_view(pattern_name="v2:digitalisierung", permanent=True)),
+    path("services/data-analytics/", RedirectView.as_view(pattern_name="v2:data_analytics", permanent=True)),
+    path("services/softwareentwicklung/", RedirectView.as_view(pattern_name="v2:digitalisierung", permanent=True)),
+    path("services/digitalisierung/", RedirectView.as_view(pattern_name="v2:digitalisierung", permanent=True)),
+    path("services/beratung-strategie/", RedirectView.as_view(pattern_name="v2:home", permanent=True)),
+    path("start/", RedirectView.as_view(pattern_name="v2:kontakt", permanent=True)),
+    path("match/", RedirectView.as_view(pattern_name="v2:home", permanent=True)),
+    path("cases/", RedirectView.as_view(pattern_name="v2:home", permanent=True)),
+    path("cases/<slug:slug>/", RedirectView.as_view(pattern_name="v2:home", permanent=True)),
+
+    # Alte /v2/-Vorschaulinks dauerhaft auf den neuen Root umleiten.
+    path("v2/", redirect_v2_legacy),
+    path("v2/<path:rest>", redirect_v2_legacy),
+
+    # v1 bleibt eingehängt für das interne custom_admin + web:-Namespace-Reverses;
+    # die öffentlichen Alt-Seiten sind oben bereits per 301 abgefangen.
+    path("", include(("web.urls", "web"), namespace="web")),
+
     path("admin/", admin.site.urls),
 )

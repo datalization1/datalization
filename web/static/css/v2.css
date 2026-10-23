@@ -56,6 +56,9 @@ a:hover { color: #0A0A0A; }
 .links a.on { position: relative; }
 .links a.on::after { content: ""; position: absolute; left: 50%; bottom: -10px; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%; background: #F48B2D; }
 .has-dropdown { position: relative; }
+.has-dropdown > a { display: inline-flex; align-items: center; gap: 5px; }
+.caret { flex: none; opacity: .65; transition: transform .18s ease, opacity .18s ease; }
+.has-dropdown:hover > a .caret, .has-dropdown:focus-within > a .caret { transform: rotate(180deg); opacity: 1; }
 .dropdown-wrap { position: absolute; top: 100%; left: -14px; padding-top: 16px; opacity: 0; visibility: hidden; transform: translateY(-6px); transition: opacity .18s ease, transform .18s ease, visibility .18s; z-index: 120; }
 .has-dropdown:hover .dropdown-wrap, .has-dropdown:focus-within .dropdown-wrap { opacity: 1; visibility: visible; transform: translateY(0); }
 .dropdown { list-style: none; margin: 0; padding: 8px; min-width: 210px; background: #121212; border: 1px solid #262626; border-radius: 14px; box-shadow: 0 24px 48px -24px rgba(0, 0, 0, .9); }
@@ -510,7 +513,7 @@ a:hover { color: #0A0A0A; }
 .form-card > h2 { font-size: 24px; margin-bottom: 6px; }
 .form-card .form-note { color: #6B6B6B; font-size: 14px; margin-bottom: 24px; }
 .form { display: grid; gap: 20px; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
 .form-field { display: grid; gap: 8px; }
 .form-label { font-size: 14px; font-weight: 600; color: #0A0A0A; }
 .form-label .req { color: #F48B2D; }

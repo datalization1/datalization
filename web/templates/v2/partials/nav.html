@@ -9,7 +9,7 @@
     <nav aria-label="{% trans 'Hauptnavigation' %}">
       <ul class="links">
         <li class="has-dropdown">
-          <a {% if active == 'odoo' %}class="on"{% endif %} href="{% url 'v2:odoo' %}" aria-haspopup="true">Odoo</a>
+          <a {% if active == 'odoo' %}class="on"{% endif %} href="{% url 'v2:odoo' %}" aria-haspopup="true">Odoo<svg class="caret" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></a>
           <div class="dropdown-wrap">
             <ul class="dropdown">
               <li><a href="{% url 'v2:odoo' %}">{% trans "Übersicht" %}</a></li>
@@ -30,7 +30,7 @@
         <span aria-hidden="true">/</span>
         <a class="{% if LANGUAGE_CODE == 'en' %}on{% endif %}" href="{% alt_url 'en' %}" lang="en">EN</a>
       </div>
-      <a class="btn btn-sm" href="{% url 'v2:booking' %}" data-loader>{% if LANGUAGE_CODE == 'de' %}Erstgespräch buchen{% else %}Book a call{% endif %}</a>
+      <a class="btn btn-sm" href="{% url 'v2:kontakt' %}" data-loader>{% if LANGUAGE_CODE == 'de' %}Kontakt aufnehmen{% else %}Get in touch{% endif %}</a>
       <button class="menu-btn" type="button" aria-label="{% trans 'Menü öffnen' %}" aria-expanded="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"></path></svg></button>
     </div>
   </div>
