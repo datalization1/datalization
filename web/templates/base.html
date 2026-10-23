@@ -6,11 +6,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>
-    {% block title %}
-      datalization – {% trans "Einfachheit trifft Innovation" %}
-    {% endblock %}
-  </title>
+  <title>{% block title %}{% firstof page_title "datalization – Einfachheit trifft Innovation" %}{% endblock %}</title>
+
+  {% if google_site_verification %}
+    <meta name="google-site-verification" content="{{ google_site_verification }}">
+  {% endif %}
 
   {# SEO / OpenGraph #}
   {% block head_meta %}
@@ -30,6 +30,15 @@
       <link rel="canonical" href="{{ request.build_absolute_uri }}">
     {% endif %}
 
+    {% comment %}Sprachfassungen: sagt Google, dass /de/ und /en/ dieselbe Seite
+    sind und die Adresse ohne Praefix die sprachneutrale Einstiegsseite ist.{% endcomment %}
+    {% for alt in hreflang_alternates %}
+      <link rel="alternate" hreflang="{{ alt.code }}" href="{{ alt.url }}">
+    {% endfor %}
+    {% if hreflang_x_default %}
+      <link rel="alternate" hreflang="x-default" href="{{ hreflang_x_default }}">
+    {% endif %}
+
     {# Open Graph #}
     <meta property="og:type" content="website">
     <meta property="og:title" content="{{ seo_title }}">
@@ -44,14 +53,55 @@
     <meta name="twitter:description" content="{{ seo_desc|truncatechars:200 }}">
     <meta name="twitter:image" content="https://www.datalization.ch/icon-512.png">
 
-    {# Optional: Organisation Structured Data (JSON-LD) #}
+    {% comment %}Strukturierte Daten: ProfessionalService statt Organization,
+    damit Google das Unternehmen als lokalen Dienstleister mit Sitz in Zofingen
+    und Einsatzgebiet Schweiz erkennt. Die Angaben decken sich bewusst wortgleich
+    mit Impressum und Handelsregister - nur dann verknuepft Google Website,
+    Unternehmensprofil und Registereintrag zur selben Firma.{% endcomment %}
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "datalization",
+      "@type": "ProfessionalService",
+      "@id": "https://www.datalization.ch/#organisation",
+      "name": "Datalization",
+      "legalName": "Datalization, Inh. Danesic",
       "url": "https://www.datalization.ch",
       "logo": "https://www.datalization.ch/icon-512.png",
+      "image": "https://www.datalization.ch/icon-512.png",
+      "description": {% if LANGUAGE_CODE == 'en' %}"IT support, data analytics, software development and digitalization for Swiss SMEs."{% else %}"IT-Support, Datenanalyse, Softwareentwicklung und Digitalisierung für Schweizer KMU."{% endif %},
+      "email": "info@datalization.ch",
+      "founder": {
+        "@type": "Person",
+        "name": "Tihomir Danesic"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Bärengasse 3",
+        "postalCode": "4800",
+        "addressLocality": "Zofingen",
+        "addressRegion": "AG",
+        "addressCountry": "CH"
+      },
+      "areaServed": [
+        {"@type": "Country", "name": "Schweiz"},
+        {"@type": "AdministrativeArea", "name": "Kanton Aargau"}
+      ],
+      "identifier": {
+        "@type": "PropertyValue",
+        "name": "UID",
+        "value": "CHE-169.329.947"
+      },
+      "knowsAbout": [
+        "IT-Support",
+        "Microsoft 365",
+        "Microsoft Azure",
+        "Datenanalyse",
+        "Business Intelligence",
+        "Softwareentwicklung",
+        "Digitalisierung",
+        "Data Science"
+      ],
+      "availableLanguage": ["de", "en"],
       "sameAs": [
         "https://www.linkedin.com/company/datalization1/"
       ]
@@ -59,13 +109,13 @@
     </script>
   {% endblock %}
 
-  {# Favicon / Site Icon – site-icon.svg hat soliden Hintergrund fuer gute Sichtbarkeit in Google-Suchergebnissen #}
+  {# Favicon / Site Icon – schwarze Marke auf weisser Kachel, damit sie auf hellen wie dunklen Tableisten sichtbar bleibt #}
   <link rel="icon" type="image/svg+xml" href="{% url 'site_icon_svg' %}">
   <link rel="icon" type="image/png" sizes="48x48" href="{% url 'favicon_png' %}">
   <link rel="shortcut icon" href="{% url 'favicon_ico' %}">
   <link rel="apple-touch-icon" sizes="180x180" href="{% url 'apple_touch_icon' %}">
   <link rel="manifest" href="{% url 'site_webmanifest' %}">
-  <meta name="theme-color" content="#0a0a0a">
+  <meta name="theme-color" content="#ffffff">
 
   {# Fonts (falls du sie brauchst, optional) #}
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -77,10 +127,9 @@
     (function(){
       try{
         var s = localStorage.getItem('theme');
-        var t = (s === 'light' || s === 'dark') ? s
-              : (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        var t = (s === 'light' || s === 'dark') ? s : 'light';
         document.documentElement.setAttribute('data-theme', t);
-      }catch(e){ document.documentElement.setAttribute('data-theme','dark'); }
+      }catch(e){ document.documentElement.setAttribute('data-theme','light'); }
     })();
   </script>
 

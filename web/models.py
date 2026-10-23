@@ -42,6 +42,11 @@ class CaseStudy(models.Model):
             self.slug = slugify(self.title)[:50]
         super().save(*args, **kwargs)
 
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse("web:case_detail", kwargs={"slug": self.slug})
+
+
     def _pick(self, de_value, en_value):
         lang = (get_language() or "").split("-")[0]
         if lang == "en" and en_value:
@@ -98,6 +103,10 @@ class ContactMessage(models.Model):
     
     email = models.EmailField(_("Email"))
     phone = models.CharField(_("Phone"), max_length=50, blank=True, null=True)
+    service = models.CharField(
+        _("Requested service"), max_length=60, blank=True,
+        help_text=_("Auswahl aus dem Kontaktformular."),
+    )
     message = models.TextField(_("Message"))
     language = models.CharField(_("Language"), max_length=5, default="de")
 

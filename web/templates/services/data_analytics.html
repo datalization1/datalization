@@ -2,15 +2,6 @@
 {% load i18n static %}
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block title %}Datenanalyse & Data Science – Datalization{% endblock %}
-{% block head_meta %}
-  {% firstof page_title "Datenanalyse & Data Science – Datalization" as seo_title %}
-  {% firstof page_description "Aus Zahlen wird Klarheit – wir helfen KMUs, Überblick zu gewinnen und aus Erfahrung zu lernen." as seo_desc %}
-  <meta name="description" content="{{ seo_desc|truncatechars:160 }}">
-  <meta property="og:title" content="{{ seo_title }}">
-  <meta property="og:description" content="{{ seo_desc|truncatechars:200 }}">
-{% endblock %}
-
 {% block content %}
 <div class="min-h-screen bg-background text-foreground">
 

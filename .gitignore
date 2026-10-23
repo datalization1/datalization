@@ -21,3 +21,6 @@ db.sqlite3-journal
 
 # macOS Finder metadata
 **/.DS_Store
+
+# Design-Canvas des Startseiten-Mockups (Arbeitsstand, nicht Teil der Website)
+Figma/mockup/

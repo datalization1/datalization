@@ -8,7 +8,7 @@
 <div class="admin-app">
   <aside class="admin-sidebar">
     <div class="admin-brand">
-      <img src="{% static 'img/favicon.svg' %}" alt="datalization" width="30" height="30">
+      {% include 'partials/logo_mark.html' with cls="admin-logo" label="datalization" %}
       <div>
         <div class="brand-name">datalization</div>
         <div class="brand-sub">Admin Panel</div>

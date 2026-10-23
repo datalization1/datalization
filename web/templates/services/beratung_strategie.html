@@ -2,15 +2,6 @@
 {% load i18n static %}
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block title %}Beratung & Strategie – Datalization{% endblock %}
-{% block head_meta %}
-  {% firstof page_title "Beratung & Strategie – Datalization" as seo_title %}
-  {% firstof page_description "Klarheit im Kopf – und ein Plan, der sich lohnt. Orientierung vor Investitionen." as seo_desc %}
-  <meta name="description" content="{{ seo_desc|truncatechars:160 }}">
-  <meta property="og:title" content="{{ seo_title }}">
-  <meta property="og:description" content="{{ seo_desc|truncatechars:200 }}">
-{% endblock %}
-
 {% block content %}
 <div class="min-h-screen bg-background text-foreground">
 

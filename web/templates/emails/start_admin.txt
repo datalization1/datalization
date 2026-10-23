@@ -1,4 +1,4 @@
-Neue Start-Anfrage von {{ req.first_name }} {{ req.last_name }}{% if req.company %} ({{ req.company }}){% endif %}.
+{% autoescape off %}Neue Start-Anfrage von {{ req.first_name }} {{ req.last_name }}{% if req.company %} ({{ req.company }}){% endif %}.
 
 Kontakt:
 - E-Mail: {{ req.email }}
@@ -11,4 +11,4 @@ Nachricht/Notiz:
 {{ req.notes|default:"(keine Notiz)" }}
 
 --
-Datalization Start-Flow
+Datalization Start-Flow{% endautoescape %}

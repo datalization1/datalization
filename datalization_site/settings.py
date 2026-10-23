@@ -95,6 +95,8 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "web.context_processors.hreflang",
+                "web.context_processors.site_verification",
             ],
         },
     },
@@ -211,6 +213,11 @@ CONTACT_RECEIVER_EMAIL = os.getenv(
     "info@datalization.ch"
 )
 
+# Bestaetigungscode aus der Google Search Console. Solange leer, wird kein
+# Meta-Tag ausgegeben; die Bestaetigung kann alternativ per DNS-Eintrag
+# erfolgen. Wert ist nur der Token, nicht das ganze Meta-Tag.
+GOOGLE_SITE_VERIFICATION = os.getenv("GOOGLE_SITE_VERIFICATION", "")
+
 TURNSTILE_SITE_KEY = os.getenv("TURNSTILE_SITE_KEY", "")
 TURNSTILE_SECRET_KEY = os.getenv("TURNSTILE_SECRET_KEY", "")
 TURNSTILE_ENABLED = bool(TURNSTILE_SITE_KEY and TURNSTILE_SECRET_KEY)
@@ -248,6 +255,14 @@ CACHES = {
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 # Redirect to HTTPS only on Heroku when not in DEBUG. Locally keep HTTP.
 SECURE_SSL_REDIRECT = ON_HEROKU and not DEBUG
+
+# datalization.ch dauerhaft auf www.datalization.ch umleiten (301 durch die
+# CommonMiddleware). Ohne das sind beide Hostnamen erreichbar und
+# kanonisieren sich jeweils selbst - fuer Google zwei identische Websites.
+# Die Weiterleitung muss in Django passieren, weil die Apex-Domain per DNS
+# direkt auf Heroku zeigt und Cloudflare gar nicht erreicht.
+# Nur in Produktion, sonst wuerde lokal 127.0.0.1 zu www.127.0.0.1.
+PREPEND_WWW = ON_HEROKU and not DEBUG
 
 # --- Production security hardening ---
 if ON_HEROKU and not DEBUG:

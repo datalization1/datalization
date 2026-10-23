@@ -2,11 +2,6 @@
 {% load static %}
 {% load i18n %}
 
-{% block head_meta %}
-  {{ block.super }}
-  <meta name="description" content="Datalization unterstützt KMU mit IT-Support für Microsoft 365 und Azure, individuellen Daten- und Softwareprojekten sowie Monekey, der digitalen Dokumentenplattform.">
-{% endblock %}
-
 {% block content %}
 <div class="min-h-screen bg-background text-foreground">
     <!-- Hero Section -->
@@ -67,19 +62,26 @@
     <section class="quick-check-banner">
       <div class="container mx-auto px-4 text-center">
         <div class="quick-check-inner">
-          <div class="qc-icon-pulse" aria-hidden="true" style="width:80px;height:80px;display:flex;align-items:center;justify-content:center;">
-            ✨
+          <div class="qc-icon-glow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2l2.4 4.8L19 8l-4 4 1 6-4-2.4L8 18l1-6-4-4 4.6-.8L12 2z"></path>
+            </svg>
           </div>
-          <h2 style="font-size:2.25rem;margin-bottom:.5rem;">
-            {% if LANGUAGE_CODE == 'de' %}Welche Lösung passt zu mir?{% else %}Which solution is right for me?{% endif %}
-          </h2>
-          <p class="text-muted" style="margin-bottom:1.25rem;">
-            {% if LANGUAGE_CODE == 'de' %}Machen Sie unseren 3-Fragen-Check und finden Sie es heraus{% else %}Take our 3-question check and find out{% endif %}
-          </p>
-          <div class="cta-row" style="justify-content:center;">
-            <a href="{% url 'web:match' %}" class="btn-primary">
-              {% if LANGUAGE_CODE == 'de' %}Zum Quick-Check{% else %}Start Quick-Check{% endif %}
-            </a>
+          <div class="quick-check-simple">
+            <h2 class="qc-title">
+              {% if LANGUAGE_CODE == 'de' %}Welche Lösung passt zu mir?{% else %}Which solution is right for me?{% endif %}
+            </h2>
+            <p class="qc-subline">
+              {% if LANGUAGE_CODE == 'de' %}Machen Sie unseren 3-Fragen-Check und finden Sie es heraus{% else %}Take our 3-question check and find out{% endif %}
+            </p>
+            <div class="qc-cta-wrap">
+              <a href="{% url 'web:match' %}" class="qc-cta">
+                {% if LANGUAGE_CODE == 'de' %}Zum Quick-Check{% else %}Start Quick-Check{% endif %}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path>
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>
