@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-06 13:22+0100\n"
+"POT-Creation-Date: 2026-10-26 07:53+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,88 +18,2183 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: web/forms.py:7
-msgid "Name"
+msgid "Client"
 msgstr ""
 
-#: web/forms.py:8
-msgid "Your name"
+msgid "Deutsche Version"
 msgstr ""
 
-#: web/forms.py:11
-msgid "Email"
+msgid "Beim Result jeweils eine Aussage pro Zeile."
 msgstr ""
 
-#: web/forms.py:16
-msgid "Message"
+msgid "English Version"
 msgstr ""
 
-#: web/forms.py:17
-msgid "How can we help?"
+msgid "Optional. Falls leer, wird auf die deutsche Version zurückgegriffen."
 msgstr ""
 
-#: web/templates/base.html:7
-msgid "Einfachheit trifft Innovation"
+msgid "KPIs & Tech"
 msgstr ""
 
-#: web/templates/contact.html:3 web/templates/contact.html:9
-#: web/templates/partials_nav.html:14
+msgid "Firma"
+msgstr ""
+
 msgid "Kontakt"
 msgstr ""
 
-#: web/templates/contact.html:10
-msgid "Wir antworten schnell und konkret."
+msgid "Zefix (Handelsregister)"
 msgstr ""
 
-#: web/templates/contact.html:20
-msgid "Senden"
+msgid "Lead"
 msgstr ""
 
-#: web/templates/partials_footer.html:6
-msgid "Simple. Loyal. Digital."
+msgid "Odoo CRM"
 msgstr ""
 
-#: web/templates/partials_footer.html:9
+msgid "Quelle"
+msgstr ""
+
+msgid "Als CSV exportieren (Excel)"
+msgstr ""
+
+msgid "Ausgewählte als Leads nach Odoo pushen"
+msgstr ""
+
+msgid "Odoo ist nicht konfiguriert (ODOO_URL/DB/USERNAME/API_KEY)."
+msgstr ""
+
+#, python-format
+msgid "Odoo: %(p)d gepusht, %(s)d bereits vorhanden, %(f)d fehlgeschlagen."
+msgstr ""
+
+msgid "Ausgewählte als Leads nach Odoo pushen (Monekey)"
+msgstr ""
+
+msgid "Odoo ist nicht konfiguriert."
+msgstr ""
+
+msgid "Einschätzung"
+msgstr ""
+
+msgid "Vorname"
+msgstr ""
+
+msgid "Nachname"
+msgstr ""
+
+msgid "Firma (optional)"
+msgstr ""
+
+msgid "Ihre E-Mail"
+msgstr ""
+
+msgid "Telefon (optional)"
+msgstr ""
+
+msgid "Ihre Nachricht…"
+msgstr ""
+
+msgid "Solution (DE)"
+msgstr ""
+
+msgid "Deutsche Version des Lösungstexts."
+msgstr ""
+
+msgid "Solution (EN)"
+msgstr ""
+
+msgid "English version of the solution text."
+msgstr ""
+
+msgid "Kurzbeschreibung des Kunden (keine Namen)."
+msgstr ""
+
+msgid "Problem (DE)"
+msgstr ""
+
+msgid "Deutsche Version: Welches Problem/Engpass bestand?"
+msgstr ""
+
+msgid "Problem (EN)"
+msgstr ""
+
+msgid "English version of the challenge description."
+msgstr ""
+
+msgid "Result Bullet points (DE)"
+msgstr ""
+
+msgid "Deutsche Aufzählung, je Zeile ein Punkt."
+msgstr ""
+
+msgid "Result Bullet points (EN)"
+msgstr ""
+
+msgid "English bullet points, one per line."
+msgstr ""
+
+msgid "Aktiv"
+msgstr ""
+
+msgid "Steuert, ob diese Case Study auf der Website angezeigt wird."
+msgstr ""
+
+msgid "First name"
+msgstr ""
+
+msgid "Last name"
+msgstr ""
+
 msgid "Company"
 msgstr ""
 
-#: web/templates/partials_footer.html:11
-msgid "Who we are"
+msgid "Email"
 msgstr ""
 
-#: web/templates/partials_footer.html:12
-msgid "Services"
+msgid "Phone"
 msgstr ""
 
-#: web/templates/partials_footer.html:13
-msgid "Case Studies"
+msgid "Requested service"
 msgstr ""
 
-#: web/templates/partials_footer.html:17
-msgid "Contact"
+msgid "Auswahl aus dem Kontaktformular."
 msgstr ""
 
-#: web/templates/partials_nav.html:11
-msgid "Lösungen"
+msgid "Message"
 msgstr ""
 
-#: web/templates/partials_nav.html:13
-msgid "Über uns"
-msgstr ""
-
-#: web/templates/partials_nav.html:22
 msgid "Language"
 msgstr ""
 
-#: web/views.py:39
+msgid "Processed"
+msgstr ""
+
+msgid "Contact message"
+msgstr ""
+
+msgid "Contact messages"
+msgstr ""
+
+msgid "Branches"
+msgstr ""
+
+msgid "Challenges"
+msgstr ""
+
+msgid "Start mode"
+msgstr ""
+
+msgid "Notes"
+msgstr ""
+
+msgid "Start request"
+msgstr ""
+
+msgid "Start requests"
+msgstr ""
+
+msgid "Neu"
+msgstr ""
+
+msgid "Kontaktiert"
+msgstr ""
+
+msgid "Kein Interesse"
+msgstr ""
+
+msgid "Kunde"
+msgstr ""
+
+msgid "Rechtsform"
+msgstr ""
+
+msgid "Sitz"
+msgstr ""
+
+msgid "Kanton"
+msgstr ""
+
+msgid "Strasse"
+msgstr ""
+
+msgid "Ort"
+msgstr ""
+
+msgid "Zweck"
+msgstr ""
+
+msgid "Telefon"
+msgstr ""
+
+msgid "E-Mail"
+msgstr ""
+
+msgid "Website"
+msgstr ""
+
+msgid "Kontaktperson"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Notizen"
+msgstr ""
+
+msgid "Register-Status"
+msgstr ""
+
+msgid "Zefix-Link"
+msgstr ""
+
+msgid "HR-Auszug"
+msgstr ""
+
+msgid "Odoo-Lead-ID"
+msgstr ""
+
+msgid "Neue Firma"
+msgstr ""
+
+msgid "Neue Firmen"
+msgstr ""
+
+msgid "Adresse"
+msgstr ""
+
+msgid "Marktplatz"
+msgstr ""
+
+msgid "Immobilienfirma (Monekey)"
+msgstr ""
+
+msgid "Immobilienfirmen (Monekey)"
+msgstr ""
+
+msgid "Segment"
+msgstr ""
+
+msgid "Prio"
+msgstr ""
+
+msgid "Grösse"
+msgstr ""
+
+msgid "Mitarbeitende"
+msgstr ""
+
+msgid "Quelle Grösse"
+msgstr ""
+
+msgid "Gesprächseinstieg"
+msgstr ""
+
+msgid "Akquise-Lead (Datalization)"
+msgstr ""
+
+msgid "Akquise-Leads (Datalization)"
+msgstr ""
+
+msgid "Skip to content"
+msgstr ""
+
+msgid "Zur Übersicht"
+msgstr ""
+
+msgid "Problem"
+msgstr ""
+
+msgid "Result"
+msgstr ""
+
+msgid "Technology Stack"
+msgstr ""
+
+msgid "Dashboard"
+msgstr ""
+
+msgid "Kontaktanfragen"
+msgstr ""
+
+msgid "Case Studies"
+msgstr ""
+
+msgid "Kurz-Check Leads"
+msgstr ""
+
+msgid "Abmelden"
+msgstr ""
+
+msgid "Willkommen zurück! Hier ist deine Übersicht."
+msgstr ""
+
+msgid "Logout"
+msgstr ""
+
+msgid "aktiv"
+msgstr ""
+
+msgid "verborgen"
+msgstr ""
+
+msgid "offen"
+msgstr ""
+
+msgid "erledigt"
+msgstr ""
+
+msgid "Verwalte eingehende Anfragen"
+msgstr ""
+
+msgid "Suche nach Name oder E-Mail"
+msgstr ""
+
+msgid "Alle Status"
+msgstr ""
+
+msgid "Abgeschlossen"
+msgstr ""
+
+msgid "Erledigt,Neu"
+msgstr ""
+
+msgid "Keine Einträge."
+msgstr ""
+
+msgid "Wähle eine Anfrage aus, um Details anzuzeigen."
+msgstr ""
+
+msgid "Projekte verwalten"
+msgstr ""
+
+msgid "Suche nach Titel oder Kunde"
+msgstr ""
+
+msgid "Neue Case Study"
+msgstr ""
+
+msgid "Veröffentlicht"
+msgstr ""
+
+msgid "Entwurf"
+msgstr ""
+
+msgid "Verstecken"
+msgstr ""
+
+msgid "Veröffentlichen"
+msgstr ""
+
+msgid "Keine Case Studies gefunden."
+msgstr ""
+
+msgid "Kunden"
+msgstr ""
+
+msgid "Verwalte Kundendaten"
+msgstr ""
+
+msgid "Neuer Kunde"
+msgstr ""
+
+msgid ""
+"Keine Kundendaten hinterlegt. Dies ist ein Platzhalter – bitte anpassen, "
+"sobald ein Kundenmodell existiert."
+msgstr ""
+
+msgid "Inhalte"
+msgstr ""
+
+msgid "Texte verwalten"
+msgstr ""
+
+msgid "DE"
+msgstr ""
+
+msgid "EN"
+msgstr ""
+
+msgid ""
+"Content-Editing noch nicht angebunden. Sobald ein CMS/Modelle vorhanden "
+"sind, können hier Felder erscheinen."
+msgstr ""
+
+msgid "Admin Login"
+msgstr ""
+
+msgid "Bitte Passwort eingeben, um das interne Admin-Panel zu öffnen."
+msgstr ""
+
+msgid "Passwort"
+msgstr ""
+
+msgid "Anmelden"
+msgstr ""
+
+msgid "Menü öffnen"
+msgstr ""
+
+msgid "Zum Inhalt springen"
+msgstr ""
+
+msgid "Startseite"
+msgstr ""
+
+msgid "Dashboards & Reporting für KMU – Zahlen auf einen Blick | Datalization"
+msgstr ""
+
+msgid ""
+"Auswertungen und Dashboards für kleine Betriebe: Ihre wichtigsten Kennzahlen "
+"auf einen Blick, automatisch statt von Hand. Auf moderner Microsoft-"
+"Technologie (Power BI, Microsoft Fabric)."
+msgstr ""
+
+msgid "Ihre Zahlen auf einen Blick."
+msgstr ""
+
+msgid ""
+"Die wichtigsten Kennzahlen Ihres Betriebs sind da – nur verteilt über Odoo, "
+"Excel und ein paar Vorsysteme. Ich bringe sie zusammen und mache sichtbar, "
+"wie Ihr Betrieb wirklich läuft. Ohne Excel-Bastelei am Wochenende."
+msgstr ""
+
+msgid "Person betrachtet Balkendiagramme auf einem Laptop"
+msgstr ""
+
+msgid "Was ich für Sie tue"
+msgstr ""
+
+msgid "Saubere Datengrundlage"
+msgstr ""
+
+msgid ""
+"Ich hole Ihre Zahlen aus Odoo, Excel und Vorsystemen zusammen, bereinige sie "
+"und bringe sie an einen Ort, dem Sie vertrauen können."
+msgstr ""
+
+msgid "Dashboards, die Sie verstehen"
+msgstr ""
+
+msgid ""
+"Umsatz, offene Posten, Auslastung: die Kennzahlen, die für Sie zählen – "
+"aktuell, verständlich und ohne Fachchinesisch."
+msgstr ""
+
+msgid "Schluss mit Excel-Bastelei"
+msgstr ""
+
+msgid ""
+"Ihre Auswertungen aktualisieren sich automatisch, statt dass Sie sie am "
+"Sonntagabend von Hand zusammenklicken."
+msgstr ""
+
+msgid "Wächst mit Ihrem Betrieb"
+msgstr ""
+
+msgid ""
+"Vom einfachen Report bis zur Datenplattform – wenn Ihr Betrieb mehr braucht, "
+"skaliert die Lösung mit, ohne neu anzufangen."
+msgstr ""
+
+msgid "Auf solider Technik gebaut"
+msgstr ""
+
+msgid ""
+"Ich arbeite mit Werkzeugen, die auch grosse Unternehmen einsetzen – richtig "
+"dimensioniert für einen Kleinbetrieb. So bekommen Sie professionelle "
+"Auswertungen, ohne ein eigenes Daten-Team zu brauchen."
+msgstr ""
+
+msgid ""
+"Im kostenlosen Erstgespräch schauen wir, welche Zahlen Ihnen heute fehlen – "
+"und wie wir sie sichtbar machen."
+msgstr ""
+
+msgid "Kostenloses Erstgespräch buchen"
+msgstr ""
+
+msgid ""
+"Datenmigration, Automatisierung & Softwareentwicklung für KMU | Datalization "
+"Zofingen"
+msgstr ""
+
+msgid ""
+"Daten sauber aus Altsystemen übernehmen, Abläufe automatisieren und fehlende "
+"Software individuell entwickeln. Digitalisierung & Softwareentwicklung für "
+"kleine Betriebe – ohne Datenverlust, mit Festpreis."
+msgstr ""
+
+msgid "Digitalisieren, ohne dass Daten verloren gehen."
+msgstr ""
+
+msgid ""
+"Der heikelste Moment jeder Digitalisierung ist der Umzug: Kundendaten, "
+"Artikel, Belege und Historie stecken im alten System – und sollen "
+"vollständig und korrekt im neuen ankommen. Genau das ist meine Kernkompetenz."
+msgstr ""
+
+msgid "Laptop mit Code-Editor und Kaffee im warmen Licht"
+msgstr ""
+
+msgid "Datenübernahme bei Systemwechseln."
+msgstr ""
+
+msgid ""
+"Ich hole Ihre Daten aus dem Altsystem, bereinige sie und bringe sie "
+"strukturiert ins neue – nachvollziehbar und geprüft."
+msgstr ""
+
+msgid "Automatisierung wiederkehrender Abläufe."
+msgstr ""
+
+msgid ""
+"Rechnungen, Mahnungen, Berichte, Dateiablage: Was sich wiederholt, kann der "
+"Computer übernehmen."
+msgstr ""
+
+msgid "Individuelle Softwareentwicklung."
+msgstr ""
+
+msgid ""
+"Wo Standardsoftware aufhört, entwickle ich das fehlende Stück: "
+"Webanwendungen und interne Tools, Schnittstellen zwischen Ihren Systemen, "
+"Odoo-Erweiterungen und Automatisierungen – auf Ihren Ablauf zugeschnitten "
+"und wartbar gebaut."
+msgstr ""
+
+msgid "IT-Support und Betrieb."
+msgstr ""
+
+msgid ""
+"Ich betreue bestehende Anwendungen und halte sie am Laufen – zuverlässig und "
+"erreichbar."
+msgstr ""
+
+msgid "So gehen wir vor"
+msgstr ""
+
+msgid ""
+"Am Anfang steht der Digitalisierungs-Check: Ich schaue mir Ihre heutigen "
+"Abläufe an und zeige Ihnen, wo Digitalisierung wirklich etwas bringt – und "
+"wo nicht. Sie erhalten einen konkreten Vorschlag mit Festpreisofferte. Erst "
+"dann entscheiden Sie."
+msgstr ""
+
+msgid ""
+"Vor jedem Projekt erhalten Sie eine Festpreisofferte. Was sie kostet und "
+"enthält, besprechen wir im kostenlosen Erstgespräch."
+msgstr ""
+
+msgid "ERP & CRM für Kleinbetriebe | Odoo Partner Zofingen – Datalization"
+msgstr ""
+
+msgid ""
+"Geschäftssoftware, Automatisierung und saubere Daten für kleine Betriebe. "
+"Odoo-Einführung mit Festpreisofferte. Kostenloses Erstgespräch in der Region "
+"Zofingen."
+msgstr ""
+
+msgid "Ihr Betrieb in einem System – statt in fünf Programmen."
+msgstr ""
+
+msgid "Ihr Betrieb in einem System – <em>statt in fünf Programmen.</em>"
+msgstr ""
+
+msgid ""
+"Datalization macht kleine Betriebe digital effizient: Geschäftssoftware, "
+"Automatisierung und saubere Daten, alles aus einer Hand. Für Betriebe ohne "
+"eigene IT-Abteilung – in der Region Zofingen und darüber hinaus."
+msgstr ""
+
+msgid "Offerten"
+msgstr ""
+
+msgid "Rechnungen"
+msgstr ""
+
+msgid "Lager"
+msgstr ""
+
+msgid "Buchhaltung"
+msgstr ""
+
+msgid "Excel-Listen"
+msgstr ""
+
+msgid "Womit ich Ihnen helfe"
+msgstr ""
+
+msgid "Ihr Betrieb in einem System"
+msgstr ""
+
+msgid ""
+"Offerten, Rechnungen, Lager, Projekte und Buchhaltung an einem Ort – statt "
+"in fünf Programmen und zwanzig Excel-Listen."
+msgstr ""
+
+msgid "Mehr zur Geschäftssoftware"
+msgstr ""
+
+msgid "Digitalisieren ohne Datenverlust"
+msgstr ""
+
+msgid ""
+"Ich hole Ihre Daten sauber aus den alten Systemen, automatisiere das "
+"Wiederkehrende und baue, was fehlt."
+msgstr ""
+
+msgid "Mehr zu Digitalisierung & Entwicklung"
+msgstr ""
+
+msgid "Dokumente teilen, ohne E-Mail-Chaos"
+msgstr ""
+
+msgid ""
+"Ein Portal, in dem Ihre Kunden ihre Unterlagen finden – statt Anhängen in "
+"zehn Mail-Verläufen."
+msgstr ""
+
+msgid "Mehr zu Monekey"
+msgstr ""
+
+msgid "Vier Schritte – ohne Überraschungen"
+msgstr ""
+
+msgid "Erstgespräch (kostenlos)."
+msgstr ""
+
+msgid "Wir schauen in 60 Minuten, ob es passt. Unverbindlich."
+msgstr ""
+
+msgid "Digitalisierungs-Check."
+msgstr ""
+
+msgid ""
+"Ich analysiere Ihre heutigen Abläufe und zeige konkret, was sich lohnt – "
+"inklusive Festpreisofferte."
+msgstr ""
+
+msgid "Umsetzung."
+msgstr ""
+
+msgid "Einführung, Datenübernahme, Schulung – zum vereinbarten Festpreis."
+msgstr ""
+
+msgid "Betreuung."
+msgstr ""
+
+msgid ""
+"Nach dem Go-Live lasse ich Sie nicht allein: Support, Updates und "
+"Weiterentwicklung gehören dazu."
+msgstr ""
+
+msgid "Sie wissen vorher, was es kostet."
+msgstr ""
+
+msgid ""
+"Jedes Projekt startet mit einer Pauschale und einem klar umrissenen Umfang. "
+"Mehraufwand gibt es nur, wenn Sie ihm vorher zustimmen – keine "
+"Überraschungen."
+msgstr ""
+
+msgid "Arbeiten am Schreibtisch mit Laptop, Notizen und Auswertungen"
+msgstr ""
+
+msgid "Wofür Datalization steht"
+msgstr ""
+
+msgid "Ein System, ein Ansprechpartner, ein klarer Preis."
+msgstr ""
+
+msgid ""
+"Datalization bringt die Software kleiner Betriebe in Ordnung – persönlich "
+"umgesetzt von der Person, die Ihre Lösung auch baut, zum Festpreis statt mit "
+"Überraschungen."
+msgstr ""
+
+msgid ""
+"Technik, die zum Betrieb passt – nicht umgekehrt. Und wenn ein Projekt nicht "
+"zu Datalization passt, erfahren Sie das im Erstgespräch offen – samt "
+"Hinweis, wer dann die bessere Wahl ist."
+msgstr ""
+
+msgid "Vorher"
+msgstr ""
+
+msgid "Nachher"
+msgstr ""
+
+msgid "[Platzhalter ab Projekt 1: Referenzgeschichte mit Zahlen]"
+msgstr ""
+
+msgid "Reden wir über Ihren Betrieb."
+msgstr ""
+
+msgid ""
+"60 Minuten, kostenlos, unverbindlich – danach wissen Sie, ob und wie sich "
+"Digitalisierung für Sie lohnt."
+msgstr ""
+
+msgid "Termin wählen"
+msgstr ""
+
+msgid "Odoo testen"
+msgstr ""
+
+msgid "Monekey – Dokumentenportal für Verwaltungen & Treuhänder | Datalization"
+msgstr ""
+
+msgid ""
+"Ein Portal, in dem Ihre Kunden ihre Unterlagen finden – statt in E-Mail-"
+"Anhängen. Monekey, das schlanke Dokumentenportal für Immobilienverwaltungen, "
+"Treuhänder und Broker."
+msgstr ""
+
+msgid "Dokumente teilen, ohne E-Mail-Chaos."
+msgstr ""
+
+msgid ""
+"Abrechnungen, Verträge, Protokolle: Wer Immobilien verwaltet, Mandate "
+"betreut oder Kunden berät, verschickt täglich Dokumente – und sucht sie "
+"morgen in zehn Mail-Verläufen wieder."
+msgstr ""
+
+msgid ""
+"Monekey – Dokumente wandern in die zentrale Ablage und werden sicher ins "
+"Kundenportal freigegeben"
+msgstr ""
+
+msgid "Das kennen Sie?"
+msgstr ""
+
+msgid "Heute"
+msgstr ""
+
+msgid "Dokumente verteilt über E-Mail, Netzlaufwerk und Cloud-Ordner."
+msgstr ""
+
+msgid "Endlose Mail-Ketten mit Anhängen – unklar, welche Version gilt."
+msgstr ""
+
+msgid "Kunden fragen dieselben Unterlagen immer wieder an."
+msgstr ""
+
+msgid "Sensible Daten gehen ungeschützt per Mail hin und her."
+msgstr ""
+
+msgid "Mit Monekey"
+msgstr ""
+
+msgid "Eine zentrale, mandantenfähige Ablage für alle Dokumente."
+msgstr ""
+
+msgid "Ein sicheres Kundenportal, in dem sich Kunden selbst bedienen."
+msgstr ""
+
+msgid "Rollen und Berechtigungen bis auf einzelne Dokumente."
+msgstr ""
+
+msgid "Nachvollziehbare Ablage mit Versionen und Protokoll."
+msgstr ""
+
+msgid "Ein Portal für Ihre Kunden"
+msgstr ""
+
+msgid ""
+"Monekey ist das Dokumentenportal von Datalization: Ihre Kunden melden sich "
+"an und finden ihre Unterlagen – aktuell, vollständig, am richtigen Ort. Sie "
+"laden einmal hoch, statt dreimal zu mailen."
+msgstr ""
+
+msgid "Selbstbedienung"
+msgstr ""
+
+msgid ""
+"Ihre Kunden finden und laden ihre Unterlagen selbst – rund um die Uhr, am "
+"richtigen Ort."
+msgstr ""
+
+msgid "Sichere Freigabe"
+msgstr ""
+
+msgid ""
+"Sie geben gezielt frei, verschlüsselt und rollenbasiert – statt Anhänge zu "
+"verschicken."
+msgstr ""
+
+msgid "Nachvollziehbar"
+msgstr ""
+
+msgid ""
+"Versionen und Zugriffsprotokoll zeigen, wer wann worauf zugegriffen hat."
+msgstr ""
+
+msgid "Für wen Monekey gemacht ist"
+msgstr ""
+
+msgid "Immobilienverwaltung"
+msgstr ""
+
+msgid ""
+"Mietverträge, Grundbuchauszüge, Abrechnungen und Protokolle – je "
+"Liegenschaft geordnet, mit gezieltem Zugriff für Eigentümer und Mieter."
+msgstr ""
+
+msgid "Treuhand"
+msgstr ""
+
+msgid ""
+"Steuerunterlagen, Buchhaltung und Belege je Mandant gesichert – das Portal "
+"ersetzt den Mail-Anhang."
+msgstr ""
+
+msgid "Brokerage"
+msgstr ""
+
+msgid ""
+"Portfolio-Auszüge, KYC-Unterlagen und Reports – strukturiert, mit Versionen "
+"und klaren Zugriffsrechten."
+msgstr ""
+
+msgid "Aktienregister"
+msgstr ""
+
+msgid ""
+"Aktionärsdaten, Übertragungen und Registerauszüge – transparent, mit "
+"Protokoll und rollenbasierten Rechten."
+msgstr ""
+
+msgid "Bewusst schlank – und eine Schweizer Lösung"
+msgstr ""
+
+msgid "Bewusst schlank"
+msgstr ""
+
+msgid ""
+"Monekey macht eine Sache richtig, statt hundert Dinge halb. Keine "
+"wochenlange Einführung, kein Schulungsmarathon."
+msgstr ""
+
+msgid "Schweizer Lösung"
+msgstr ""
+
+msgid "Entwickelt und betreut in der Schweiz, direkter Draht zum Entwickler."
+msgstr ""
+
+msgid "Monekey ansehen / Demo vereinbaren"
+msgstr ""
+
+msgid ""
+"Odoo für Kleinbetriebe – Geschäftssoftware aus einer Hand | Datalization"
+msgstr ""
+
+msgid ""
+"Offerten, Rechnungen, Lager und Buchhaltung in einem System. Odoo-Einführung "
+"für kleine Betriebe – mit Datenübernahme, Schulung und Festpreisofferte."
+msgstr ""
+
+msgid "Offerten, Rechnungen, Lager und Buchhaltung – endlich an einem Ort."
+msgstr ""
+
+msgid ""
+"Viele Kleinbetriebe arbeiten mit einem Programm für Offerten, einem für die "
+"Buchhaltung, Excel fürs Lager und dem Mail-Postfach als Gedächtnis. Jede "
+"Information wird mehrfach erfasst, nichts stimmt ganz überein, und der "
+"Überblick entsteht am Sonntagabend von Hand."
+msgstr ""
+
+msgid "Verkauf"
+msgstr ""
+
+msgid "Einkauf"
+msgstr ""
+
+msgid "Projekte"
+msgstr ""
+
+msgid "einmal erfassen, überall verfügbar"
+msgstr ""
+
+msgid "Eine App für alle Anforderungen"
+msgstr ""
+
+msgid ""
+"Mit Odoo arbeiten weltweit Millionen von Betrieben – vom Zweipersonen-"
+"Atelier bis zum Produktionsbetrieb. Verkauf, Einkauf, Lager, Buchhaltung und "
+"vieles mehr greifen in einem System ineinander. Sie schalten nur frei, was "
+"Sie heute brauchen, und erweitern später."
+msgstr ""
+
+msgid "Leads und Verkaufschancen vom Erstkontakt bis zum Abschluss verfolgen."
+msgstr ""
+
+msgid "Offerten und Aufträge erstellen, versenden und nachverfolgen."
+msgstr ""
+
+msgid "Rechnungen, Zahlungen und Abschluss – sauber und automatisiert."
+msgstr ""
+
+msgid "Bestände, Ein- und Ausgänge immer aktuell im Blick."
+msgstr ""
+
+msgid "Bestellungen, Lieferanten und Nachbestellungen an einem Ort."
+msgstr ""
+
+msgid "Kassensystem"
+msgstr ""
+
+msgid "Verkaufen am Tresen – direkt verbunden mit Lager und Buchhaltung."
+msgstr ""
+
+msgid "Aufgaben, Zeiten und Fortschritt pro Projekt im Griff."
+msgstr ""
+
+msgid "Zeiterfassung"
+msgstr ""
+
+msgid "Arbeitszeiten erfassen und direkt auf Projekte und Rechnungen buchen."
+msgstr ""
+
+msgid "Fertigung"
+msgstr ""
+
+msgid "Produktion, Stücklisten und Arbeitsaufträge planen und steuern."
+msgstr ""
+
+msgid "Personal"
+msgstr ""
+
+msgid "Mitarbeitende, Verträge und Abwesenheiten zentral verwalten."
+msgstr ""
+
+msgid "Spesen"
+msgstr ""
+
+msgid "Auslagen erfassen, einreichen und freigeben – ohne Zettelwirtschaft."
+msgstr ""
+
+msgid "Eigene Website bauen – direkt mit Shop, CRM und Lager verbunden."
+msgstr ""
+
+msgid "Webshop"
+msgstr ""
+
+msgid "Online verkaufen – Bestellungen landen automatisch im System."
+msgstr ""
+
+msgid "E-Mail-Marketing"
+msgstr ""
+
+msgid "Newsletter und Kampagnen gestalten, versenden und auswerten."
+msgstr ""
+
+msgid "Interne Kommunikation und Benachrichtigungen an einem Ort."
+msgstr ""
+
+msgid "Kalender"
+msgstr ""
+
+msgid "Termine und Aktivitäten teamübergreifend planen."
+msgstr ""
+
+msgid "Veranstaltungen"
+msgstr ""
+
+msgid "Events organisieren – von der Anmeldung bis zum Ticket."
+msgstr ""
+
+msgid "Wartung"
+msgstr ""
+
+msgid "Wartungen planen und Maschinen instand halten."
+msgstr ""
+
+msgid "Reparatur"
+msgstr ""
+
+msgid "Reparaturaufträge erfassen und abwickeln."
+msgstr ""
+
+msgid "Fuhrpark"
+msgstr ""
+
+msgid "Fahrzeuge, Kosten und Verträge im Überblick."
+msgstr ""
+
+msgid ""
+"… und viele weitere. Welche Apps Sie wirklich brauchen, finden wir gemeinsam "
+"heraus."
+msgstr ""
+
+msgid "Was Sie in Odoo abbilden"
+msgstr ""
+
+msgid "Verkauf & CRM"
+msgstr ""
+
+msgid "Leads, Offerten und Aufträge – vom Erstkontakt bis zum Abschluss."
+msgstr ""
+
+msgid "Bestellungen, Lieferanten und Nachbestellung an einem Ort."
+msgstr ""
+
+msgid "Bestände sowie Ein- und Ausgänge – immer aktuell."
+msgstr ""
+
+msgid "Aufgaben, Zeiterfassung und Fortschritt im Blick."
+msgstr ""
+
+msgid "Rechnungen & Buchhaltung"
+msgstr ""
+
+msgid "Rechnungen stellen, Zahlungen verfolgen – bis zur MwSt-Abrechnung."
+msgstr ""
+
+msgid "Website & Shop"
+msgstr ""
+
+msgid ""
+"Onlineauftritt und Verkauf – direkt mit Lager und Buchhaltung verbunden."
+msgstr ""
+
+msgid ""
+"… und viele weitere Module. Sie schalten nur frei, was Sie heute brauchen – "
+"und ergänzen später, was dazukommt."
+msgstr ""
+
+msgid "Mehr zu Odoo"
+msgstr ""
+
+msgid "Wieso Odoo?"
+msgstr ""
+
+msgid ""
+"Warum Odoo die richtige Basis für Ihren Betrieb ist – und was es von "
+"Insellösungen und Excel unterscheidet."
+msgstr ""
+
+msgid "Odoo einführen"
+msgstr ""
+
+msgid ""
+"Vom Digitalisierungs-Check bis zum Go-Live: wie eine Einführung bei Ihnen "
+"abläuft – und was Sie bekommen."
+msgstr ""
+
+msgid "So läuft es ab"
+msgstr ""
+
+msgid "Odoo im Vergleich"
+msgstr ""
+
+msgid ""
+"Odoo neben Excel-Insellösungen, grossen Standard-ERPs und Eigenentwicklung – "
+"wo der Mittelweg liegt."
+msgstr ""
+
+msgid "Zum Vergleich"
+msgstr ""
+
+msgid "Odoo einführen – Ablauf, Datenübernahme & Schulung | Datalization"
+msgstr ""
+
+msgid ""
+"Wie eine Odoo-Einführung für kleine Betriebe abläuft: vom Digitalisierungs-"
+"Check über Datenübernahme und Schulung bis zur Betreuung – zum Festpreis."
+msgstr ""
+
+msgid "Eine Einführung ohne Überraschungen."
+msgstr ""
+
+msgid ""
+"Am Anfang steht der Digitalisierungs-Check: Ich schaue mir Ihre heutigen "
+"Abläufe an und zeige Ihnen, wo sich Odoo lohnt – und wo nicht. Sie erhalten "
+"einen konkreten Vorschlag mit Festpreisofferte. Erst dann entscheiden Sie."
+msgstr ""
+
+msgid "Der Digitalisierungs-Check im Detail"
+msgstr ""
+
+msgid "Abläufe aufnehmen"
+msgstr ""
+
+msgid ""
+"Ich schaue mir an, wie Sie heute wirklich arbeiten – vom Angebot bis zur "
+"Rechnung."
+msgstr ""
+
+msgid "Module festlegen"
+msgstr ""
+
+msgid ""
+"Wir bestimmen, welche Odoo-Module Sie wirklich brauchen – und welche nicht."
+msgstr ""
+
+msgid "Datenquellen sichten"
+msgstr ""
+
+msgid "Wir schauen, welche Daten aus Altsystemen und Excel sauber mitkommen."
+msgstr ""
+
+msgid "Festpreisofferte"
+msgstr ""
+
+msgid ""
+"Sie erhalten einen konkreten Vorschlag mit Festpreis. Erst dann entscheiden "
+"Sie."
+msgstr ""
+
+msgid "Typischer Zeitrahmen"
+msgstr ""
+
+msgid ""
+"Eine Einführung dauert bei kleinen Betrieben meist Wochen, nicht Monate – "
+"abhängig vom Umfang. Den genauen Rahmen halten wir in der Offerte fest."
+msgstr ""
+
+msgid "Was Sie bekommen"
+msgstr ""
+
+msgid "Projektstart"
+msgstr ""
+
+msgid "Einrichtung, die zu Ihrem Betrieb passt."
+msgstr ""
+
+msgid ""
+"Kein Riesensystem mit hundert Funktionen, die Sie nie brauchen – sondern "
+"genau die Module, mit denen Sie arbeiten."
+msgstr ""
+
+msgid "Was passiert"
+msgstr ""
+
+msgid ""
+"Wir richten genau die Module ein, die Sie brauchen, und passen Odoo an Ihre "
+"Abläufe an."
+msgstr ""
+
+msgid "Ihr Part"
+msgstr ""
+
+msgid "Einmal zeigen, wie Sie heute arbeiten – den Rest übernehme ich."
+msgstr ""
+
+msgid "Ergebnis"
+msgstr ""
+
+msgid "Ein System, das sich anfühlt wie für Ihren Betrieb gemacht."
+msgstr ""
+
+msgid "Ihre Daten ziehen mit."
+msgstr ""
+
+msgid ""
+"Kunden, Artikel, offene Posten, Historie: Ich übernehme Ihre bestehenden "
+"Daten sauber ins neue System. Nichts geht verloren."
+msgstr ""
+
+msgid ""
+"Ich hole Ihre Daten aus dem Altsystem, bereinige sie und bringe sie "
+"strukturiert ins neue."
+msgstr ""
+
+msgid "Zugang zu Ihren bestehenden Daten – als Export oder Systemzugriff."
+msgstr ""
+
+msgid "Alle Daten im neuen System – nachvollziehbar und geprüft."
+msgstr ""
+
+msgid "Automatisierung einrichten."
+msgstr ""
+
+msgid "Wiederkehrendes übernimmt das System – Rechnungen, Mahnungen, Berichte."
+msgstr ""
+
+msgid ""
+"Ich richte in Odoo ein, was sich bei Ihnen wiederholt: Rechnungsläufe, "
+"Mahnungen, Berichte, Dateiablage."
+msgstr ""
+
+msgid "Mir zeigen, welche Routine-Aufgaben am meisten Zeit fressen."
+msgstr ""
+
+msgid "Weniger Handarbeit, weniger Fehler – mehr Zeit fürs Wesentliche."
+msgstr ""
+
+msgid "Testen &amp; Feinschliff."
+msgstr ""
+
+msgid "Sie prüfen das System an echten Fällen, ich passe an, bis es sitzt."
+msgstr ""
+
+msgid "Wir gehen Ihre echten Abläufe durch; was hakt, justiere ich nach."
+msgstr ""
+
+msgid "Das System an Ihren eigenen Fällen ausprobieren und Rückmeldung geben."
+msgstr ""
+
+msgid ""
+"Ein System, das im Alltag wirklich funktioniert – ohne böse Überraschungen "
+"beim Start."
+msgstr ""
+
+msgid "Schulung, bis es sitzt."
+msgstr ""
+
+msgid ""
+"Ihr Team arbeitet selbständig – das ist das Ziel, nicht die Abhängigkeit vom "
+"Dienstleister."
+msgstr ""
+
+msgid ""
+"Ich zeige Ihrem Team die tägliche Arbeit – an Ihren echten Daten, nicht an "
+"Demo-Beispielen."
+msgstr ""
+
+msgid "Ein paar Stunden Zeit Ihres Teams."
+msgstr ""
+
+msgid "Ihr Team arbeitet selbständig – ohne Abhängigkeit vom Dienstleister."
+msgstr ""
+
+msgid "Go-Live."
+msgstr ""
+
+msgid "Der kontrollierte Umstieg auf den produktiven Betrieb – ich bin dabei."
+msgstr ""
+
+msgid ""
+"Wir schalten geplant auf Odoo um; am Go-Live-Tag bin ich für Sie erreichbar."
+msgstr ""
+
+msgid "Den vereinbarten Umstiegstermin im Team freihalten."
+msgstr ""
+
+msgid "Sie arbeiten produktiv mit Odoo – begleitet, nicht allein gelassen."
+msgstr ""
+
+msgid "Betreuung danach."
+msgstr ""
+
+msgid ""
+"Support, Updates und kleine Anpassungen, damit die Lösung im Alltag trägt."
+msgstr ""
+
+msgid "Support, Updates und kleine Anpassungen nach dem Go-Live."
+msgstr ""
+
+msgid "Melden, wenn etwas klemmt oder dazukommt."
+msgstr ""
+
+msgid "Die Lösung trägt im Alltag – auch nächstes Jahr noch."
+msgstr ""
+
+msgid "Im Alltag angekommen"
+msgstr ""
+
+msgid "Lieber selber machen – mit Begleitung?"
+msgstr ""
+
+msgid ""
+"Für sehr kleine Budgets gibt es den begleiteten Weg: Sie richten Odoo selbst "
+"ein, ich coache Sie stundenweise durch die Entscheidungen und Stolpersteine. "
+"Sie lernen Ihr System von Grund auf kennen – und zahlen nur die Begleitung."
+msgstr ""
+
+msgid "Odoo Partner Region Zofingen & Aargau | Datalization"
+msgstr ""
+
+msgid ""
+"Odoo-Einführung, Datenübernahme und Betreuung für kleine Betriebe in der "
+"Region Zofingen, Olten und im Aargau. Persönlich, mit Festpreisofferte."
+msgstr ""
+
+msgid "Ihr Odoo-Partner in der Region Zofingen"
+msgstr ""
+
+msgid ""
+"Geschäftssoftware einführen heisst zusammenarbeiten – und das geht am besten "
+"in der Nähe. Datalization begleitet kleine Betriebe in Zofingen, Olten, "
+"Sursee, Langenthal und im ganzen Aargau bei der Einführung und Betreuung von "
+"Odoo: vor Ort bei Ihnen, nicht nur per Videocall."
+msgstr ""
+
+msgid "Warum ein regionaler Partner?"
+msgstr ""
+
+msgid ""
+"Erstgespräch und Prozessaufnahme bei Ihnen im Betrieb – ich sehe, wie Sie "
+"wirklich arbeiten"
+msgstr ""
+
+msgid "Schulung vor Ort, mit Ihren echten Daten"
+msgstr ""
+
+msgid "Kurze Wege, wenn es klemmt"
+msgstr ""
+
+msgid "Was ich anbiete"
+msgstr ""
+
+msgid ""
+"Odoo-Einführung mit Datenübernahme und Schulung, Automatisierung Ihrer "
+"Abläufe, individuelle Erweiterungen und laufende Betreuung – alles mit "
+"Festpreisofferte vor Projektstart."
+msgstr ""
+
+msgid "Kostenloses Erstgespräch in Ihrer Nähe buchen"
+msgstr ""
+
+msgid ""
+"Odoo im Vergleich: Excel, grosses ERP oder Eigenentwicklung? | Datalization"
+msgstr ""
+
+msgid ""
+"Odoo neben Excel-Insellösungen, grossen Standard-ERPs und Eigenentwicklung: "
+"wo jede Variante an Grenzen stösst – und warum Odoo für Kleinbetriebe der "
+"Mittelweg ist."
+msgstr ""
+
+msgid "Im Vergleich"
+msgstr ""
+
+msgid ""
+"Für einen Kleinbetrieb gibt es grob drei Wege, Abläufe zu digitalisieren. "
+"Jeder hat seine Berechtigung – und seine Grenzen. Hier der ehrliche "
+"Überblick."
+msgstr ""
+
+msgid "Drei Alternativen – und wo sie anstossen"
+msgstr ""
+
+msgid "Excel & Insellösungen"
+msgstr ""
+
+msgid ""
+"Günstig im Start und schnell zur Hand. Aber: Jede Information wird mehrfach "
+"erfasst, nichts stimmt ganz überein, und ein Gesamtüberblick entsteht nur "
+"von Hand. Mit dem Betrieb wächst das Chaos mit."
+msgstr ""
+
+msgid "Grosse Standard-ERPs"
+msgstr ""
+
+msgid ""
+"Mächtig und für Konzerne gemacht. Aber: teuer, überdimensioniert für einen "
+"Kleinbetrieb, mit langer Einführung und Beraterheeren. Sie zahlen für "
+"Funktionen, die Sie nie brauchen."
+msgstr ""
+
+msgid "Eigenentwicklung"
+msgstr ""
+
+msgid ""
+"Passt genau auf Ihren Betrieb. Aber: teuer und langwierig, und Sie sind "
+"komplett vom Entwickler abhängig – inklusive Wartung, Updates und allem, was "
+"später noch kommt."
+msgstr ""
+
+msgid "Odoo: der Mittelweg"
+msgstr ""
+
+msgid ""
+"Ein bewährter Standard, der zu Ihrem Betrieb passt – bezahlbar, in Wochen "
+"statt Monaten eingeführt, modular erweiterbar und ohne Abhängigkeit von "
+"einem einzelnen Produkt oder Entwickler. Für kleine Betriebe meist die beste "
+"Balance aus Kosten, Aufwand und Flexibilität."
+msgstr ""
+
+msgid "Im direkten Vergleich"
+msgstr ""
+
+msgid "Kriterium"
+msgstr ""
+
+msgid "Grosses ERP"
+msgstr ""
+
+msgid "Kosten"
+msgstr ""
+
+msgid "Niedrig im Start"
+msgstr ""
+
+msgid "Hoch"
+msgstr ""
+
+msgid "Fair, nach Modulen"
+msgstr ""
+
+msgid "Einführung"
+msgstr ""
+
+msgid "Sofort, aber unstrukturiert"
+msgstr ""
+
+msgid "Monate"
+msgstr ""
+
+msgid "Langwierig"
+msgstr ""
+
+msgid "Wochen"
+msgstr ""
+
+msgid "Flexibilität"
+msgstr ""
+
+msgid "Gering"
+msgstr ""
+
+msgid "Hoch, aber komplex"
+msgstr ""
+
+msgid "Maximal"
+msgstr ""
+
+msgid "Hoch, modular"
+msgstr ""
+
+msgid "Abhängigkeit"
+msgstr ""
+
+msgid "Insellösungen, kein Überblick"
+msgstr ""
+
+msgid "Vom Anbieter"
+msgstr ""
+
+msgid "Vom Entwickler"
+msgstr ""
+
+msgid "Gering – offener Standard"
+msgstr ""
+
+msgid "Passt für"
+msgstr ""
+
+msgid "Den allerersten Start"
+msgstr ""
+
+msgid "Konzerne"
+msgstr ""
+
+msgid "Spezialfälle"
+msgstr ""
+
+msgid "Kleinbetriebe"
+msgstr ""
+
+msgid ""
+"Welcher Weg für Sie der richtige ist, schauen wir gemeinsam an – ehrlich, "
+"auch wenn Odoo einmal nicht die Antwort ist."
+msgstr ""
+
+msgid "Wieso Odoo? ERP-Vorteile für Kleinbetriebe | Datalization"
+msgstr ""
+
+msgid ""
+"Warum Odoo die richtige Geschäftssoftware für kleine Betriebe ist: ein "
+"System statt fünf, modular erweiterbar, weltweit bewährt – und persönlich "
+"betreut aus der Region."
+msgstr ""
+
+msgid ""
+"Odoo ist eine Geschäftssoftware, die alles verbindet, was ein Betrieb "
+"täglich braucht – von der Offerte bis zur Buchhaltung. Statt fünf Programme "
+"nebeneinander führen Sie Ihren Betrieb in einem System."
+msgstr ""
+
+msgid "Ein System statt fünf"
+msgstr ""
+
+msgid ""
+"Viele Kleinbetriebe tippen dieselbe Information mehrfach: einmal in die "
+"Offerten-Software, einmal in die Buchhaltung, einmal in eine Excel-Liste. "
+"Jede Doppelerfassung kostet Zeit und erzeugt Fehler. In Odoo hängt alles "
+"zusammen – was Sie einmal erfassen, ist überall verfügbar."
+msgstr ""
+
+msgid "Was für Odoo spricht"
+msgstr ""
+
+msgid "Ein System für alles"
+msgstr ""
+
+msgid "Verkauf bis Buchhaltung"
+msgstr ""
+
+msgid "Wächst mit Ihnen"
+msgstr ""
+
+msgid "Modular, Schritt für Schritt"
+msgstr ""
+
+msgid "Weltweit bewährt"
+msgstr ""
+
+msgid "Etablierter Standard"
+msgstr ""
+
+msgid "Aus der Region"
+msgstr ""
+
+msgid "Persönlich betreut"
+msgstr ""
+
+msgid ""
+"Verkauf, Einkauf, Lager, Projekte, Rechnungen und Buchhaltung greifen "
+"ineinander. Ein Datenstand, auf den sich alle verlassen können."
+msgstr ""
+
+msgid ""
+"Sie starten mit den Modulen, die Sie heute brauchen, und schalten später "
+"dazu, was dazukommt. Kein Neukauf, kein Systemwechsel."
+msgstr ""
+
+msgid "Weltweit bewährt, keine Sackgasse"
+msgstr ""
+
+msgid ""
+"Millionen von Betrieben arbeiten mit Odoo. Sie setzen auf einen etablierten "
+"Standard – nicht auf ein Nischenprodukt, das morgen verschwindet."
+msgstr ""
+
+msgid "Betreut aus der Region"
+msgstr ""
+
+msgid ""
+"Sie sprechen mit der Person, die Odoo bei Ihnen einführt – erreichbar, in "
+"der Nähe, auch nach dem Go-Live."
+msgstr ""
+
+msgid "Häufige Fragen"
+msgstr ""
+
+msgid "Muss ich alle Odoo-Module auf einmal einführen?"
+msgstr ""
+
+msgid ""
+"Nein. Wir starten mit den Modulen, die Sie heute brauchen, und schalten "
+"später dazu, was dazukommt – ohne Systemwechsel."
+msgstr ""
+
+msgid "Bin ich danach von Ihnen abhängig?"
+msgstr ""
+
+msgid ""
+"Nein. Das Ziel ist, dass Ihr Team selbständig arbeitet. Und weil Odoo ein "
+"verbreiteter Standard ist, sind Sie nicht an eine einzelne Person gebunden."
+msgstr ""
+
+msgid "Läuft Odoo in der Cloud oder bei mir im Haus?"
+msgstr ""
+
+msgid ""
+"Beides ist möglich. Wir wählen gemeinsam, was zu Ihrem Betrieb und Ihren "
+"Datenschutz-Anforderungen passt."
+msgstr ""
+
+msgid "Was passiert mit meinen bestehenden Daten?"
+msgstr ""
+
+msgid ""
+"Ich übernehme Kunden, Artikel, offene Posten und Historie sauber ins neue "
+"System. Nichts geht verloren – nachvollziehbar und geprüft."
+msgstr ""
+
+msgid "Was kostet Odoo?"
+msgstr ""
+
+msgid ""
+"Die Lizenz richtet sich nach den genutzten Modulen und Nutzern, die "
+"Einführung erhalten Sie als Festpreisofferte. Konkrete Zahlen besprechen wir "
+"im kostenlosen Erstgespräch."
+msgstr ""
+
+msgid "Ist Odoo auch für kleine Betriebe sinnvoll?"
+msgstr ""
+
+msgid ""
+"Gerade dann. Sie zahlen nicht für ein Konzern-System, sondern für genau die "
+"Module, die Sie nutzen – und wachsen Schritt für Schritt."
+msgstr ""
+
+msgid ""
+"Ob Odoo zu Ihrem Betrieb passt, finden wir im kostenlosen Erstgespräch "
+"heraus – ehrlich und unverbindlich."
+msgstr ""
+
+msgid "Rechtliches"
+msgstr ""
+
+msgid "Hauptnavigation"
+msgstr ""
+
+msgid "Übersicht"
+msgstr ""
+
+msgid "Buchhaltungssoftware für KMU & kleine Betriebe | Datalization"
+msgstr ""
+
+msgid ""
+"Buchhaltungssoftware für kleine Betriebe: Rechnungen, Zahlungen, MwSt und "
+"Abschluss in einem System. Mit Bankabgleich, Mahnwesen und Zugang für Ihren "
+"Treuhänder – persönlich eingeführt in der Region Zofingen."
+msgstr ""
+
+msgid "Buchhaltungssoftware, die mit Ihrem Betrieb mitdenkt"
+msgstr ""
+
+msgid "Buchhaltungssoftware"
+msgstr ""
+
+msgid "Buchhaltungssoftware, die mit Ihrem Betrieb mitdenkt."
+msgstr ""
+
+msgid ""
+"Rechnungen schreiben, Zahlungen abgleichen, die MwSt-Abrechnung vorbereiten "
+"– Buchhaltung frisst Zeit, wenn sie in Excel und losen Belegen stattfindet. "
+"Eine gute Buchhaltungssoftware nimmt Ihnen die Routine ab und zeigt Ihnen "
+"jederzeit, wie Ihr Betrieb finanziell dasteht."
+msgstr ""
+
+msgid "Was eine Buchhaltungssoftware für kleine Betriebe leisten muss"
+msgstr ""
+
+msgid "Rechnungen & Zahlungen"
+msgstr ""
+
+msgid ""
+"Rechnungen erstellen, versenden und offene Posten verfolgen – mit QR-"
+"Rechnung und automatischem Zahlungsabgleich."
+msgstr ""
+
+msgid "Bankabgleich ohne Handarbeit"
+msgstr ""
+
+msgid ""
+"Kontoauszüge werden eingelesen und automatisch den richtigen Buchungen "
+"zugeordnet – statt Zeile für Zeile von Hand."
+msgstr ""
+
+msgid "MwSt & Abschluss vorbereitet"
+msgstr ""
+
+msgid ""
+"Die MwSt-Abrechnung und der Jahresabschluss sind sauber vorbereitet – Ihr "
+"Treuhänder findet alles, wo es hingehört."
+msgstr ""
+
+msgid "Belege digital erfassen"
+msgstr ""
+
+msgid ""
+"Belege abfotografieren oder hochladen – sie landen direkt bei der passenden "
+"Buchung, nachvollziehbar und revisionssicher abgelegt."
+msgstr ""
+
+msgid "Offene Posten & Mahnwesen"
+msgstr ""
+
+msgid ""
+"Sie sehen jederzeit, wer noch nicht bezahlt hat – Zahlungserinnerungen und "
+"Mahnungen laufen auf Wunsch automatisch."
+msgstr ""
+
+msgid "Zugang für Ihren Treuhänder"
+msgstr ""
+
+msgid ""
+"Ihr Treuhandbüro arbeitet direkt im selben System mit – kein Hin- und "
+"Herschicken von Dateien mehr zum Abschluss."
+msgstr ""
+
+msgid "Buchhaltung als Teil Ihrer Geschäftssoftware"
+msgstr ""
+
+msgid ""
+"Ich setze auf Odoo – dort ist die Buchhaltung kein Insel-Programm, sondern "
+"hängt direkt an Offerten, Aufträgen, Lager und Einkauf. Eine Rechnung "
+"entsteht aus dem Auftrag, die Buchung aus der Rechnung, der Zahlungseingang "
+"gleicht sich selbst ab. Weniger doppelt erfassen, weniger Fehler – und am "
+"Monatsende keine Excel-Bastelei. Die Einführung begleite ich persönlich, "
+"inklusive sauberer Übernahme Ihrer bestehenden Buchhaltungsdaten."
+msgstr ""
+
+msgid "Geschäftssoftware für KMU"
+msgstr ""
+
+msgid "Für Treuhänder"
+msgstr ""
+
+msgid ""
+"Im kostenlosen Erstgespräch schauen wir, wie viel Zeit Ihre Buchhaltung "
+"heute kostet – und was sich davon automatisieren lässt."
+msgstr ""
+
+msgid "Geschäftssoftware & ERP für KMU in der Schweiz | Datalization"
+msgstr ""
+
+msgid ""
+"Die passende Geschäftssoftware für kleine Betriebe: Offerten, Rechnungen, "
+"Lager und Buchhaltung in einem System statt fünf Programme. ERP-Einführung "
+"mit Festpreisofferte – persönlich in der Region Zofingen."
+msgstr ""
+
+msgid "Geschäftssoftware für KMU – ein System statt fünf Programme"
+msgstr ""
+
+msgid "Geschäftssoftware für KMU – ein System statt fünf Programme."
+msgstr ""
+
+msgid ""
+"Ein Programm für Offerten, eines für die Buchhaltung, Excel fürs Lager: "
+"Viele kleine Betriebe jonglieren mehrere Werkzeuge, die nicht "
+"zusammenpassen. Eine gute Geschäftssoftware bringt alles in ein System – "
+"weniger Doppelarbeit, weniger Fehler, mehr Überblick."
+msgstr ""
+
+msgid "Was eine Geschäftssoftware für kleine Betriebe können muss"
+msgstr ""
+
+msgid "Alles in einem System"
+msgstr ""
+
+msgid ""
+"Offerten, Aufträge, Rechnungen, Lager und Buchhaltung greifen ineinander – "
+"einmal erfasst, überall verfügbar."
+msgstr ""
+
+msgid "Wächst mit dem Betrieb"
+msgstr ""
+
+msgid ""
+"Klein starten und später erweitern, statt in ein starres System gezwängt zu "
+"werden – ohne Neukauf."
+msgstr ""
+
+msgid "Ohne eigene IT-Abteilung"
+msgstr ""
+
+msgid ""
+"Eingeführt, geschult und betreut von einer Person, die erreichbar bleibt – "
+"kein Projekt, das Sie allein stemmen müssen."
+msgstr ""
+
+msgid "Saubere Daten"
+msgstr ""
+
+msgid ""
+"Ihre bestehenden Daten ziehen sauber ins neue System – Kunden, Artikel, "
+"offene Posten, Historie. Nichts geht verloren."
+msgstr ""
+
+msgid "Bezahlbar, mit Festpreis"
+msgstr ""
+
+msgid ""
+"Vor jedem Projekt eine Festpreisofferte – kein Konzern-ERP mit Funktionen "
+"und Kosten, die ein Kleinbetrieb nie braucht."
+msgstr ""
+
+msgid "Zahlen auf einen Blick"
+msgstr ""
+
+msgid ""
+"Umsatz, offene Posten und Auslastung jederzeit sichtbar – statt Excel-"
+"Bastelei am Wochenende."
+msgstr ""
+
+msgid "Meine Lösung: Odoo"
+msgstr ""
+
+msgid ""
+"Als Geschäftssoftware setze ich auf Odoo – ein etablierter Standard, mit dem "
+"weltweit Millionen von Betrieben arbeiten, richtig dimensioniert für einen "
+"Kleinbetrieb. Verkauf, Einkauf, Lager, Projekte, Rechnungen und Buchhaltung "
+"in einem System, modular erweiterbar und ohne Abhängigkeit von einem "
+"einzelnen Produkt. Die Einführung begleite ich persönlich – von der "
+"Datenübernahme bis zur Schulung."
+msgstr ""
+
+msgid ""
+"Welche Geschäftssoftware zu Ihrem Betrieb passt, finden wir im kostenlosen "
+"Erstgespräch heraus – mit Festpreisofferte, bevor Sie sich entscheiden."
+msgstr ""
+
+msgid ""
+"Odoo für Handwerk & Gewerbe – Software für Handwerksbetriebe | Datalization"
+msgstr ""
+
+msgid ""
+"Software für Handwerk & Gewerbe: Offerten, Rapporte, Material und Rechnungen "
+"in einem System – vom Smartphone auf der Baustelle bis zur Buchhaltung. "
+"Odoo, persönlich eingeführt für kleine Betriebe in der Region Zofingen."
+msgstr ""
+
+msgid "Software für Handwerk & Gewerbe – vom Rapport bis zur Rechnung"
+msgstr ""
+
+msgid "Handwerk & Gewerbe"
+msgstr ""
+
+msgid "Software für Handwerk & Gewerbe – vom Rapport bis zur Rechnung."
+msgstr ""
+
+msgid ""
+"Im Handwerk passiert die Arbeit nicht am Schreibtisch, sondern auf der "
+"Baustelle und im Kundenkontakt. Die Software muss da mithalten: Offerte "
+"raus, Stunden und Material direkt erfasst, Rechnung noch am selben Abend. "
+"Mit einem System, das von der Offerte bis zur Buchhaltung alles verbindet, "
+"verlieren Sie weniger Zeit im Büro – und keine Leistung mehr unverrechnet."
+msgstr ""
+
+msgid "Was ein Handwerksbetrieb von seiner Software braucht"
+msgstr ""
+
+msgid "Offerten & Aufträge"
+msgstr ""
+
+msgid ""
+"Offerten schnell erstellen, in Aufträge umwandeln und den Überblick "
+"behalten, was angenommen, offen oder in Arbeit ist."
+msgstr ""
+
+msgid "Rapporte & Stunden mobil"
+msgstr ""
+
+msgid ""
+"Arbeitsrapporte und Stunden direkt vom Smartphone auf der Baustelle erfassen "
+"– nichts geht auf dem Weg ins Büro verloren."
+msgstr ""
+
+msgid "Material & Lager"
+msgstr ""
+
+msgid ""
+"Verbrauchtes Material dem Auftrag zuordnen und Bestände im Blick behalten – "
+"damit nichts fehlt und nichts vergessen wird zu verrechnen."
+msgstr ""
+
+msgid "Rechnung direkt aus dem Auftrag"
+msgstr ""
+
+msgid ""
+"Aus erfassten Stunden und Material wird mit einem Klick die Rechnung – "
+"inklusive QR-Rechnung, ohne alles noch einmal abzutippen."
+msgstr ""
+
+msgid "Planung & Termine"
+msgstr ""
+
+msgid ""
+"Aufträge und Mitarbeiter einplanen und sehen, wer wann wo im Einsatz ist – "
+"statt Termine auf Zetteln und im Kopf."
+msgstr ""
+
+msgid ""
+"Eingeführt, geschult und betreut von einer Person, die Ihren Betrieb kennt "
+"und erreichbar bleibt – nicht von einer anonymen Hotline."
+msgstr ""
+
+msgid "Ein System statt Zettel, Excel und drei Programme"
+msgstr ""
+
+msgid ""
+"Als Software setze ich auf Odoo – richtig dimensioniert für einen Handwerks- "
+"oder Gewerbebetrieb. Offerte, Auftrag, Rapport, Material, Rechnung und "
+"Buchhaltung hängen zusammen: einmal erfasst, überall verfügbar. Modular "
+"aufgebaut, sodass Sie nur das nutzen, was Sie wirklich brauchen, und später "
+"erweitern können. Ich führe es persönlich ein, übernehme Ihre bestehenden "
+"Daten und schule Ihr Team – zum Festpreis."
+msgstr ""
+
+msgid "So läuft eine Einführung ab"
+msgstr ""
+
+msgid ""
+"Im kostenlosen Erstgespräch schauen wir, wo in Ihrem Betrieb am meisten Zeit "
+"zwischen Baustelle und Büro verloren geht – und womit wir anfangen."
+msgstr ""
+
+msgid ""
+"Odoo Partner Olten – Geschäftssoftware für Betriebe in Olten | Datalization"
+msgstr ""
+
+msgid ""
+"Ihr Odoo-Partner in Olten: ERP-Einführung, Datenübernahme und Betreuung für "
+"kleine Betriebe in Olten und Umgebung. Persönlich, vor Ort, mit "
+"Festpreisofferte."
+msgstr ""
+
+msgid "Ihr Odoo-Partner in Olten"
+msgstr ""
+
+msgid "Ihr Odoo-Partner in Olten."
+msgstr ""
+
+msgid ""
+"Olten liegt mitten im Mittelland – und genau hier begleite ich kleine "
+"Betriebe bei der Einführung von Odoo. Statt anonymem Support aus der Ferne "
+"arbeite ich vor Ort mit Ihnen: Ich sehe, wie Ihr Betrieb wirklich läuft, und "
+"baue die Lösung, die dazu passt."
+msgstr ""
+
+msgid "Warum ein Partner aus der Nähe"
+msgstr ""
+
+msgid "Vor Ort statt nur Videocall"
+msgstr ""
+
+msgid ""
+"Erstgespräch und Prozessaufnahme bei Ihnen im Betrieb in Olten – ich sehe "
+"Ihre Abläufe mit eigenen Augen."
+msgstr ""
+
+msgid "Kurze Wege im Mittelland"
+msgstr ""
+
+msgid ""
+"Olten, Aarburg, Trimbach, Hägendorf und das ganze Niederamt sind schnell "
+"erreichbar – auch per Zug."
+msgstr ""
+
+msgid "Dieselbe Ansprechperson"
+msgstr ""
+
+msgid ""
+"Sie sprechen immer mit der Person, die Odoo bei Ihnen einführt – erreichbar, "
+"auch nach dem Go-Live."
+msgstr ""
+
+msgid "Was ich für Betriebe in Olten tue"
+msgstr ""
+
+msgid ""
+"Odoo-Einführung mit Datenübernahme und Schulung, Automatisierung Ihrer "
+"Abläufe, individuelle Erweiterungen und laufende Betreuung – alles mit "
+"Festpreisofferte vor Projektstart. Offerten, Rechnungen, Lager und "
+"Buchhaltung landen in einem System, zugeschnitten auf Ihren Betrieb in Olten."
+msgstr ""
+
+msgid "Region Zofingen & Aargau"
+msgstr ""
+
+msgid ""
+"Treffen wir uns in Olten: Im kostenlosen Erstgespräch schauen wir, ob und "
+"wie sich Odoo für Ihren Betrieb lohnt."
+msgstr ""
+
+msgid "Software für Treuhänder & Treuhandbüros | Odoo & Monekey – Datalization"
+msgstr ""
+
+msgid ""
+"Digitale Lösungen für Treuhandbüros: Mandanten, Belege und Abläufe im Griff. "
+"Odoo-Einführung und das Dokumentenportal Monekey – persönlich, mit "
+"Festpreisofferte, in der Region Zofingen."
+msgstr ""
+
+msgid "Software für Treuhänder, die den Alltag erleichtert"
+msgstr ""
+
+msgid "Software für Treuhänder, die den Alltag wirklich erleichtert."
+msgstr ""
+
+msgid ""
+"Mandate betreuen heisst: Belege einsammeln, Unterlagen austauschen, Fristen "
+"im Blick behalten – oft über unzählige E-Mail-Anhänge. Mit den richtigen "
+"Werkzeugen läuft das ruhiger: ein sicheres Portal für Ihre Mandanten und "
+"eine Geschäftssoftware, die Wiederkehrendes übernimmt."
+msgstr ""
+
+msgid "Was ein Treuhandbüro digital braucht"
+msgstr ""
+
+msgid "Mandanten & Belege im Griff"
+msgstr ""
+
+msgid ""
+"Steuerunterlagen, Buchhaltung und Belege je Mandant sauber abgelegt – statt "
+"in zehn Mail-Verläufen zu suchen."
+msgstr ""
+
+msgid "Dokumente sicher teilen"
+msgstr ""
+
+msgid ""
+"Ein geschütztes Portal, in dem Mandanten ihre Unterlagen selbst hochladen "
+"und abrufen – verschlüsselt und nachvollziehbar."
+msgstr ""
+
+msgid "Wiederkehrendes automatisieren"
+msgstr ""
+
+msgid ""
+"Rechnungen, Mahnungen und Berichte laufen automatisch – weniger Handarbeit "
+"in der Routine."
+msgstr ""
+
+msgid "Zahlen jederzeit sichtbar"
+msgstr ""
+
+msgid ""
+"Offene Posten, Fristen und Auslastung auf einen Blick – statt am Monatsende "
+"mühsam zusammengesucht."
+msgstr ""
+
+msgid "Monekey: das Portal für Ihre Mandanten"
+msgstr ""
+
+msgid ""
+"Monekey ist das Dokumentenportal von Datalization – gebaut für Treuhänder, "
+"Immobilienverwaltungen und Broker. Ihre Mandanten melden sich an und finden "
+"ihre Unterlagen: aktuell, vollständig, am richtigen Ort. Mit Rollen und "
+"Berechtigungen bis auf einzelne Dokumente und einem Zugriffsprotokoll, das "
+"zeigt, wer wann worauf zugegriffen hat."
+msgstr ""
+
+msgid "Odoo: Abläufe automatisieren"
+msgstr ""
+
+msgid ""
+"Dazu kommt bei Bedarf Odoo als Geschäftssoftware: Rechnungen, Buchhaltung "
+"und wiederkehrende Abläufe an einem Ort, modular auf Ihr Büro zugeschnitten. "
+"Ich führe es persönlich ein, übernehme Ihre bestehenden Daten sauber und "
+"schule Ihr Team – zum Festpreis."
+msgstr ""
+
+msgid ""
+"Im kostenlosen Erstgespräch schauen wir, wo Ihr Treuhandbüro am meisten Zeit "
+"verliert – und womit wir anfangen."
+msgstr ""
+
+msgid "Über Datalization – Werte & Ansatz | Datalization"
+msgstr ""
+
+msgid ""
+"Datalization stellt kleine Betriebe digital so auf, dass der Alltag leichter "
+"wird: ein System, ein Ansprechpartner, Festpreis. Werte, Ansatz – und die "
+"Person dahinter, für die Region Zofingen."
+msgstr ""
+
+msgid "Über Datalization"
+msgstr ""
+
+msgid "Digitalisierung, die kleinen Betrieben wirklich hilft."
+msgstr ""
+
+msgid ""
+"Datalization stellt kleine Betriebe digital so auf, dass der Alltag leichter "
+"wird – nicht komplizierter. Ein System statt fünf, ein Ansprechpartner, ein "
+"klarer Preis. Dahinter steht eine Person, die Ihre Lösung baut und auch "
+"danach erreichbar bleibt."
+msgstr ""
+
+msgid "Tihomir Danesic, Gründer von Datalization"
+msgstr ""
+
+msgid ""
+"Datalization wurde 2025 gegründet, mit einem klaren Fokus: kleine Betriebe "
+"digital so aufzustellen, dass der Alltag leichter wird. Weniger "
+"Doppelarbeit, saubere Daten, ein System statt fünf Programme – und Technik, "
+"die zum Betrieb passt, nicht umgekehrt."
+msgstr ""
+
+msgid ""
+"Dahinter steht Tihomir Danesic, Betriebsökonom (BSc FHNW) und Data Scientist "
+"(MSc HSLU). Er verbindet das Betriebswirtschaftliche – Abläufe, Zahlen, "
+"Kosten-Nutzen – mit dem Technischen: Software, Daten, Schnittstellen. So "
+"entstehen keine Theoriefolien, sondern eine Lösung, die läuft – und eine "
+"Ansprechperson, die auch nächstes Jahr noch erreichbar ist."
+msgstr ""
+
+msgid "Loyal leben"
+msgstr ""
+
+msgid "„Ich bin da, auch nächstes Jahr.“"
+msgstr ""
+
+msgid ""
+"Datalization baut keine Lösung, um danach zu verschwinden. Wer mit "
+"Datalization arbeitet, hat auch in einem Jahr noch dieselbe Ansprechperson – "
+"die das System kennt, weil sie es gebaut hat. Lieber eine langfristige "
+"Partnerschaft als der schnelle Abschluss."
+msgstr ""
+
+msgid "Eigenständig lernen"
+msgstr ""
+
+msgid "„Neugier statt Besserwisserei.“"
+msgstr ""
+
+msgid ""
+"Bei Datalization kommt zuerst die Frage, nicht die fertige Meinung. Zuerst "
+"verstehen, wie Sie wirklich arbeiten – dann bauen. Und Ihr Team wird so "
+"eingearbeitet, dass Sie am Ende selbständig sind, nicht abhängig."
+msgstr ""
+
+msgid "Einfach Lösungen schaffen"
+msgstr ""
+
+msgid "„Ruhe nach dem Chaos.“"
+msgstr ""
+
+msgid ""
+"Gute Digitalisierung macht den Alltag leichter, nicht komplizierter. "
+"Datalization reduziert, statt Funktionen anzuhäufen: klare Abläufe, saubere "
+"Daten, ein System statt fünf. Das Ziel ist Ruhe – nicht noch ein Tool mehr."
+msgstr ""
+
+msgid "Laptop und Kaffee auf einem Holztisch im warmen Licht"
+msgstr ""
+
+msgid ""
+"Aufgeräumter Arbeitsplatz mit Laptop, Notizbuch und Kaffee im Morgenlicht"
+msgstr ""
+
+msgid "Lernen wir uns kennen."
+msgstr ""
+
+msgid ""
+"60 Minuten, kostenlos, unverbindlich – danach wissen Sie, ob wir zueinander "
+"passen."
+msgstr ""
+
+msgid "Erstgespräch buchen"
+msgstr ""
+
+msgid "Danke! Wir melden uns in Kürze."
+msgstr ""
+
+msgid "Bitte prüfe deine Eingaben."
+msgstr ""
+
+msgid "Erfolgreich angemeldet."
+msgstr ""
+
+msgid "Falsches Passwort."
+msgstr ""
+
 #, python-format
-msgid "[Datalization] Neue Kontaktanfrage von %(name)s"
+msgid "Status geändert für %(title)s"
 msgstr ""
 
-#: web/views.py:53 web/views.py:56
-msgid "Danke – wir haben Ihre Nachricht erhalten."
+msgid "Kontakt markiert als erledigt."
 msgstr ""
 
-#: web/views.py:60
-msgid "Bitte überprüfen Sie Ihre Eingaben."
+msgid "Start-Anfrage markiert als erledigt."
+msgstr ""
+
+msgid "Spam detection triggered."
+msgstr ""
+
+msgid "Bitte senden Sie das Formular erneut ab."
+msgstr ""
+
+msgid "Bitte bestätigen Sie, dass Sie ein Mensch sind."
+msgstr ""
+
+msgid "Ihre Nachricht wurde erfolgreich gesendet."
 msgstr ""
