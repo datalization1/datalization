@@ -17,6 +17,7 @@ urlpatterns = [
     path("odoo/vergleich/", views_v2.v2_odoo_vergleich, name="odoo_vergleich"),
     path("data-analytics/", views_v2.v2_data_analytics, name="data_analytics"),
     path("digitalisierung/", views_v2.v2_digitalisierung, name="digitalisierung"),
+    path("softwareentwicklung/", views_v2.v2_softwareentwicklung, name="softwareentwicklung"),
     path("monekey/", views_v2.v2_monekey, name="monekey"),
     path("odoo-partner-zofingen/", views_v2.v2_odoo_partner, name="odoo_partner"),
     path("ueber-datalization/", views_v2.v2_ueber_datalization, name="ueber_datalization"),

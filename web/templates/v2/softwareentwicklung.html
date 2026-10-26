@@ -1,0 +1,91 @@
+{% extends "v2/base_v2.html" %}
+{% load i18n static %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}{% trans "Individuelle Softwareentwicklung für KMU | Datalization Zofingen" %}{% endblock %}
+{% block meta_description %}{% trans "Aus Ihrer Idee wird eine einfache Lösung: massgeschneiderte Software von A bis Z – Webanwendungen, Schnittstellen, Odoo-Erweiterungen und Automatisierungen. Für kleine Betriebe, zum Festpreis." %}{% endblock %}
+{% block og_title %}{% trans "Aus Ihrer Idee wird eine einfache Lösung." %}{% endblock %}
+
+{% block content %}
+<section class="hero hero--sub hero--text">
+  <div class="wrap">
+    <div>
+      <div class="crumb"><span class="dot" aria-hidden="true"></span><a href="{% url 'v2:home' %}">{% trans "Startseite" %}</a><span aria-hidden="true">/</span><span>{% if LANGUAGE_CODE == 'de' %}Softwareentwicklung{% else %}Software development{% endif %}</span></div>
+      <h1>{% trans "Aus Ihrer Idee wird eine einfache Lösung." %}</h1>
+      <p>{% blocktrans trimmed %}Sie haben eine Idee und wollen daraus eine einfache Lösung machen – genau da komme ich ins Spiel. Ich setze sie von A bis Z um: massgeschneidert auf Ihre Ansprüche, mit der Expertise von Datalization. Keine Software von der Stange, sondern das Werkzeug, das genau zu Ihrem Ablauf passt.{% endblocktrans %}</p>
+      <a class="btn" href="{% url 'v2:booking' %}" data-loader>{% trans "Kostenloses Erstgespräch buchen" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+  </div>
+</section>
+
+{# ==================== WAS ICH ENTWICKLE ==================== #}
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>{% trans "Was ich für Sie entwickle" %}</h2>
+      <span class="idx" aria-hidden="true">01 — 03</span>
+    </div>
+    <div class="cards">
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="15" rx="2"></rect><path d="M3.5 9h17M7 6.75h.01M9.5 6.75h.01"></path></svg></div>
+        <h3>{% trans "Webanwendungen & interne Tools" %}</h3>
+        <p>{% blocktrans trimmed %}Vom Kundenportal bis zum internen Werkzeug: Anwendungen, die genau den Ablauf abbilden, für den es keine passende Standardsoftware gibt.{% endblocktrans %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h11M11 3l4 4-4 4"></path><path d="M20 17H9M13 13l-4 4 4 4"></path></svg></div>
+        <h3>{% trans "Schnittstellen & Odoo-Erweiterungen" %}</h3>
+        <p>{% blocktrans trimmed %}Ich verbinde Ihre Systeme über Schnittstellen und baue Odoo-Erweiterungen genau dort, wo die Standardfunktionen aufhören.{% endblocktrans %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"></circle><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"></path></svg></div>
+        <h3>{% trans "Automatisierung" %}</h3>
+        <p>{% blocktrans trimmed %}Wiederkehrende Aufgaben übernimmt der Computer: Daten übernehmen, Dokumente erzeugen, Abläufe im Hintergrund auslösen.{% endblocktrans %}</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+{# ==================== SO ENTSTEHT IHRE LÖSUNG ==================== #}
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>{% trans "So entsteht Ihre Lösung" %}</h2>
+      <span class="idx" aria-hidden="true">01 — 04</span>
+    </div>
+    <ol class="steps reveal">
+      <li class="track" aria-hidden="true"><span></span></li>
+      <li class="step"><span class="node"></span><span class="idx">01</span><h3>{% trans "Idee verstehen." %}</h3><p>{% blocktrans trimmed %}Wir schauen uns Ihre Idee und Ihren Ablauf genau an – was soll am Ende einfacher sein?{% endblocktrans %}</p></li>
+      <li class="step"><span class="node"></span><span class="idx">02</span><h3>{% trans "Konzept & Festpreis." %}</h3><p>{% blocktrans trimmed %}Sie erhalten einen konkreten Vorschlag mit klarem Umfang und Festpreisofferte. Erst dann entscheiden Sie.{% endblocktrans %}</p></li>
+      <li class="step"><span class="node"></span><span class="idx">03</span><h3>{% trans "Entwicklung." %}</h3><p>{% blocktrans trimmed %}Ich baue die Lösung massgeschneidert – in Etappen, die Sie sehen und mitsteuern können.{% endblocktrans %}</p></li>
+      <li class="step"><span class="node last"></span><span class="idx">04</span><h3>{% trans "Betrieb & Wartung." %}</h3><p>{% blocktrans trimmed %}Die Lösung geht live und bleibt gepflegt. Ich bleibe erreichbar – Sie bleiben selbständig.{% endblocktrans %}</p></li>
+    </ol>
+  </div>
+</section>
+
+{# ==================== WAS SIE AM ENDE HABEN ==================== #}
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="split reveal">
+      <h2>{% trans "Was Sie am Ende haben" %}</h2>
+      <div>
+        <ul class="booking-list">
+          <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>{% trans "Software, die genau zu Ihrem Ablauf passt – nicht umgekehrt." %}</li>
+          <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>{% trans "Eine einfache Lösung statt eines weiteren komplizierten Tools." %}</li>
+          <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>{% trans "Einen Ansprechpartner, der sie gebaut hat und weiter pflegt." %}</li>
+          <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>{% trans "Klare Kosten – Festpreis statt offener Rechnung." %}</li>
+        </ul>
+        <div class="inlinelinks">
+          <a href="{% url 'v2:digitalisierung' %}">{% if LANGUAGE_CODE == 'de' %}Bestehende Abläufe digitalisieren: Digitalisierung{% else %}Digitalize existing processes: Digitalization{% endif %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="box reveal">
+      <div class="box-text">
+        <span class="seal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+        <span>{% blocktrans trimmed %}Vor jedem Projekt erhalten Sie eine Festpreisofferte. Was sie kostet und enthält, besprechen wir im kostenlosen Erstgespräch.{% endblocktrans %}</span>
+      </div>
+      <a class="btn" href="{% url 'v2:booking' %}" data-loader>{% trans "Kostenloses Erstgespräch buchen" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+  </div>
+</section>
+{% endblock %}

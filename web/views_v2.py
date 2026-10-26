@@ -88,6 +88,10 @@ def v2_digitalisierung(request):
     return render(request, "v2/digitalisierung.html", {"active": "digitalisierung"})
 
 
+def v2_softwareentwicklung(request):
+    return render(request, "v2/softwareentwicklung.html", {"active": "softwareentwicklung"})
+
+
 def v2_monekey(request):
     return render(request, "v2/monekey.html", {"active": "monekey"})
 

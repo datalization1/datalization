@@ -19,7 +19,15 @@
             </ul>
           </div>
         </li>
-        <li><a {% if active == 'digitalisierung' %}class="on"{% endif %} href="{% url 'v2:digitalisierung' %}">{% if LANGUAGE_CODE == 'de' %}Digitalisierung &amp; Entwicklung{% else %}Digitalization &amp; Development{% endif %}</a></li>
+        <li class="has-dropdown">
+          <a {% if active == 'digitalisierung' or active == 'softwareentwicklung' %}class="on"{% endif %} href="{% url 'v2:digitalisierung' %}" aria-haspopup="true">{% if LANGUAGE_CODE == 'de' %}Digitalisierung &amp; Entwicklung{% else %}Digitalization &amp; Development{% endif %}<svg class="caret" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></a>
+          <div class="dropdown-wrap">
+            <ul class="dropdown">
+              <li><a href="{% url 'v2:digitalisierung' %}">{% if LANGUAGE_CODE == 'de' %}Digitalisierung{% else %}Digitalization{% endif %}</a></li>
+              <li><a href="{% url 'v2:softwareentwicklung' %}">{% if LANGUAGE_CODE == 'de' %}Softwareentwicklung{% else %}Software development{% endif %}</a></li>
+            </ul>
+          </div>
+        </li>
         <li><a {% if active == 'monekey' %}class="on"{% endif %} href="{% url 'v2:monekey' %}">Monekey</a></li>
         <li><a {% if active == 'data_analytics' %}class="on"{% endif %} href="{% url 'v2:data_analytics' %}">Data &amp; Analytics</a></li>
       </ul>

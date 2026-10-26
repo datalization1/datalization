@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-26 10:01+0100\n"
+"POT-Creation-Date: 2026-10-26 10:22+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -513,15 +513,13 @@ msgstr ""
 msgid "Kostenloses Erstgespräch buchen"
 msgstr ""
 
-msgid ""
-"Datenmigration, Automatisierung & Softwareentwicklung für KMU | Datalization "
-"Zofingen"
+msgid "Datenmigration & Automatisierung für KMU | Datalization Zofingen"
 msgstr ""
 
 msgid ""
-"Daten sauber aus Altsystemen übernehmen, Abläufe automatisieren und fehlende "
-"Software individuell entwickeln. Digitalisierung & Softwareentwicklung für "
-"kleine Betriebe – ohne Datenverlust, mit Festpreis."
+"Daten sauber aus Altsystemen übernehmen, Abläufe automatisieren, fehlende "
+"Software bauen. Digitalisierung für kleine Betriebe – ohne Datenverlust, mit "
+"Festpreis."
 msgstr ""
 
 msgid "Digitalisieren, ohne dass Daten verloren gehen."
@@ -556,10 +554,8 @@ msgid "Individuelle Softwareentwicklung."
 msgstr ""
 
 msgid ""
-"Wo Standardsoftware aufhört, entwickle ich das fehlende Stück: "
-"Webanwendungen und interne Tools, Schnittstellen zwischen Ihren Systemen, "
-"Odoo-Erweiterungen und Automatisierungen – auf Ihren Ablauf zugeschnitten "
-"und wartbar gebaut."
+"Wo Standardsoftware aufhört, baue ich das fehlende Stück: massgeschneiderte "
+"Anwendungen, Schnittstellen und Erweiterungen."
 msgstr ""
 
 msgid "IT-Support und Betrieb."
@@ -568,20 +564,6 @@ msgstr ""
 msgid ""
 "Ich betreue bestehende Anwendungen und halte sie am Laufen – zuverlässig und "
 "erreichbar."
-msgstr ""
-
-msgid "Von der Idee zur fertigen Lösung"
-msgstr ""
-
-msgid ""
-"Sie haben eine Idee und wollen daraus eine einfache Lösung machen – genau da "
-"komme ich ins Spiel."
-msgstr ""
-
-msgid ""
-"Ich setze sie von A bis Z um: massgeschneidert auf Ihre Ansprüche, mit der "
-"Expertise von Datalization. Keine Software von der Stange, sondern das "
-"Werkzeug, das genau zu Ihrem Ablauf passt."
 msgstr ""
 
 msgid "So gehen wir vor"
@@ -2085,6 +2067,102 @@ msgstr ""
 msgid ""
 "Im kostenlosen Erstgespräch schauen wir, wo Ihr Treuhandbüro am meisten Zeit "
 "verliert – und womit wir anfangen."
+msgstr ""
+
+msgid "Individuelle Softwareentwicklung für KMU | Datalization Zofingen"
+msgstr ""
+
+msgid ""
+"Aus Ihrer Idee wird eine einfache Lösung: massgeschneiderte Software von A "
+"bis Z – Webanwendungen, Schnittstellen, Odoo-Erweiterungen und "
+"Automatisierungen. Für kleine Betriebe, zum Festpreis."
+msgstr ""
+
+msgid "Aus Ihrer Idee wird eine einfache Lösung."
+msgstr ""
+
+msgid ""
+"Sie haben eine Idee und wollen daraus eine einfache Lösung machen – genau da "
+"komme ich ins Spiel. Ich setze sie von A bis Z um: massgeschneidert auf Ihre "
+"Ansprüche, mit der Expertise von Datalization. Keine Software von der "
+"Stange, sondern das Werkzeug, das genau zu Ihrem Ablauf passt."
+msgstr ""
+
+msgid "Was ich für Sie entwickle"
+msgstr ""
+
+msgid "Webanwendungen & interne Tools"
+msgstr ""
+
+msgid ""
+"Vom Kundenportal bis zum internen Werkzeug: Anwendungen, die genau den "
+"Ablauf abbilden, für den es keine passende Standardsoftware gibt."
+msgstr ""
+
+msgid "Schnittstellen & Odoo-Erweiterungen"
+msgstr ""
+
+msgid ""
+"Ich verbinde Ihre Systeme über Schnittstellen und baue Odoo-Erweiterungen "
+"genau dort, wo die Standardfunktionen aufhören."
+msgstr ""
+
+msgid "Automatisierung"
+msgstr ""
+
+msgid ""
+"Wiederkehrende Aufgaben übernimmt der Computer: Daten übernehmen, Dokumente "
+"erzeugen, Abläufe im Hintergrund auslösen."
+msgstr ""
+
+msgid "So entsteht Ihre Lösung"
+msgstr ""
+
+msgid "Idee verstehen."
+msgstr ""
+
+msgid ""
+"Wir schauen uns Ihre Idee und Ihren Ablauf genau an – was soll am Ende "
+"einfacher sein?"
+msgstr ""
+
+msgid "Konzept & Festpreis."
+msgstr ""
+
+msgid ""
+"Sie erhalten einen konkreten Vorschlag mit klarem Umfang und "
+"Festpreisofferte. Erst dann entscheiden Sie."
+msgstr ""
+
+msgid "Entwicklung."
+msgstr ""
+
+msgid ""
+"Ich baue die Lösung massgeschneidert – in Etappen, die Sie sehen und "
+"mitsteuern können."
+msgstr ""
+
+msgid "Betrieb & Wartung."
+msgstr ""
+
+msgid ""
+"Die Lösung geht live und bleibt gepflegt. Ich bleibe erreichbar – Sie "
+"bleiben selbständig."
+msgstr ""
+
+msgid "Was Sie am Ende haben"
+msgstr ""
+
+msgid "Software, die genau zu Ihrem Ablauf passt – nicht umgekehrt."
+msgstr ""
+
+msgid "Eine einfache Lösung statt eines weiteren komplizierten Tools."
+msgstr ""
+
+msgid "Einen Ansprechpartner, der sie gebaut hat und weiter pflegt."
+msgstr ""
+
+msgid "Klare Kosten – Festpreis statt offener Rechnung."
 msgstr ""
 
 msgid "Über Datalization – Werte & Ansatz | Datalization"
