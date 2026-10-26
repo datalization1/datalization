@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-26 09:57+0100\n"
+"POT-Creation-Date: 2026-10-26 10:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -570,6 +570,20 @@ msgid ""
 "erreichbar."
 msgstr ""
 
+msgid "Von der Idee zur fertigen Lösung"
+msgstr ""
+
+msgid ""
+"Sie haben eine Idee und wollen daraus eine einfache Lösung machen – genau da "
+"komme ich ins Spiel."
+msgstr ""
+
+msgid ""
+"Ich setze sie von A bis Z um: massgeschneidert auf Ihre Ansprüche, mit der "
+"Expertise von Datalization. Keine Software von der Stange, sondern das "
+"Werkzeug, das genau zu Ihrem Ablauf passt."
+msgstr ""
+
 msgid "So gehen wir vor"
 msgstr ""
 
@@ -598,6 +612,9 @@ msgid "Ihr Betrieb in einem System – statt in fünf Programmen."
 msgstr ""
 
 msgid "Ihr Betrieb in einem System – <em>statt in fünf Programmen.</em>"
+msgstr ""
+
+msgid "Einfache Lösungen schaffen"
 msgstr ""
 
 msgid ""
@@ -2133,9 +2150,6 @@ msgid ""
 "Bei Datalization kommt zuerst die Frage, nicht die fertige Meinung. Zuerst "
 "verstehen, wie Sie wirklich arbeiten – dann bauen. Und Ihr Team wird so "
 "eingearbeitet, dass Sie am Ende selbständig sind, nicht abhängig."
-msgstr ""
-
-msgid "Einfache Lösungen schaffen"
 msgstr ""
 
 msgid "„Ruhe nach dem Chaos.“"
