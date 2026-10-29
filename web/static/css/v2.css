@@ -614,8 +614,8 @@ a:hover { color: #0A0A0A; }
   .cta .wrap { padding-top: 88px; padding-bottom: 96px; }
 
   /* Mobile-Menü geöffnet */
-  .nav.is-open .links { display: flex; position: absolute; left: 0; right: 0; top: 80px; flex-direction: column; gap: 0; background: #0A0A0A; padding: 8px 32px 20px; z-index: 110; }
-  .nav.is-open .links a { padding: 18px 0; font-size: 17px; }
+  .nav.is-open .links { display: flex; position: absolute; left: 0; right: 0; top: 80px; flex-direction: column; gap: 10px; background: #0A0A0A; padding: 12px 32px 24px; z-index: 110; }
+  .nav.is-open .links a { display: block; padding: 16px 0; font-size: 17px; }
   .nav.is-open .has-dropdown > a { padding-bottom: 6px; }
   .nav.is-open .links a.on::after { display: none; }
   .nav.is-open .dropdown-wrap { position: static; opacity: 1; visibility: visible; transform: none; padding-top: 0; }
