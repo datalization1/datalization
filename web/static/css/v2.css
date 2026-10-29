@@ -595,6 +595,7 @@ a:hover { color: #0A0A0A; }
   .sec h2 { font-size: 34px; }
   .sec-head { flex-direction: column; align-items: flex-start; margin-bottom: 40px; gap: 12px; }
   .cards { grid-template-columns: minmax(0, 1fr); }
+  .docgrid, .personas, .notes { grid-template-columns: minmax(0, 1fr); }
   .split, .about, .textmedia { grid-template-columns: minmax(0, 1fr); gap: 40px; }
   .gets { grid-template-columns: minmax(0, 1fr); }
   .steps { grid-template-columns: minmax(0, 1fr); gap: 40px; padding-top: 0; padding-left: 44px; }
@@ -614,11 +615,15 @@ a:hover { color: #0A0A0A; }
 
   /* Mobile-Menü geöffnet */
   .nav.is-open .links { display: flex; position: absolute; left: 0; right: 0; top: 80px; flex-direction: column; gap: 0; background: #0A0A0A; border-bottom: 1px solid #1C1C1C; padding: 8px 32px 20px; z-index: 110; }
-  .nav.is-open .links a { padding: 16px 0; font-size: 17px; border-bottom: 1px solid #1C1C1C; }
+  .nav.is-open .links a { padding: 15px 0; font-size: 17px; }
+  /* Trennlinie nur zwischen den Hauptpunkten, nicht unter Parent-Labels/Sub-Items */
+  .nav.is-open .links > li { border-bottom: 1px solid #1C1C1C; }
+  .nav.is-open .links > li:last-child { border-bottom: 0; }
+  .nav.is-open .has-dropdown > a { padding-bottom: 6px; }
   .nav.is-open .links a.on::after { display: none; }
   .nav.is-open .dropdown-wrap { position: static; opacity: 1; visibility: visible; transform: none; padding-top: 0; }
-  .nav.is-open .dropdown { background: transparent; border: 0; box-shadow: none; padding: 0 0 6px 16px; min-width: 0; }
-  .nav.is-open .dropdown a { padding: 13px 0; font-size: 15px; color: #9A9A9A; }
+  .nav.is-open .dropdown { background: transparent; border: 0; box-shadow: none; padding: 0 0 10px 16px; min-width: 0; }
+  .nav.is-open .dropdown a { padding: 10px 0; font-size: 15px; color: #9A9A9A; }
 }
 @media (max-width: 480px) {
   .wrap { padding: 0 20px; }
