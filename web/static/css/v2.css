@@ -616,9 +616,6 @@ a:hover { color: #0A0A0A; }
   /* Mobile-Menü geöffnet */
   .nav.is-open .links { display: flex; position: absolute; left: 0; right: 0; top: 80px; flex-direction: column; gap: 0; background: #0A0A0A; border-bottom: 1px solid #1C1C1C; padding: 8px 32px 20px; z-index: 110; }
   .nav.is-open .links a { padding: 15px 0; font-size: 17px; }
-  /* Trennlinie nur zwischen den Hauptpunkten, nicht unter Parent-Labels/Sub-Items */
-  .nav.is-open .links > li { border-bottom: 1px solid #1C1C1C; }
-  .nav.is-open .links > li:last-child { border-bottom: 0; }
   .nav.is-open .has-dropdown > a { padding-bottom: 6px; }
   .nav.is-open .links a.on::after { display: none; }
   .nav.is-open .dropdown-wrap { position: static; opacity: 1; visibility: visible; transform: none; padding-top: 0; }
