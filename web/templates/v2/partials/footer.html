@@ -19,7 +19,7 @@
           <a href="{% url 'v2:digitalisierung' %}">{% if LANGUAGE_CODE == 'de' %}Digitalisierung{% else %}Digitalization{% endif %}</a>
           <a href="{% url 'v2:softwareentwicklung' %}">{% if LANGUAGE_CODE == 'de' %}Softwareentwicklung{% else %}Software development{% endif %}</a>
           <a href="{% url 'v2:monekey' %}">Monekey</a>
-          <a href="{% url 'v2:data_analytics' %}">Data &amp; Analytics</a>
+          <a href="{% url 'v2:data_analytics' %}">{% if LANGUAGE_CODE == 'de' %}Daten &amp; Analyse{% else %}Data &amp; Analytics{% endif %}</a>
         </div>
 
         <div class="foot-col">

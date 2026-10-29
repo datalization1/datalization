@@ -29,7 +29,7 @@
           </div>
         </li>
         <li><a {% if active == 'monekey' %}class="on"{% endif %} href="{% url 'v2:monekey' %}">Monekey</a></li>
-        <li><a {% if active == 'data_analytics' %}class="on"{% endif %} href="{% url 'v2:data_analytics' %}">Data &amp; Analytics</a></li>
+        <li><a {% if active == 'data_analytics' %}class="on"{% endif %} href="{% url 'v2:data_analytics' %}">{% if LANGUAGE_CODE == 'de' %}Daten &amp; Analyse{% else %}Data &amp; Analytics{% endif %}</a></li>
       </ul>
     </nav>
     <div class="nav-right">

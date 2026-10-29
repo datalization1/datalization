@@ -94,7 +94,7 @@
               <option value="general">{% if LANGUAGE_CODE == 'de' %}Allgemeine Beratung{% else %}General consulting{% endif %}</option>
               <option value="odoo">Odoo</option>
               <option value="digitalisierung">{% if LANGUAGE_CODE == 'de' %}Digitalisierung &amp; Entwicklung{% else %}Digitalization &amp; Development{% endif %}</option>
-              <option value="data-analytics">Data &amp; Analytics</option>
+              <option value="data-analytics">{% if LANGUAGE_CODE == 'de' %}Daten &amp; Analyse{% else %}Data &amp; Analytics{% endif %}</option>
               <option value="monekey">Monekey</option>
             </select>
           </div>

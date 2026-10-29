@@ -10,7 +10,7 @@
 <section class="hero hero--sub">
   <div class="wrap">
     <div>
-      <div class="crumb"><span class="dot" aria-hidden="true"></span><a href="{% url 'v2:home' %}">{% trans "Startseite" %}</a><span aria-hidden="true">/</span><span>Data &amp; Analytics</span></div>
+      <div class="crumb"><span class="dot" aria-hidden="true"></span><a href="{% url 'v2:home' %}">{% trans "Startseite" %}</a><span aria-hidden="true">/</span><span>{% if LANGUAGE_CODE == 'de' %}Daten &amp; Analyse{% else %}Data &amp; Analytics{% endif %}</span></div>
       <h1>{% trans "Ihre Zahlen auf einen Blick." %}</h1>
       <p>{% blocktrans trimmed %}Die wichtigsten Kennzahlen Ihres Betriebs sind da – nur verteilt über Odoo, Excel und ein paar Vorsysteme. Ich bringe sie zusammen und mache sichtbar, wie Ihr Betrieb wirklich läuft. Ohne Excel-Bastelei am Wochenende.{% endblocktrans %}</p>
     </div>
