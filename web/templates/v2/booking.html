@@ -3,7 +3,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block title %}{% if LANGUAGE_CODE == 'de' %}Erstgespräch anfragen{% else %}Request a call{% endif %} – Datalization{% endblock %}
-{% block meta_description %}{% if LANGUAGE_CODE == 'de' %}Fragen Sie Ihr kostenloses Erstgespräch an – 60 Minuten, unverbindlich. Wir melden uns persönlich und vereinbaren mit Ihnen einen Termin.{% else %}Request your free first call – 60 minutes, non-binding. We get back to you personally to arrange a time.{% endif %}{% endblock %}
+{% block meta_description %}{% if LANGUAGE_CODE == 'de' %}Fragen Sie Ihr kostenloses Erstgespräch an – 30 Minuten, unverbindlich. Wir melden uns persönlich und vereinbaren mit Ihnen einen Termin.{% else %}Request your free first call – 30 minutes, non-binding. We get back to you personally to arrange a time.{% endif %}{% endblock %}
 {% block og_title %}{% if LANGUAGE_CODE == 'de' %}Erstgespräch anfragen{% else %}Request a call{% endif %} – Datalization{% endblock %}
 
 {% block content %}
@@ -12,7 +12,7 @@
     <div>
       <div class="crumb"><span class="dot" aria-hidden="true"></span><a href="{% url 'v2:home' %}">{% trans "Startseite" %}</a><span aria-hidden="true">/</span><span>{% if LANGUAGE_CODE == 'de' %}Erstgespräch{% else %}First call{% endif %}</span></div>
       <h1>{% if LANGUAGE_CODE == 'de' %}Erstgespräch anfragen{% else %}Request a call{% endif %}</h1>
-      <p>{% if LANGUAGE_CODE == 'de' %}Kostenlos, 60 Minuten, unverbindlich. Sagen Sie kurz, worum es geht – ich melde mich persönlich und wir vereinbaren einen Termin, der Ihnen passt.{% else %}Free, 60 minutes, non-binding. Tell me briefly what it’s about – I’ll get back to you personally and we’ll arrange a time that suits you.{% endif %}</p>
+      <p>{% if LANGUAGE_CODE == 'de' %}Kostenlos, 30 Minuten, unverbindlich. Sagen Sie kurz, worum es geht – ich melde mich persönlich und wir vereinbaren einen Termin, der Ihnen passt.{% else %}Free, 30 minutes, non-binding. Tell me briefly what it’s about – I’ll get back to you personally and we’ll arrange a time that suits you.{% endif %}</p>
     </div>
   </div>
 </section>
@@ -33,7 +33,7 @@
           <h3>{% if LANGUAGE_CODE == 'de' %}Was Sie erwartet{% else %}What to expect{% endif %}</h3>
           <ul class="booking-list">
             <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>{% if LANGUAGE_CODE == 'de' %}Kostenlos &amp; unverbindlich{% else %}Free &amp; non-binding{% endif %}</li>
-            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>{% if LANGUAGE_CODE == 'de' %}60 Minuten persönliches Gespräch{% else %}60-minute personal call{% endif %}</li>
+            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>{% if LANGUAGE_CODE == 'de' %}30 Minuten persönliches Gespräch{% else %}30-minute personal call{% endif %}</li>
             <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>{% if LANGUAGE_CODE == 'de' %}Konkrete Einschätzung Ihrer Situation{% else %}Concrete assessment of your situation{% endif %}</li>
             <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>{% if LANGUAGE_CODE == 'de' %}Erste Lösungsansätze &amp; nächste Schritte{% else %}First solution ideas &amp; next steps{% endif %}</li>
             <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>{% if LANGUAGE_CODE == 'de' %}Keine versteckten Kosten{% else %}No hidden costs{% endif %}</li>
@@ -45,7 +45,7 @@
           <ul class="booking-steps">
             <li><span class="n">1</span><div><div class="step-title">{% if LANGUAGE_CODE == 'de' %}Kurz anfragen{% else %}Send a short request{% endif %}</div><div class="step-text">{% if LANGUAGE_CODE == 'de' %}Sagen Sie uns, worum es geht und wann Sie ungefähr Zeit hätten.{% else %}Tell us what it’s about and roughly when you’re available.{% endif %}</div></div></li>
             <li><span class="n">2</span><div><div class="step-title">{% if LANGUAGE_CODE == 'de' %}Persönliche Rückmeldung{% else %}Personal reply{% endif %}</div><div class="step-text">{% if LANGUAGE_CODE == 'de' %}Ich melde mich innerhalb von 24 h persönlich oder telefonisch und wir vereinbaren einen Termin.{% else %}I get back to you within 24h, in person or by phone, and we arrange a time.{% endif %}</div></div></li>
-            <li><span class="n">3</span><div><div class="step-title">{% if LANGUAGE_CODE == 'de' %}60-Minuten-Gespräch{% else %}60-minute call{% endif %}</div><div class="step-text">{% if LANGUAGE_CODE == 'de' %}Gespräch per Telefon, Videocall oder vor Ort.{% else %}Call via phone, video, or onsite.{% endif %}</div></div></li>
+            <li><span class="n">3</span><div><div class="step-title">{% if LANGUAGE_CODE == 'de' %}30-Minuten-Gespräch{% else %}30-minute call{% endif %}</div><div class="step-text">{% if LANGUAGE_CODE == 'de' %}Gespräch per Telefon, Videocall oder vor Ort.{% else %}Call via phone, video, or onsite.{% endif %}</div></div></li>
             <li><span class="n">4</span><div><div class="step-title">{% if LANGUAGE_CODE == 'de' %}Nächste Schritte{% else %}Next steps{% endif %}</div><div class="step-text">{% if LANGUAGE_CODE == 'de' %}Sie erhalten konkrete Empfehlungen.{% else %}You receive concrete recommendations.{% endif %}</div></div></li>
           </ul>
         </div>

@@ -8,7 +8,7 @@
 
 {% block content %}
 {# ============================ HERO ============================ #}
-<section class="hero hero--sub{% if not show_foto %} hero--text{% endif %}">
+<section class="hero hero--sub">
   <div class="wrap">
     <div>
       <div class="crumb"><span class="dot" aria-hidden="true"></span><a href="{% url 'v2:home' %}">{% trans "Startseite" %}</a><span aria-hidden="true">/</span><span>{% if LANGUAGE_CODE == 'de' %}Über Datalization{% else %}About Datalization{% endif %}</span></div>
@@ -16,12 +16,14 @@
       <h1>{% trans "Digitalisierung, die kleinen Betrieben wirklich hilft." %}</h1>
       <p>{% blocktrans trimmed %}Datalization stellt kleine Betriebe digital so auf, dass der Alltag leichter wird – nicht komplizierter. Ein System statt fünf, ein Ansprechpartner, ein klarer Preis. Dahinter steht eine Person, die Ihre Lösung baut und auch danach erreichbar bleibt.{% endblocktrans %}</p>
     </div>
-    {% if show_foto %}
-    {% comment %}Porträt-Slot: Datei unter web/static/img/ueber/portrait.jpg ablegen (Hochformat ~4:5), dann show_foto aktivieren. Kurz Person zeigen ist auf der Über-Seite ok.{% endcomment %}
     <div class="hero-media">
-      <img src="{% static 'img/ueber/portrait.jpg' %}" width="800" height="1000" alt="{% trans 'Tihomir Danesic, Gründer von Datalization' %}">
+      {% if show_foto %}
+      {# Porträt-Slot: Datei unter web/static/img/ueber/portrait.jpg ablegen (Hochformat ~4:5), dann show_foto aktivieren. #}
+      <img src="{% static 'img/ueber/portrait.jpg' %}" width="800" height="1000" decoding="async" alt="{% trans 'Tihomir Danesic, Gründer von Datalization' %}">
+      {% else %}
+      <img src="{% static 'img/ueber/desk-laptop.jpg' %}" width="1200" height="800" decoding="async" alt="{% trans 'Laptop und Kaffee auf einem Holztisch im warmen Licht' %}">
+      {% endif %}
     </div>
-    {% endif %}
   </div>
 </section>
 
@@ -35,6 +37,14 @@
         <p>{% blocktrans trimmed %}Dahinter steht Tihomir Danesic, Betriebsökonom (BSc FHNW) und Data Scientist (MSc HSLU). Er verbindet das Betriebswirtschaftliche – Abläufe, Zahlen, Kosten-Nutzen – mit dem Technischen: Software, Daten, Schnittstellen. So entstehen keine Theoriefolien, sondern eine Lösung, die läuft – und eine Ansprechperson, die auch nächstes Jahr noch erreichbar ist.{% endblocktrans %}</p>
       </div>
     </div>
+  </div>
+</section>
+
+{# ==================== SLOGAN-MOMENT (dunkles Band, blendet ein) ==================== #}
+<section class="slogan-band">
+  <div class="wrap">
+    <p class="slogan-lead reveal">{% trans "Wenn im Betrieb etwas mühsam ist –" %}</p>
+    <p class="slogan-big reveal" style="transition-delay:.12s">{% trans "Einfache Lösungen schaffen" %} <span>{% trans "mit Datalization." %}</span></p>
   </div>
 </section>
 
@@ -65,28 +75,12 @@
   </div>
 </section>
 
-{# ==================== BILD-BAND (Arbeitsatmosphäre) ==================== #}
-{% comment %}
-Lizenzfreie Bilder von Pexels (Pexels-Lizenz, keine Attribution nötig):
-desk-laptop.jpg = pexels.com/photo/9617649  (Laptop & Kaffee auf Holz, warmes Licht)
-desk-sunlit.jpg = pexels.com/photo/7230010  (Arbeitsplatz mit Notizbuch im Morgenlicht)
-Austauschbar gegen eigene Fotos (gleiches 3:2-Format).
-{% endcomment %}
-<section class="sec">
-  <div class="wrap">
-    <div class="photoband reveal">
-      <figure><img src="{% static 'img/ueber/desk-laptop.jpg' %}" width="1200" height="800" loading="lazy" decoding="async" alt="{% trans 'Laptop und Kaffee auf einem Holztisch im warmen Licht' %}"></figure>
-      <figure><img src="{% static 'img/ueber/desk-sunlit.jpg' %}" width="1200" height="800" loading="lazy" decoding="async" alt="{% trans 'Aufgeräumter Arbeitsplatz mit Laptop, Notizbuch und Kaffee im Morgenlicht' %}"></figure>
-    </div>
-  </div>
-</section>
-
 {# ==================== ABSCHLUSS-CTA ==================== #}
 <section class="cta">
   <div class="wrap">
     <svg class="cta-mark" viewBox="0 0 512 512" aria-hidden="true"><rect x="6" y="6" width="500" height="500" rx="104" fill="#161616" stroke="#2E2E2E" stroke-width="8"></rect><path fill="#FFFFFF" fill-rule="evenodd" d="M 269.5 118.5 A 30.5 30.5 0 0 1 330.5 118.5 L 330.5 322.5 A 38 38 0 0 0 368.5 360.5 L 393.5 360.5 A 30.5 30.5 0 0 1 393.5 421.5 L 202 421.5 A 120 120 0 0 1 202 181.5 L 251.5 181.5 A 18 18 0 0 0 269.5 163.5 Z M 253.5 242.5 A 16 16 0 0 1 269.5 258.5 L 269.5 344.5 A 16 16 0 0 1 253.5 360.5 L 202 360.5 A 59 59 0 0 1 202 242.5 Z"></path><circle cx="393.5" cy="208" r="34" fill="#F48B2D"></circle></svg>
     <h2>{% trans "Lernen wir uns kennen." %}</h2>
-    <p>{% blocktrans trimmed %}60 Minuten, kostenlos, unverbindlich – danach wissen Sie, ob wir zueinander passen.{% endblocktrans %}</p>
+    <p>{% blocktrans trimmed %}30 Minuten, kostenlos, unverbindlich – danach wissen Sie, ob wir zueinander passen.{% endblocktrans %}</p>
     <a class="btn" href="{% url 'v2:booking' %}" data-loader>{% trans "Erstgespräch buchen" %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
   </div>
 </section>

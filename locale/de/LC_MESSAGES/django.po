@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-29 10:22+0100\n"
+"POT-Creation-Date: 2026-10-29 11:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -662,7 +662,7 @@ msgstr ""
 msgid "Erstgespräch (kostenlos)."
 msgstr ""
 
-msgid "Wir schauen in 60 Minuten, ob es passt. Unverbindlich."
+msgid "Wir schauen in 30 Minuten, ob es passt. Unverbindlich."
 msgstr ""
 
 msgid "Digitalisierungs-Check."
@@ -730,7 +730,7 @@ msgid "Reden wir über Ihren Betrieb."
 msgstr ""
 
 msgid ""
-"60 Minuten, kostenlos, unverbindlich – danach wissen Sie, ob und wie sich "
+"30 Minuten, kostenlos, unverbindlich – danach wissen Sie, ob und wie sich "
 "Digitalisierung für Sie lohnt."
 msgstr ""
 
@@ -2239,6 +2239,12 @@ msgid ""
 "Daten, ein System statt fünf. Das Ziel ist Ruhe – nicht noch ein Tool mehr."
 msgstr ""
 
+msgid "Wenn im Betrieb etwas mühsam ist –"
+msgstr ""
+
+msgid "mit Datalization."
+msgstr ""
+
 msgid "Laptop und Kaffee auf einem Holztisch im warmen Licht"
 msgstr ""
 
@@ -2250,7 +2256,7 @@ msgid "Lernen wir uns kennen."
 msgstr ""
 
 msgid ""
-"60 Minuten, kostenlos, unverbindlich – danach wissen Sie, ob wir zueinander "
+"30 Minuten, kostenlos, unverbindlich – danach wissen Sie, ob wir zueinander "
 "passen."
 msgstr ""
 

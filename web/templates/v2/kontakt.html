@@ -125,7 +125,7 @@
 
         <div class="panel">
           <h3>{% if LANGUAGE_CODE == 'de' %}Lieber direkt sprechen?{% else %}Prefer to talk directly?{% endif %}</h3>
-          <p style="color:#4F4F4F;margin:0 0 18px">{% if LANGUAGE_CODE == 'de' %}Buchen Sie ein kostenloses Erstgespräch – 60 Minuten, unverbindlich.{% else %}Book a free first call – 60 minutes, non-binding.{% endif %}</p>
+          <p style="color:#4F4F4F;margin:0 0 18px">{% if LANGUAGE_CODE == 'de' %}Buchen Sie ein kostenloses Erstgespräch – 30 Minuten, unverbindlich.{% else %}Book a free first call – 30 minutes, non-binding.{% endif %}</p>
           <a class="btn btn--full" href="{% url 'v2:booking' %}" data-loader>{% if LANGUAGE_CODE == 'de' %}Erstgespräch buchen{% else %}Book a call{% endif %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
         </div>
       </div>
