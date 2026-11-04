@@ -27,6 +27,7 @@ from web.models import AcquisitionLead, NewCompany
 EMAIL_ACTIVITY_TYPE_ID = 1          # mail.activity.type "Email"
 CRM_LEAD_MODEL_ID = 2655            # ir.model crm.lead
 MAILBAR = "🟡 Firma generisch"
+MAIL_TAG = "Erstkontakt E-Mail"     # crm.tag zum Filtern der anschreibbaren Firmen
 
 
 def _chunks(seq, n):
@@ -86,6 +87,15 @@ class Command(BaseCommand):
                    if r.email and contact_risk(r) == MAILBAR and r.odoo_lead_id]
         mailbar_ids = [r.odoo_lead_id for r in mailbar]
         self.stdout.write(f"Anschreibbar (🟡 Firma generisch, mit E-Mail): {len(mailbar)}")
+
+        # Stichwort 'Erstkontakt E-Mail' setzen → in der Pipeline filterbar
+        if mailbar_ids and not dry:
+            tag = c.tag_id(MAIL_TAG)
+            for chunk in _chunks(mailbar_ids, 100):
+                c._execute("crm.lead", "write", chunk, {"tag_ids": [(4, tag)]})
+            self.stdout.write(f"  Stichwort '{MAIL_TAG}' auf {len(mailbar_ids)} Chancen gesetzt.")
+        elif mailbar_ids:
+            self.stdout.write(f"  [dry-run] würde '{MAIL_TAG}' auf {len(mailbar_ids)} Chancen setzen.")
 
         # bereits vorhandene E-Mail-Aktivitäten (idempotent)
         existing = set()
