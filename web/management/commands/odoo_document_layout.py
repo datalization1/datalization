@@ -31,17 +31,13 @@ FOOTER_LINE = ("<span style=\"color:#333333;font-weight:bold;\">Datalization</sp
 LAYOUT_TMPL = """<t t-name="{xmlid}">
 <t t-if="not o" t-set="o" t-value="doc"/>
 <t t-if="not company" t-set="company" t-value="(o and o.company_id) or res_company"/>
-<div class="header">
-  <table style="width:100%;border:0;border-collapse:collapse;">
-    <tr>
-      <td style="text-align:left;vertical-align:middle;">
-        <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="height:12mm;width:auto;" alt="Datalization"/>
-      </td>
-      <td style="text-align:right;vertical-align:middle;">
-        <img src="data:image/png;base64,{slogan}" style="height:4.5mm;width:auto;" alt="Einfache Lösungen schaffen"/>
-      </td>
-    </tr>
-  </table>
+<div class="header" style="overflow:hidden;border:none;">
+  <div style="float:left;">
+    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="height:12mm;width:auto;border:none;" alt="Datalization"/>
+  </div>
+  <div style="float:right;text-align:right;margin-top:3.5mm;">
+    <img src="data:image/png;base64,{slogan}" style="height:4.5mm;width:auto;border:none;" alt="Einfache Lösungen schaffen"/>
+  </div>
 </div>
 <t t-call="web.external_layout_body"><t t-out="0"/></t>
 <div class="footer">
