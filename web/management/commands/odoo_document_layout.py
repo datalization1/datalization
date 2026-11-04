@@ -30,7 +30,7 @@ LAYOUT_ARCH = """<t t-name="x_datalization.external_layout_custom">
 <t t-if="not o" t-set="o" t-value="doc"/>
 <t t-if="not company" t-set="company" t-value="(o and o.company_id) or res_company"/>
 <div t-attf-class="header o_company_#{company.id}_layout">
-    <div style="display: table; width: 100%; padding-top: 15mm;">
+    <div style="display: table; width: 100%; padding-top: 0;">
         <div style="display: table-cell; vertical-align: middle;">
             <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="height: 9mm;" alt="Logo"/>
         </div>
