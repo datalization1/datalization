@@ -29,8 +29,8 @@ PAPERFORMAT_NAME = "Datalization A4"
 LAYOUT_ARCH = """<t t-name="x_datalization.external_layout_custom">
 <t t-if="not o" t-set="o" t-value="doc"/>
 <t t-if="not company" t-set="company" t-value="(o and o.company_id) or res_company"/>
-<div t-attf-class="header o_company_#{company.id}_layout">
-    <div style="display: table; width: 100%; padding-top: 0;">
+<div t-attf-class="header o_company_#{company.id}_layout" style="margin:0; padding:0;">
+    <div style="display: table; width: 100%; margin:0; padding:0;">
         <div style="display: table-cell; vertical-align: middle;">
             <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="height: 9mm;" alt="Logo"/>
         </div>
@@ -48,9 +48,6 @@ LAYOUT_ARCH = """<t t-name="x_datalization.external_layout_custom">
         <span style="color: #F48B2D; padding: 0 1.4mm;">·</span>076 563 06 08
         <span style="color: #F48B2D; padding: 0 1.4mm;">·</span>info@datalization.ch
         <span style="color: #F48B2D; padding: 0 1.4mm;">·</span>www.datalization.ch
-    </div>
-    <div t-if="report_type == 'pdf'" style="text-align: center; font-size: 7pt; color: #8F8F8F; margin-top: 1mm;">
-        Seite <span class="page"/> / <span class="topage"/>
     </div>
 </div>
 </t>"""
