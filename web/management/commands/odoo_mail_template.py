@@ -17,7 +17,7 @@ TEMPLATE_NAME = "Datalization – Neugründung Erstkontakt"
 SUBJECT = "Herzlichen Glückwunsch zur Gründung von {{ object.partner_name or object.name }}"
 
 BODY_HTML = """
-<div style="max-width:560px;margin:0 auto;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#1a1a1a;">
+<div style="background:#ffffff;max-width:560px;margin:0 auto;padding:28px 32px;border-radius:6px;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#1a1a1a;">
   <p>Guten Tag</p>
   <p>herzlichen Gl&uuml;ckwunsch zur Gr&uuml;ndung von <strong>{{ object.partner_name or object.name }}</strong> &ndash;
      wir haben Ihren Eintrag im Handelsregister (SHAB) gesehen und w&uuml;nschen Ihnen einen guten Start.</p>
