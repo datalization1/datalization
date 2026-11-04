@@ -46,29 +46,27 @@ LOGO = ("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAwCAYAAABT9ym6AAAEf
 ARCH = f"""<t t-name="x_datalization.erstkontakt_brief">
 <t t-call="web.html_container">
 <t t-foreach="docs" t-as="o">
-<div class="page" style="position:relative;font-family:Arial,Helvetica,sans-serif;font-size:11pt;line-height:1.5;color:#000;">
-  <div style="position:fixed;top:12mm;right:20mm;text-align:right;">
-    <img src="{LOGO}" style="width:42px;height:auto;display:inline-block;vertical-align:middle;"/>
-    <span style="font-size:13pt;font-weight:bold;vertical-align:middle;margin-left:8px;">Datalization</span>
-    <div style="color:#F48B2D;font-weight:bold;font-size:9pt;margin-top:2px;">Einfache Lösungen schaffen.</div>
-  </div>
-
-  <div style="position:fixed;top:45mm;left:25mm;">
-    <div style="font-size:7pt;color:#555;">Datalization · Bärengasse 3 · 4800 Zofingen</div>
-    <div style="font-size:11pt;line-height:1.4;margin-top:1mm;">
-      <span t-out="o.partner_name or o.name"/><br/>
-      <span t-out="o.street"/><br/>
-      <span t-out="o.zip"/> <span t-out="o.city"/>
+<div class="page" style="font-family:Arial,Helvetica,sans-serif;font-size:11pt;line-height:1.5;color:#000;">
+  <table style="width:100%;height:258mm;border-collapse:collapse;">
+  <tr><td style="vertical-align:top;padding:0;">
+    <div style="text-align:right;">
+      <img src="{LOGO}" style="width:42px;height:auto;display:inline-block;vertical-align:middle;"/>
+      <span style="font-size:13pt;font-weight:bold;vertical-align:middle;margin-left:8px;">Datalization</span>
+      <div style="color:#F48B2D;font-weight:bold;font-size:9pt;margin-top:2px;">Einfache Lösungen schaffen.</div>
     </div>
-  </div>
 
-  <div style="position:fixed;bottom:10mm;left:25mm;right:20mm;border-top:1px solid #ccc;padding-top:2mm;font-size:8pt;color:#666;text-align:center;">
-    Datalization · Bärengasse 3 · 4800 Zofingen · 076 563 06 08 · info@datalization.ch · www.datalization.ch
-  </div>
+    <div style="margin-top:16mm;">
+      <div style="font-size:7pt;color:#555;">Datalization · Bärengasse 3 · 4800 Zofingen</div>
+      <div style="font-size:11pt;line-height:1.4;margin-top:1mm;">
+        <span t-out="o.partner_name or o.name"/><br/>
+        <span t-out="o.street"/><br/>
+        <span t-out="o.zip"/> <span t-out="o.city"/>
+      </div>
+    </div>
 
-  <div style="padding:66mm 20mm 24mm 25mm;">
-    <div style="text-align:right;margin-bottom:10mm;">Zofingen, <span t-out="datetime.date.today().strftime('%d.%m.%Y')"/></div>
-    <div style="font-weight:bold;font-size:13pt;margin-bottom:6mm;">Herzlichen Glückwunsch zur Gründung – und ein Angebot für Ihren Start</div>
+    <div style="margin-top:14mm;">Zofingen, <span t-out="datetime.date.today().strftime('%d.%m.%Y')"/></div>
+
+    <div style="margin-top:16mm;font-weight:bold;font-size:13pt;">Herzlichen Glückwunsch zur Gründung – und ein Angebot für Ihren Start</div>
     <p>Sehr geehrte Damen und Herren</p>
     <p>herzlichen Glückwunsch zur Gründung von <strong><span t-out="o.partner_name or o.name"/></strong>.
        Wir haben Ihren Eintrag im Handelsregister (SHAB) gesehen und wünschen Ihnen einen erfolgreichen Start.</p>
@@ -89,7 +87,13 @@ ARCH = f"""<t t-name="x_datalization.erstkontakt_brief">
     <div style="height:22mm;"></div>
     <p>Tihomir Danesic<br/>Datalization</p>
     <div style="margin-top:8mm;font-size:10pt;">Beilage: Visitenkarte</div>
-  </div>
+  </td></tr>
+  <tr><td style="vertical-align:bottom;padding:0;">
+    <div style="border-top:1px solid #ccc;padding-top:2mm;font-size:8pt;color:#666;text-align:center;">
+      Datalization · Bärengasse 3 · 4800 Zofingen · 076 563 06 08 · info@datalization.ch · www.datalization.ch
+    </div>
+  </td></tr>
+  </table>
 </div>
 </t>
 </t>
@@ -106,7 +110,7 @@ class Command(BaseCommand):
 
         # Paperformat (randlos A4, damit Kopf/Fuss exakt sitzen)
         pf_vals = {"name": "Datalization Brief A4", "format": "A4", "orientation": "Portrait",
-                   "margin_top": 0, "margin_bottom": 0, "margin_left": 0, "margin_right": 0,
+                   "margin_top": 15, "margin_bottom": 12, "margin_left": 25, "margin_right": 20,
                    "header_line": False, "header_spacing": 0, "dpi": 90}
         pf = c._execute("report.paperformat", "search",
                         [["name", "=", "Datalization Brief A4"]], limit=1)
