@@ -23,7 +23,7 @@ from web import odoo_crm
 
 LAYOUT_XMLID = "x_datalization.external_layout_custom"
 MODULE, NAME = LAYOUT_XMLID.split(".")
-LOGO_FILE = "brand/datalization-horizontal.png"
+LOGO_FILE = "brand/datalization-logo-odoo.png"     # offizielle Odoo-Logodatei (4,75:1)
 PAPERFORMAT_NAME = "Datalization A4"
 
 LAYOUT_ARCH = """<t t-name="x_datalization.external_layout_custom">
