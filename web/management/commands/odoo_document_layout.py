@@ -1,8 +1,13 @@
 """Setzt das unternehmensweite Odoo-Dokumenten-Layout (Kopf/Fuss) auf das
-Datalization-Briefdesign: Wortmarke links, Slogan rechts, zentrierte Fusszeile.
+Datalization-Briefdesign: Wortmarke links, Slogan-Grafik rechts, zentrierte
+Fusszeile.
 
 Gilt danach für ALLE Reports, die web.external_layout nutzen – Rechnungen,
 Offerten, Lieferscheine, CRM-Briefe usw.
+
+Logo (brand/datalization-horizontal.png) → company.logo.
+Slogan (brand/datalization-slogan.png, aus der offiziellen SVG) → als Bild im
+Kopf eingebettet (pixelgenau, schriftunabhängig).
 
 Idempotent. Reversibel: der vorherige external_report_layout_id wird ausgegeben.
 
@@ -17,12 +22,13 @@ from web import odoo_crm
 
 LAYOUT_XMLID = "x_datalization.external_layout_custom"
 MODULE, NAME = LAYOUT_XMLID.split(".")
-LOGO_FILE = "brand/datalization-horizontal.png"      # schwarz auf transparent
+LOGO_FILE = "brand/datalization-horizontal.png"     # schwarz auf transparent → company.logo
+SLOGAN_FILE = "brand/datalization-slogan.png"       # Slogan-Grafik inkl. orangem Punkt
 FOOTER_LINE = ("<span style=\"color:#333333;font-weight:bold;\">Datalization</span> · "
                "Bärengasse 3 · 4800 Zofingen · 076 563 06 08 · "
                "info@datalization.ch · www.datalization.ch")
 
-LAYOUT_ARCH = f"""<t t-name="{LAYOUT_XMLID}">
+LAYOUT_TMPL = """<t t-name="{xmlid}">
 <t t-if="not o" t-set="o" t-value="doc"/>
 <t t-if="not company" t-set="company" t-value="(o and o.company_id) or res_company"/>
 <div class="header">
@@ -31,8 +37,8 @@ LAYOUT_ARCH = f"""<t t-name="{LAYOUT_XMLID}">
       <td style="text-align:left;vertical-align:middle;">
         <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="height:12mm;width:auto;" alt="Datalization"/>
       </td>
-      <td style="text-align:right;vertical-align:middle;white-space:nowrap;">
-        <span style="font-family:'Inter',Arial,sans-serif;font-weight:600;font-size:9.5pt;color:#0A0A0A;letter-spacing:-0.01em;">Einfache Lösungen schaffen</span><span style="display:inline-block;width:4pt;height:4pt;background:#F48B2D;border-radius:50%;margin-left:1.14pt;vertical-align:baseline;"></span>
+      <td style="text-align:right;vertical-align:middle;">
+        <img src="data:image/png;base64,{slogan}" style="height:4.5mm;width:auto;" alt="Einfache Lösungen schaffen"/>
       </td>
     </tr>
   </table>
@@ -40,7 +46,7 @@ LAYOUT_ARCH = f"""<t t-name="{LAYOUT_XMLID}">
 <t t-call="web.external_layout_body"><t t-out="0"/></t>
 <div class="footer">
   <div style="border-top:1px solid #dddddd;padding-top:4px;text-align:center;font-size:8pt;color:#666666;">
-    {FOOTER_LINE}
+    {footer}
   </div>
 </div>
 </t>"""
@@ -54,10 +60,16 @@ class Command(BaseCommand):
             raise CommandError("Odoo nicht konfiguriert.")
         c = odoo_crm.OdooClient()
 
-        # 1) Custom-Layout-View anlegen/aktualisieren
+        with open(os.path.join(os.getcwd(), SLOGAN_FILE), "rb") as f:
+            slogan_b64 = base64.b64encode(f.read()).decode()
+        with open(os.path.join(os.getcwd(), LOGO_FILE), "rb") as f:
+            logo_b64 = base64.b64encode(f.read()).decode()
+
+        arch = LAYOUT_TMPL.format(xmlid=LAYOUT_XMLID, slogan=slogan_b64, footer=FOOTER_LINE)
+
         view = c._execute("ir.ui.view", "search", [["key", "=", LAYOUT_XMLID]], limit=1)
         v_vals = {"name": "Datalization Dokumenten-Layout", "type": "qweb",
-                  "key": LAYOUT_XMLID, "arch_db": LAYOUT_ARCH}
+                  "key": LAYOUT_XMLID, "arch_db": arch}
         if view:
             c._execute("ir.ui.view", "write", view, v_vals)
             view_id = view[0]
@@ -69,12 +81,6 @@ class Command(BaseCommand):
             c._execute("ir.model.data", "create",
                        {"module": MODULE, "name": NAME, "model": "ir.ui.view", "res_id": view_id})
 
-        # 2) Firmenlogo = horizontale Wortmarke
-        logo_path = os.path.join(os.getcwd(), LOGO_FILE)
-        with open(logo_path, "rb") as f:
-            logo_b64 = base64.b64encode(f.read()).decode()
-
-        # 3) Firma: Logo, Layout, Kopf/Fuss-Felder setzen (vorher merken)
         comp = c._execute("res.company", "search_read", [],
                           fields=["id", "external_report_layout_id"], limit=1)[0]
         prev = comp["external_report_layout_id"]
