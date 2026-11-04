@@ -21,9 +21,11 @@ BODY_HTML = """
   <p>Guten Tag</p>
   <p>herzlichen Gl&uuml;ckwunsch zur Gr&uuml;ndung von <strong>{{ object.partner_name or object.name }}</strong> &ndash;
      wir haben Ihren Eintrag im Handelsregister (SHAB) gesehen und w&uuml;nschen Ihnen einen guten Start.</p>
-  <p>Wir sind <strong>Datalization</strong> aus der Region Zofingen und helfen kleinen Betrieben, von Anfang an
-     eine einfache, saubere digitale Basis aufzubauen:</p>
+  <p>Wir sind <strong>Datalization</strong> aus der Region Zofingen und bauen f&uuml;r kleine Betriebe
+     die ganze digitale Basis auf &ndash; von der IT-Infrastruktur bis zu den Abl&auml;ufen:</p>
   <ul style="padding-left:20px;margin:12px 0;">
+    <li>Komplette <strong>IT aus einer Hand</strong>: Hardware beschaffen, Software-Lizenzen,
+        Einrichtung und laufender Betrieb (<strong>Managed IT</strong>)</li>
     <li>Offerten, Rechnungen und Buchhaltung ohne Zettelwirtschaft</li>
     <li>Kundenverwaltung (CRM) &ndash; h&auml;ufig mit <strong>Odoo</strong></li>
     <li>wiederkehrende Abl&auml;ufe automatisieren &ndash; mehr Zeit f&uuml;rs Kerngesch&auml;ft</li>
