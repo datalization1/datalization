@@ -1,14 +1,16 @@
-"""Setzt das unternehmensweite Odoo-Dokumenten-Layout (Kopf/Fuss) auf das
-Datalization-Design (Vorlage datalization_layout_odoo.xml):
-Wortmarke links, Slogan rechts (Text + oranger CSS-Kreis), zentrierte Fusszeile
-mit orangen Trennpunkten und Seitenzahl.
+"""Setzt das unternehmensweite Odoo-Dokumenten-Layout (Kopf/Fuss) + Paperformat
+auf die Datalization-Spezifikation (Briefvorlage).
 
-Gilt danach für ALLE Reports, die web.external_layout nutzen – Rechnungen,
-Offerten, Lieferscheine, CRM-Briefe usw.
+Kopf: Wortmarke links (9 mm), Slogan rechts (9,5 pt SemiBold, −1 %, oranger
+Kreis). Fuss: Trennlinie 0,25 mm #E4E4E0, zentriert, orange Trennpunkte,
+Seitenzahl. Paperformat 'Datalization A4': oben 40 / unten 25 / links 25 /
+rechts 20 mm, Kopfabstand 15 mm.
 
-Logo (brand/datalization-horizontal.png) → company.logo.
+Gilt für ALLE Reports, die web.external_layout nutzen (Rechnungen, Offerten,
+CRM-Briefe …). Logo aus brand/datalization-horizontal.png → company.logo.
 
-Idempotent. Reversibel: der vorherige external_report_layout_id wird ausgegeben.
+Idempotent. Reversibel: der vorherige external_report_layout_id / paperformat
+wird ausgegeben.
 
     python manage.py odoo_document_layout
 """
@@ -21,15 +23,14 @@ from web import odoo_crm
 
 LAYOUT_XMLID = "x_datalization.external_layout_custom"
 MODULE, NAME = LAYOUT_XMLID.split(".")
-LOGO_FILE = "brand/datalization-horizontal.png"     # schwarz auf transparent → company.logo
+LOGO_FILE = "brand/datalization-horizontal.png"
+PAPERFORMAT_NAME = "Datalization A4"
 
-# Kopf-/Fuss-Markup aus der Vorlage datalization_layout_odoo.xml (1:1),
-# eingebettet in ein eigenständiges external-Layout.
 LAYOUT_ARCH = """<t t-name="x_datalization.external_layout_custom">
 <t t-if="not o" t-set="o" t-value="doc"/>
 <t t-if="not company" t-set="company" t-value="(o and o.company_id) or res_company"/>
 <div t-attf-class="header o_company_#{company.id}_layout">
-    <div style="display: table; width: 100%; padding-top: 2mm;">
+    <div style="display: table; width: 100%; padding-top: 15mm;">
         <div style="display: table-cell; vertical-align: middle;">
             <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="height: 9mm;" alt="Logo"/>
         </div>
@@ -39,7 +40,7 @@ LAYOUT_ARCH = """<t t-name="x_datalization.external_layout_custom">
     </div>
 </div>
 <t t-call="web.external_layout_body"><t t-out="0"/></t>
-<div t-attf-class="footer o_company_#{company.id}_layout">
+<div t-attf-class="footer o_company_#{company.id}_layout" style="padding-top: 5mm;">
     <div style="border-top: 0.25mm solid #E4E4E0; padding-top: 3mm; text-align: center; font-size: 7.5pt; color: #4F4F4F;">
         <strong style="color: #0A0A0A; font-weight: 600;">Datalization</strong>
         <span style="color: #F48B2D; padding: 0 1.4mm;">·</span>Bärengasse 3
@@ -56,7 +57,7 @@ LAYOUT_ARCH = """<t t-name="x_datalization.external_layout_custom">
 
 
 class Command(BaseCommand):
-    help = "Setzt das unternehmensweite Datalization-Dokumentenlayout in Odoo."
+    help = "Setzt Datalization-Dokumentenlayout + Paperformat in Odoo."
 
     def handle(self, *args, **opts):
         if not odoo_crm.enabled():
@@ -66,6 +67,7 @@ class Command(BaseCommand):
         with open(os.path.join(os.getcwd(), LOGO_FILE), "rb") as f:
             logo_b64 = base64.b64encode(f.read()).decode()
 
+        # --- Layout-View ---
         view = c._execute("ir.ui.view", "search", [["key", "=", LAYOUT_XMLID]], limit=1)
         v_vals = {"name": "Datalization Dokumenten-Layout", "type": "qweb",
                   "key": LAYOUT_XMLID, "arch_db": LAYOUT_ARCH}
@@ -80,16 +82,27 @@ class Command(BaseCommand):
             c._execute("ir.model.data", "create",
                        {"module": MODULE, "name": NAME, "model": "ir.ui.view", "res_id": view_id})
 
+        # --- Paperformat 'Datalization A4' ---
+        pf_vals = {"name": PAPERFORMAT_NAME, "format": "A4", "orientation": "Portrait",
+                   "margin_top": 40, "margin_bottom": 25, "margin_left": 25, "margin_right": 20,
+                   "header_line": False, "header_spacing": 15, "dpi": 90}
+        pf = c._execute("report.paperformat", "search", [["name", "=", PAPERFORMAT_NAME]], limit=1)
+        pf_id = pf[0] if pf else c._execute("report.paperformat", "create", pf_vals)
+        if pf:
+            c._execute("report.paperformat", "write", pf, pf_vals)
+
+        # --- Firma: Logo, Layout, Paperformat, Farben ---
         comp = c._execute("res.company", "search_read", [],
-                          fields=["id", "external_report_layout_id"], limit=1)[0]
-        prev = comp["external_report_layout_id"]
+                          fields=["id", "external_report_layout_id", "paperformat_id"], limit=1)[0]
+        prev_layout, prev_pf = comp["external_report_layout_id"], comp["paperformat_id"]
         c._execute("res.company", "write", [comp["id"]], {
             "logo": logo_b64,
             "external_report_layout_id": view_id,
+            "paperformat_id": pf_id,
             "primary_color": "#F48B2D",
             "secondary_color": "#0A0A0A",
         })
 
         self.stdout.write(self.style.SUCCESS(
-            f"Dokumentenlayout gesetzt (view {view_id}). Gilt für alle external_layout-Reports."))
-        self.stdout.write(f"  Vorheriges Layout (zum Zurücksetzen): {prev}")
+            f"Layout (view {view_id}) + Paperformat '{PAPERFORMAT_NAME}' (id {pf_id}) gesetzt."))
+        self.stdout.write(f"  Vorher (zum Zurücksetzen): layout={prev_layout}, paperformat={prev_pf}")
