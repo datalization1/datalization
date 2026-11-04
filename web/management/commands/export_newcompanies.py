@@ -71,6 +71,9 @@ class Command(BaseCommand):
                             help="Nur die 17 Gemeinden des Bezirks Zofingen.")
         parser.add_argument("--active-only", action="store_true",
                             help="Nur Register-Status ACTIVE.")
+        parser.add_argument("--new-only", action="store_true",
+                            help="Nur echte SHAB-Neugründungen (ohne Zefix-Ist-Bestand). "
+                                 "Für die FC-Oftringen-Neueröffnungsliste.")
         parser.add_argument("--risk", choices=["person", "firma", "nomail", "mailbar"],
                             default="",
                             help="Filter nach Kontakt-Risiko: person (🔴), "
@@ -82,6 +85,8 @@ class Command(BaseCommand):
         from openpyxl.styles import Font
 
         qs = NewCompany.objects.all()
+        if opts["new_only"]:
+            qs = qs.exclude(shab_id__startswith="zefix:")
         towns = []
         if opts["bezirk_zofingen"]:
             towns = BEZIRK_ZOFINGEN

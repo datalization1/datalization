@@ -31,3 +31,7 @@ python manage.py tag_fc_oftringen
 
 # 5) Nachgereichte Kontaktdaten in bestehende Odoo-Leads schreiben
 python manage.py sync_odoo_contacts --active-only --days "$REENRICH_DAYS"
+
+# 6) Datalization-Leads zu Chancen konvertieren + E-Mail-Aktivität für
+#    anschreibbare Firmen (🟡 Firma generisch). Idempotent – nur neue.
+python manage.py odoo_opportunities
