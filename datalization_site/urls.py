@@ -37,7 +37,12 @@ def robots_txt(request):
     # Die Sitemap-Zeile muss laut Spezifikation eine absolute URL sein.
     sitemap_url = request.build_absolute_uri("/sitemap.xml")
     return HttpResponse(
-        f"User-agent: *\nAllow: /\nSitemap: {sitemap_url}\n",
+        "User-agent: *\n"
+        "Allow: /\n"
+        # Interne v1-Admin-Oberfläche nicht indexieren lassen.
+        "Disallow: /custom-admin/\n"
+        "Disallow: /*/custom-admin/\n"
+        f"Sitemap: {sitemap_url}\n",
         content_type="text/plain",
     )
 
@@ -101,16 +106,19 @@ def site_webmanifest(_):
         content_type="application/manifest+json",
     )
 
-# Root ohne Sprachpräfix -> auf aktuelle Sprache umleiten
+# Root ohne Sprachpräfix -> dauerhaft (301) auf die Standardsprache umleiten,
+# damit Google die /de/-Startseite eindeutig als kanonisch konsolidiert.
+# Ein 301 muss stabil sein -> feste Standardsprache statt der je Request
+# wechselnden get_language()-Fassung verwenden.
 def redirect_to_lang_root(request):
-    lang = get_language() or "de"
-    return redirect(f"/{lang}/", permanent=False)
+    return redirect(f"/{settings.LANGUAGE_CODE}/", permanent=True)
 
 
-# Alte /v2/-Vorschaulinks dauerhaft auf den neuen Root (v2:home) umleiten.
-# Eigene Funktion statt RedirectView, damit der gefangene Rest-Pfad nicht an
-# reverse('v2:home') weitergereicht wird (das würde NoReverseMatch auslösen).
-def redirect_v2_legacy(request, rest=None):
+# Alte /v2/-Vorschaulinks und /cases/<slug>/ dauerhaft auf den neuen Root
+# (v2:home) umleiten. Eigene Funktion statt RedirectView, damit der gefangene
+# Rest-Pfad bzw. slug NICHT an reverse('v2:home') weitergereicht wird – das
+# würde NoReverseMatch (HTTP 500) auslösen.
+def redirect_v2_legacy(request, **kwargs):
     return redirect("v2:home", permanent=True)
 
 urlpatterns = [
@@ -143,7 +151,8 @@ urlpatterns += i18n_patterns(
     path("start/", RedirectView.as_view(pattern_name="v2:kontakt", permanent=True)),
     path("match/", RedirectView.as_view(pattern_name="v2:home", permanent=True)),
     path("cases/", RedirectView.as_view(pattern_name="v2:home", permanent=True)),
-    path("cases/<slug:slug>/", RedirectView.as_view(pattern_name="v2:home", permanent=True)),
+    # <slug> bewusst an redirect_v2_legacy (verwirft den slug) statt RedirectView:
+    path("cases/<slug:slug>/", redirect_v2_legacy),
 
     # Alte /v2/-Vorschaulinks dauerhaft auf den neuen Root umleiten.
     path("v2/", redirect_v2_legacy),
