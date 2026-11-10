@@ -8,7 +8,7 @@
 #   1. Sucht die .mailsignature-Datei, die den Platzhalter-Text enthaelt.
 #   2. Legt eine Sicherung (.bak) an.
 #   3. Behaelt die Kopfzeilen (Content-Type etc.), ersetzt nur den HTML-Inhalt.
-#   4. Sperrt die Datei (chflags uschg), damit Mail sie nicht mehr umbaut.
+#   4. Sperrt die Datei (chflags uchg), damit Mail sie nicht mehr umbaut.
 #
 # Voraussetzung: Mail wurde mit Cmd+Q beendet und Terminal hat
 # Festplattenvollzugriff (Systemeinstellungen -> Datenschutz & Sicherheit).
@@ -70,6 +70,6 @@ cat "$HTML_DATEI" >> "$TMP"
 mv "$TMP" "$ZIEL"
 
 # Sperren, damit Mail die Datei nicht mehr veraendert.
-chflags uschg "$ZIEL"
+chflags uchg "$ZIEL"
 echo "Eingesetzt und gesperrt."
 echo "Mail starten und unter 'Signatur auswaehlen' die neue Signatur waehlen."
