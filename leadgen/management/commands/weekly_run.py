@@ -155,6 +155,40 @@ class Command(BaseCommand):
         return {name: c._execute("crm.lead", "search_count", dom)
                 for name, dom in SNAPSHOT.items()}
 
+    def _check_key_expiry(self, dry, today, digest_email, warn_days=14):
+        """Warnt per Mail, wenn der Odoo-API-Key bald abläuft (Odoo erzwingt
+        max. 3 Monate). Datum aus .env: ODOO_API_KEY_EXPIRES=YYYY-MM-DD."""
+        raw = os.getenv("ODOO_API_KEY_EXPIRES", "").strip()
+        if not raw:
+            self.stdout.write("    (kein ODOO_API_KEY_EXPIRES gesetzt – keine Prüfung)")
+            return
+        try:
+            y, m, d = (int(x) for x in raw.split("-"))
+            expiry = date(y, m, d)
+        except Exception:  # noqa: BLE001
+            self.stdout.write(self.style.WARNING(f"    ODOO_API_KEY_EXPIRES unlesbar: {raw!r}"))
+            return
+        days = (expiry - today).days
+        if days > warn_days:
+            self.stdout.write(f"    Odoo-API-Key läuft in {days} Tagen ab ({raw}) – ok.")
+            return
+        state = "ist ABGELAUFEN" if days < 0 else f"läuft in {days} Tagen ab"
+        body = (f"Achtung: Der Odoo-API-Key {state} ({raw}).\n\n"
+                "Ohne gültigen Key bricht der Mittwoch-Lauf ab (keine Leads, kein "
+                "FC-Report, kein Digest). So erneuerst du ihn:\n"
+                "1. Odoo → Avatar → Meine Präferenzen → Sicherheit → 'Create API Key'\n"
+                "2. In der .env ODOO_API_KEY=<neu> UND ODOO_API_KEY_EXPIRES=<neues Datum>\n"
+                "3. Alten Key in Odoo löschen.")
+        self.stdout.write(self.style.ERROR(f"    ⚠️ API-Key {state} ({raw})!"))
+        if dry:
+            return
+        try:
+            EmailMessage(subject=f"⚠️ Odoo-API-Key {state} – Akquise-Cron gefährdet",
+                         body=body, to=[digest_email]).send(fail_silently=False)
+            self.stdout.write(self.style.SUCCESS(f"    Erinnerung an {digest_email} gemailt."))
+        except Exception as e:  # noqa: BLE001
+            self.stdout.write(self.style.ERROR(f"    Erinnerungs-Mail fehlgeschlagen: {e}"))
+
     # ------------------------------------------------------------------- main
     def handle(self, *args, **o):
         dry = o["dry_run"]
@@ -169,6 +203,9 @@ class Command(BaseCommand):
         if not o["no_backup"]:
             self._step(0, "DB-Backup (lokal + OneDrive)")
             self._backup_db(dry, today, o["backup_keep"])
+
+        self._step("0b", "Odoo-API-Key-Ablauf prüfen")
+        self._check_key_expiry(dry, today, o["digest_email"])
 
         if not o["skip_fetch"]:
             self._step(1, "SHAB-Pull + Zefix/Google")
