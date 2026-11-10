@@ -24,8 +24,8 @@ from django.core.management.base import BaseCommand
 from django.db.models import Q
 from django.utils import timezone
 
-from web import odoo_crm
-from web.models import NewCompany
+from leadgen import odoo_crm
+from leadgen.models import NewCompany
 
 SENT_TAG = "Brief versendet"
 CAND_TAG = "Brief-Kandidat"            # markiert die vorbereitete Brief-Charge

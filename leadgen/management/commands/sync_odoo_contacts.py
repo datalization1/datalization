@@ -12,8 +12,8 @@ import time
 
 from django.core.management.base import BaseCommand, CommandError
 
-from web import odoo_crm
-from web.models import NewCompany
+from leadgen import odoo_crm
+from leadgen.models import NewCompany
 
 
 class Command(BaseCommand):

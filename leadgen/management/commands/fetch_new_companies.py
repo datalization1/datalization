@@ -26,8 +26,8 @@ from django.core.management.base import BaseCommand
 from django.utils import timezone
 from django.utils.html import escape
 
-from web import odoo_crm, zefix, google_places
-from web.models import NewCompany
+from leadgen import odoo_crm, zefix, google_places
+from leadgen.models import NewCompany
 
 LIST_URL = "https://amtsblattportal.ch/api/v1/publications/xml"
 SEARCH_CH_URL = "https://search.ch/tel/api/"

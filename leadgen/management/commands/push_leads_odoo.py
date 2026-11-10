@@ -7,8 +7,8 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.utils import timezone
 
-from web import odoo_crm
-from web.models import AcquisitionLead, NewCompany, RealEstateLead
+from leadgen import odoo_crm
+from leadgen.models import AcquisitionLead, NewCompany, RealEstateLead
 
 
 class Command(BaseCommand):

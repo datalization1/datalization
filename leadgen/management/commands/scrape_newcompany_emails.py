@@ -4,7 +4,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from django.core.management.base import BaseCommand
 
 from web.email_scrape import scrape_site
-from web.models import NewCompany
+from leadgen.models import NewCompany
 
 
 class Command(BaseCommand):

@@ -10,7 +10,7 @@ import re
 
 from django.core.management.base import BaseCommand, CommandError
 
-from web.models import AcquisitionLead
+from leadgen.models import AcquisitionLead
 
 
 def _s(v):

@@ -5,7 +5,7 @@
 """
 from django.core.management.base import BaseCommand
 
-from web import odoo_crm
+from leadgen import odoo_crm
 
 
 class Command(BaseCommand):

@@ -16,7 +16,7 @@ import re
 
 from django.core.management.base import BaseCommand, CommandError
 
-from web.models import RealEstateLead
+from leadgen.models import RealEstateLead
 
 
 def _clean(v):

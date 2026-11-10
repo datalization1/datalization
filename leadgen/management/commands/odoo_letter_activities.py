@@ -18,8 +18,8 @@ from django.core.management.base import BaseCommand, CommandError
 from django.db.models import Q
 from django.utils import timezone
 
-from web import odoo_crm
-from web.models import NewCompany
+from leadgen import odoo_crm
+from leadgen.models import NewCompany
 
 CRM_LEAD_MODEL_ID = 2655
 CAND_TAG = "Brief-Kandidat"

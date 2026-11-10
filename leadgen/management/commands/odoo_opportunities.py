@@ -20,9 +20,9 @@ from datetime import timedelta
 from django.core.management.base import BaseCommand, CommandError
 from django.utils import timezone
 
-from web import odoo_crm
-from web.management.commands.export_newcompanies import contact_risk
-from web.models import AcquisitionLead, NewCompany
+from leadgen import odoo_crm
+from leadgen.management.commands.export_newcompanies import contact_risk
+from leadgen.models import AcquisitionLead, NewCompany
 
 EMAIL_ACTIVITY_TYPE_ID = 1          # mail.activity.type "Email"
 CRM_LEAD_MODEL_ID = 2655            # ir.model crm.lead

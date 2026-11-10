@@ -11,7 +11,7 @@ Idempotent: wird über den Namen gesucht und aktualisiert.
 """
 from django.core.management.base import BaseCommand, CommandError
 
-from web import odoo_crm
+from leadgen import odoo_crm
 
 CRM_LEAD_MODEL_ID = 2655
 TEMPLATE_NAME = "Datalization – Neugründung Erstkontakt"

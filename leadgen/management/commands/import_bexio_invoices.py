@@ -13,7 +13,7 @@ import time
 
 from django.core.management.base import BaseCommand, CommandError
 
-from web import odoo_crm
+from leadgen import odoo_crm
 
 SALES_JOURNAL_ID = 1       # "Sales" (RE)
 BANK_JOURNAL_ID = 6        # "PostFinance"

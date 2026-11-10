@@ -12,7 +12,7 @@ Brief-Kandidat=8. Team Datalization=1, Stage 'Neu'=1.
 """
 from django.core.management.base import BaseCommand, CommandError
 
-from web import odoo_crm
+from leadgen import odoo_crm
 
 LEADS_ACTION_ID = 249           # CRM → Leads (Listenansicht)
 DATA_TEAM = 1

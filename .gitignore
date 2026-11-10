@@ -32,3 +32,6 @@ reports/
 Design/
 Claude outputs/
 scratch_*.md
+
+# DB-Backups (echte Daten)
+backups/

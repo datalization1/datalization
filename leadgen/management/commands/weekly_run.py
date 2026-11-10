@@ -32,8 +32,8 @@ from django.core.management import call_command
 from django.core.management.base import BaseCommand
 from django.utils import timezone
 
-from web import odoo_crm
-from web.management.commands.odoo_mail_identity import SIGNATURE_HTML
+from leadgen import odoo_crm
+from leadgen.management.commands.odoo_mail_identity import SIGNATURE_HTML
 
 DEFAULT_DIGEST = "info@datalization.ch"
 

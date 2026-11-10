@@ -16,8 +16,8 @@ Dedupe über UID: bereits vorhandene Firmen (auch aus SHAB) werden übersprungen
 import requests
 from django.core.management.base import BaseCommand, CommandError
 
-from web import zefix
-from web.models import NewCompany
+from leadgen import zefix
+from leadgen.models import NewCompany
 
 BEZIRK_ZOFINGEN = [
     "Aarburg", "Bottenwil", "Brittnau", "Kirchleerau", "Kölliken", "Moosleerau",

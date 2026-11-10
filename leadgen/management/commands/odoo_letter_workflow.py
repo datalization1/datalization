@@ -17,7 +17,7 @@ Idempotent (über Namen gesucht/aktualisiert).
 """
 from django.core.management.base import BaseCommand, CommandError
 
-from web import odoo_crm
+from leadgen import odoo_crm
 
 CRM_LEAD_MODEL_ID = 2655
 LEADS_ACTION_ID = 249           # CRM → Leads (Listenansicht)

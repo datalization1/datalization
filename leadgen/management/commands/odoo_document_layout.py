@@ -19,7 +19,7 @@ import os
 
 from django.core.management.base import BaseCommand, CommandError
 
-from web import odoo_crm
+from leadgen import odoo_crm
 
 LAYOUT_XMLID = "x_datalization.external_layout_custom"
 MODULE, NAME = LAYOUT_XMLID.split(".")

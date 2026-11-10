@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "web",
+    "leadgen",
     "django.contrib.sites",
     "django.contrib.sitemaps",
 ]

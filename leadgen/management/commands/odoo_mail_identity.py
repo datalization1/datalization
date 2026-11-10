@@ -20,7 +20,7 @@ Reversibel: vorherige Farben/Signatur werden ausgegeben.
 """
 from django.core.management.base import BaseCommand, CommandError
 
-from web import odoo_crm
+from leadgen import odoo_crm
 
 LOGO_URL = "https://datalization.ch/static/email/datalization-email-logo.png"
 

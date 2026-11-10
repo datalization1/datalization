@@ -13,7 +13,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import requests
 from django.core.management.base import BaseCommand
 
-from web.models import RealEstateLead
+from leadgen.models import RealEstateLead
 
 EMAIL_RE = re.compile(r"[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}")
 MAILTO_RE = re.compile(r'mailto:([^"\'?>\s]+)', re.I)

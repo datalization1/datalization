@@ -8,7 +8,7 @@ import os
 
 from django.core.management.base import BaseCommand
 
-from web.models import NewCompany
+from leadgen.models import NewCompany
 
 BEZIRK_ZOFINGEN = [
     "Aarburg", "Bottenwil", "Brittnau", "Kirchleerau", "Kölliken", "Moosleerau",
