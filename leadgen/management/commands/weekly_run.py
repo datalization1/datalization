@@ -71,6 +71,10 @@ class Command(BaseCommand):
         parser.add_argument("--no-digest", action="store_true")
         parser.add_argument("--skip-fetch", action="store_true",
                             help="Pull/Anreicherung überspringen (nur Chargen/Report).")
+        parser.add_argument("--no-backup", action="store_true",
+                            help="Kein DB-Backup zu Beginn des Laufs.")
+        parser.add_argument("--backup-keep", type=int, default=8,
+                            help="Anzahl behaltener Wochen-Backups pro Ziel (Default 8).")
 
     # ---------------------------------------------------------------- helpers
     def _step(self, n, label):
@@ -91,6 +95,58 @@ class Command(BaseCommand):
         os.makedirs(d, exist_ok=True)
         return d
 
+    def _backup_db(self, dry, today, keep):
+        """Konsistente SQLite-Sicherung (lokal + Google Drive), mit Rotation.
+
+        Nutzt die sqlite3-Backup-API statt cp → sauberer Snapshot auch bei
+        offener DB. Zielordner: backups/ (lokal) und – wenn vorhanden – ein
+        Cloud-Ordner (DB_BACKUP_CLOUD_DIR, Default Google Drive).
+        """
+        import glob
+        import sqlite3
+
+        src = settings.DATABASES["default"]["NAME"]
+        if not os.path.exists(src):
+            self.stdout.write(self.style.WARNING(f"    DB nicht gefunden ({src}) – kein Backup."))
+            return
+        fname = f"db_{today.isoformat()}.sqlite3"
+
+        # Cloud-Ziel = OneDrive (per Glob gefunden → robust gegen Umlaut/Varianten).
+        # DB_BACKUP_CLOUD_DIR überschreibt. Google Drive bewusst NICHT (Streaming-
+        # Mount verschwindet zeitweise ganz, untauglich für einen 06:00-Cron).
+        cloud = os.environ.get("DB_BACKUP_CLOUD_DIR")
+        if not cloud:
+            od = sorted(glob.glob(os.path.expanduser("~/Library/CloudStorage/OneDrive*")))
+            cloud = os.path.join(od[0], "Datalization-Backups") if od else ""
+        # Cloud nur nutzen, wenn der übergeordnete Sync-Ordner GERADE existiert
+        # (sonst – z. B. Mount nicht bereit – nur lokal sichern, kein Fehler).
+        targets = [os.path.join(settings.BASE_DIR, "backups")]
+        if cloud and os.path.isdir(os.path.dirname(cloud.rstrip("/"))):
+            targets.append(cloud)
+
+        if dry:
+            self.stdout.write(f"    [dry-run] DB-Backup → {', '.join(targets)} (behalte {keep})")
+            return
+
+        for d in targets:
+            try:
+                os.makedirs(d, exist_ok=True)
+                dst = os.path.join(d, fname)
+                with sqlite3.connect(src) as s, sqlite3.connect(dst) as bak:
+                    s.backup(bak)                       # konsistenter Snapshot
+                # Rotation: nur die letzten `keep` behalten
+                old = sorted(glob.glob(os.path.join(d, "db_*.sqlite3")))[:-keep]
+                for f in old:
+                    os.remove(f)
+                is_local = os.path.abspath(d) == os.path.abspath(
+                    os.path.join(settings.BASE_DIR, "backups"))
+                where = "lokal" if is_local else ("OneDrive" if "OneDrive" in d else "Cloud")
+                size = os.path.getsize(dst) / 1_000_000
+                self.stdout.write(self.style.SUCCESS(
+                    f"    ✓ {where}: {fname} ({size:.1f} MB), {keep} Kopien behalten."))
+            except Exception as e:  # noqa: BLE001
+                self.stdout.write(self.style.ERROR(f"    Backup nach {d} fehlgeschlagen: {e}"))
+
     def _snapshot(self):
         """Aktuelle Zahlen der Arbeits-Filter (für den Digest)."""
         if not odoo_crm.enabled():
@@ -109,6 +165,10 @@ class Command(BaseCommand):
             f"{'(DRY-RUN)' if dry else ''} ==="))
         self.stdout.write(f"Pull {o['days']} Tage · Nach-Anreicherung {rd} Tage · "
                           f"Mail-Charge {o['mail_limit']} · Brief-Charge {o['brief_limit']}")
+
+        if not o["no_backup"]:
+            self._step(0, "DB-Backup (lokal + OneDrive)")
+            self._backup_db(dry, today, o["backup_keep"])
 
         if not o["skip_fetch"]:
             self._step(1, "SHAB-Pull + Zefix/Google")
