@@ -24,3 +24,11 @@ db.sqlite3-journal
 
 # Design-Canvas des Startseiten-Mockups (Arbeitsstand, nicht Teil der Website)
 Figma/mockup/
+
+# Wochenlauf-Ausgaben (Briefe/FC-Report)
+reports/
+
+# Lokale Design-Assets & Scratch (nicht Teil der Website)
+Design/
+Claude outputs/
+scratch_*.md
