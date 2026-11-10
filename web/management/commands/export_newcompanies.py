@@ -74,6 +74,9 @@ class Command(BaseCommand):
         parser.add_argument("--new-only", action="store_true",
                             help="Nur echte SHAB-Neugründungen (ohne Zefix-Ist-Bestand). "
                                  "Für die FC-Oftringen-Neueröffnungsliste.")
+        parser.add_argument("--days", type=int, default=0,
+                            help="Nur Firmen mit SHAB-Publikation in den letzten N Tagen "
+                                 "(0 = kein Zeitfilter). Für den wöchentlichen FC-Delta.")
         parser.add_argument("--risk", choices=["person", "firma", "nomail", "mailbar"],
                             default="",
                             help="Filter nach Kontakt-Risiko: person (🔴), "
@@ -87,6 +90,12 @@ class Command(BaseCommand):
         qs = NewCompany.objects.all()
         if opts["new_only"]:
             qs = qs.exclude(shab_id__startswith="zefix:")
+        if opts["days"]:
+            from datetime import timedelta
+
+            from django.utils import timezone
+            since = timezone.localdate() - timedelta(days=opts["days"])
+            qs = qs.filter(publication_date__gte=since)
         towns = []
         if opts["bezirk_zofingen"]:
             towns = BEZIRK_ZOFINGEN

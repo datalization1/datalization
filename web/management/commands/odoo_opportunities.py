@@ -44,6 +44,10 @@ class Command(BaseCommand):
                             help="Nur konvertieren, keine E-Mail-Aktivitäten.")
         parser.add_argument("--activity-days", type=int, default=3,
                             help="Fälligkeit der E-Mail-Aktivität in Tagen (Default 3).")
+        parser.add_argument("--limit", type=int, default=0,
+                            help="Max. Anzahl NEUER E-Mail-Aktivitäten pro Lauf "
+                                 "(0 = alle; z. B. 10 für die Wochen-Charge). "
+                                 "Priorisiert nach neuester Gründung.")
 
     def handle(self, *args, **opts):
         if not odoo_crm.enabled():
@@ -107,8 +111,13 @@ class Command(BaseCommand):
                               fields=["res_id"])
             existing.update(r["res_id"] for r in rows)
         todo = [r for r in mailbar if r.odoo_lead_id not in existing]
+        if opts["limit"]:
+            # neueste Gründungen zuerst, dann auf die Wochen-Charge deckeln
+            todo.sort(key=lambda r: r.publication_date or timezone.localdate(), reverse=True)
+            todo = todo[:opts["limit"]]
         self.stdout.write(f"  bereits mit E-Mail-Aktivität: {len(existing)}, "
-                          f"neu anzulegen: {len(todo)}")
+                          f"neu anzulegen: {len(todo)}"
+                          + (f" (gedeckelt auf {opts['limit']})" if opts["limit"] else ""))
 
         deadline = (timezone.localdate() + timedelta(days=opts["activity_days"])).isoformat()
         if dry:

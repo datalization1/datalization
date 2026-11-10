@@ -5,11 +5,20 @@ beigelegter Visitenkarte versenden.
 Ausgabe ist EINE HTML-Datei, ein Brief pro A4-Seite. Im Browser öffnen →
 ⌘P → 'Als PDF sichern' oder direkt drucken (Ränder: 'Keine'/Standard).
 
+Markiert die erzeugte Charge automatisch in Odoo (wenn konfiguriert): genau die
+im PDF enthaltenen Firmen bekommen den Tag 'Brief-Kandidat' und eine
+'Brief'-Nachfass-Aktivität (+7 Tage). So bleiben PDF und CRM synchron und die
+Charge ist in CRM → Leads über den Tag filterbar. Opt-out mit --no-tag.
+Nach dem physischen Versand die Charge mit --mark (Tag 'Brief versendet')
+abschliessen, damit sie beim nächsten Lauf übersprungen wird.
+
     python manage.py generate_letters
     python manage.py generate_letters --bezirk-zofingen
     python manage.py generate_letters --limit 3   # Testlauf
+    python manage.py generate_letters --no-tag    # ohne Odoo-Markierung
 """
 import os
+from datetime import timedelta
 
 from django.core.management.base import BaseCommand
 from django.db.models import Q
@@ -19,6 +28,9 @@ from web import odoo_crm
 from web.models import NewCompany
 
 SENT_TAG = "Brief versendet"
+CAND_TAG = "Brief-Kandidat"            # markiert die vorbereitete Brief-Charge
+BRIEF_ACTIVITY = "Brief"              # mail.activity.type
+CRM_LEAD_MODEL_ID = 2655
 LEGAL_RANK = [("aktien", 3), ("gmbh", 2), ("kollektiv", 2)]  # Rest = 1
 
 BEZIRK_ZOFINGEN = [
@@ -133,6 +145,11 @@ class Command(BaseCommand):
         parser.add_argument("--mark", action="store_true",
                             help="Die erzeugten Firmen in Odoo mit 'Brief versendet' taggen, "
                                  "damit sie beim nächsten Lauf übersprungen werden.")
+        parser.add_argument("--no-tag", action="store_true",
+                            help="NICHT automatisch mit 'Brief-Kandidat' taggen / "
+                                 "keine Nachfass-Aktivität anlegen (Standard: an, wenn Odoo aktiv).")
+        parser.add_argument("--activity-days", type=int, default=7,
+                            help="Fälligkeit der Nachfass-Aktivität in Tagen (Default 7).")
 
     @staticmethod
     def _rank(r):
@@ -143,6 +160,51 @@ class Command(BaseCommand):
         bezirk = 1 if r.town in BEZIRK_ZOFINGEN else 0
         pub = r.publication_date.toordinal() if hasattr(r.publication_date, "toordinal") else 0
         return (has_phone, legal, bezirk, pub)
+
+    def _tag_candidates(self, client, records, activity_days):
+        """Taggt die erzeugten Firmen mit 'Brief-Kandidat' und legt je eine
+        'Brief'-Nachfass-Aktivität an (idempotent: keine doppelten Aktivitäten)."""
+        ids = [r.odoo_lead_id for r in records if r.odoo_lead_id]
+        if not ids:
+            self.stdout.write(self.style.WARNING(
+                "Keine der erzeugten Firmen hat eine Odoo-Lead-ID – nichts getaggt."))
+            return
+
+        cand_tag = client.tag_id(CAND_TAG)
+        client._execute("crm.lead", "write", ids, {"tag_ids": [(4, cand_tag)]})
+
+        at = client._execute("mail.activity.type", "search",
+                             [["name", "=", BRIEF_ACTIVITY]], limit=1)
+        act_type = at[0] if at else client._execute(
+            "mail.activity.type", "create", {"name": BRIEF_ACTIVITY})
+
+        deadline = (timezone.localdate() + timedelta(days=activity_days)).isoformat()
+        created = 0
+        for r in records:
+            lead_id = r.odoo_lead_id
+            if not lead_id:
+                continue
+            exists = client._execute("mail.activity", "search",
+                                     [["res_model", "=", "crm.lead"],
+                                      ["res_id", "=", lead_id],
+                                      ["activity_type_id", "=", act_type]], limit=1)
+            if exists:
+                continue
+            client._execute("mail.activity", "create", {
+                "activity_type_id": act_type,
+                "res_model_id": CRM_LEAD_MODEL_ID,
+                "res_id": lead_id,
+                "user_id": client.uid,
+                "date_deadline": deadline,
+                "summary": "Erstkontakt-Brief – nachfassen",
+                "note": f"Neugründung {r.town}. Erstkontakt-Brief erzeugt (Stapel-PDF), "
+                        f"versenden und danach telefonisch nachfassen"
+                        f"{' (' + r.phone + ')' if r.phone else ''}.",
+            })
+            created += 1
+        self.stdout.write(self.style.SUCCESS(
+            f"{len(ids)} Firmen in Odoo mit '{CAND_TAG}' getaggt, "
+            f"{created} Nachfass-Aktivität(en) angelegt (fällig {deadline})."))
 
     def handle(self, *args, **opts):
         qs = (NewCompany.objects
@@ -189,6 +251,11 @@ class Command(BaseCommand):
                 client._execute("crm.lead", "write", ids, {"tag_ids": [(4, sent_tag)]})
                 self.stdout.write(self.style.SUCCESS(
                     f"{len(ids)} Firmen in Odoo mit '{SENT_TAG}' getaggt."))
+
+        # Vorbereitete Charge in Odoo markieren: Tag 'Brief-Kandidat' + Nachfass-
+        # Aktivität auf genau den erzeugten Firmen (so bleiben PDF und Odoo synchron).
+        if client and not opts["no_tag"]:
+            self._tag_candidates(client, records, opts["activity_days"])
 
         html = (f"<!DOCTYPE html><html lang='de'><head><meta charset='utf-8'>"
                 f"<title>Serienbrief Neugründungen</title><style>{PAGE_CSS}</style></head>"
