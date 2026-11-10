@@ -36,6 +36,7 @@ class OdooClient:
         self.models = xmlrpc.client.ServerProxy(f"{self.url}/xmlrpc/2/object", allow_none=True)
         self._country_ch = None
         self._tags = {}
+        self._teams = {}
 
     def _execute(self, model, method, *args, **kw):
         return self.models.execute_kw(self.db, self.uid, self.key, model, method, list(args), kw)
@@ -53,6 +54,15 @@ class OdooClient:
         res = self._execute("crm.tag", "search", [["name", "=", name]], limit=1)
         tid = res[0] if res else self._execute("crm.tag", "create", {"name": name})
         self._tags[name] = tid
+        return tid
+
+    def team_id(self, name):
+        """ID eines crm.team (Verkaufsteam; wird bei Bedarf angelegt)."""
+        if name in self._teams:
+            return self._teams[name]
+        res = self._execute("crm.team", "search", [["name", "=", name]], limit=1)
+        tid = res[0] if res else self._execute("crm.team", "create", {"name": name})
+        self._teams[name] = tid
         return tid
 
     def create_many(self, vals_list):
@@ -161,6 +171,34 @@ class OdooClient:
             "website": company.website or False,
             "description": desc or False,
             "tag_ids": [(6, 0, [self.tag_id("Datalization")])],
+        }
+
+    def region_vals(self, company):
+        """crm.lead-Werte für eine Bestandsfirma der Region (Team 'Regionale
+        Akquise', Tag 'Region Zofingen' – KEIN Datalization-Tag, eigener Strom)."""
+        street = " ".join(x for x in [company.street, company.house_number] if x).strip()
+        desc = "\n".join(x for x in [
+            f"Rechtsform: {company.legal_form}" if company.legal_form else "",
+            f"UID: {company.uid}" if company.uid else "",
+            f"Sitz: {company.seat} ({company.canton})" if company.seat else "",
+            f"Zweck: {company.purpose}" if company.purpose else "",
+            f"Register-Status: {company.zefix_status}" if getattr(company, "zefix_status", "") else "",
+            f"Zefix: {company.zefix_url}" if getattr(company, "zefix_url", "") else "",
+        ] if x)
+        return {
+            "name": f"{company.name} – {company.town}".strip(),
+            "type": "lead",
+            "partner_name": company.name,
+            "street": street or False,
+            "zip": company.zip_code or False,
+            "city": company.town or False,
+            "country_id": self.country_ch_id() or False,
+            "phone": company.phone or False,
+            "email_from": company.email or False,
+            "website": company.website or False,
+            "description": desc or False,
+            "team_id": self.team_id("Regionale Akquise"),
+            "tag_ids": [(6, 0, [self.tag_id("Region Zofingen")])],
         }
 
     def create_lead(self, company):

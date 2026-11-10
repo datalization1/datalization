@@ -3,8 +3,14 @@
     python manage.py push_leads_odoo --model acquisition
     python manage.py push_leads_odoo --model realestate
     python manage.py push_leads_odoo --model all
+    python manage.py push_leads_odoo --model region   # Bestand Region → eigenes Team
+
+'region' pusht den Zefix-Ist-Bestand (zefix:) der Region als Leads ins Team
+'Regionale Akquise' (Tag 'Region Zofingen'), nur aktive Firmen MIT Telefon oder
+E-Mail. Bewusst NICHT Teil von 'all' – der Wochen-Cron fasst den Bestand nie an.
 """
 from django.core.management.base import BaseCommand, CommandError
+from django.db.models import Q
 from django.utils import timezone
 
 from leadgen import odoo_crm
@@ -15,7 +21,8 @@ class Command(BaseCommand):
     help = "Pusht AcquisitionLead/RealEstateLead gebündelt nach Odoo CRM."
 
     def add_arguments(self, parser):
-        parser.add_argument("--model", choices=["acquisition", "realestate", "shab", "all"],
+        parser.add_argument("--model",
+                            choices=["acquisition", "realestate", "shab", "region", "all"],
                             default="all")
         parser.add_argument("--chunk", type=int, default=80,
                             help="Datensätze pro API-Call (Default 80).")
@@ -30,19 +37,25 @@ class Command(BaseCommand):
 
         targets = []
         if opts["model"] in ("shab", "all"):
-            targets.append(("Neugründungen", NewCompany, client.shab_vals))
+            targets.append(("Neugründungen", NewCompany, client.shab_vals, "shab"))
         if opts["model"] in ("acquisition", "all"):
-            targets.append(("Akquise", AcquisitionLead, client.acq_vals))
+            targets.append(("Akquise", AcquisitionLead, client.acq_vals, "acquisition"))
         if opts["model"] in ("realestate", "all"):
-            targets.append(("Immobilien", RealEstateLead, client.broker_vals))
+            targets.append(("Immobilien", RealEstateLead, client.broker_vals, "realestate"))
+        if opts["model"] == "region":   # explizit – NIE über 'all'
+            targets.append(("Regionale Akquise", NewCompany, client.region_vals, "region"))
 
-        for label, Model, builder in targets:
+        for label, Model, builder, kind in targets:
             qs = Model.objects.filter(odoo_lead_id__isnull=True).order_by("pk")
-            if Model is NewCompany:  # gelöschte/in Löschung sind keine Leads
+            if kind == "shab":  # gelöschte/in Löschung sind keine Leads
                 qs = qs.exclude(zefix_status__in=["CANCELLED", "BEING_CANCELLED"])
-                # Zefix-Ist-Bestand bleibt nur Liste – NICHT ins CRM pushen
-                # (nur echte SHAB-Neugründungen werden Leads).
+                # Zefix-Ist-Bestand bleibt bei 'shab' aussen vor (nur echte
+                # SHAB-Neugründungen werden hier Leads).
                 qs = qs.exclude(shab_id__startswith="zefix:")
+            elif kind == "region":  # NUR Bestand, aktiv, kontaktierbar
+                qs = qs.filter(shab_id__startswith="zefix:", zefix_status="ACTIVE")
+                qs = qs.exclude((Q(phone="") | Q(phone__isnull=True)) &
+                                (Q(email="") | Q(email__isnull=True)))
             if opts["limit"]:
                 qs = qs[:opts["limit"]]
             records = list(qs)
