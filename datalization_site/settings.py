@@ -183,30 +183,27 @@ if USE_CLOUDINARY:
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "asmtp.mail.hostpoint.ch"
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "info@datalization.ch"
-EMAIL_HOST_PASSWORD = os.getenv("HOSTPOINT_MAIL_PASSWORD", "")
-DEFAULT_FROM_EMAIL = "Datalization <info@datalization.ch>"
+# --- E-Mail-Versand über Microsoft 365 (Graph API, als info@) ---
+GRAPH_TENANT_ID = os.getenv("GRAPH_TENANT_ID", "")
+GRAPH_CLIENT_ID = os.getenv("GRAPH_CLIENT_ID", "")
+GRAPH_CLIENT_SECRET = os.getenv("GRAPH_CLIENT_SECRET", "")
+GRAPH_SENDER = os.getenv("GRAPH_SENDER", "info@datalization.ch")
 
-CONTACT_RECEIVER_EMAIL = os.getenv(
-    "CONTACT_RECEIVER_EMAIL",
-    "info@datalization.ch"
-)
+DEFAULT_FROM_EMAIL = "Datalization <info@datalization.ch>"
+SERVER_EMAIL = DEFAULT_FROM_EMAIL
+EMAIL_TIMEOUT = 15
+
+# Empfänger für Kontaktformular (in den Views benutzt)
+CONTACT_RECEIVER_EMAIL = os.getenv("CONTACT_RECEIVER_EMAIL", "info@datalization.ch")
 
 if DEBUG:
-    # lokal: nur in der Konsole anzeigen
+    # lokal: Mails nur in der Konsole anzeigen
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 else:
-    # Produktion (Heroku): wirklich senden
-    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+    # Produktion (Heroku): über Microsoft 365 senden
+    EMAIL_BACKEND = "datalization_site.mail_graph.GraphEmailBackend"
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
-
-# Explizit den SMTP-Backend setzen
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
 # Empfänger für Kontaktformular (in deinen Views benutzt)
 CONTACT_RECEIVER_EMAIL = os.getenv(
