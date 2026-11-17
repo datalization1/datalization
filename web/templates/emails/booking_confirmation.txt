@@ -1,0 +1,37 @@
+{% autoescape off %}{% if language == 'en' %}Dear {{ req.first_name }} {{ req.last_name }}
+
+Thank you very much for requesting a first consultation with Datalization.
+
+Your topic: {{ topic_display|default:"General consulting" }}
+{% if date_display %}Preferred date: {{ date_display }}
+{% endif %}{% if time_display %}Preferred time: {{ time_display }}
+{% endif %}{% if req.notes %}
+Your message:
+{{ req.notes }}
+{% endif %}
+We will get back to you within one business day to arrange an appointment.
+
+Kind regards
+Tihomir Danesic
+Owner, Datalization
+Bärengasse 3, 4800 Zofingen, Switzerland
+076 563 06 08
+datalization.ch{% else %}Guten Tag {{ req.first_name }} {{ req.last_name }}
+
+vielen Dank für Ihre Anfrage für ein Erstgespräch mit Datalization.
+
+Ihr Anliegen: {{ topic_display|default:"Allgemeine Beratung" }}
+{% if date_display %}Wunschdatum: {{ date_display }}
+{% endif %}{% if time_display %}Wunschzeit: {{ time_display }}
+{% endif %}{% if req.notes %}
+Ihre Nachricht:
+{{ req.notes }}
+{% endif %}
+Wir melden uns innerhalb eines Arbeitstags bei Ihnen, um einen Termin zu vereinbaren.
+
+Freundliche Grüsse
+Tihomir Danesic
+Inhaber, Datalization
+Bärengasse 3, 4800 Zofingen
+076 563 06 08
+datalization.ch{% endif %}{% endautoescape %}

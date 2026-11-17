@@ -1,0 +1,68 @@
+{% extends "v2/base_v2.html" %}
+{% load i18n static %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}{% if LANGUAGE_CODE == 'de' %}IT für KMU – Digitalisierung, Software, Projektleitung &amp; Support | Zofingen – Datalization{% else %}IT for SMEs – Digitalization, Software, Project Management &amp; Support | Zofingen – Datalization{% endif %}{% endblock %}
+{% block meta_description %}{% if LANGUAGE_CODE == 'de' %}IT für kleine Betriebe ohne eigene IT-Abteilung: Digitalisierung, Softwareentwicklung, IT-Projektleitung und IT-Support mit Microsoft 365 – persönlich in der Region Zofingen.{% else %}IT for small businesses without an in-house IT department: digitalization, software development, IT project management and IT support with Microsoft 365 – personal, in the Zofingen region.{% endif %}{% endblock %}
+{% block og_title %}{% if LANGUAGE_CODE == 'de' %}IT für KMU – ohne eigene IT-Abteilung{% else %}IT for SMEs – without your own IT department{% endif %}{% endblock %}
+
+{% block content %}
+<section class="hero hero--sub hero--text">
+  <div class="wrap">
+    <div>
+      <div class="crumb"><span class="dot" aria-hidden="true"></span><a href="{% url 'v2:home' %}">{% if LANGUAGE_CODE == 'de' %}Startseite{% else %}Home{% endif %}</a><span aria-hidden="true">/</span><span>{% if LANGUAGE_CODE == 'de' %}IT für KMU{% else %}IT for SMEs{% endif %}</span></div>
+      <h1>{% if LANGUAGE_CODE == 'de' %}IT für KMU – ohne eigene IT-Abteilung.{% else %}IT for SMEs – without your own IT department.{% endif %}</h1>
+      <p>{% if LANGUAGE_CODE == 'de' %}Sie brauchen keine eigene Informatik, um digital effizient zu arbeiten. Ich digitalisiere Ihre Abläufe, baue, was fehlt, und führe Ihre IT-Projekte bis zum Ziel. Bei mir sprechen Sie immer mit der Person, die auch die Arbeit macht.{% else %}You don't need an in-house IT department to work efficiently and digitally. I digitalize your processes, build what's missing, and lead your IT projects to the finish line. With me, you always talk to the person who actually does the work.{% endif %}</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2>{% if LANGUAGE_CODE == 'de' %}Vier Leistungen, ein Ansprechpartner{% else %}Four services, one point of contact{% endif %}</h2></div>
+    <div class="cards">
+
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7a8 3 0 0 0 16 0a8 3 0 0 0-16 0"></path><path d="M4 7v10a8 3 0 0 0 16 0V7"></path><path d="M4 12a8 3 0 0 0 16 0"></path></svg></div>
+        <h3>{% if LANGUAGE_CODE == 'de' %}Digitalisierung{% else %}Digitalization{% endif %}</h3>
+        <p>{% if LANGUAGE_CODE == 'de' %}Ihre Daten sauber aus den alten Systemen holen und Wiederkehrendes automatisieren, ohne Datenverlust.{% else %}Get your data cleanly out of the old systems and automate the repetitive work – without data loss.{% endif %}</p>
+        <a class="cardlink" href="{% url 'v2:digitalisierung' %}">{% if LANGUAGE_CODE == 'de' %}Mehr zur Digitalisierung{% else %}More on digitalization{% endif %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      </article>
+
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5"></path><path d="M16 7l5 5-5 5"></path></svg></div>
+        <h3>{% if LANGUAGE_CODE == 'de' %}Softwareentwicklung{% else %}Software development{% endif %}</h3>
+        <p>{% if LANGUAGE_CODE == 'de' %}Kundenportale, interne Tools und Schnittstellen dort, wo Standardsoftware aufhört.{% else %}Customer portals, internal tools and interfaces where off-the-shelf software ends.{% endif %}</p>
+        <a class="cardlink" href="{% url 'v2:softwareentwicklung' %}">{% if LANGUAGE_CODE == 'de' %}Mehr zur Softwareentwicklung{% else %}More on software development{% endif %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      </article>
+
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"></path><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"></path></svg></div>
+        <h3>{% if LANGUAGE_CODE == 'de' %}IT-Projektleitung{% else %}IT project management{% endif %}</h3>
+        <p>{% if LANGUAGE_CODE == 'de' %}Ihr Projekt sauber geführt: Anforderungen, Anbieterwahl, Koordination bis zum Go-live. Das gilt auch, wenn ich es nicht selbst baue.{% else %}Your project run properly: requirements, vendor selection, coordination through go-live. Even when I don't build it myself.{% endif %}</p>
+        <a class="cardlink" href="{% url 'v2:it_projektleitung' %}">{% if LANGUAGE_CODE == 'de' %}Mehr zur IT-Projektleitung{% else %}More on IT project management{% endif %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      </article>
+
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"></path><path d="M9 12l2 2 4-4"></path></svg></div>
+        <h3>{% if LANGUAGE_CODE == 'de' %}IT-Support &amp; Microsoft 365{% else %}IT support &amp; Microsoft 365{% endif %}</h3>
+        <p>{% if LANGUAGE_CODE == 'de' %}Lizenzen, Microsoft-365-Betrieb und Mail-Umstellungen – ein Ansprechpartner für Ihre IT im Alltag.{% else %}Licences, Microsoft 365 operations and mail migrations – one point of contact for your day-to-day IT.{% endif %}</p>
+        <a class="cardlink" href="{% url 'v2:it_support' %}">{% if LANGUAGE_CODE == 'de' %}Mehr zu IT-Support &amp; Microsoft 365{% else %}More on IT support &amp; Microsoft 365{% endif %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="box reveal">
+      <div class="box-text">
+        <span class="seal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+        <span>{% if LANGUAGE_CODE == 'de' %}Was Ihr Betrieb wirklich braucht, finden wir im kostenlosen Erstgespräch heraus – ehrlich und unverbindlich.{% else %}What your business really needs, we find out in a free initial consultation – honest and with no obligation.{% endif %}</span>
+      </div>
+      <a class="btn" href="{% url 'v2:booking' %}" data-loader>{% if LANGUAGE_CODE == 'de' %}Kostenloses Erstgespräch buchen{% else %}Book a free initial consultation{% endif %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+  </div>
+</section>
+{% endblock %}

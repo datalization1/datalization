@@ -1,0 +1,33 @@
+{% autoescape off %}{% if language == 'en' %}Dear {{ msg.first_name }} {{ msg.last_name }}
+
+Thank you very much for your enquiry to Datalization.
+
+Your topic: {{ msg.service|default:"General enquiry" }}
+
+Your message:
+{{ msg.message }}
+
+We will get back to you within one business day.
+
+Kind regards
+Tihomir Danesic
+Owner, Datalization
+Bärengasse 3, 4800 Zofingen, Switzerland
+076 563 06 08
+datalization.ch{% else %}Guten Tag {{ msg.first_name }} {{ msg.last_name }}
+
+vielen Dank für Ihre Anfrage bei Datalization.
+
+Ihr Anliegen: {{ msg.service|default:"Allgemeine Anfrage" }}
+
+Ihre Nachricht:
+{{ msg.message }}
+
+Wir melden uns innerhalb eines Arbeitstags bei Ihnen.
+
+Freundliche Grüsse
+Tihomir Danesic
+Inhaber, Datalization
+Bärengasse 3, 4800 Zofingen
+076 563 06 08
+datalization.ch{% endif %}{% endautoescape %}

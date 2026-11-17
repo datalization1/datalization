@@ -20,11 +20,13 @@
           </div>
         </li>
         <li class="has-dropdown">
-          <a {% if active == 'digitalisierung' or active == 'softwareentwicklung' %}class="on"{% endif %} href="{% url 'v2:digitalisierung' %}" aria-haspopup="true">{% if LANGUAGE_CODE == 'de' %}Digitalisierung &amp; Entwicklung{% else %}Digitalization &amp; Development{% endif %}<svg class="caret" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></a>
+          <a {% if active == 'it_fuer_kmu' or active == 'digitalisierung' or active == 'softwareentwicklung' or active == 'it_projektleitung' or active == 'it_support' %}class="on"{% endif %} href="{% url 'v2:it_fuer_kmu' %}" aria-haspopup="true">{% if LANGUAGE_CODE == 'de' %}IT für KMU{% else %}IT for SMEs{% endif %}<svg class="caret" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></a>
           <div class="dropdown-wrap">
             <ul class="dropdown">
               <li><a href="{% url 'v2:digitalisierung' %}">{% if LANGUAGE_CODE == 'de' %}Digitalisierung{% else %}Digitalization{% endif %}</a></li>
               <li><a href="{% url 'v2:softwareentwicklung' %}">{% if LANGUAGE_CODE == 'de' %}Softwareentwicklung{% else %}Software development{% endif %}</a></li>
+              <li><a href="{% url 'v2:it_projektleitung' %}">{% if LANGUAGE_CODE == 'de' %}IT-Projektleitung{% else %}IT project management{% endif %}</a></li>
+              <li><a href="{% url 'v2:it_support' %}">{% if LANGUAGE_CODE == 'de' %}IT-Support &amp; Microsoft 365{% else %}IT support &amp; Microsoft 365{% endif %}</a></li>
             </ul>
           </div>
         </li>

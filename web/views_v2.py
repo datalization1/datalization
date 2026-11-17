@@ -24,6 +24,37 @@ from . import views as web_views
 from .forms import ContactForm, StartForm
 from .models import ContactMessage
 
+# Booking-Formular: die <select>-Werte sind Maschinen-Codes. Fürs Mail lesbar
+# machen (DE, EN). Reihenfolge/Werte identisch zu booking.html.
+BOOKING_TOPICS = {
+    "general": ("Allgemeine Beratung", "General consulting"),
+    "odoo": ("Odoo", "Odoo"),
+    "digitalisierung": ("Digitalisierung & Entwicklung", "Digitalization & Development"),
+    "data-analytics": ("Daten & Analyse", "Data & Analytics"),
+    "monekey": ("Monekey", "Monekey"),
+}
+BOOKING_TIMES = {
+    "morning": ("Vormittags (9–12 Uhr)", "Morning (9–12)"),
+    "afternoon": ("Nachmittags (12–17 Uhr)", "Afternoon (12–17)"),
+    "evening": ("Abends (17–20 Uhr)", "Evening (17–20)"),
+}
+
+
+def _booking_labels(req):
+    """Lesbare Anzeige-Werte fürs Mail (Thema/Wunschzeit je nach Sprache).
+
+    Achtung historische Feldnamen: branches=Thema/Anliegen, pains=Wunschdatum,
+    start_mode=Wunschzeit (so legt es booking.html ab)."""
+    i = 1 if req.language == "en" else 0
+    topic = BOOKING_TOPICS.get(req.branches, (req.branches or "", req.branches or ""))[i]
+    time = BOOKING_TIMES.get(req.start_mode, (req.start_mode or "", req.start_mode or ""))[i]
+    return {
+        "language": req.language,
+        "topic_display": topic,
+        "time_display": time,
+        "date_display": req.pains or "",
+    }
+
 
 def _flag(request, name):
     """Platzhalter-Schalter. Standard AUS; per Query-Param (?foto=1) zuschaltbar
@@ -92,6 +123,18 @@ def v2_softwareentwicklung(request):
     return render(request, "v2/softwareentwicklung.html", {"active": "softwareentwicklung"})
 
 
+def v2_it_fuer_kmu(request):
+    return render(request, "v2/it_fuer_kmu.html", {"active": "it_fuer_kmu"})
+
+
+def v2_it_projektleitung(request):
+    return render(request, "v2/it_projektleitung.html", {"active": "it_projektleitung"})
+
+
+def v2_it_support(request):
+    return render(request, "v2/it_support_m365.html", {"active": "it_support"})
+
+
 def v2_monekey(request):
     return render(request, "v2/monekey.html", {"active": "monekey"})
 
@@ -149,15 +192,18 @@ def v2_kontakt(request):
             msg.language = request.LANGUAGE_CODE
             msg.save()
 
+            from_email = getattr(settings, "DEFAULT_FROM_EMAIL", "info@datalization.ch")
+
             try:
                 context = {"msg": msg}
-                subject_admin = f"[Datalization] Neue Kontaktanfrage von {msg.first_name} {msg.last_name}"
+                anliegen = msg.service or "Allgemeine Anfrage"
+                subject_admin = f"Neue Anfrage: {anliegen} – {msg.first_name} {msg.last_name}"
                 text_admin = render_to_string("emails/contact_admin.txt", context)
                 html_admin = render_to_string("emails/contact_admin.html", context)
                 email_admin = EmailMultiAlternatives(
-                    subject=subject_admin, body=text_admin,
-                    from_email=getattr(settings, "DEFAULT_FROM_EMAIL", "info@datalization.ch"),
+                    subject=subject_admin, body=text_admin, from_email=from_email,
                     to=[getattr(settings, "CONTACT_RECEIVER_EMAIL", "info@datalization.ch")],
+                    reply_to=[msg.email],   # Antwort in Outlook geht direkt an den Absender
                 )
                 email_admin.attach_alternative(html_admin, "text/html")
                 email_admin.send(fail_silently=True)
@@ -165,15 +211,13 @@ def v2_kontakt(request):
                 pass
 
             try:
-                context_u = {"msg": msg}
-                subject_user = ("Vielen Dank für Ihre Anfrage bei datalization"
-                                if msg.language == "de" else "Thank you for contacting datalization")
-                text_user = render_to_string("emails/contact_user.txt", context_u)
-                html_user = render_to_string("emails/contact_user.html", context_u)
+                context_u = {"msg": msg, "language": msg.language}
+                subject_user = ("Vielen Dank für Ihre Anfrage bei Datalization"
+                                if msg.language != "en" else "Thank you for contacting Datalization")
+                text_user = render_to_string("emails/contact_confirmation.txt", context_u)
+                html_user = render_to_string("emails/contact_confirmation.html", context_u)
                 email_user = EmailMultiAlternatives(
-                    subject=subject_user, body=text_user,
-                    from_email=getattr(settings, "DEFAULT_FROM_EMAIL", "info@datalization.ch"),
-                    to=[msg.email],
+                    subject=subject_user, body=text_user, from_email=from_email, to=[msg.email],
                 )
                 email_user.attach_alternative(html_user, "text/html")
                 email_user.send(fail_silently=True)
@@ -217,36 +261,46 @@ def v2_booking_submit(request):
     if form.is_valid() and not spam:
         req = form.save()
 
+        from_email = getattr(settings, "DEFAULT_FROM_EMAIL", "info@datalization.ch")
+        labels = _booking_labels(req)   # lesbare Thema/Wunschzeit/-datum
+
         try:
-            ctx = {"req": req}
-            subject_admin = f"[Datalization] Neue Erstgespräch-Anfrage von {req.first_name} {req.last_name}"
+            ctx = {"req": req, **labels}
+            anliegen = labels["topic_display"] or "Erstgespräch"
+            subject_admin = f"Neue Anfrage: {anliegen} – {req.first_name} {req.last_name}"
             text_admin = render_to_string("emails/start_admin.txt", ctx)
             email_admin = EmailMessage(
-                subject=subject_admin, body=text_admin,
-                from_email=getattr(settings, "DEFAULT_FROM_EMAIL", "info@datalization.ch"),
+                subject=subject_admin, body=text_admin, from_email=from_email,
                 to=[getattr(settings, "CONTACT_RECEIVER_EMAIL", "info@datalization.ch")],
+                reply_to=[req.email],   # Antwort geht direkt an den Absender
             )
             email_admin.send(fail_silently=True)
         except Exception:
             pass
 
         try:
-            ctx_u = {"req": req}
-            subject_user = "Danke für Ihre Anfrage" if req.language == "de" else "Thank you for your request"
-            text_user = render_to_string("emails/start_user.txt", ctx_u)
-            email_user = EmailMessage(
-                subject=subject_user, body=text_user,
-                from_email=getattr(settings, "DEFAULT_FROM_EMAIL", "info@datalization.ch"),
-                to=[req.email],
+            ctx_u = {"req": req, **labels}
+            subject_user = ("Vielen Dank für Ihre Anfrage bei Datalization"
+                            if req.language != "en" else "Thank you for contacting Datalization")
+            text_user = render_to_string("emails/booking_confirmation.txt", ctx_u)
+            html_user = render_to_string("emails/booking_confirmation.html", ctx_u)
+            email_user = EmailMultiAlternatives(
+                subject=subject_user, body=text_user, from_email=from_email, to=[req.email],
             )
+            email_user.attach_alternative(html_user, "text/html")
             email_user.send(fail_silently=True)
         except Exception:
             pass
 
-        messages.success(request, "Danke! Wir melden uns in Kürze." if request.LANGUAGE_CODE == "de"
-                         else "Thank you! We’ll get back to you shortly.")
-        return redirect("v2:booking")
+        # Eigene Danke-Seite (eigene URL) – für Google-Ads-Conversion-Tracking.
+        return redirect("v2:booking_thanks")
 
     messages.error(request, "Bitte prüfen Sie Ihre Eingaben." if request.LANGUAGE_CODE == "de"
                    else "Please check your input.")
     return render(request, "v2/booking.html", _booking_context(request, form))
+
+
+def v2_booking_thanks(request):
+    """Bestätigungs-/Danke-Seite nach erfolgreicher Buchung (eigene URL für die
+    Google-Ads-Conversion). Erreichbar unter /de/termin/danke/ bzw. /en/…."""
+    return render(request, "v2/booking_thanks.html", {"active": "booking"})

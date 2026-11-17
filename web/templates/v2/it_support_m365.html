@@ -1,0 +1,69 @@
+{% extends "v2/base_v2.html" %}
+{% load i18n static %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}{% if LANGUAGE_CODE == 'de' %}IT-Support &amp; Microsoft 365 für KMU | Datalization Zofingen{% else %}IT support &amp; Microsoft 365 for SMEs | Datalization Zofingen{% endif %}{% endblock %}
+{% block meta_description %}{% if LANGUAGE_CODE == 'de' %}Microsoft-365-Betrieb, Lizenzen und Mail-Umstellungen für kleine Betriebe – ein fester Ansprechpartner statt Hotline. IT-Support in der Region Zofingen.{% else %}Microsoft 365 operations, licences and mail migrations for small businesses – one fixed contact instead of a hotline. IT support in the Zofingen region.{% endif %}{% endblock %}
+{% block og_title %}{% if LANGUAGE_CODE == 'de' %}IT-Support &amp; Microsoft 365 – Ihre IT läuft, Sie arbeiten{% else %}IT support &amp; Microsoft 365 – your IT runs, you work{% endif %}{% endblock %}
+
+{% block content %}
+<section class="hero hero--sub hero--text">
+  <div class="wrap">
+    <div>
+      <div class="crumb"><span class="dot" aria-hidden="true"></span><a href="{% url 'v2:home' %}">{% if LANGUAGE_CODE == 'de' %}Startseite{% else %}Home{% endif %}</a><span aria-hidden="true">/</span><a href="{% url 'v2:it_fuer_kmu' %}">{% if LANGUAGE_CODE == 'de' %}IT für KMU{% else %}IT for SMEs{% endif %}</a><span aria-hidden="true">/</span><span>{% if LANGUAGE_CODE == 'de' %}IT-Support &amp; Microsoft 365{% else %}IT support &amp; Microsoft 365{% endif %}</span></div>
+      <h1>{% if LANGUAGE_CODE == 'de' %}IT-Support &amp; Microsoft 365 – Ihre IT läuft, Sie arbeiten.{% else %}IT support &amp; Microsoft 365 – your IT runs, you work.{% endif %}</h1>
+      <p>{% if LANGUAGE_CODE == 'de' %}Lizenzen verwalten, E-Mail umstellen, bei Problemen jemanden erreichen: Nebenbei erledigt, kostet das einen Kleinbetrieb Nerven und Zeit. Ich übernehme Ihren Microsoft-365-Betrieb und den IT-Support – von der richtigen Lizenz bis zur sicheren E-Mail – als ein Ansprechpartner, der erreichbar bleibt.{% else %}Managing licences, migrating email, reaching someone when there's a problem: done on the side, this costs a small business time and nerves. I take over your Microsoft 365 operations and IT support – from the right licence to secure email – as one contact who stays reachable.{% endif %}</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2>{% if LANGUAGE_CODE == 'de' %}Was ich für Sie übernehme{% else %}What I take off your plate{% endif %}</h2></div>
+    <div class="cards">
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="1"></rect><rect x="13" y="3" width="8" height="8" rx="1"></rect><rect x="3" y="13" width="8" height="8" rx="1"></rect><rect x="13" y="13" width="8" height="8" rx="1"></rect></svg></div>
+        <h3>{% if LANGUAGE_CODE == 'de' %}Microsoft 365 &amp; Lizenzen{% else %}Microsoft 365 &amp; licences{% endif %}</h3>
+        <p>{% if LANGUAGE_CODE == 'de' %}Die richtigen Lizenzen beschaffen und verwalten – fair dimensioniert über den Distributor ALSO, ohne für Funktionen zu zahlen, die Sie nicht nutzen.{% else %}Procure and manage the right licences – fairly sized via the distributor ALSO, without paying for features you don't use.{% endif %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg></div>
+        <h3>{% if LANGUAGE_CODE == 'de' %}E-Mail &amp; Umstellungen{% else %}Email &amp; migrations{% endif %}</h3>
+        <p>{% if LANGUAGE_CODE == 'de' %}Umzug auf Microsoft 365, eigene Domain, saubere Postfächer – eine Umstellung ohne verlorene E-Mails und ohne Ausfall.{% else %}Move to Microsoft 365, your own domain, clean mailboxes – a migration without lost emails and without downtime.{% endif %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></div>
+        <h3>{% if LANGUAGE_CODE == 'de' %}Laufender Support{% else %}Ongoing support{% endif %}</h3>
+        <p>{% if LANGUAGE_CODE == 'de' %}Ein fester Ansprechpartner für den IT-Alltag: Wenn etwas klemmt, erreichen Sie eine Person, die hilft – keine anonyme Hotline.{% else %}A fixed contact for day-to-day IT: when something gets stuck, you reach a person who helps – not an anonymous hotline.{% endif %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="12" rx="2"></rect><path d="M8 20h8M12 16v4"></path></svg></div>
+        <h3>{% if LANGUAGE_CODE == 'de' %}Geräte &amp; Einrichtung{% else %}Devices &amp; setup{% endif %}</h3>
+        <p>{% if LANGUAGE_CODE == 'de' %}Neue Mitarbeitende, neue Geräte: Einrichtung, Zugänge und ein solider Grundschutz, damit alles vom ersten Tag an läuft.{% else %}New employees, new devices: setup, accounts and solid baseline security, so everything works from day one.{% endif %}</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="split reveal">
+      <h2>{% if LANGUAGE_CODE == 'de' %}Warum über mich{% else %}Why through me{% endif %}</h2>
+      <div>
+        <p>{% if LANGUAGE_CODE == 'de' %}Sie bekommen Lizenzen, Betrieb und Support aus einer Hand – von jemandem, der auch Ihre Abläufe und Software kennt. So passt Ihre IT zusammen, statt aus Einzelteilen verschiedener Anbieter zu bestehen. Und wenn ein Projekt grösser wird, führe ich es für Sie.{% else %}You get licences, operations and support from a single source – from someone who also knows your processes and software. That way your IT fits together instead of being pieced together from different vendors. And when a project grows, I lead it for you.{% endif %}</p>
+        <div class="inlinelinks">
+          <a href="{% url 'v2:it_projektleitung' %}">{% if LANGUAGE_CODE == 'de' %}IT-Projektleitung{% else %}IT project management{% endif %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          <a href="{% url 'v2:digitalisierung' %}">{% if LANGUAGE_CODE == 'de' %}Digitalisierung{% else %}Digitalization{% endif %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="box reveal">
+      <div class="box-text">
+        <span class="seal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+        <span>{% if LANGUAGE_CODE == 'de' %}Was Ihr Betrieb an Support und Microsoft 365 braucht, klären wir im kostenlosen Erstgespräch – ohne Verpflichtung.{% else %}What your business needs in terms of support and Microsoft 365, we clarify in a free initial consultation – with no obligation.{% endif %}</span>
+      </div>
+      <a class="btn" href="{% url 'v2:booking' %}" data-loader>{% if LANGUAGE_CODE == 'de' %}Kostenloses Erstgespräch buchen{% else %}Book a free initial consultation{% endif %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+  </div>
+</section>
+{% endblock %}

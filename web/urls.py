@@ -1,4 +1,5 @@
 from django.urls import path
+from django.views.generic import RedirectView
 from . import views
 
 app_name = "web"
@@ -16,7 +17,10 @@ urlpatterns = [
     path("start/submit/", views.start_submit, name="start_submit"),
     path("booking/", views.booking, name="booking"),
     path("match/", views.match, name="match"),
-    path("custom-admin/", views.custom_admin, name="custom_admin"),
+    # Stillgelegt: die selbstgebaute Admin leitet jetzt auf die Django-Admin.
+    # View/Templates (views.custom_admin, custom_admin*.html) bleiben vorerst,
+    # sind aber nicht mehr verdrahtet. Name bleibt, damit reverse()-Aufrufe halten.
+    path("custom-admin/", RedirectView.as_view(url="/admin/", permanent=False), name="custom_admin"),
     path("about/", views.about, name="about"),
     path("contact/", views.contact, name="contact"), 
 

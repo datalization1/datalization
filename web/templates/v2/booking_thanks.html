@@ -1,0 +1,30 @@
+{% extends "v2/base_v2.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}{% if LANGUAGE_CODE == 'de' %}Vielen Dank – Anfrage eingegangen | Datalization{% else %}Thank you – request received | Datalization{% endif %}{% endblock %}
+{% block extra_css %}<meta name="robots" content="noindex, nofollow">{% endblock %}
+
+{% block content %}
+<section class="hero hero--sub hero--text">
+  <div class="wrap">
+    <div>
+      <div class="crumb"><span class="dot" aria-hidden="true"></span><a href="{% url 'v2:home' %}">{% if LANGUAGE_CODE == 'de' %}Startseite{% else %}Home{% endif %}</a><span aria-hidden="true">/</span><span>{% if LANGUAGE_CODE == 'de' %}Vielen Dank{% else %}Thank you{% endif %}</span></div>
+      <h1>{% if LANGUAGE_CODE == 'de' %}Vielen Dank – Ihre Anfrage ist eingegangen.{% else %}Thank you – we've received your request.{% endif %}</h1>
+      <p>{% if LANGUAGE_CODE == 'de' %}Ich habe Ihre Anfrage für ein Erstgespräch erhalten und melde mich innerhalb eines Arbeitstags bei Ihnen, um einen Termin zu vereinbaren. Eine Bestätigung ist unterwegs in Ihr Postfach.{% else %}I've received your request for an initial consultation and will get back to you within one business day to arrange an appointment. A confirmation is on its way to your inbox.{% endif %}</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="box reveal">
+      <div class="box-text">
+        <span class="seal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+        <span>{% if LANGUAGE_CODE == 'de' %}In der Zwischenzeit: Schauen Sie sich an, wie ich kleine Betriebe digital effizienter mache.{% else %}In the meantime: see how I help small businesses work more efficiently.{% endif %}</span>
+      </div>
+      <a class="btn" href="{% url 'v2:home' %}" data-loader>{% if LANGUAGE_CODE == 'de' %}Zur Startseite{% else %}Back to home{% endif %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+  </div>
+</section>
+{% endblock %}

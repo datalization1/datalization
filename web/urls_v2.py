@@ -18,6 +18,9 @@ urlpatterns = [
     path("data-analytics/", views_v2.v2_data_analytics, name="data_analytics"),
     path("digitalisierung/", views_v2.v2_digitalisierung, name="digitalisierung"),
     path("softwareentwicklung/", views_v2.v2_softwareentwicklung, name="softwareentwicklung"),
+    path("it-fuer-kmu/", views_v2.v2_it_fuer_kmu, name="it_fuer_kmu"),
+    path("it-projektleitung/", views_v2.v2_it_projektleitung, name="it_projektleitung"),
+    path("it-support-microsoft-365/", views_v2.v2_it_support, name="it_support"),
     path("monekey/", views_v2.v2_monekey, name="monekey"),
     path("odoo-partner-zofingen/", views_v2.v2_odoo_partner, name="odoo_partner"),
     path("ueber-datalization/", views_v2.v2_ueber_datalization, name="ueber_datalization"),
@@ -31,4 +34,5 @@ urlpatterns = [
     path("kontakt/", views_v2.v2_kontakt, name="kontakt"),
     path("booking/", views_v2.v2_booking, name="booking"),
     path("booking/submit/", views_v2.v2_booking_submit, name="booking_submit"),
+    path("termin/danke/", views_v2.v2_booking_thanks, name="booking_thanks"),
 ]

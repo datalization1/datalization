@@ -1,0 +1,87 @@
+{% extends "v2/base_v2.html" %}
+{% load i18n static %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}{% if LANGUAGE_CODE == 'de' %}IT-Projektleitung für KMU – von der Idee bis zum Go-live | Datalization Zofingen{% else %}IT project management for SMEs – from idea to go-live | Datalization Zofingen{% endif %}{% endblock %}
+{% block meta_description %}{% if LANGUAGE_CODE == 'de' %}Ihr IT-Projekt sauber geführt: Anforderungen klären, Anbieter wählen, koordinieren bis zum Go-live – auch wenn ich es nicht selbst baue. Ein Ansprechpartner, in der Region Zofingen.{% else %}Your IT project run properly: clarify requirements, select vendors, coordinate through go-live – even when I don't build it myself. One point of contact, in the Zofingen region.{% endif %}{% endblock %}
+{% block og_title %}{% if LANGUAGE_CODE == 'de' %}IT-Projektleitung – Ihr Projekt bis zum Ziel geführt{% else %}IT project management – your project led to the finish{% endif %}{% endblock %}
+
+{% block content %}
+<section class="hero hero--sub hero--text">
+  <div class="wrap">
+    <div>
+      <div class="crumb"><span class="dot" aria-hidden="true"></span><a href="{% url 'v2:home' %}">{% if LANGUAGE_CODE == 'de' %}Startseite{% else %}Home{% endif %}</a><span aria-hidden="true">/</span><a href="{% url 'v2:it_fuer_kmu' %}">{% if LANGUAGE_CODE == 'de' %}IT für KMU{% else %}IT for SMEs{% endif %}</a><span aria-hidden="true">/</span><span>{% if LANGUAGE_CODE == 'de' %}IT-Projektleitung{% else %}IT project management{% endif %}</span></div>
+      <h1>{% if LANGUAGE_CODE == 'de' %}Ihr IT-Projekt – sauber geführt bis zum Ziel.{% else %}Your IT project – led cleanly to the finish.{% endif %}</h1>
+      <p>{% if LANGUAGE_CODE == 'de' %}Ein IT-Projekt scheitert selten an der Technik, sondern an der Koordination: unklare Anforderungen, zu viele Beteiligte, niemand, der den Überblick behält. Genau diese Rolle übernehme ich – von den Anforderungen über die Anbieterwahl bis zum Go-live. Das gilt auch dann, wenn die Umsetzung jemand anderes macht.{% else %}An IT project rarely fails on the technology – it fails on coordination: unclear requirements, too many parties, nobody keeping the overview. That's exactly the role I take on – from requirements through vendor selection to go-live. Even when someone else does the implementation.{% endif %}</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2>{% if LANGUAGE_CODE == 'de' %}Was die Projektleitung umfasst{% else %}What project management covers{% endif %}</h2></div>
+    <div class="cards">
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg></div>
+        <h3>{% if LANGUAGE_CODE == 'de' %}Anforderungen &amp; Ziele{% else %}Requirements &amp; goals{% endif %}</h3>
+        <p>{% if LANGUAGE_CODE == 'de' %}Was soll das Projekt am Ende können? Ich übersetze Ihre Bedürfnisse in klare, umsetzbare Anforderungen – bevor Geld ausgegeben wird.{% else %}What should the project achieve in the end? I translate your needs into clear, actionable requirements – before any money is spent.{% endif %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"></path><path d="M7 3v4M12 9v4M17 15v4"></path></svg></div>
+        <h3>{% if LANGUAGE_CODE == 'de' %}Anbieter &amp; Lösung wählen{% else %}Selecting vendor &amp; solution{% endif %}</h3>
+        <p>{% if LANGUAGE_CODE == 'de' %}Offerten einholen, vergleichen und den passenden Partner oder die passende Software auswählen – neutral und in Ihrem Interesse.{% else %}Obtain and compare quotes and pick the right partner or software – neutral and in your interest.{% endif %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><circle cx="5" cy="6" r="2"></circle><circle cx="19" cy="6" r="2"></circle><circle cx="5" cy="18" r="2"></circle><circle cx="19" cy="18" r="2"></circle><path d="M7 7l3 3M17 7l-3 3M7 17l3-3M17 17l-3-3"></path></svg></div>
+        <h3>{% if LANGUAGE_CODE == 'de' %}Koordination &amp; Steuerung{% else %}Coordination &amp; control{% endif %}</h3>
+        <p>{% if LANGUAGE_CODE == 'de' %}Termine, Schnittstellen und alle Beteiligten an einem Strang: Ich halte das Projekt zusammen und Sie auf dem Laufenden.{% else %}Deadlines, interfaces and all parties pulling together: I hold the project together and keep you informed.{% endif %}</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15l-2-2 2-2 2 2z"></path><path d="M2 12h4M18 12h4M12 2v4M12 18v4"></path><circle cx="12" cy="12" r="9"></circle></svg></div>
+        <h3>{% if LANGUAGE_CODE == 'de' %}Qualität &amp; Go-live{% else %}Quality &amp; go-live{% endif %}</h3>
+        <p>{% if LANGUAGE_CODE == 'de' %}Tests, Abnahme und ein sauberer Produktivstart – inklusive Übergabe in den Betrieb und Dokumentation.{% else %}Testing, acceptance and a clean production start – including handover into operation and documentation.{% endif %}</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <h2 class="reveal">{% if LANGUAGE_CODE == 'de' %}So läuft es ab{% else %}How it works{% endif %}</h2>
+    <div class="pipe reveal">
+      <div class="pipe-line" aria-hidden="true"></div>
+      <span class="packet" aria-hidden="true" style="animation-delay:0s"></span>
+      <span class="packet" aria-hidden="true" style="animation-delay:1.15s"></span>
+      <span class="packet" aria-hidden="true" style="animation-delay:2.3s"></span>
+      <ol class="ptrack">
+        <li class="pstop"><span class="pnode" aria-hidden="true"></span><div class="pcard"><h3>{% if LANGUAGE_CODE == 'de' %}1 · Erstgespräch{% else %}1 · First conversation{% endif %}</h3><p>{% if LANGUAGE_CODE == 'de' %}Wo steht das Projekt, wo hakt es?{% else %}Where does the project stand, where is it stuck?{% endif %}</p></div></li>
+        <li class="pstop"><span class="pnode" aria-hidden="true"></span><div class="pcard"><h3>{% if LANGUAGE_CODE == 'de' %}2 · Auftrag klären{% else %}2 · Define the engagement{% endif %}</h3><p>{% if LANGUAGE_CODE == 'de' %}Rolle, Umfang und Aufwand schriftlich festhalten.{% else %}Role, scope and effort put in writing.{% endif %}</p></div></li>
+        <li class="pstop"><span class="pnode" aria-hidden="true"></span><div class="pcard"><h3>{% if LANGUAGE_CODE == 'de' %}3 · Führen{% else %}3 · Lead{% endif %}</h3><p>{% if LANGUAGE_CODE == 'de' %}Planung, Koordination, regelmässiger Statusbericht an Sie.{% else %}Planning, coordination, regular status reports to you.{% endif %}</p></div></li>
+        <li class="pstop"><span class="pnode pnode--end" aria-hidden="true"></span><div class="pcard"><h3>{% if LANGUAGE_CODE == 'de' %}4 · Abschluss{% else %}4 · Closing{% endif %}</h3><p>{% if LANGUAGE_CODE == 'de' %}Abnahme, Übergabe in den Betrieb, Dokumentation.{% else %}Acceptance, handover into operation, documentation.{% endif %}</p></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="split reveal">
+      <h2>{% if LANGUAGE_CODE == 'de' %}Ein Ansprechpartner, viele Fachleute{% else %}One point of contact, many specialists{% endif %}</h2>
+      <div>
+        <p>{% if LANGUAGE_CODE == 'de' %}Ich baue nicht alles selbst. Wo es Spezialisten braucht – Hardware, Netzwerk, bestimmte Fachsoftware –, hole ich sie aus meinem Netzwerk und koordiniere sie. Für Sie bleibt es einfach: Sie haben eine Ansprechperson, die den Überblick behält und geradesteht.{% else %}I don't build everything myself. Where specialists are needed – hardware, networking, specific industry software – I bring them in from my network and coordinate them. For you it stays simple: you have one contact who keeps the overview and takes responsibility.{% endif %}</p>
+        <div class="inlinelinks">
+          <a href="{% url 'v2:digitalisierung' %}">{% if LANGUAGE_CODE == 'de' %}Digitalisierung{% else %}Digitalization{% endif %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          <a href="{% url 'v2:it_support' %}">{% if LANGUAGE_CODE == 'de' %}IT-Support &amp; Microsoft 365{% else %}IT support &amp; Microsoft 365{% endif %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="box reveal">
+      <div class="box-text">
+        <span class="seal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+        <span>{% if LANGUAGE_CODE == 'de' %}Rolle, Umfang und Aufwand halten wir vorab schriftlich fest – Sie wissen jederzeit, woran Sie sind.{% else %}Role, scope and effort are agreed in writing up front – you always know where you stand.{% endif %}</span>
+      </div>
+      <a class="btn" href="{% url 'v2:booking' %}" data-loader>{% if LANGUAGE_CODE == 'de' %}Kostenloses Erstgespräch buchen{% else %}Book a free initial consultation{% endif %} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+  </div>
+</section>
+{% endblock %}
