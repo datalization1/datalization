@@ -55,13 +55,13 @@ if DEBUG:
 # Application definition
 
 INSTALLED_APPS = [
-    "web",  # vor contrib.admin, damit web/templates/admin/* (Branding) Vorrang hat
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "web",
     "leadgen",
     "django.contrib.sites",
     "django.contrib.sitemaps",
@@ -88,7 +88,10 @@ ROOT_URLCONF = "datalization_site.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        # web/templates per DIRS-Loader zuerst → erlaubt Admin-Template-Overrides
+        # (admin/base_site.html) OHNE die App-Reihenfolge zu ändern (die kippt
+        # sonst collectstatic/WhiteNoise-Manifest).
+        "DIRS": [BASE_DIR / "web" / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
