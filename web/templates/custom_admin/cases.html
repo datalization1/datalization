@@ -1,0 +1,34 @@
+{% extends "custom_admin/base.html" %}
+{% block title %}Referenzen{% endblock %}
+{% block content %}
+<div class="dla-top">
+  <div><h1>Referenzen</h1><div class="sub">Case Studies – Texte (DE/EN) und Bild bearbeiten.</div></div>
+  <a class="btn primary" href="{% url 'web:admin_case_new' %}"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Neue Referenz</a>
+</div>
+
+<div class="dla-panel">
+  <table class="dla-table">
+    <thead><tr><th>Bild</th><th>Titel</th><th>Kategorie</th><th>Datum</th><th>Sichtbar</th><th></th></tr></thead>
+    <tbody>
+      {% for c in items %}
+      <tr>
+        <td>{% if c.safe_image_url %}<img class="thumb" src="{{ c.safe_image_url }}" alt="" style="margin:0;max-height:48px;">{% else %}<span class="dla-muted">–</span>{% endif %}</td>
+        <td><strong>{{ c.title }}</strong><div class="dla-muted">/{{ c.slug }}</div></td>
+        <td>{{ c.category|default:"–" }}</td>
+        <td class="nowrap dla-muted">{{ c.date|date:"d.m.Y" }}</td>
+        <td>{% if c.published %}<span class="badge pub">sichtbar</span>{% else %}<span class="badge hid">versteckt</span>{% endif %}</td>
+        <td>
+          <div class="rowacts">
+            <a class="btn ghost sm" href="{% url 'web:admin_case_edit' c.id %}">Bearbeiten</a>
+            <form class="inline" method="post">{% csrf_token %}<input type="hidden" name="id" value="{{ c.id }}">
+              <button class="btn ghost sm" name="action" value="toggle_publish">{% if c.published %}Verstecken{% else %}Veröffentlichen{% endif %}</button></form>
+            <form class="inline" method="post" onsubmit="return confirm('Referenz „{{ c.title|escapejs }}“ löschen?');">{% csrf_token %}<input type="hidden" name="id" value="{{ c.id }}">
+              <button class="btn danger sm" name="action" value="delete">Löschen</button></form>
+          </div>
+        </td>
+      </tr>
+      {% empty %}<tr><td colspan="6" class="dla-empty">Noch keine Referenzen. Lege die erste an.</td></tr>{% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

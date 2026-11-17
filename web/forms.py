@@ -1,7 +1,43 @@
 from django import forms
 from django.core.validators import validate_email
 from django.utils.translation import gettext_lazy as _
-from .models import ContactMessage, StartRequest
+from .models import CaseStudy, ContactMessage, ContentBlock, StartRequest
+
+
+class CaseStudyForm(forms.ModelForm):
+    class Meta:
+        model = CaseStudy
+        fields = ["title", "category", "slug", "date", "published",
+                  "image", "preview_animation", "client_brief",
+                  "problem_brief", "summary", "result_points",
+                  "problem_brief_en", "summary_en", "result_points_en",
+                  "tech_stack"]
+        widgets = {
+            "title": forms.TextInput(attrs={"class": "f-input"}),
+            "category": forms.TextInput(attrs={"class": "f-input"}),
+            "slug": forms.TextInput(attrs={"class": "f-input", "placeholder": _("leer = aus Titel")}),
+            "date": forms.DateInput(attrs={"class": "f-input", "type": "date"}),
+            "tech_stack": forms.TextInput(attrs={"class": "f-input"}),
+            "client_brief": forms.Textarea(attrs={"class": "f-textarea", "rows": 2}),
+            "problem_brief": forms.Textarea(attrs={"class": "f-textarea", "rows": 3}),
+            "summary": forms.Textarea(attrs={"class": "f-textarea", "rows": 3}),
+            "result_points": forms.Textarea(attrs={"class": "f-textarea", "rows": 4}),
+            "problem_brief_en": forms.Textarea(attrs={"class": "f-textarea", "rows": 3}),
+            "summary_en": forms.Textarea(attrs={"class": "f-textarea", "rows": 3}),
+            "result_points_en": forms.Textarea(attrs={"class": "f-textarea", "rows": 4}),
+        }
+
+
+class ContentBlockForm(forms.ModelForm):
+    class Meta:
+        model = ContentBlock
+        fields = ["key", "label", "text_de", "text_en", "image"]
+        widgets = {
+            "key": forms.TextInput(attrs={"class": "f-input", "placeholder": "home_hero_title"}),
+            "label": forms.TextInput(attrs={"class": "f-input"}),
+            "text_de": forms.Textarea(attrs={"class": "f-textarea", "rows": 4}),
+            "text_en": forms.Textarea(attrs={"class": "f-textarea", "rows": 4}),
+        }
 
 class ContactForm(forms.ModelForm):
     class Meta:

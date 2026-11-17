@@ -1,0 +1,48 @@
+{% extends "custom_admin/base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="dla-top">
+  <div><h1>Dashboard</h1><div class="sub">Überblick über Anfragen, Buchungen und Inhalte.</div></div>
+</div>
+
+<div class="dla-stats">
+  <div class="dla-stat"><div class="n"><span class="accent">{{ contacts_open }}</span></div><div class="l">Offene Kontaktanfragen</div></div>
+  <div class="dla-stat"><div class="n"><span class="accent">{{ bookings_open }}</span></div><div class="l">Offene Buchungen</div></div>
+  <div class="dla-stat"><div class="n">{{ cases_published }}<span class="dla-muted" style="font-size:16px;font-weight:600;"> / {{ cases_total }}</span></div><div class="l">Referenzen veröffentlicht</div></div>
+  <div class="dla-stat"><div class="n">{{ blocks_total }}</div><div class="l">Inhalts-Blöcke</div></div>
+</div>
+
+<div class="dla-panel">
+  <div class="dla-panel-h"><h2>Neueste Kontaktanfragen</h2><a class="btn ghost sm" href="{% url 'web:admin_contacts' %}">Alle ansehen</a></div>
+  <table class="dla-table">
+    <thead><tr><th>Datum</th><th>Name</th><th>Anliegen</th><th>Status</th></tr></thead>
+    <tbody>
+      {% for c in recent_contacts %}
+      <tr>
+        <td class="nowrap dla-muted">{{ c.created|date:"d.m.Y" }}</td>
+        <td>{{ c.first_name }} {{ c.last_name }}<div class="dla-muted">{{ c.email }}</div></td>
+        <td>{{ c.service|default:"–" }}</td>
+        <td>{% if c.handled %}<span class="badge done">erledigt</span>{% else %}<span class="badge open">offen</span>{% endif %}</td>
+      </tr>
+      {% empty %}<tr><td colspan="4" class="dla-empty">Noch keine Anfragen.</td></tr>{% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div class="dla-panel">
+  <div class="dla-panel-h"><h2>Neueste Buchungen</h2><a class="btn ghost sm" href="{% url 'web:admin_bookings' %}">Alle ansehen</a></div>
+  <table class="dla-table">
+    <thead><tr><th>Datum</th><th>Name</th><th>Thema</th><th>Status</th></tr></thead>
+    <tbody>
+      {% for b in recent_bookings %}
+      <tr>
+        <td class="nowrap dla-muted">{{ b.created|date:"d.m.Y" }}</td>
+        <td>{{ b.first_name }} {{ b.last_name }}<div class="dla-muted">{{ b.email }}</div></td>
+        <td>{{ b.branches|default:"–" }}</td>
+        <td>{% if b.handled %}<span class="badge done">erledigt</span>{% else %}<span class="badge open">offen</span>{% endif %}</td>
+      </tr>
+      {% empty %}<tr><td colspan="4" class="dla-empty">Noch keine Buchungen.</td></tr>{% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

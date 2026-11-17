@@ -1,0 +1,38 @@
+{% extends "custom_admin/base.html" %}
+{% block title %}Inhalte{% endblock %}
+{% block content %}
+<div class="dla-top">
+  <div><h1>Inhalte</h1><div class="sub">Editierbare Text-/Bild-Blöcke für die Website.</div></div>
+  <a class="btn primary" href="{% url 'web:admin_content_new' %}"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Neuer Block</a>
+</div>
+
+<div class="dla-flash" style="background:#eef3f8;color:#2b4a63;">
+  So funktioniert's: Jeder Block hat einen <strong>Schlüssel</strong> (z. B. <code>home_hero_title</code>).
+  Im Website-Template wird er mit <code>{% templatetag openblock %} content_block "schluessel" {% templatetag closeblock %}</code> eingebunden.
+  Sobald die neue Homepage steht, hängen wir die gewünschten Stellen daran – dann pflegst du sie hier.
+</div>
+
+<div class="dla-panel">
+  <table class="dla-table">
+    <thead><tr><th>Schlüssel</th><th>Bezeichnung</th><th>Text (DE)</th><th>Bild</th><th>Geändert</th><th></th></tr></thead>
+    <tbody>
+      {% for b in items %}
+      <tr>
+        <td><code>{{ b.key }}</code></td>
+        <td>{{ b.label|default:"–" }}</td>
+        <td class="dla-muted">{{ b.text_de|truncatechars:70|default:"–" }}</td>
+        <td>{% if b.image %}<img class="thumb" src="{{ b.image.url }}" alt="" style="margin:0;max-height:40px;">{% else %}–{% endif %}</td>
+        <td class="nowrap dla-muted">{{ b.updated|date:"d.m.Y" }}</td>
+        <td>
+          <div class="rowacts">
+            <a class="btn ghost sm" href="{% url 'web:admin_content_edit' b.id %}">Bearbeiten</a>
+            <form class="inline" method="post" onsubmit="return confirm('Block „{{ b.key|escapejs }}“ löschen?');">{% csrf_token %}<input type="hidden" name="id" value="{{ b.id }}">
+              <button class="btn danger sm" name="action" value="delete">Löschen</button></form>
+          </div>
+        </td>
+      </tr>
+      {% empty %}<tr><td colspan="6" class="dla-empty">Noch keine Inhalts-Blöcke. Sie werden relevant, sobald die neue Homepage angebunden ist.</td></tr>{% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

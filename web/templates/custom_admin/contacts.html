@@ -1,0 +1,41 @@
+{% extends "custom_admin/base.html" %}
+{% block title %}Kontaktanfragen{% endblock %}
+{% block content %}
+<div class="dla-top">
+  <div><h1>Kontaktanfragen</h1><div class="sub">Einsendungen aus dem Kontaktformular.</div></div>
+  <a class="btn ghost" href="?export=1"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12M8 11l4 4 4-4M4 21h16"/></svg>CSV-Export</a>
+</div>
+
+<div class="dla-panel">
+  <table class="dla-table">
+    <thead><tr><th>Datum</th><th>Name / Kontakt</th><th>Anliegen &amp; Nachricht</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+      {% for c in items %}
+      <tr>
+        <td class="nowrap dla-muted">{{ c.created|date:"d.m.Y H:i" }}<div>{{ c.language|upper }}</div></td>
+        <td>
+          <strong>{{ c.first_name }} {{ c.last_name }}</strong>
+          {% if c.company %}<div class="dla-muted">{{ c.company }}</div>{% endif %}
+          <div><a href="mailto:{{ c.email }}">{{ c.email }}</a></div>
+          {% if c.phone %}<div class="dla-muted">{{ c.phone }}</div>{% endif %}
+        </td>
+        <td>
+          <div><strong>{{ c.service|default:"–" }}</strong></div>
+          <details class="msg"><summary>Nachricht anzeigen</summary><p>{{ c.message }}</p></details>
+        </td>
+        <td>{% if c.handled %}<span class="badge done">erledigt</span>{% else %}<span class="badge open">offen</span>{% endif %}</td>
+        <td>
+          <div class="rowacts">
+            <form class="inline" method="post">{% csrf_token %}<input type="hidden" name="id" value="{{ c.id }}">
+              {% if c.handled %}<button class="btn ghost sm" name="action" value="unhandle">Als offen</button>
+              {% else %}<button class="btn dark sm" name="action" value="handle">Erledigt</button>{% endif %}</form>
+            <form class="inline" method="post" onsubmit="return confirm('Diese Anfrage löschen?');">{% csrf_token %}<input type="hidden" name="id" value="{{ c.id }}">
+              <button class="btn danger sm" name="action" value="delete">Löschen</button></form>
+          </div>
+        </td>
+      </tr>
+      {% empty %}<tr><td colspan="5" class="dla-empty">Noch keine Kontaktanfragen.</td></tr>{% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

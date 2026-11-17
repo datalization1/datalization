@@ -1,0 +1,27 @@
+{% extends "custom_admin/base.html" %}
+{% block title %}{% if block %}Block bearbeiten{% else %}Neuer Block{% endif %}{% endblock %}
+{% block content %}
+<div class="dla-top">
+  <div><h1>{% if block %}Block bearbeiten{% else %}Neuer Inhalts-Block{% endif %}</h1>
+    <div class="sub">{% if block %}{{ block.key }}{% else %}Text-/Bild-Block anlegen{% endif %}</div></div>
+  <a class="btn ghost" href="{% url 'web:admin_content' %}">Zurück</a>
+</div>
+
+<form class="dla-form" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {% if form.non_field_errors %}<div class="dla-flash error">{{ form.non_field_errors }}</div>{% endif %}
+  <div class="grid2">
+    <div class="field"><label>Schlüssel</label>{{ form.key }}{% if form.key.errors %}<div class="err">{{ form.key.errors|striptags }}</div>{% endif %}<div class="help">Technischer Name, z. B. home_hero_title.</div></div>
+    <div class="field"><label>Bezeichnung</label>{{ form.label }}<div class="help">Für dich: wo/was ist das?</div></div>
+  </div>
+  <div class="field"><label>Text (Deutsch)</label>{{ form.text_de }}</div>
+  <div class="field"><label>Text (English, optional)</label>{{ form.text_en }}</div>
+  <div class="field"><label>Bild (optional)</label>
+    {% if block.image %}<div><img class="thumb" src="{{ block.image.url }}" alt=""></div>{% endif %}
+    {{ form.image }}</div>
+  <div class="form-actions">
+    <button class="btn primary" type="submit">Speichern</button>
+    <a class="btn ghost" href="{% url 'web:admin_content' %}">Abbrechen</a>
+  </div>
+</form>
+{% endblock %}

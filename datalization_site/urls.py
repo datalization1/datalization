@@ -162,5 +162,7 @@ urlpatterns += i18n_patterns(
     # die öffentlichen Alt-Seiten sind oben bereits per 301 abgefangen.
     path("", include(("web.urls", "web"), namespace="web")),
 
-    path("admin/", admin.site.urls),
+    # Django-Admin deaktiviert – es gibt nur noch die eigenständige Admin unter
+    # /custom-admin/. (Registrierungen in web/admin.py bleiben folgenlos.)
+    # path("admin/", admin.site.urls),
 )

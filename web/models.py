@@ -154,5 +154,36 @@ class Page(models.Model):
     body_en  = models.TextField(blank=True)
 
 
+class ContentBlock(models.Model):
+    """Generisch editierbarer Inhalts-Block (CMS-lite).
+
+    Templates holen ihn über {% content_block "schluessel" %}. So lassen sich
+    einzelne Homepage-Texte/Bilder in der Admin pflegen, ohne pro Sektion ein
+    eigenes Modell zu bauen. Anbindung an die (neue) Homepage via Template-Tag.
+    """
+    key = models.SlugField(_("Schlüssel"), unique=True,
+                           help_text=_("Technischer Name, z. B. home_hero_title."))
+    label = models.CharField(_("Bezeichnung"), max_length=160, blank=True,
+                             help_text=_("Für dich: wo/was ist dieser Block?"))
+    text_de = models.TextField(_("Text (DE)"), blank=True)
+    text_en = models.TextField(_("Text (EN)"), blank=True)
+    image = models.ImageField(_("Bild"), upload_to="content/", blank=True, null=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["key"]
+        verbose_name = _("Inhalts-Block")
+        verbose_name_plural = _("Inhalts-Blöcke")
+
+    def __str__(self):
+        return self.label or self.key
+
+    def localized(self):
+        lang = (get_language() or "").split("-")[0]
+        if lang == "en" and self.text_en:
+            return self.text_en
+        return self.text_de
+
+
 # Die Lead-Gen-/CRM-Models (NewCompany, RealEstateLead, AcquisitionLead) wohnen
 # seit dem App-Split (10.11.2026) in der App `leadgen` → leadgen/models.py.

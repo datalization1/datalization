@@ -1,6 +1,6 @@
 from django.urls import path
-from django.views.generic import RedirectView
 from . import views
+from . import admin_views
 
 app_name = "web"
 
@@ -17,10 +17,18 @@ urlpatterns = [
     path("start/submit/", views.start_submit, name="start_submit"),
     path("booking/", views.booking, name="booking"),
     path("match/", views.match, name="match"),
-    # Stillgelegt: die selbstgebaute Admin leitet jetzt auf die Django-Admin.
-    # View/Templates (views.custom_admin, custom_admin*.html) bleiben vorerst,
-    # sind aber nicht mehr verdrahtet. Name bleibt, damit reverse()-Aufrufe halten.
-    path("custom-admin/", RedirectView.as_view(url="/admin/", permanent=False), name="custom_admin"),
+    # Eigenständige Datalization-Admin (unabhängig von der Django-Admin).
+    path("custom-admin/login/", admin_views.admin_login, name="admin_login"),
+    path("custom-admin/logout/", admin_views.admin_logout, name="admin_logout"),
+    path("custom-admin/", admin_views.admin_dashboard, name="custom_admin"),
+    path("custom-admin/kontakte/", admin_views.admin_contacts, name="admin_contacts"),
+    path("custom-admin/buchungen/", admin_views.admin_bookings, name="admin_bookings"),
+    path("custom-admin/referenzen/", admin_views.admin_cases, name="admin_cases"),
+    path("custom-admin/referenzen/neu/", admin_views.admin_case_edit, name="admin_case_new"),
+    path("custom-admin/referenzen/<int:pk>/", admin_views.admin_case_edit, name="admin_case_edit"),
+    path("custom-admin/inhalte/", admin_views.admin_content, name="admin_content"),
+    path("custom-admin/inhalte/neu/", admin_views.admin_content_edit, name="admin_content_new"),
+    path("custom-admin/inhalte/<int:pk>/", admin_views.admin_content_edit, name="admin_content_edit"),
     path("about/", views.about, name="about"),
     path("contact/", views.contact, name="contact"), 
 

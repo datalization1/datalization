@@ -1,0 +1,43 @@
+{% extends "custom_admin/base.html" %}
+{% block title %}Buchungen{% endblock %}
+{% block content %}
+<div class="dla-top">
+  <div><h1>Buchungen</h1><div class="sub">Erstgespräch-Anfragen aus dem Booking-Formular.</div></div>
+  <a class="btn ghost" href="?export=1"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12M8 11l4 4 4-4M4 21h16"/></svg>CSV-Export</a>
+</div>
+
+<div class="dla-panel">
+  <table class="dla-table">
+    <thead><tr><th>Datum</th><th>Name / Kontakt</th><th>Anfrage</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+      {% for b in items %}
+      <tr>
+        <td class="nowrap dla-muted">{{ b.created|date:"d.m.Y H:i" }}<div>{{ b.language|upper }}</div></td>
+        <td>
+          <strong>{{ b.first_name }} {{ b.last_name }}</strong>
+          {% if b.company %}<div class="dla-muted">{{ b.company }}</div>{% endif %}
+          <div><a href="mailto:{{ b.email }}">{{ b.email }}</a></div>
+          {% if b.phone %}<div class="dla-muted">{{ b.phone }}</div>{% endif %}
+        </td>
+        <td>
+          <div><strong>Thema:</strong> {{ b.branches|default:"–" }}</div>
+          {% if b.pains %}<div><strong>Wunschdatum:</strong> {{ b.pains }}</div>{% endif %}
+          {% if b.start_mode %}<div><strong>Wunschzeit:</strong> {{ b.start_mode }}</div>{% endif %}
+          {% if b.notes %}<details class="msg"><summary>Nachricht anzeigen</summary><p>{{ b.notes }}</p></details>{% endif %}
+        </td>
+        <td>{% if b.handled %}<span class="badge done">erledigt</span>{% else %}<span class="badge open">offen</span>{% endif %}</td>
+        <td>
+          <div class="rowacts">
+            <form class="inline" method="post">{% csrf_token %}<input type="hidden" name="id" value="{{ b.id }}">
+              {% if b.handled %}<button class="btn ghost sm" name="action" value="unhandle">Als offen</button>
+              {% else %}<button class="btn dark sm" name="action" value="handle">Erledigt</button>{% endif %}</form>
+            <form class="inline" method="post" onsubmit="return confirm('Diese Buchung löschen?');">{% csrf_token %}<input type="hidden" name="id" value="{{ b.id }}">
+              <button class="btn danger sm" name="action" value="delete">Löschen</button></form>
+          </div>
+        </td>
+      </tr>
+      {% empty %}<tr><td colspan="5" class="dla-empty">Noch keine Buchungen.</td></tr>{% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>{% block title %}Verwaltung{% endblock %} · Datalization</title>
+  <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+</head>
+<body class="dla">
+<div class="dla-wrap">
+  <aside class="dla-side">
+    <a class="dla-brand" href="{% url 'web:custom_admin' %}">Datalization<span class="dot">&#9679;</span></a>
+    <nav class="dla-nav">
+      <a class="{% if nav == 'dashboard' %}on{% endif %}" href="{% url 'web:custom_admin' %}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>Dashboard</a>
+      <a class="{% if nav == 'contacts' %}on{% endif %}" href="{% url 'web:admin_contacts' %}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Kontaktanfragen</a>
+      <a class="{% if nav == 'bookings' %}on{% endif %}" href="{% url 'web:admin_bookings' %}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>Buchungen</a>
+      <a class="{% if nav == 'cases' %}on{% endif %}" href="{% url 'web:admin_cases' %}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Referenzen</a>
+      <a class="{% if nav == 'content' %}on{% endif %}" href="{% url 'web:admin_content' %}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg>Inhalte</a>
+      <div class="sep"></div>
+      <a href="{% url 'web:home' %}" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6M10 14L21 3"/></svg>Zur Website</a>
+      <a href="{% url 'web:admin_logout' %}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>Abmelden</a>
+    </nav>
+  </aside>
+  <main class="dla-main">
+    {% if messages %}{% for m in messages %}<div class="dla-flash {{ m.tags }}">{{ m }}</div>{% endfor %}{% endif %}
+    {% block content %}{% endblock %}
+  </main>
+</div>
+</body>
+</html>

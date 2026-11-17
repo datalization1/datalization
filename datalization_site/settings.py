@@ -37,7 +37,8 @@ ALLOWED_HOSTS = os.getenv(
     ".herokuapp.com,localhost,127.0.0.1,testserver"
 ).split(",")
 
-ADMIN_PASSWORD = "v836eRd@xGSmkGN"
+# Passwort der eigenständigen Admin – aus der Umgebung, NICHT im Code.
+ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "")
 
 _csrf_defaults = ["https://*.herokuapp.com"]
 if DEBUG:

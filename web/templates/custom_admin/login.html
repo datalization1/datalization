@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Anmelden · Datalization</title>
+  <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+</head>
+<body class="dla">
+<div class="dla-login">
+  <div class="card">
+    <div class="brand">Datalization<span class="dot">&#9679;</span></div>
+    <div class="muted">Verwaltung – bitte anmelden</div>
+    {% if messages %}{% for m in messages %}<div class="err">{{ m }}</div>{% endfor %}{% endif %}
+    <form method="post">{% csrf_token %}
+      <input type="password" name="password" placeholder="Passwort" autofocus required>
+      <button class="btn primary" type="submit">Anmelden</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

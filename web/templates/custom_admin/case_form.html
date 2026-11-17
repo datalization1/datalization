@@ -1,0 +1,50 @@
+{% extends "custom_admin/base.html" %}
+{% block title %}{% if case %}Referenz bearbeiten{% else %}Neue Referenz{% endif %}{% endblock %}
+{% block content %}
+<div class="dla-top">
+  <div><h1>{% if case %}Referenz bearbeiten{% else %}Neue Referenz{% endif %}</h1>
+    <div class="sub">{% if case %}{{ case.title }}{% else %}Case Study anlegen{% endif %}</div></div>
+  <a class="btn ghost" href="{% url 'web:admin_cases' %}">Zurück</a>
+</div>
+
+<form class="dla-form" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {% if form.non_field_errors %}<div class="dla-flash error">{{ form.non_field_errors }}</div>{% endif %}
+
+  <div class="section-title" style="border-top:none;padding-top:0;margin-top:0;">Grunddaten</div>
+  <div class="grid2">
+    <div class="field"><label>Titel</label>{{ form.title }}{% if form.title.errors %}<div class="err">{{ form.title.errors|striptags }}</div>{% endif %}</div>
+    <div class="field"><label>Kategorie</label>{{ form.category }}</div>
+    <div class="field"><label>Slug (URL)</label>{{ form.slug }}<div class="help">Leer lassen = automatisch aus dem Titel.</div></div>
+    <div class="field"><label>Datum</label>{{ form.date }}{% if form.date.errors %}<div class="err">{{ form.date.errors|striptags }}</div>{% endif %}</div>
+  </div>
+  <div class="field check">{{ form.published }}<label style="margin:0;">Auf der Website sichtbar</label></div>
+
+  <div class="section-title">Medien</div>
+  <div class="grid2">
+    <div class="field"><label>Bild</label>
+      {% if case.safe_image_url %}<div><img class="thumb" src="{{ case.safe_image_url }}" alt=""></div>{% endif %}
+      {{ form.image }}<div class="help">JPG/PNG. Ersetzt das aktuelle Bild.</div></div>
+    <div class="field"><label>Vorschau-Animation (optional)</label>{{ form.preview_animation }}</div>
+  </div>
+
+  <div class="section-title">Deutsch</div>
+  <div class="field"><label>Kunde (kurz)</label>{{ form.client_brief }}</div>
+  <div class="field"><label>Problem</label>{{ form.problem_brief }}</div>
+  <div class="field"><label>Lösung</label>{{ form.summary }}</div>
+  <div class="field"><label>Resultate (ein Punkt pro Zeile)</label>{{ form.result_points }}</div>
+
+  <div class="section-title">English (optional)</div>
+  <div class="field"><label>Problem (EN)</label>{{ form.problem_brief_en }}</div>
+  <div class="field"><label>Solution (EN)</label>{{ form.summary_en }}</div>
+  <div class="field"><label>Results (EN, one per line)</label>{{ form.result_points_en }}</div>
+
+  <div class="section-title">Technik</div>
+  <div class="field"><label>Tech-Stack</label>{{ form.tech_stack }}</div>
+
+  <div class="form-actions">
+    <button class="btn primary" type="submit">Speichern</button>
+    <a class="btn ghost" href="{% url 'web:admin_cases' %}">Abbrechen</a>
+  </div>
+</form>
+{% endblock %}
