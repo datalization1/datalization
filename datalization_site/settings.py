@@ -55,13 +55,13 @@ if DEBUG:
 # Application definition
 
 INSTALLED_APPS = [
+    "web",  # vor contrib.admin, damit web/templates/admin/* (Branding) Vorrang hat
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "web",
     "leadgen",
     "django.contrib.sites",
     "django.contrib.sitemaps",

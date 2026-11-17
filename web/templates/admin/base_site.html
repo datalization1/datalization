@@ -1,0 +1,57 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ title }} · Datalization{% endblock %}
+
+{% block branding %}
+<div id="site-name">
+  <a href="{% url 'admin:index' %}">Datalization<span class="dl-dot">&#9679;</span><span class="dl-sub">Verwaltung</span></a>
+</div>
+{% endblock %}
+
+{% block extrastyle %}{{ block.super }}
+<style>
+/* Datalization-CI: dunkel + Orange-Akzent (#F48B2D). Überschreibt die Django-
+   Admin-Farbvariablen; nach den Admin-CSS geladen → gilt in Light & Dark. */
+:root,
+:root[data-theme="light"],
+:root[data-theme="dark"] {
+  --primary: #0A0A0A;
+  --secondary: #0A0A0A;
+  --accent: #F48B2D;
+  --primary-fg: #ffffff;
+
+  --header-bg: #0A0A0A;
+  --header-color: #ffffff;
+  --header-branding-color: #F48B2D;
+  --header-link-color: #ffffff;
+
+  --breadcrumbs-bg: #161616;
+  --breadcrumbs-fg: #cfcfcf;
+  --breadcrumbs-link-fg: #ffffff;
+
+  --link-fg: #0A0A0A;
+  --link-hover-color: #F48B2D;
+  --link-selected-fg: #F48B2D;
+
+  --button-bg: #F48B2D;
+  --button-fg: #ffffff;
+  --button-hover-bg: #d9771f;
+  --default-button-bg: #0A0A0A;
+  --default-button-hover-bg: #333333;
+
+  --object-tools-bg: #0A0A0A;
+  --object-tools-hover-bg: #F48B2D;
+
+  --selected-row: #fff6ee;
+}
+:root[data-theme="dark"] {
+  /* im Dark-Mode die hellen Akzente etwas anpassen, Rest bleibt dunkel */
+  --link-fg: #e8e8e8;
+  --selected-row: #2a2118;
+}
+
+#site-name a { color: #ffffff; text-decoration: none; font-weight: 700; letter-spacing: -0.01em; }
+#site-name .dl-dot { color: #F48B2D; margin: 0 2px; font-size: 0.7em; vertical-align: 0.15em; }
+#site-name .dl-sub { font-weight: 400; opacity: 0.7; margin-left: 8px; }
+</style>
+{% endblock %}

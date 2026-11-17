@@ -44,3 +44,12 @@ class AdminSmokeTests(TestCase):
         # Case-Study-Formular (mit Bild-Upload-Feld)
         self.assertEqual(self.client.get(
             reverse("admin:web_casestudy_add")).status_code, 200)
+
+
+@NO_MANIFEST
+class AdminBrandingTests(TestCase):
+    def test_login_page_uses_datalization_branding(self):
+        resp = self.client.get(reverse("admin:login"))
+        self.assertEqual(resp.status_code, 200)
+        self.assertContains(resp, "Datalization")      # Wortmarke statt „Django administration"
+        self.assertContains(resp, "#F48B2D")           # Brand-Orange-Override geladen
