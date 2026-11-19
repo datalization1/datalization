@@ -71,6 +71,10 @@ class Command(BaseCommand):
         parser.add_argument("--no-digest", action="store_true")
         parser.add_argument("--skip-fetch", action="store_true",
                             help="Pull/Anreicherung überspringen (nur Chargen/Report).")
+        parser.add_argument("--no-odoo", action="store_true",
+                            help="Ohne Odoo-API laufen (Standard-Tarif): überspringt Push/"
+                                 "Tag/Sync/Chancen; Briefe werden lokal als versendet "
+                                 "markiert. SHAB/Anreicherung/Briefe/FC-Report laufen weiter.")
         parser.add_argument("--no-backup", action="store_true",
                             help="Kein DB-Backup zu Beginn des Laufs.")
         parser.add_argument("--backup-keep", type=int, default=8,
@@ -204,8 +208,14 @@ class Command(BaseCommand):
             self._step(0, "DB-Backup (lokal + OneDrive)")
             self._backup_db(dry, today, o["backup_keep"])
 
-        self._step("0b", "Odoo-API-Key-Ablauf prüfen")
-        self._check_key_expiry(dry, today, o["digest_email"])
+        no_odoo = o["no_odoo"]
+        if no_odoo:
+            self.stdout.write(self.style.WARNING(
+                "  Odoo-Modus AUS (--no-odoo): kein API-Push/Tag/Sync/Chancen."))
+
+        if not no_odoo:
+            self._step("0b", "Odoo-API-Key-Ablauf prüfen")
+            self._check_key_expiry(dry, today, o["digest_email"])
 
         if not o["skip_fetch"]:
             self._step(1, "SHAB-Pull + Zefix/Google")
@@ -214,16 +224,19 @@ class Command(BaseCommand):
             self._step(2, "Nach-Anreicherung bestehender Lücken")
             self._call(dry, "enrich_google_places", "--active-only", days=rd)
             self._call(dry, "scrape_newcompany_emails", "--active-only", days=rd)
-            self._step(3, "Neue Treffer → Odoo-Leads")
-            self._call(dry, "push_leads_odoo", model="shab")
-            self._step(4, "FC-Oftringen-Tag (Bezirk Zofingen)")
-            self._call(dry, "tag_fc_oftringen")
-            self._step(5, "Nachgereichte Kontaktdaten syncen")
-            self._call(dry, "sync_odoo_contacts", "--active-only", days=rd)
+            if not no_odoo:
+                self._step(3, "Neue Treffer → Odoo-Leads")
+                self._call(dry, "push_leads_odoo", model="shab")
+                self._step(4, "FC-Oftringen-Tag (Bezirk Zofingen)")
+                self._call(dry, "tag_fc_oftringen")
+                self._step(5, "Nachgereichte Kontaktdaten syncen")
+                self._call(dry, "sync_odoo_contacts", "--active-only", days=rd)
         else:
             self.stdout.write("  (Pull/Anreicherung übersprungen – --skip-fetch)")
 
-        if o["mail_limit"] > 0:
+        if no_odoo:
+            self._step(6, "E-Mail-Charge übersprungen (Odoo-Modus aus)")
+        elif o["mail_limit"] > 0:
             self._step(6, f"Leads→Chancen + E-Mail-Charge (max {o['mail_limit']})")
             self._call(dry, "odoo_opportunities", limit=o["mail_limit"])
         else:
@@ -233,7 +246,12 @@ class Command(BaseCommand):
                                  f"Neugruender-Briefe_{today.isoformat()}.html")
         if o["brief_limit"] > 0:
             self._step(7, f"Brief-Charge PDF (max {o['brief_limit']})")
-            self._call(dry, "generate_letters", limit=o["brief_limit"], out=brief_out)
+            if no_odoo:
+                # ohne Odoo: nicht taggen, aber lokal als versendet markieren
+                self._call(dry, "generate_letters", "--no-tag", "--mark-sent",
+                           limit=o["brief_limit"], out=brief_out)
+            else:
+                self._call(dry, "generate_letters", limit=o["brief_limit"], out=brief_out)
         else:
             self._step(7, "Brief-Charge übersprungen (--brief-limit ≤ 0)")
             brief_out = "(keine Brief-Charge)"
@@ -290,7 +308,7 @@ class Command(BaseCommand):
 
     # ---------------------------------------------------------------- digest
     def _digest(self, dry, today, o, brief_out):
-        snap = {} if dry else self._snapshot()
+        snap = {} if (dry or o["no_odoo"]) else self._snapshot()
         lines = [f"Wochenlauf {today.isoformat()} abgeschlossen.", ""]
         if snap:
             lines.append("Stand Datalization-Pipeline:")
@@ -299,10 +317,15 @@ class Command(BaseCommand):
         lines += [
             f"Brief-Charge erzeugt: {brief_out}",
             "→ Öffnen, drucken, unterschreiben, Visitenkarte beilegen, versenden.",
-            "→ Danach in Odoo Filter '📬 Brief-Kandidaten' die Charge als 'Brief versendet' markieren.",
-            "",
-            "Deine Tagesliste: Odoo → Aktivitäten (Filter '⏰ Nachfass fällig').",
         ]
+        if not o["no_odoo"]:
+            lines += [
+                "→ Danach in Odoo Filter '📬 Brief-Kandidaten' die Charge als 'Brief versendet' markieren.",
+                "",
+                "Deine Tagesliste: Odoo → Aktivitäten (Filter '⏰ Nachfass fällig').",
+            ]
+        else:
+            lines += ["→ Charge ist lokal bereits als versendet markiert (kein Odoo nötig)."]
         body = "\n".join(lines)
         if dry:
             self.stdout.write("    [dry-run] Digest-Mail an "

@@ -64,6 +64,10 @@ class NewCompany(models.Model):
     odoo_lead_id = models.IntegerField(_("Odoo-Lead-ID"), null=True, blank=True)
     odoo_synced_at = models.DateTimeField(null=True, blank=True)
 
+    # Lokale Brief-Nachverfolgung (ersetzt den Odoo-Tag 'Brief versendet',
+    # damit die Brief-Auswahl auch OHNE Odoo-API nicht dieselben Firmen wiederholt).
+    letter_sent_at = models.DateTimeField(_("Brief versendet am"), null=True, blank=True)
+
     class Meta:
         db_table = "web_newcompany"          # Tabelle bleibt (kein Daten-Umzug)
         verbose_name = _("Neue Firma")

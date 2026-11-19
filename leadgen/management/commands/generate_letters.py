@@ -150,6 +150,9 @@ class Command(BaseCommand):
                                  "keine Nachfass-Aktivität anlegen (Standard: an, wenn Odoo aktiv).")
         parser.add_argument("--activity-days", type=int, default=7,
                             help="Fälligkeit der Nachfass-Aktivität in Tagen (Default 7).")
+        parser.add_argument("--mark-sent", action="store_true",
+                            help="Die erzeugte Charge LOKAL als versendet markieren "
+                                 "(letter_sent_at), damit sie ohne Odoo nicht wiederkehrt.")
 
     @staticmethod
     def _rank(r):
@@ -218,7 +221,10 @@ class Command(BaseCommand):
         if opts["bezirk_zofingen"]:
             qs = qs.filter(town__in=BEZIRK_ZOFINGEN)
 
-        # Bereits versendete (Odoo-Tag 'Brief versendet') überspringen
+        # Lokal bereits versendete überspringen (funktioniert ohne Odoo).
+        qs = qs.filter(letter_sent_at__isnull=True)
+
+        # Zusätzlich: bereits versendete (Odoo-Tag 'Brief versendet') überspringen
         client = None
         sent_tag = None
         if odoo_crm.enabled():
@@ -260,6 +266,15 @@ class Command(BaseCommand):
         html = (f"<!DOCTYPE html><html lang='de'><head><meta charset='utf-8'>"
                 f"<title>Serienbrief Neugründungen</title><style>{PAGE_CSS}</style></head>"
                 f"<body>{''.join(letters)}</body></html>")
+
+        # Lokale Versand-Markierung (ersetzt den Odoo-Tag, läuft ohne API).
+        if opts["mark_sent"]:
+            now = timezone.now()
+            for r in records:
+                r.letter_sent_at = now
+            NewCompany.objects.bulk_update(records, ["letter_sent_at"])
+            self.stdout.write(self.style.SUCCESS(
+                f"{len(records)} Firmen lokal als versendet markiert (letter_sent_at)."))
 
         out = os.path.expanduser(opts["out"])
         with open(out, "w", encoding="utf-8") as f:
